@@ -15,7 +15,25 @@
         <guid>https://Carring06.github.io/p/first/</guid>
         <description>&lt;h2 id=&#34;车度空间carring&#34;&gt;车度空间Carring
 &lt;/h2&gt;&lt;h2 id=&#34;开启我的博客之行&#34;&gt;开启我的博客之行
-&lt;/h2&gt;</description>
+&lt;/h2&gt;&lt;h2 id=&#34;两个常用的hugo指令&#34;&gt;两个常用的hugo指令
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;（1）==hugo server -D==：预览含草稿的站点（日常开发首选）；&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;（2）==hugo new content post/你的文章文件夹名/index.md==：创建新文件&lt;/strong&gt;&lt;/p&gt;
+&lt;h2 id=&#34;一些常用的markdown指令&#34;&gt;一些常用的Markdown指令
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/first/image.png&#34;
+	width=&#34;1190&#34;
+	height=&#34;1350&#34;
+	srcset=&#34;https://Carring06.github.io/p/first/image_hu7829482182427877556.png 480w, https://Carring06.github.io/p/first/image_hu11805428333500033372.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;指令图&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;88&#34;
+		data-flex-basis=&#34;211px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
         </item>
         
     </channel>
