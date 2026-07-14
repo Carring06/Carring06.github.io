@@ -17,10 +17,7 @@
 
   
 
-<link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
-<link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
-<link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
-<link rel="manifest" href="/site.webmanifest">
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
 
     </head>
     <body class="
@@ -324,12 +321,9 @@
 
     
     
-    
-    
     <footer class="article-time">
-        
-            <div>
-                <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
   <path stroke="none" d="M0 0h24v24H0z"/>
   <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
   <circle cx="18" cy="18" r="4" />
@@ -338,11 +332,33 @@
   <path d="M3 11h16" />
   <path d="M18 16.496v1.504l1 1" />
 </svg>
-                <time class="article-time--published">2026 - 07 - 13</time>
-            </div>
-        
-
-        
+            <time class="article-time--published">2026 - 07 - 13</time>
+        </div>
+        <div>
+            <span class="article-time--words">📝 185 字</span>
+        </div>
+        <div>
+            <span id="busuanzi_container_page_pv" style="display: none;">
+                <span>👁 </span>
+                <span id="busuanzi_value_page_pv"></span>
+                <span> 次</span>
+            </span>
+        </div>
+        <script>
+            (function(){
+                var observer = new MutationObserver(function(){
+                    var el = document.getElementById('busuanzi_value_page_pv');
+                    var container = document.getElementById('busuanzi_container_page_pv');
+                    if (el && container) {
+                        var val = parseInt(el.textContent);
+                        if (isNaN(val) || val > 100000 || val < 0) {
+                            container.style.display = 'none';
+                        }
+                    }
+                });
+                observer.observe(document.body, { childList: true, subtree: true });
+            })();
+        </script>
     </footer>
     
 
@@ -362,7 +378,7 @@
 <h2 id="一些常用的markdown指令">一些常用的Markdown指令
 </h2><h1 id="一级标题">一级标题
 </h1><h2 id="二级标题">二级标题
-</h2><p><strong>加粗</strong> <em>斜体</em> ==高亮==
+</h2><p><strong>加粗</strong> <em>斜体</em> <mark>高亮</mark>
 <del>删除线</del></p>
 <ul>
 <li><input disabled="" type="checkbox"> 待办框 - [x] 勾选框
@@ -374,6 +390,22 @@
 <p><a class="link" href="https://letere-gzj.github.io/hugo-stack/link/"  target="_blank" rel="noopener"
     >相关技术链接</a></p>
 <p><em>虽然略显复杂，但还是坚持坚持</em></p>
+<ul>
+<li><input checked="" disabled="" type="checkbox"> <img src="/p/first/image.png"
+	width="414"
+	height="240"
+	srcset="/p/first/image_hu9487317071246306840.png 480w, /p/first/image_hu9404179176056559625.png 1024w"
+	loading="lazy"
+	
+		alt="缩进方法"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="172"
+		data-flex-basis="414px"
+	
+></li>
+</ul>
 
 </section>
 
