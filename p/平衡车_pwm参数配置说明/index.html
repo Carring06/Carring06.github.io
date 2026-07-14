@@ -17,7 +17,7 @@
 
   
 
-<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+<script async src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js"></script>
 
     </head>
     <body class="
@@ -336,28 +336,6 @@
         <div>
             <span class="article-time--words">📝 29 字</span>
         </div>
-        <div>
-            <span id="busuanzi_container_page_pv" style="display: none;">
-                <span>👁 </span>
-                <span id="busuanzi_value_page_pv"></span>
-                <span> 次</span>
-            </span>
-        </div>
-        <script>
-            (function(){
-                var observer = new MutationObserver(function(){
-                    var el = document.getElementById('busuanzi_value_page_pv');
-                    var container = document.getElementById('busuanzi_container_page_pv');
-                    if (el && container) {
-                        var val = parseInt(el.textContent);
-                        if (isNaN(val) || val > 100000 || val < 0) {
-                            container.style.display = 'none';
-                        }
-                    }
-                });
-                observer.observe(document.body, { childList: true, subtree: true });
-            })();
-        </script>
     </footer>
     
 
