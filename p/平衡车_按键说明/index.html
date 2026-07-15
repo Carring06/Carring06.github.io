@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="按键代码 使用说明: （1）Key_Scan()每1ms执行一次，使用前必须放在定是中断里； （2）如果只需判断按键是否按下，直接调用if(Key">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="按键代码 使用说明: （1）Key_Scan()每1ms执行一次，使用前必须放在定时中断里； （2）如果只需判断按键是否按下，直接调用if(Key">
 <title>平衡车_按键说明</title>
 
 <link rel='canonical' href='https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E6%8C%89%E9%94%AE%E8%AF%B4%E6%98%8E/'>
 
 <link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="平衡车_按键说明">
-<meta property='og:description' content="按键代码 使用说明: （1）Key_Scan()每1ms执行一次，使用前必须放在定是中断里； （2）如果只需判断按键是否按下，直接调用if(Key">
+<meta property='og:description' content="按键代码 使用说明: （1）Key_Scan()每1ms执行一次，使用前必须放在定时中断里； （2）如果只需判断按键是否按下，直接调用if(Key">
 <meta property='og:url' content='https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E6%8C%89%E9%94%AE%E8%AF%B4%E6%98%8E/'>
 <meta property='og:site_name' content='车度空间'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-07-14T13:13:54&#43;08:00'/><meta property='article:modified_time' content='2026-07-14T13:13:54&#43;08:00'/>
 <meta name="twitter:title" content="平衡车_按键说明">
-<meta name="twitter:description" content="按键代码 使用说明: （1）Key_Scan()每1ms执行一次，使用前必须放在定是中断里； （2）如果只需判断按键是否按下，直接调用if(Key">
+<meta name="twitter:description" content="按键代码 使用说明: （1）Key_Scan()每1ms执行一次，使用前必须放在定时中断里； （2）如果只需判断按键是否按下，直接调用if(Key">
     <link rel="shortcut icon" href="/favicon.ico" />
 
   
@@ -286,7 +286,14 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li><a href="#按键代码">按键代码</a></li>
+    <li><a href="#按键代码">按键代码</a>
+      <ol>
+        <li><a href="#mykeyc"><strong>MyKey.c</strong></a></li>
+        <li><a href="#mykeyh"><strong>MyKey.h</strong></a></li>
+        <li><a href="#key_callbackc"><strong>key_callback.c</strong></a></li>
+        <li><a href="#key_callbackh"><strong>key_callback.h</strong></a></li>
+      </ol>
+    </li>
     <li><a href="#移植说明">移植说明</a></li>
   </ol>
 </nav>
@@ -329,7 +336,7 @@
             <time class="article-time--published">2026 - 07 - 14</time>
         </div>
         <div>
-            <span class="article-time--words">📝 3370 字</span>
+            <span class="article-time--words">📝 3483 字</span>
         </div>
         
         <div>
@@ -349,7 +356,7 @@
     
     <h2 id="按键代码">按键代码
 </h2><p><mark>使用说明:</mark><br>
-（1）Key_Scan()每1ms执行一次，使用前必须放在定是中断里；<br>
+（1）Key_Scan()每1ms执行一次，使用前必须放在定时中断里；<br>
 （2）如果只需判断按键是否按下，直接调用if(Key_GetPressed(keyId)),keyId为你要判断的按键；<br>
 （3）该按键程序可实现长按触发，双击等待，连发等多种功能，实现逻辑运用了C 语言<strong>函数指针回调注册机制<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></strong>,使用方法：①初始化注册：在<code>main</code>函数中调用<code>Key_RegisterAllHandlers()</code>完成全部按键回调函数绑定；;②业务逻辑编写：在<code>key_callback.c</code>内对应的回调函数中，编写各按键触发后的执行逻辑。<br>
 <mark>建议</mark></p>
@@ -360,8 +367,8 @@
 <li>4.若使用回调后手感延迟明显，可下调各类事件的时间阈值，例如将双击判定等待窗口调整至 120ms，缩短等待耗时，优化按键响应手感。
 如，将双击等待窗口（ms）减小置120ms</li>
 </ul>
-<p><strong>MyKey.c</strong></p>
-<div class="highlight"><div class="chroma">
+<h3 id="mykeyc"><strong>MyKey.c</strong>
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">  1
 </span><span class="lnt">  2
@@ -915,8 +922,8 @@
 </span></span><span class="line"><span class="cl"><span class="p">}</span>
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>MyKey.h</strong></p>
-<div class="highlight"><div class="chroma">
+</div><h3 id="mykeyh"><strong>MyKey.h</strong>
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1022,8 +1029,8 @@
 </span></span><span class="line"><span class="cl"><span class="cp">#endif </span><span class="c1">//CLION_MYKEY_H
 </span></span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>key_callback.c</strong></p>
-<div class="highlight"><div class="chroma">
+</div><h3 id="key_callbackc"><strong>key_callback.c</strong>
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1193,8 +1200,8 @@
 </span></span><span class="line"><span class="cl">}
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p><strong>key_callback.h</strong></p>
-<div class="highlight"><div class="chroma">
+</div><h3 id="key_callbackh"><strong>key_callback.h</strong>
+</h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt"> 1
 </span><span class="lnt"> 2
@@ -1283,8 +1290,9 @@
 <mark>不加typedef时</mark>，<code>Key_PutDownHandler_t</code>是<strong>函数指针变量名</strong>，代表一个能存函数地址的指针变量，不是函数本身。<br>
 <mark>加typedef 后</mark>，它能用来定义<strong>函数指针变量</strong>，<code>Key_PutDownHandler_t</code> 是<strong>函数指针类型</strong>，只能声明存储函数地址的指针，不能直接定义普通函数。<br>
 所指向的函数必须是无返回值，参数为uint8_t的变量。<br>
-要区分点：指针函数：<strong>返回值是指针的普通函数</strong><br>
-     函数指针：<strong>存储函数地址的指针变量</strong>&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+<mark>要区分点</mark>：指针函数：<strong>返回值是指针的普通函数</strong><br>
+     函数指针：<strong>存储函数地址的指针变量</strong><br>
+<mark>使用回调函数的用意及好处</mark>：回调机制本质是事件驱动解耦设计，把 “按键识别” 和 “按键要做什么” 完全拆开，让驱动通用、业务灵活，代价是双击判定带来轻微单击延迟；追求极致实时性时可搭配轮询函数Key_GetPressed()互补使用。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
 </li>
 </ol>
 </div>

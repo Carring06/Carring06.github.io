@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="MPU6050的I2C模式选择 软件I2C 硬件I2C 标准I2C 快速I2C OLED上电前延时">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="MPU6050的I2C模式选择 MPU6050 是独立的外部传感器芯片，不属于单片机片上外设；若要读取该外设内部寄存器数据，主控需要通过总线与该芯片建立通信">
 <title>平衡车_MPU6050&#43;OLED</title>
 
 <link rel='canonical' href='https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/'>
 
 <link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="平衡车_MPU6050+OLED">
-<meta property='og:description' content="MPU6050的I2C模式选择 软件I2C 硬件I2C 标准I2C 快速I2C OLED上电前延时">
+<meta property='og:description' content="MPU6050的I2C模式选择 MPU6050 是独立的外部传感器芯片，不属于单片机片上外设；若要读取该外设内部寄存器数据，主控需要通过总线与该芯片建立通信">
 <meta property='og:url' content='https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/'>
 <meta property='og:site_name' content='车度空间'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-07-14T13:14:17&#43;08:00'/><meta property='article:modified_time' content='2026-07-14T13:14:17&#43;08:00'/>
 <meta name="twitter:title" content="平衡车_MPU6050+OLED">
-<meta name="twitter:description" content="MPU6050的I2C模式选择 软件I2C 硬件I2C 标准I2C 快速I2C OLED上电前延时">
+<meta name="twitter:description" content="MPU6050的I2C模式选择 MPU6050 是独立的外部传感器芯片，不属于单片机片上外设；若要读取该外设内部寄存器数据，主控需要通过总线与该芯片建立通信">
     <link rel="shortcut icon" href="/favicon.ico" />
 
   
@@ -297,7 +297,7 @@
         </li>
       </ol>
     </li>
-    <li><a href="#oled上电前延时">OLED上电前延时</a></li>
+    <li><a href="#oled部分说明">OLED部分说明</a></li>
   </ol>
 </nav>
         </div>
@@ -339,7 +339,7 @@
             <time class="article-time--published">2026 - 07 - 14</time>
         </div>
         <div>
-            <span class="article-time--words">📝 44 字</span>
+            <span class="article-time--words">📝 3678 字</span>
         </div>
         
         <div>
@@ -358,12 +358,835 @@
     
     
     <h2 id="mpu6050的i2c模式选择">MPU6050的I2C模式选择
-</h2><h3 id="软件i2c">软件I2C
-</h3><h3 id="硬件i2c">硬件I2C
-</h3><h4 id="标准i2c">标准I2C
-</h4><h4 id="快速i2c">快速I2C
-</h4><h2 id="oled上电前延时">OLED上电前延时
-</h2>
+</h2><p>  MPU6050 是独立的外部传感器芯片，不属于单片机片上外设；若要读取该外设内部寄存器数据，主控需要通过总线与该芯片建立通信。单片机与外部芯片常用通信协议包含 I2C、SPI、UART、CAN 等，本章将以 MPU6050 为例，讲解 I2C 通信原理与实操。</p>
+<h3 id="软件i2c">软件I2C
+</h3><p>  软件 I2C 通过代码手动控制 SCL、SDA 两根通信引脚的高低电平，模拟标准 I2C 协议时序，实现主控与外部传感器芯片通信。
+软件 I2C 优势是引脚选择灵活，绝大部分通用 GPIO 引脚，只要支持开漏输出配置，搭配内部上拉或外部上拉电阻，即可实现 I2C 总线通信；软件 I2C 必须严格遵循 I2C 规定时序，具体时序规范可查阅 I2C 官方手册。<br>
+  经过实测，HAL库软件模拟进行通信的效率比标准库低，主要是因为在与标准库同样配置下，HAL库手动翻转电平的效率比较耗时。<br>
+<img src="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image.png"
+	width="972"
+	height="348"
+	srcset="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image_hu390731648268003479.png 480w, /p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image_hu12753226442328782139.png 1024w"
+	loading="lazy"
+	
+		alt="电平最大输出速率"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="279"
+		data-flex-basis="670px"
+	
+><br>
+  </p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>CubeMX 选项</th>
+<th>标准库宏</th>
+<th>官方最大翻转频率</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Low</td>
+<td>GPIO_Speed_2MHz</td>
+<td>2 MHz</td>
+</tr>
+<tr>
+<td>Medium</td>
+<td>GPIO_Speed_10MHz</td>
+<td>10 MHz</td>
+</tr>
+<tr>
+<td>High</td>
+<td>GPIO_Speed_50MHz</td>
+<td>50 MHz</td>
+</tr>
+</tbody>
+</table></div>
+<p>  针对于软件I2C，高速PWM等，都推荐最高档！而普通 LED、继电器、低速 IO 输出则选择Low ， Medium即可。另外提一嘴，这里所说的最大速度是指 引脚电平切换，电压爬升或跌落的快慢，而不是代码多久翻转一次。GPIO 最大输出速度只控制 I2C 总线拉低电平的快慢，速度档位过低会导致下降沿过慢，I2C 时序不达标，出现通信失败；软件 I2C 场景建议固定配置 High 档位。<br>
+  而对于该平衡车项目，我使用软件I2C进行MPU6050数据获取时（也就是函数<code>MPU6050_GetData(&amp;MPU6050_Data);</code>），经实测发现他大约耗时<mark>578us</mark>，而同样配置下，<mark>标准库仅耗时约352us</mark>。这也就让我开始尝试使用硬件I2C进行获取数据了。</p>
+<h3 id="硬件i2c">硬件I2C
+</h3><p>  硬件I2C，是指应用单片机为我们提供的片上外设,在CubeMx对应I2C模式，而后进行I2C通信，这里直接调用官方的函数接口就可以完成一系列操作，并不需要我们手动翻转电平来产生起始、终止信号等等。<br>
+<img src="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-1.png"
+	width="390"
+	height="378"
+	srcset="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-1_hu2668296420720525037.png 480w, /p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-1_hu16768546210987516951.png 1024w"
+	loading="lazy"
+	
+		alt="I2C外设"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="103"
+		data-flex-basis="247px"
+	
+></p>
+<p><img src="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-2.png"
+	width="1038"
+	height="200"
+	srcset="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-2_hu16050020688416545406.png 480w, /p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-2_hu12614030538006318621.png 1024w"
+	loading="lazy"
+	
+		alt="I2C外设"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="519"
+		data-flex-basis="1245px"
+	
+></p>
+<h4 id="标准i2c">标准I2C
+</h4><p><img src="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-3.png"
+	width="978"
+	height="555"
+	srcset="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-3_hu3687220923763825776.png 480w, /p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-3_hu14752230997016060849.png 1024w"
+	loading="lazy"
+	
+		alt="alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="176"
+		data-flex-basis="422px"
+	
+>
+  硬件I2C又分为标准模式和快速模式。标准模式下，I2C的时钟频率仅100KHZ，与MPU6050通信速度反而比软件I2C慢。个人在实验中，测出的硬件I2C的MPU6050数据获取耗时1594，1595us，这和软件I2C耗时578us，差了不止一个等级。不仅达不到我的目的——提高MPU6050获取数据的效率，反而还拖了后腿（当然，这里我都是基于HAL库版本进行讨论的）！因而这也就引出了后续选取硬件I2C的快速模式作为I2C通信模式。 <br>
+  在引入快速I2C时，先来解释一下这里的<mark>I2C Clock Speed (Hz)</mark>。I2C 时钟频率，指<strong>I2C 总线 SCL 时钟信号的方波频率</strong>，代表每秒在 SCL 线上完整高低电平切换的次数，直接决定数据传输快慢。
+100kHz = SCL 每秒完整跳变 10 万次；400kHz = 每秒跳变 40 万次。而我们知道，SCL作为时钟信号线，间接影响了SDA的数据读取和数据写入，具体表现是：SCL低电平期间，允许主机写数据，高电平期间允许从机读数据。因此，时钟频率越高，I2C读取速率也越大。但值得注意的是，快速模式并不是所有外部芯片都支持的，具体得去查阅芯片手册！当前的MPU6050是支持的。   <br>
+<img src="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-6.png"
+	width="1434"
+	height="380"
+	srcset="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-6_hu7001892002220500546.png 480w, /p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-6_hu8269255028160483890.png 1024w"
+	loading="lazy"
+	
+		alt="MPU6050芯片手册原图"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="377"
+		data-flex-basis="905px"
+	
+></p>
+<p>I2C 协议的数据有效性规则：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>SCL 状态</th>
+<th>SDA 线行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>低电平</td>
+<td>允许改变 SDA（写数据）</td>
+</tr>
+<tr>
+<td>高电平</td>
+<td>SDA 必须保持稳定（读数据）</td>
+</tr>
+</tbody>
+</table></div>
+<h4 id="快速i2c">快速I2C
+</h4><p><img src="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-4.png"
+	width="984"
+	height="473"
+	srcset="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-4_hu6930167809416218308.png 480w, /p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-4_hu14262182137309055705.png 1024w"
+	loading="lazy"
+	
+		alt="快速I2C"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="208"
+		data-flex-basis="499px"
+	
+><br>
+值得注意的是，快速I2C多了个选项，<code>Fast Mode Duty Cycle</code><br>
+<img src="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-5.png"
+	width="491"
+	height="66"
+	srcset="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-5_hu15219335084681902956.png 480w, /p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-5_hu3009643492169438241.png 1024w"
+	loading="lazy"
+	
+		alt="电平时间占比"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="743"
+		data-flex-basis="1785px"
+	
+><br>
+  一般的通信要求都是选择低电平时间/高电平时间为2：1的，但既然多出个16/9的选项，说明有些通信确实对高低电平的时间占比有特殊要求，如果选错了，可能会导致通信失败或者效率变低，具体需要自行查阅资料。<br>
+  以MPU6050为例子，其实选择2/1或者16/9，都是能进行通信的。我进行测试的时候，2/1的组别能将MPU6050数据获取速率提快至<mark>416，417us</mark>，而16/9为<mark>461，462us</mark>，所以这里建议选择2/1占比的。<br>
+  这样，<mark>MPU6050的数据获取速率比使用软件I2C快了160us左右</mark>，但是始终比标准库的软件I2C读取速率慢！这也尽我所能了，如若有别的方法能进一步提高读取速率，麻烦发邮箱告知我一声！QQ邮箱：3152067902@qq.com！
+  当然，这里没有采用DMA协助数据运输以及I2C的中断，个人经考量觉得意义不大，因而没有进行测试。而且个人觉得416us的速率对于平衡车还是够快的了，所以跳过了DMA协助数据运输以及I2C的中断的测试。各位可以自行尝试一下。后续等我博客开启评论功能，可于评论区告诉一声！<br>
+<img src="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-7.png"
+	width="1890"
+	height="822"
+	srcset="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-7_hu12640475953994752697.png 480w, /p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-7_hu8838806885294876337.png 1024w"
+	loading="lazy"
+	
+		alt="AI之言"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="229"
+		data-flex-basis="551px"
+	
+><br>
+<img src="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-8.png"
+	width="1913"
+	height="533"
+	srcset="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-8_hu16164920525699539962.png 480w, /p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-8_hu15156522668958905650.png 1024w"
+	loading="lazy"
+	
+		alt="AI之言"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="358"
+		data-flex-basis="861px"
+	
+></p>
+<p><strong>以下是软硬件I2C代码对比</strong></p>
+<p><mark>硬件I2C的代码</mark><br>
+H_I2C.c</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#include &#34;H_I2C.h&#34;
+</span></span><span class="line"><span class="cl">#include &#34;i2c.h&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void HAL_I2C_Mem_WriteData(uint8_t DevAddr, uint8_t MemAddr, uint8_t *pData, uint16_t Size)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    HAL_I2C_Mem_Write(&amp;hi2c2, DevAddr, MemAddr, I2C_MEMADD_SIZE_8BIT, pData, Size, HAL_MAX_DELAY);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void HAL_I2C_Mem_ReadData(uint8_t DevAddr, uint8_t MemAddr, uint8_t *pData, uint16_t Size)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    HAL_I2C_Mem_Read(&amp;hi2c2, DevAddr, MemAddr, I2C_MEMADD_SIZE_8BIT, pData, Size, HAL_MAX_DELAY);
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>MPU6050.c</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#include &#34;MPU6050.h&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#define MPU6050_Address 0xD0 // HAL库使用8位地址（左对齐），0x68 &lt;&lt; 1 = 0xD0
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void MPU6050_Init(void)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_PWR_MGMT_1, 0x01); // 退出睡眠模式
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_PWR_MGMT_2, 0x00);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_SMPLRT_DIV, 0x00); // 数据输出最快
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    // MPU6050_WriteData(MPU6050_CONFIG, 0x06);
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_CONFIG, 0x00); //  CONFIG = 0x06 使能了数字低通滤波器，带宽仅 5Hz，陀螺仪数据延迟约 19ms。小车倾斜 1°→等 19ms 才能读到→PID 输出时已经倒得更厉害了－这是之前&#34;无法完全直立&#34;的根本原因。改为 CONFIG = 0x00 ，延迟降到约 1ms，控制环路能实时响应
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_GYRO_CONFIG, 0x18);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_ACCEL_CONFIG, 0x18);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void MPU6050_WriteData(uint8_t Address, uint8_t data)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    HAL_I2C_Mem_WriteData(MPU6050_Address, Address, &amp;data, 1);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">int8_t MPU6050_ReadData(uint8_t Address)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    uint8_t data = 0x00;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    HAL_I2C_Mem_ReadData(MPU6050_Address, Address, &amp;data, 1); // 地址HAL库自动完成加1操作
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    return data;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void MPU6050_ReadDatas(uint8_t Address, uint8_t *DataArr, uint8_t Count)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    HAL_I2C_Mem_ReadData(MPU6050_Address, Address, DataArr, Count);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void MPU6050_GetData0(int16_t *AccX, int16_t *AccY, int16_t *AccZ,
+</span></span><span class="line"><span class="cl">                      int16_t *GyroX, int16_t *GyroY, int16_t *GyroZ)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    uint8_t Data[14];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_ReadDatas(MPU6050_ACCEL_XOUT_H, Data, 14);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    *AccX = (Data[0] &lt;&lt; 8) | Data[1];
+</span></span><span class="line"><span class="cl">    *AccY = (Data[2] &lt;&lt; 8) | Data[3];
+</span></span><span class="line"><span class="cl">    *AccZ = (Data[4] &lt;&lt; 8) | Data[5];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    *GyroX = (Data[8] &lt;&lt; 8) | Data[9];
+</span></span><span class="line"><span class="cl">    *GyroY = (Data[10] &lt;&lt; 8) | Data[11];
+</span></span><span class="line"><span class="cl">    *GyroZ = (Data[12] &lt;&lt; 8) | Data[13];
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void MPU6050_GetData(MPU6050_Data_t *MPU6050_Data)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    uint8_t DataArr[14];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_ReadDatas(MPU6050_ACCEL_XOUT_H, DataArr, 14);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_Data-&gt;Accel_X = (DataArr[0] &lt;&lt; 8) | DataArr[1];
+</span></span><span class="line"><span class="cl">    MPU6050_Data-&gt;Accel_Y = (DataArr[2] &lt;&lt; 8) | DataArr[3];
+</span></span><span class="line"><span class="cl">    MPU6050_Data-&gt;Accel_Z = (DataArr[4] &lt;&lt; 8) | DataArr[5];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_Data-&gt;Gyro_X = (DataArr[8] &lt;&lt; 8) | DataArr[9];
+</span></span><span class="line"><span class="cl">    MPU6050_Data-&gt;Gyro_Y = (DataArr[10] &lt;&lt; 8) | DataArr[11];
+</span></span><span class="line"><span class="cl">    MPU6050_Data-&gt;Gyro_Z = (DataArr[12] &lt;&lt; 8) | DataArr[13];
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><mark>软件I2C的代码</mark><br>
+S_I2C.c</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span><span class="lnt">49
+</span><span class="lnt">50
+</span><span class="lnt">51
+</span><span class="lnt">52
+</span><span class="lnt">53
+</span><span class="lnt">54
+</span><span class="lnt">55
+</span><span class="lnt">56
+</span><span class="lnt">57
+</span><span class="lnt">58
+</span><span class="lnt">59
+</span><span class="lnt">60
+</span><span class="lnt">61
+</span><span class="lnt">62
+</span><span class="lnt">63
+</span><span class="lnt">64
+</span><span class="lnt">65
+</span><span class="lnt">66
+</span><span class="lnt">67
+</span><span class="lnt">68
+</span><span class="lnt">69
+</span><span class="lnt">70
+</span><span class="lnt">71
+</span><span class="lnt">72
+</span><span class="lnt">73
+</span><span class="lnt">74
+</span><span class="lnt">75
+</span><span class="lnt">76
+</span><span class="lnt">77
+</span><span class="lnt">78
+</span><span class="lnt">79
+</span><span class="lnt">80
+</span><span class="lnt">81
+</span><span class="lnt">82
+</span><span class="lnt">83
+</span><span class="lnt">84
+</span><span class="lnt">85
+</span><span class="lnt">86
+</span><span class="lnt">87
+</span><span class="lnt">88
+</span><span class="lnt">89
+</span><span class="lnt">90
+</span><span class="lnt">91
+</span><span class="lnt">92
+</span><span class="lnt">93
+</span><span class="lnt">94
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#include &#34;S_I2C.h&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/************************************************************************************/
+</span></span><span class="line"><span class="cl">void SI2C_WriteSCL(GPIO_PinState PinState)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    HAL_GPIO_WritePin(MPU6050_SCL_GPIO_Port,MPU6050_SCL_Pin , PinState);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void SI2C_WriteSDA(GPIO_PinState PinState)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    HAL_GPIO_WritePin(MPU6050_SDA_GPIO_Port,MPU6050_SDA_Pin , PinState);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">uint8_t SI2C_ReadSDA(void)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    return HAL_GPIO_ReadPin(MPU6050_SDA_GPIO_Port,MPU6050_SDA_Pin);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">/************************************************************************************/
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void I2C_Init(void)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    SI2C_WriteSCL(1);
+</span></span><span class="line"><span class="cl">    SI2C_WriteSDA(1);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void I2C_Start(void)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    //防止两线异常处于低电平
+</span></span><span class="line"><span class="cl">    SI2C_WriteSDA(1);//先拉高SDA,可以兼容起始条件和重复起始条件，防止因为先拉高SCL后拉高SDA导致产生终止条件
+</span></span><span class="line"><span class="cl">    SI2C_WriteSCL(1);
+</span></span><span class="line"><span class="cl">    //以上为个人添加，如有不妥可以删除
+</span></span><span class="line"><span class="cl">    SI2C_WriteSDA(0);
+</span></span><span class="line"><span class="cl">    SI2C_WriteSCL(0);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void I2C_Stop(void)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    //防止两线异常
+</span></span><span class="line"><span class="cl">    SI2C_WriteSDA(0);//为确保SDA能产生上升沿
+</span></span><span class="line"><span class="cl">    SI2C_WriteSCL(0);//江协没有这个
+</span></span><span class="line"><span class="cl">    //以上为个人添加，如有不妥可以删除
+</span></span><span class="line"><span class="cl">    SI2C_WriteSCL(1);
+</span></span><span class="line"><span class="cl">    SI2C_WriteSDA(1);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void I2C_SendByte(uint8_t data)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    for (uint8_t i = 0; i &lt; 8; i++)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        SI2C_WriteSDA(data &amp; (0x80 &gt;&gt; i));
+</span></span><span class="line"><span class="cl">        SI2C_WriteSCL(1);//驱动时钟走个脉冲
+</span></span><span class="line"><span class="cl">        SI2C_WriteSCL(0);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">uint8_t I2C_ReadByte(void)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    uint8_t data = 0x00;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    SI2C_WriteSDA(1);//主机释放总线控制权
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    for (uint8_t i = 0; i &lt; 8; i++)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        SI2C_WriteSCL(1);
+</span></span><span class="line"><span class="cl">        data |= SI2C_ReadSDA() ? (0X80 &gt;&gt; i) : (0X00);//是否需要延时，待后续实测
+</span></span><span class="line"><span class="cl">        SI2C_WriteSCL(0);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    return data;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void I2C_SendAckBit(uint8_t AckBit)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    SI2C_WriteSDA(AckBit);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    SI2C_WriteSCL(1);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    SI2C_WriteSCL(0);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">uint8_t I2C_ReadAckBit(void)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    uint8_t AckBit = 0x00;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    SI2C_WriteSDA(1);//主机释放总线控制权
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    SI2C_WriteSCL(1);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    AckBit = SI2C_ReadSDA();//是否需要延时，待后续实测
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    SI2C_WriteSCL(0);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    return AckBit;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>MPU6050.c</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">  1
+</span><span class="lnt">  2
+</span><span class="lnt">  3
+</span><span class="lnt">  4
+</span><span class="lnt">  5
+</span><span class="lnt">  6
+</span><span class="lnt">  7
+</span><span class="lnt">  8
+</span><span class="lnt">  9
+</span><span class="lnt"> 10
+</span><span class="lnt"> 11
+</span><span class="lnt"> 12
+</span><span class="lnt"> 13
+</span><span class="lnt"> 14
+</span><span class="lnt"> 15
+</span><span class="lnt"> 16
+</span><span class="lnt"> 17
+</span><span class="lnt"> 18
+</span><span class="lnt"> 19
+</span><span class="lnt"> 20
+</span><span class="lnt"> 21
+</span><span class="lnt"> 22
+</span><span class="lnt"> 23
+</span><span class="lnt"> 24
+</span><span class="lnt"> 25
+</span><span class="lnt"> 26
+</span><span class="lnt"> 27
+</span><span class="lnt"> 28
+</span><span class="lnt"> 29
+</span><span class="lnt"> 30
+</span><span class="lnt"> 31
+</span><span class="lnt"> 32
+</span><span class="lnt"> 33
+</span><span class="lnt"> 34
+</span><span class="lnt"> 35
+</span><span class="lnt"> 36
+</span><span class="lnt"> 37
+</span><span class="lnt"> 38
+</span><span class="lnt"> 39
+</span><span class="lnt"> 40
+</span><span class="lnt"> 41
+</span><span class="lnt"> 42
+</span><span class="lnt"> 43
+</span><span class="lnt"> 44
+</span><span class="lnt"> 45
+</span><span class="lnt"> 46
+</span><span class="lnt"> 47
+</span><span class="lnt"> 48
+</span><span class="lnt"> 49
+</span><span class="lnt"> 50
+</span><span class="lnt"> 51
+</span><span class="lnt"> 52
+</span><span class="lnt"> 53
+</span><span class="lnt"> 54
+</span><span class="lnt"> 55
+</span><span class="lnt"> 56
+</span><span class="lnt"> 57
+</span><span class="lnt"> 58
+</span><span class="lnt"> 59
+</span><span class="lnt"> 60
+</span><span class="lnt"> 61
+</span><span class="lnt"> 62
+</span><span class="lnt"> 63
+</span><span class="lnt"> 64
+</span><span class="lnt"> 65
+</span><span class="lnt"> 66
+</span><span class="lnt"> 67
+</span><span class="lnt"> 68
+</span><span class="lnt"> 69
+</span><span class="lnt"> 70
+</span><span class="lnt"> 71
+</span><span class="lnt"> 72
+</span><span class="lnt"> 73
+</span><span class="lnt"> 74
+</span><span class="lnt"> 75
+</span><span class="lnt"> 76
+</span><span class="lnt"> 77
+</span><span class="lnt"> 78
+</span><span class="lnt"> 79
+</span><span class="lnt"> 80
+</span><span class="lnt"> 81
+</span><span class="lnt"> 82
+</span><span class="lnt"> 83
+</span><span class="lnt"> 84
+</span><span class="lnt"> 85
+</span><span class="lnt"> 86
+</span><span class="lnt"> 87
+</span><span class="lnt"> 88
+</span><span class="lnt"> 89
+</span><span class="lnt"> 90
+</span><span class="lnt"> 91
+</span><span class="lnt"> 92
+</span><span class="lnt"> 93
+</span><span class="lnt"> 94
+</span><span class="lnt"> 95
+</span><span class="lnt"> 96
+</span><span class="lnt"> 97
+</span><span class="lnt"> 98
+</span><span class="lnt"> 99
+</span><span class="lnt">100
+</span><span class="lnt">101
+</span><span class="lnt">102
+</span><span class="lnt">103
+</span><span class="lnt">104
+</span><span class="lnt">105
+</span><span class="lnt">106
+</span><span class="lnt">107
+</span><span class="lnt">108
+</span><span class="lnt">109
+</span><span class="lnt">110
+</span><span class="lnt">111
+</span><span class="lnt">112
+</span><span class="lnt">113
+</span><span class="lnt">114
+</span><span class="lnt">115
+</span><span class="lnt">116
+</span><span class="lnt">117
+</span><span class="lnt">118
+</span><span class="lnt">119
+</span><span class="lnt">120
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#include &#34;MPU6050.h&#34;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">#define MPU6050_WriteCommand 0xD0 // 与上读写位          不能直接发送地址0x68，要加上读写位
+</span></span><span class="line"><span class="cl">#define MPU6050_ReadCommand 0xD1  // 与上读写位
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void MPU6050_Init(void)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_PWR_MGMT_1, 0x01); // 退出睡眠模式
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_PWR_MGMT_2, 0x00);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_SMPLRT_DIV, 0x00); // 数据输出最快
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    // MPU6050_WriteData(MPU6050_CONFIG, 0x06);
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_CONFIG, 0x00); //  CONFIG = 0x06 使能了数字低通滤波器，带宽仅 5Hz，陀螺仪数据延迟约 19ms。小车倾斜 1°→等 19ms 才能读到→PID 输出时已经倒得更厉害了－这是之前&#34;无法完全直立&#34;的根本原因。改为 CONFIG = 0x00 ，延迟降到约 1ms，控制环路能实时响应
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_GYRO_CONFIG, 0x18);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_ACCEL_CONFIG, 0x18);
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void MPU6050_WriteData(uint8_t Address, uint8_t data)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    I2C_Start();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    I2C_SendByte(MPU6050_WriteCommand); // 发送器件写地址
+</span></span><span class="line"><span class="cl">    I2C_ReadAckBit();
+</span></span><span class="line"><span class="cl">    // 应答位先不管
+</span></span><span class="line"><span class="cl">    I2C_SendByte(Address); // 发送寄存器写地址
+</span></span><span class="line"><span class="cl">    I2C_ReadAckBit();
+</span></span><span class="line"><span class="cl">    // 应答位先不管
+</span></span><span class="line"><span class="cl">    I2C_SendByte(data); // 可以试一下指定地址写多个字节
+</span></span><span class="line"><span class="cl">    I2C_ReadAckBit();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    I2C_Stop();
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">int8_t MPU6050_ReadData(uint8_t Address)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    uint8_t data = 0x00;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    I2C_Start();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    I2C_SendByte(MPU6050_WriteCommand); // 发送器件写地址   因为要写寄存器地址，所以要先写
+</span></span><span class="line"><span class="cl">    I2C_ReadAckBit();
+</span></span><span class="line"><span class="cl">    // 应答位先不管
+</span></span><span class="line"><span class="cl">    I2C_SendByte(Address); // 发送寄存器地址
+</span></span><span class="line"><span class="cl">    I2C_ReadAckBit();
+</span></span><span class="line"><span class="cl">    // 应答位先不管
+</span></span><span class="line"><span class="cl">    I2C_Start();                       // 重复起始，转入读的时序，就必须重新指定读写位
+</span></span><span class="line"><span class="cl">    I2C_SendByte(MPU6050_ReadCommand); // 发送器件读地址
+</span></span><span class="line"><span class="cl">    I2C_ReadAckBit();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    data = I2C_ReadByte(); // 可以试一下指定地址读多个字节
+</span></span><span class="line"><span class="cl">    I2C_SendAckBit(1);     // 如果要读多个字节，则应该给应答（从机收到应答后会继续发送数据），但只读一个的话，给非应答就行
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    I2C_Stop();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    return data;
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void MPU6050_ReadDatas(uint8_t Address, uint8_t *DataArr, uint8_t Count)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    I2C_Start();
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    I2C_SendByte(MPU6050_WriteCommand); // 发送器件写地址   因为要写寄存器地址，所以要先写
+</span></span><span class="line"><span class="cl">    I2C_ReadAckBit();
+</span></span><span class="line"><span class="cl">    // 应答位先不管
+</span></span><span class="line"><span class="cl">    I2C_SendByte(Address); // 发送寄存器地址
+</span></span><span class="line"><span class="cl">    I2C_ReadAckBit();
+</span></span><span class="line"><span class="cl">    // 应答位先不管
+</span></span><span class="line"><span class="cl">    I2C_Start();                       // 重复起始，转入读的时序，就必须重新指定读写位
+</span></span><span class="line"><span class="cl">    I2C_SendByte(MPU6050_ReadCommand); // 发送器件读地址
+</span></span><span class="line"><span class="cl">    I2C_ReadAckBit();
+</span></span><span class="line"><span class="cl">    for (uint8_t i = 0; i &lt; Count; i++)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        DataArr[i] = I2C_ReadByte(); // 可以试一下指定地址读多个字节
+</span></span><span class="line"><span class="cl">        if (i != Count - 1)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            I2C_SendAckBit(0); // 如果要读多个字节，则应该给应答（从机收到应答后会继续发送数据），但只读一个的话，给非应答就行
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        else
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            I2C_SendAckBit(1);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    I2C_Stop();
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void MPU6050_GetData0(int16_t *AccX, int16_t *AccY, int16_t *AccZ,
+</span></span><span class="line"><span class="cl">                      int16_t *GyroX, int16_t *GyroY, int16_t *GyroZ)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    uint8_t Data[14];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_ReadDatas(MPU6050_ACCEL_XOUT_H, Data, 14);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    *AccX = (Data[0] &lt;&lt; 8) | Data[1];
+</span></span><span class="line"><span class="cl">    *AccY = (Data[2] &lt;&lt; 8) | Data[3];
+</span></span><span class="line"><span class="cl">    *AccZ = (Data[4] &lt;&lt; 8) | Data[5];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    *GyroX = (Data[8] &lt;&lt; 8) | Data[9];
+</span></span><span class="line"><span class="cl">    *GyroY = (Data[10] &lt;&lt; 8) | Data[11];
+</span></span><span class="line"><span class="cl">    *GyroZ = (Data[12] &lt;&lt; 8) | Data[13];
+</span></span><span class="line"><span class="cl">}
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void MPU6050_GetData(MPU6050_Data_t *MPU6050_Data)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    uint8_t DataArr[14];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_ReadDatas(MPU6050_ACCEL_XOUT_H, DataArr, 14);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_Data-&gt;Accel_X = (DataArr[0] &lt;&lt; 8) | DataArr[1];
+</span></span><span class="line"><span class="cl">    MPU6050_Data-&gt;Accel_Y = (DataArr[2] &lt;&lt; 8) | DataArr[3];
+</span></span><span class="line"><span class="cl">    MPU6050_Data-&gt;Accel_Z = (DataArr[4] &lt;&lt; 8) | DataArr[5];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_Data-&gt;Gyro_X = (DataArr[8] &lt;&lt; 8) | DataArr[9];
+</span></span><span class="line"><span class="cl">    MPU6050_Data-&gt;Gyro_Y = (DataArr[10] &lt;&lt; 8) | DataArr[11];
+</span></span><span class="line"><span class="cl">    MPU6050_Data-&gt;Gyro_Z = (DataArr[12] &lt;&lt; 8) | DataArr[13];
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="oled部分说明">OLED部分说明
+</h2><p><img src="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-9.png"
+	width="1641"
+	height="1040"
+	srcset="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-9_hu15696122449552352766.png 480w, /p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-9_hu17669698083527990128.png 1024w"
+	loading="lazy"
+	
+		alt="延时说明"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="157"
+		data-flex-basis="378px"
+	
+></p>
+<p>OLED的动画可以自行研究，问问AI即可知道实现逻辑，其实也不难。</p>
+
 </section>
 
 
