@@ -339,7 +339,7 @@
             <time class="article-time--published">2026 - 07 - 14</time>
         </div>
         <div>
-            <span class="article-time--words">📝 3678 字</span>
+            <span class="article-time--words">📝 3772 字</span>
         </div>
         
         <div>
@@ -521,6 +521,11 @@
   以MPU6050为例子，其实选择2/1或者16/9，都是能进行通信的。我进行测试的时候，2/1的组别能将MPU6050数据获取速率提快至<mark>416，417us</mark>，而16/9为<mark>461，462us</mark>，所以这里建议选择2/1占比的。<br>
   这样，<mark>MPU6050的数据获取速率比使用软件I2C快了160us左右</mark>，但是始终比标准库的软件I2C读取速率慢！这也尽我所能了，如若有别的方法能进一步提高读取速率，麻烦发邮箱告知我一声！QQ邮箱：3152067902@qq.com！
   当然，这里没有采用DMA协助数据运输以及I2C的中断，个人经考量觉得意义不大，因而没有进行测试。而且个人觉得416us的速率对于平衡车还是够快的了，所以跳过了DMA协助数据运输以及I2C的中断的测试。各位可以自行尝试一下。后续等我博客开启评论功能，可于评论区告诉一声！<br>
+<strong>小总结</strong></p>
+<ol>
+<li>DMA<strong>不能提高 I2C 硬件最高通信速率（SCL 频率不变）</strong>；</li>
+<li>DMA 代替 CPU 搬运字节，消除 CPU 延迟造成的总线停顿，<strong>批量连续传输时实际有效吞吐更高、耗时更少</strong>；</li>
+<li>核心定位：减负 CPU，不是提速总线硬件时序。
 <img src="/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-7.png"
 	width="1890"
 	height="822"
@@ -548,7 +553,8 @@
 		data-flex-grow="358"
 		data-flex-basis="861px"
 	
-></p>
+></li>
+</ol>
 <p><strong>以下是软硬件I2C代码对比</strong></p>
 <p><mark>硬件I2C的代码</mark><br>
 H_I2C.c</p>
@@ -1218,6 +1224,56 @@ S_I2C.c</p>
      
     
         
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="Carring06/Carring06.github.io"
+    data-repo-id="R_kgDOTWvPbA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOTWvPbM4DBPH5"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="en"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
     
 
     <footer class="site-footer">
