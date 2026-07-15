@@ -1,0 +1,1161 @@
+<!DOCTYPE html>
+<html lang="zh-cn" dir="ltr">
+    <head><meta charset='utf-8'>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="这里只针对于蓝牙串口进行展开论述 普通中断接收 普通中断接收的话，就不进行详细说明，只说几句重点！ 1 2 3 4 5 void BLE_UART_Init(void) { // 开启USART2接收中断 HAL_UART_Receive_IT(&amp;huart2, &amp;RxData,">
+<title>平衡车_串口</title>
+
+<link rel='canonical' href='https://Carring06.github.io/p/serial-port/'>
+
+<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="平衡车_串口">
+<meta property='og:description' content="这里只针对于蓝牙串口进行展开论述 普通中断接收 普通中断接收的话，就不进行详细说明，只说几句重点！ 1 2 3 4 5 void BLE_UART_Init(void) { // 开启USART2接收中断 HAL_UART_Receive_IT(&amp;huart2, &amp;RxData,">
+<meta property='og:url' content='https://Carring06.github.io/p/serial-port/'>
+<meta property='og:site_name' content='车度空间'>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-07-14T13:14:49&#43;08:00'/><meta property='article:modified_time' content='2026-07-14T13:14:49&#43;08:00'/>
+<meta name="twitter:title" content="平衡车_串口">
+<meta name="twitter:description" content="这里只针对于蓝牙串口进行展开论述 普通中断接收 普通中断接收的话，就不进行详细说明，只说几句重点！ 1 2 3 4 5 void BLE_UART_Init(void) { // 开启USART2接收中断 HAL_UART_Receive_IT(&amp;huart2, &amp;RxData,">
+    <link rel="shortcut icon" href="/favicon.ico" />
+
+  
+
+<script defer src="https://cdn.busuanzi.cc/busuanzi/3.6.9/busuanzi.min.js"></script>
+
+    </head>
+    <body class="
+    article-page
+    ">
+    <script>
+        (function() {
+            const colorSchemeKey = 'StackColorScheme';
+            if(!localStorage.getItem(colorSchemeKey)){
+                localStorage.setItem(colorSchemeKey, "auto");
+            }
+        })();
+    </script><script>
+    (function() {
+        const colorSchemeKey = 'StackColorScheme';
+        const colorSchemeItem = localStorage.getItem(colorSchemeKey);
+        const supportDarkMode = window.matchMedia('(prefers-color-scheme: dark)').matches === true;
+
+        if (colorSchemeItem == 'dark' || colorSchemeItem === 'auto' && supportDarkMode) {
+            
+
+            document.documentElement.dataset.scheme = 'dark';
+        } else {
+            document.documentElement.dataset.scheme = 'light';
+        }
+    })();
+</script>
+<div class="container main-container flex on-phone--column extended"><aside class="sidebar left-sidebar sticky ">
+    <button class="hamburger hamburger--spin" type="button" id="toggle-menu" aria-label="切换菜单">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+
+    <header>
+        
+            
+            <figure class="site-avatar">
+                <a href="/">
+                
+                    
+                    
+                    
+                        
+                        <img src="/img/avatar_hu17234228988075693955.png" width="300"
+                            height="300" class="site-logo" loading="lazy" alt="Avatar">
+                    
+                
+                </a>
+                
+            </figure>
+            
+        
+        
+        <div class="site-meta">
+            <h1 class="site-name"><a href="/">车度空间</a></h1>
+            <h2 class="site-description">欢迎来到我的技术博客😎</h2>
+        </div>
+    </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://space.bilibili.com/1196638588?spm_id_from=333.788.0.0'
+                        target="_blank"
+                        title="Bilibili"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="icon icon-tabler icons-tabler-outline icon-tabler-brand-bilibili"><path stroke="none" d="M0 0h24v24H0z" fill="none" /><path d="M3 10a4 4 0 0 1 4 -4h10a4 4 0 0 1 4 4v6a4 4 0 0 1 -4 4h-10a4 4 0 0 1 -4 -4v-6" /><path d="M8 3l2 3" /><path d="M16 3l-2 3" /><path d="M9 13v-2" /><path d="M15 11v2" /></svg>
+                        
+                    </a>
+                </li>
+            
+                <li>
+                    <a 
+                        href='https://github.com/Carring06?tab=repositories'
+                        target="_blank"
+                        title="GitHub"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-brand-github" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M9 19c-4.3 1.4 -4.3 -2.5 -6 -3m12 5v-3.5c0 -1 .1 -1.4 -.5 -2c2.8 -.3 5.5 -1.4 5.5 -6a4.6 4.6 0 0 0 -1.3 -3.2a4.2 4.2 0 0 0 -.1 -3.2s-1.1 -.3 -3.5 1.3a12.3 12.3 0 0 0 -6.2 0c-2.4 -1.6 -3.5 -1.3 -3.5 -1.3a4.2 4.2 0 0 0 -.1 3.2a4.6 4.6 0 0 0 -1.3 3.2c0 4.6 2.7 5.7 5.5 6c-.6 .6 -.6 1.2 -.5 2v3.5" />
+</svg>
+
+
+
+                        
+                    </a>
+                </li>
+            
+        </ol><ol class="menu" id="main-menu">
+        
+        
+        
+        <li >
+            <a href='/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-home" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <polyline points="5 12 3 12 12 3 21 12 19 12" />
+  <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-7" />
+  <path d="M9 21v-6a2 2 0 0 1 2 -2h2a2 2 0 0 1 2 2v6" />
+</svg>
+
+
+
+                
+                <span>主页</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E5%85%B3%E4%BA%8E/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-user" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="7" r="4" />
+  <path d="M6 21v-2a4 4 0 0 1 4 -4h4a4 4 0 0 1 4 4v2" />
+</svg>
+
+
+
+                
+                <span>关于</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/archives/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-archive" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <rect x="3" y="4" width="18" height="4" rx="2" />
+  <path d="M5 8v10a2 2 0 0 0 2 2h10a2 2 0 0 0 2 -2v-10" />
+  <line x1="10" y1="12" x2="14" y2="12" />
+</svg>
+
+
+
+                
+                <span>归档</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/search/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-search" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="10" cy="10" r="7" />
+  <line x1="21" y1="21" x2="15" y2="15" />
+</svg>
+
+
+
+                
+                <span>搜索</span>
+            </a>
+        </li>
+        
+        
+        <li >
+            <a href='/%E9%93%BE%E6%8E%A5/' >
+                
+                
+                
+                    <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-link" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M10 14a3.5 3.5 0 0 0 5 0l4 -4a3.5 3.5 0 0 0 -5 -5l-.5 .5" />
+  <path d="M14 10a3.5 3.5 0 0 0 -5 0l-4 4a3.5 3.5 0 0 0 5 5l.5 -.5" />
+</svg>
+
+
+
+                
+                <span>链接</span>
+            </a>
+        </li>
+        
+        <li class="menu-bottom-section">
+            <ol class="menu">
+                    
+                        <li id="i18n-switch">  
+                            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-language" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z" fill="none"/>
+  <path d="M4 5h7" />
+  <path d="M9 3v2c0 4.418 -2.239 8 -5 8" />
+  <path d="M5 9c-.003 2.144 2.952 3.908 6.7 4" />
+  <path d="M12 20l4 -9l4 9" />
+  <path d="M19.1 18h-6.2" />
+</svg>
+
+
+
+                            <select name="language" title="language" onchange="window.location.href = this.selectedOptions[0].value">
+                                
+                                    <option value="https://Carring06.github.io/en/" >English</option>
+                                
+                                    <option value="https://Carring06.github.io/" selected>简体中文</option>
+                                
+                            </select>
+                        </li>
+                    
+                
+
+                
+                    <li id="dark-mode-toggle">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-left" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="8" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-toggle-right" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="16" cy="12" r="2" />
+  <rect x="2" y="6" width="20" height="12" rx="6" />
+</svg>
+
+
+
+                        <span>暗色模式</span>
+                    </li>
+                
+            </ol>
+        </li>
+    </ol>
+</aside>
+
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#普通中断接收">普通中断接收</a>
+      <ol>
+        <li><a href="#补充说明">补充说明</a></li>
+      </ol>
+    </li>
+    <li><a href="#dma配合中断接收">DMA配合中断接收</a>
+      <ol>
+        <li><a href="#初始化函数">初始化函数</a></li>
+        <li><a href="#数据处理函数">数据处理函数</a></li>
+        <li><a href="#回调函数">回调函数</a></li>
+        <li><a href="#dma配合中断接收小车蓝牙控制体验不好bug修复">DMA配合中断接收小车蓝牙控制体验不好BUG修复！！！</a>
+          <ol>
+            <li><a href="#修改前蓝牙遥控控制代码">修改前蓝牙遥控控制代码</a></li>
+            <li><a href="#修改前的回调函数">修改前的回调函数</a></li>
+            <li><a href="#修改后蓝牙遥控控制代码">修改后蓝牙遥控控制代码</a></li>
+            <li><a href="#修改后的回调函数代码">修改后的回调函数代码</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#第2小节存在的bug-原因分析数据竞争race-condition">第2小节存在的BUG 原因分析：数据竞争（Race Condition）</a>
+      <ol>
+        <li><a href="#根本问题">根本问题</a></li>
+        <li><a href="#问题链路图">问题链路图</a></li>
+        <li><a href="#具体表现">具体表现</a></li>
+        <li><a href="#解决方案双缓冲--临界区保护">解决方案：双缓冲 + 临界区保护</a>
+          <ol>
+            <li><a href="#1-回调函数中添加备份缓冲区">1. 回调函数中添加备份缓冲区</a></li>
+            <li><a href="#2-主循环中使用临界区安全读取">2. 主循环中使用临界区安全读取</a></li>
+            <li><a href="#3-头文件中添加-extern-声明">3. 头文件中添加 extern 声明</a></li>
+          </ol>
+        </li>
+        <li><a href="#工作流程总结">工作流程总结</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
+
+            <main class="main full-width">
+    <article class="main-article">
+    <header class="article-header">
+
+    <div class="article-details">
+    
+
+    <div class="article-title-wrapper">
+        <h2 class="article-title">
+            <a href="/p/serial-port/">平衡车_串口</a>
+        </h2>
+    
+        
+    </div>
+
+    
+    
+    <footer class="article-time">
+        <div>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-calendar-time" width="56" height="56" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <path d="M11.795 21h-6.795a2 2 0 0 1 -2 -2v-12a2 2 0 0 1 2 -2h12a2 2 0 0 1 2 2v4" />
+  <circle cx="18" cy="18" r="4" />
+  <path d="M15 3v4" />
+  <path d="M7 3v4" />
+  <path d="M3 11h16" />
+  <path d="M18 16.496v1.504l1 1" />
+</svg>
+            <time class="article-time--published">2026 - 07 - 14</time>
+        </div>
+        <div>
+            <span class="article-time--words">📝 2893 字</span>
+        </div>
+        
+        <div>
+            <span>👁 <span id="busuanzi_page_pv"></span> 次</span>
+        </div>
+        
+    </footer>
+    
+
+    
+</div>
+
+</header>
+
+    <section class="article-content">
+    
+    
+    <p>这里只针对于蓝牙串口进行展开论述</p>
+<h2 id="普通中断接收">普通中断接收
+</h2><p>  普通中断接收的话，就不进行详细说明，只说几句重点！</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void BLE_UART_Init(void)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    // 开启USART2接收中断
+</span></span><span class="line"><span class="cl">    HAL_UART_Receive_IT(&amp;huart2, &amp;RxData, 1);
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  常规中断接收，需要调用<code>HAL_UART_Receive_IT(&amp;huart2, &amp;RxData, 1)</code>开启 USART2 接收中断；第二个参数是接收缓冲区，用于存放串口收到的数据，缓冲区的形式由第三个参数决定；第三个参数代表收满多少字节后触发接收完成中断。当前参数为 1，每收到 1 字节就进入一次中断，缓冲区使用单个<code>uint8_t</code>变量；若第三个参数大于等于 2，则需要传入数组作为缓冲区存储多字节数据。该函数不限制只能在主函数调用，初始化、中断回调、自定义函数内均可调用。</p>
+<h3 id="补充说明">补充说明
+</h3><ol>
+<li>串口传输时，每个英文字母、符号都占 1 字节（ASCII 编码）；</li>
+<li>如果你代码里存到数组还额外加了 <code>\0</code> 字符串结束符，内存中会占用 11 字节，但<strong>线上传输的帧长度依旧是 10 字节</strong>；</li>
+<li>结合你上面的 1 字节接收中断：这一整帧会触发 10 次接收中断，逐字符存入缓存数组。</li>
+</ol>
+<p>以下是回调函数代码，自行参考学习。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">#include &#34;../Inc/uart_callback.h&#34;
+</span></span><span class="line"><span class="cl">char BlueSerial_RxPacket[100];
+</span></span><span class="line"><span class="cl">uint8_t BlueSerial_RxFlag;
+</span></span><span class="line"><span class="cl">uint8_t RxData;       // 存放接收到的单个字节
+</span></span><span class="line"><span class="cl">static uint8_t RxState = 0;  // 接收状态机，0空闲，1接收中
+</span></span><span class="line"><span class="cl">static uint8_t pRxPacket = 0;// 数据包指针，0空闲，1接收中
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/**
+</span></span><span class="line"><span class="cl"> * @brief  UART接收中断回调函数，处理数据包
+</span></span><span class="line"><span class="cl"> * @note  状态机解析[]包裹的数据，全局变量无修改
+</span></span><span class="line"><span class="cl"> */
+</span></span><span class="line"><span class="cl">void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    if (huart-&gt;Instance == USART2)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        if (RxState == 0)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            if (RxData == &#39;[&#39; &amp;&amp; BlueSerial_RxFlag == 0)
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                RxState = 1;
+</span></span><span class="line"><span class="cl">                pRxPacket = 0;
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">        else if (RxState == 1)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            if (RxData == &#39;]&#39;)
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                RxState = 0;
+</span></span><span class="line"><span class="cl">                BlueSerial_RxPacket[pRxPacket] = &#39;\0&#39;;
+</span></span><span class="line"><span class="cl">                BlueSerial_RxFlag = 1;
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">            else
+</span></span><span class="line"><span class="cl">            {
+</span></span><span class="line"><span class="cl">                BlueSerial_RxPacket[pRxPacket] = RxData;
+</span></span><span class="line"><span class="cl">                pRxPacket ++;
+</span></span><span class="line"><span class="cl">                // 防止数组越界截断
+</span></span><span class="line"><span class="cl">                if (pRxPacket &gt;= 99) pRxPacket = 99;
+</span></span><span class="line"><span class="cl">            }
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        // 重新开启单次接收中断
+</span></span><span class="line"><span class="cl">        HAL_UART_Receive_IT(&amp;huart2, &amp;RxData, 1);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h2 id="dma配合中断接收">DMA配合中断接收
+</h2><p>  本章节其实主要是想来讲一下DMA配合串口进行中断接收。当然，上面讲述的常规中断就能实现对小车蓝牙串口的数据解析。而且 <code>HAL_UART_Receive_IT(&amp;huart2, &amp;RxData, 1);</code>的最后一个参数为1，这样每接收到一个字节就会进一次中断，况且有帧头帧尾，这样也可以实现不定长数据接收，这在当前的平衡车是行的通的。但每接收一个字节就让CPU处理一下，若在数据发送频率很高时，CPU也就太忙了，可能会导致CPU处理其他数据时处理不过来，所以，在我平衡车蓝牙遥控效果不太理想时，我尝试了利用DMA进行不定长数组的接收与处理。<strong>虽然现在已经证实蓝牙串口并不是蓝牙遥控控制效果不好的主要决定因素，就算不使用DMA，平衡车也能实现较好的蓝牙遥控</strong>,而且在我改完小车大部分BUG后，小车能实现直立和速度环控制效果正常后，我又试着用DMA，结果<mark>发现控制效果比没使用DMA的控制效果差，具体原因目前还没发现</mark>，所以，接下来的DMA配合中断接收，<strong>也许不适合用在平衡车上，也也许存在些许BUG，若又发现什么不对，请在评论区告知一声，若评论区使用不了的话，请发邮箱告诉我！谢谢！邮箱：3152067902@qq.com。</strong></p>
+<h3 id="初始化函数">初始化函数
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/*以下是开启DMA后需要使用的初始化函数*/
+</span></span><span class="line"><span class="cl">void BLE_UART_Init(void)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    HAL_UARTEx_ReceiveToIdle_DMA(&amp;huart2, BLERxInitialData, sizeof(BLERxInitialData));
+</span></span><span class="line"><span class="cl">    __HAL_DMA_DISABLE_IT(&amp;hdma_usart2_rx, DMA_IT_HT);
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>__HAL_DMA_DISABLE_IT(&amp;hdma_usart2_rx, DMA_IT_HT);是关闭DMA传输过半所触发的中断，避免数据还未传输完成，就进行数据处理了。</p>
+<h3 id="数据处理函数">数据处理函数
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/*以下是开启DMA后需要使用的数据处理函数*/
+</span></span><span class="line"><span class="cl">void BLE_UART_CopyData(uint8_t Size)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    if (Size &lt; 3) return;  // 防下溢（越界 / 非法拷贝）。江协数据包格式&gt;=4字节
+</span></span><span class="line"><span class="cl">    memcpy(BLEProcessed_Data, BLERxInitialData + 1, Size - 2);
+</span></span><span class="line"><span class="cl">    BLEProcessed_Data[Size - 2] = &#39;\0&#39;;  // 加终止符，字符串处理函数读到`\0`才停止
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>因为当前采用DMA进行不定长数据的接收，所以会把帧头帧尾一同储存，所以要进行对原始数据的处理。<code>if (Size &lt; 3) return;  // 防下溢</code>与<code>BLEProcessed_Data[Size - 2] = '\0';  // 加终止符</code>必须有，否则会出现问题的。</p>
+<h3 id="回调函数">回调函数
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">extern DMA_HandleTypeDef hdma_usart2_rx;
+</span></span><span class="line"><span class="cl">uint8_t BlueSerial_RxFlag = 0;
+</span></span><span class="line"><span class="cl">uint8_t BLERxInitialData[150];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
+</span></span><span class="line"><span class="cl">    if (huart-&gt;Instance == USART1) {
+</span></span><span class="line"><span class="cl">        //串口1暂时不处理
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    if (huart-&gt;Instance == USART2) {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        BLE_UART_CopyData(Size);//去帧头帧尾
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        HAL_UARTEx_ReceiveToIdle_DMA(&amp;huart2, BLERxInitialData, sizeof(BLERxInitialData));
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        BlueSerial_RxFlag = 1;//标志位置1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        __HAL_DMA_DISABLE_IT(&amp;hdma_usart2_rx, DMA_IT_HT);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>Size大小并不确定，这取决于你所发送的数据帧大小。那如何确定数据已经完全接收了呢？实现逻辑本人觉得是，每个字节进行接收时，会有一个时间限制，当某一次接收，发现超过时间限制，还没数据来，这时候就默认接收到完整数据帧了。以上为个人想法，具体以官方为准，可以自行去查资料学习。</p>
+<h3 id="dma配合中断接收小车蓝牙控制体验不好bug修复">DMA配合中断接收小车蓝牙控制体验不好BUG修复！！！
+</h3><p>以下进行的代码修改是针对于上述DMA相关章节的BUG，而后进行修复，最终将修改完的代码呈现出来，放置修改前的代码，目的是可以拿来对比，看看改哪了。</p>
+<h4 id="修改前蓝牙遥控控制代码">修改前蓝牙遥控控制代码
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void BlueSerial_Control(void)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    if (BlueSerial_RxFlag == 1)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        char *Tag = strtok(BLEProcessed_Data, &#34;,&#34;);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        if (strcmp(Tag, &#34;joystick&#34;) == 0)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            int8_t LH = atoi(strtok(NULL, &#34;,&#34;));
+</span></span><span class="line"><span class="cl">            int8_t LV = atoi(strtok(NULL, &#34;,&#34;));
+</span></span><span class="line"><span class="cl">            int8_t RH = atoi(strtok(NULL, &#34;,&#34;));
+</span></span><span class="line"><span class="cl">            int8_t RV = atoi(strtok(NULL, &#34;,&#34;));
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            SpeedPID.Target = LV / 25;
+</span></span><span class="line"><span class="cl">            TurnPID.Target = -(RH / 25);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        BlueSerial_RxFlag = 0;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="修改前的回调函数">修改前的回调函数
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">extern DMA_HandleTypeDef hdma_usart2_rx;
+</span></span><span class="line"><span class="cl">uint8_t BlueSerial_RxFlag = 0;
+</span></span><span class="line"><span class="cl">uint8_t BLERxInitialData[150];
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
+</span></span><span class="line"><span class="cl">    if (huart-&gt;Instance == USART1) {
+</span></span><span class="line"><span class="cl">        //串口1暂时不处理
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    if (huart-&gt;Instance == USART2) {
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        BLE_UART_CopyData(Size);//去帧头帧尾
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        HAL_UARTEx_ReceiveToIdle_DMA(&amp;huart2, BLERxInitialData, sizeof(BLERxInitialData));
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        BlueSerial_RxFlag = 1;//标志位置1
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        __HAL_DMA_DISABLE_IT(&amp;hdma_usart2_rx, DMA_IT_HT);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="修改后蓝牙遥控控制代码"><mark>修改后蓝牙遥控控制代码</mark>
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void BlueSerial_Control(void)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    if (BlueSerial_RxFlag == 1)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        // 关闭 DMA 接收中断，安全拷贝备份
+</span></span><span class="line"><span class="cl">        HAL_NVIC_DisableIRQ(DMA1_Channel6_IRQn);
+</span></span><span class="line"><span class="cl">        char LocalBuffer[150];
+</span></span><span class="line"><span class="cl">        memcpy(LocalBuffer, BLEBackupBuffer, sizeof(BLEBackupBuffer));
+</span></span><span class="line"><span class="cl">        HAL_NVIC_EnableIRQ(DMA1_Channel6_IRQn);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        char *Tag = strtok(LocalBuffer, &#34;,&#34;);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        if (strcmp(Tag, &#34;joystick&#34;) == 0)
+</span></span><span class="line"><span class="cl">        {
+</span></span><span class="line"><span class="cl">            int8_t LH = atoi(strtok(NULL, &#34;,&#34;));
+</span></span><span class="line"><span class="cl">            int8_t LV = atoi(strtok(NULL, &#34;,&#34;));
+</span></span><span class="line"><span class="cl">            int8_t RH = atoi(strtok(NULL, &#34;,&#34;));
+</span></span><span class="line"><span class="cl">            int8_t RV = atoi(strtok(NULL, &#34;,&#34;));
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">            SpeedPID.Target = LV / 25;
+</span></span><span class="line"><span class="cl">            TurnPID.Target = -(RH / 25);
+</span></span><span class="line"><span class="cl">        }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        BlueSerial_RxFlag = 0;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="修改后的回调函数代码"><mark>修改后的回调函数代码</mark>
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">uint8_t BlueSerial_RxFlag = 0;
+</span></span><span class="line"><span class="cl">uint8_t BLERxInitialData[150];
+</span></span><span class="line"><span class="cl">uint8_t BLEBackupBuffer[150];  // 备份缓冲区，供主循环安全读取
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
+</span></span><span class="line"><span class="cl">    if (huart-&gt;Instance == USART1) {
+</span></span><span class="line"><span class="cl">        //串口1暂时不处理
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">    if (huart-&gt;Instance == USART2) {
+</span></span><span class="line"><span class="cl">        BLE_UART_CopyData(Size);  // 去帧头帧尾
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        // 立即拷贝到备份缓冲区，供主循环安全读取
+</span></span><span class="line"><span class="cl">        memcpy(BLEBackupBuffer, BLEProcessed_Data, Size);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        HAL_UARTEx_ReceiveToIdle_DMA(&amp;huart2, BLERxInitialData, sizeof(BLERxInitialData));
+</span></span><span class="line"><span class="cl">        __HAL_DMA_DISABLE_IT(&amp;hdma_usart2_rx, DMA_IT_HT);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        BlueSerial_RxFlag = 1;  // 标志位置1
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><mark>请阅读前后代码，后再进行看讲解！！！</mark></p>
+<h2 id="第2小节存在的bug-原因分析数据竞争race-condition">第2小节存在的BUG 原因分析：数据竞争（Race Condition）
+</h2><h3 id="根本问题">根本问题
+</h3><p>DMA 串口接收中断和主循环同时访问同一个缓冲区 <code>BLEProcessed_Data</code>，没有任何保护机制。</p>
+<h3 id="问题链路图">问题链路图
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">DMA中断写入 BLEProcessed_Data
+</span></span><span class="line"><span class="cl">         ↓
+</span></span><span class="line"><span class="cl">主循环正在用 strtok 解析 BLEProcessed_Data
+</span></span><span class="line"><span class="cl">         ↓
+</span></span><span class="line"><span class="cl">DMA中断再次触发，覆盖了正在解析的数据
+</span></span><span class="line"><span class="cl">         ↓
+</span></span><span class="line"><span class="cl">strtok 解析到垃圾值 → 遥控目标值被意外修改 → 控制效果变差
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="具体表现">具体表现
+</h3><div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>问题</th>
+<th>后果</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>BLEProcessed_Data</code> 被 DMA 中断覆盖</td>
+<td>主循环解析到不完整的数据</td>
+</tr>
+<tr>
+<td><code>strtok</code> 不是线程安全的</td>
+<td>中断打断解析状态，导致越界读取</td>
+</tr>
+<tr>
+<td>遥控目标值被错误修改</td>
+<td>目标错误，平衡车控制失常</td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="解决方案双缓冲--临界区保护">解决方案：双缓冲 + 临界区保护
+</h3><p><strong>核心思路</strong>：中断中写入数据，主循环中读取数据，必须使用临界区或双缓冲来保护共享资源。</p>
+<h4 id="1-回调函数中添加备份缓冲区">1. 回调函数中添加备份缓冲区
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// 新增全局变量
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="kt">uint8_t</span> <span class="n">BLEBackupBuffer</span><span class="p">[</span><span class="mi">150</span><span class="p">];</span>  <span class="c1">// 备份缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">HAL_UARTEx_RxEventCallback</span><span class="p">(</span><span class="n">UART_HandleTypeDef</span> <span class="o">*</span><span class="n">huart</span><span class="p">,</span> <span class="kt">uint16_t</span> <span class="n">Size</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">huart</span><span class="o">-&gt;</span><span class="n">Instance</span> <span class="o">==</span> <span class="n">USART2</span><span class="p">)</span> <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">BLE_UART_CopyData</span><span class="p">(</span><span class="n">Size</span><span class="p">);</span>  <span class="c1">// 去帧头帧尾
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 关键：立即拷贝到备份缓冲区
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">memcpy</span><span class="p">(</span><span class="n">BLEBackupBuffer</span><span class="p">,</span> <span class="n">BLEProcessed_Data</span><span class="p">,</span> <span class="n">Size</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="nf">HAL_UARTEx_ReceiveToIdle_DMA</span><span class="p">(</span><span class="o">&amp;</span><span class="n">huart2</span><span class="p">,</span> <span class="n">BLERxInitialData</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">BLERxInitialData</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">__HAL_DMA_DISABLE_IT</span><span class="p">(</span><span class="o">&amp;</span><span class="n">hdma_usart2_rx</span><span class="p">,</span> <span class="n">DMA_IT_HT</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="n">BlueSerial_RxFlag</span> <span class="o">=</span> <span class="mi">1</span><span class="p">;</span>
+</span></span><span class="line"><span class="cl">    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="2-主循环中使用临界区安全读取">2. 主循环中使用临界区安全读取
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="kt">void</span> <span class="nf">BlueSerial_Control</span><span class="p">(</span><span class="kt">void</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl"><span class="p">{</span>
+</span></span><span class="line"><span class="cl">    <span class="k">if</span> <span class="p">(</span><span class="n">BlueSerial_RxFlag</span> <span class="o">==</span> <span class="mi">1</span><span class="p">)</span>
+</span></span><span class="line"><span class="cl">    <span class="p">{</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// 关闭 DMA 接收中断，防止拷贝过程中数据被覆盖
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="nf">HAL_NVIC_DisableIRQ</span><span class="p">(</span><span class="n">DMA1_Channel6_IRQn</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="kt">char</span> <span class="n">LocalBuffer</span><span class="p">[</span><span class="mi">150</span><span class="p">];</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">memcpy</span><span class="p">(</span><span class="n">LocalBuffer</span><span class="p">,</span> <span class="n">BLEBackupBuffer</span><span class="p">,</span> <span class="k">sizeof</span><span class="p">(</span><span class="n">BLEBackupBuffer</span><span class="p">));</span>
+</span></span><span class="line"><span class="cl">        <span class="nf">HAL_NVIC_EnableIRQ</span><span class="p">(</span><span class="n">DMA1_Channel6_IRQn</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        <span class="c1">// 使用本地副本进行解析，安全！
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>        <span class="kt">char</span> <span class="o">*</span><span class="n">Tag</span> <span class="o">=</span> <span class="nf">strtok</span><span class="p">(</span><span class="n">LocalBuffer</span><span class="p">,</span> <span class="s">&#34;,&#34;</span><span class="p">);</span>
+</span></span><span class="line"><span class="cl">        <span class="c1">// ... 后续解析逻辑
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span>    <span class="p">}</span>
+</span></span><span class="line"><span class="cl"><span class="p">}</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="3-头文件中添加-extern-声明">3. 头文件中添加 extern 声明
+</h4><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-c" data-lang="c"><span class="line"><span class="cl"><span class="c1">// uart_callback.h
+</span></span></span><span class="line"><span class="cl"><span class="c1"></span><span class="k">extern</span> <span class="kt">uint8_t</span> <span class="n">BLEBackupBuffer</span><span class="p">[</span><span class="mi">150</span><span class="p">];</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="工作流程总结">工作流程总结
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span><span class="lnt">7
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">DMA中断收到数据
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">写入 BLEProcessed_Data → 拷贝到 BLEBackupBuffer
+</span></span><span class="line"><span class="cl">                              ↓
+</span></span><span class="line"><span class="cl">主循环读取 ← 关闭DMA中断 ← 从BLEBackupBuffer拷贝到LocalBuffer
+</span></span><span class="line"><span class="cl">    ↓
+</span></span><span class="line"><span class="cl">开启DMA中断 → 用 strtok 解析 LocalBuffer（本地变量，安全）
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>这样 DMA 中断和主循环不再共享同一个正在被修改的缓冲区，数据竞争问题彻底解决。</p>
+
+</section>
+
+
+    <footer class="article-footer">
+    
+
+    
+    <section class="article-copyright">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-copyright" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <path d="M14.5 9a3.5 4 0 1 0 0 6" />
+</svg>
+
+
+
+        <span>Licensed under CC BY-NC-SA 4.0</span>
+    </section>
+    </footer>
+
+
+    
+</article>
+
+    
+
+    
+
+     
+    
+        
+    <script
+    src="https://giscus.app/client.js"
+    data-repo="Carring06/Carring06.github.io"
+    data-repo-id="R_kgDOTWvPbA"
+    data-category="Announcements"
+    data-category-id="DIC_kwDOTWvPbM4DBPH5"
+    data-mapping="pathname"
+    data-strict="0"
+    data-reactions-enabled="1"
+    data-emit-metadata="0"
+    data-input-position="top"
+    data-theme="light"
+    data-lang="zh-CN"
+    crossorigin="anonymous"
+    async
+></script>
+<script>
+    function setGiscusTheme(theme) {
+        let giscus = document.querySelector("iframe.giscus-frame");
+        if (giscus) {
+            giscus.contentWindow.postMessage(
+                {
+                    giscus: {
+                        setConfig: {
+                            theme: theme,
+                        },
+                    },
+                },
+                "https://giscus.app"
+            );
+        }
+    }
+
+    (function () {
+        addEventListener("message", (e) => {
+            if (event.origin !== "https://giscus.app") return;
+            handler();
+        });
+        window.addEventListener("onColorSchemeChange", handler);
+
+        function handler() {
+            if (document.documentElement.dataset.scheme === "light") {
+                setGiscusTheme('light');
+            } else {
+                setGiscusTheme('dark');
+            }
+        }
+    })();
+</script>
+
+    
+
+    <footer class="site-footer">
+    <section class="copyright">
+        &copy; 
+        
+        2026 车度空间Carring
+    </section>
+    
+    <section class="powerby">
+        
+            嵌入式空间 <br/>
+        使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
+        主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
+    </section>
+</footer>
+
+
+    
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+
+    
+    <div class="pswp__bg"></div>
+
+    
+    <div class="pswp__scroll-wrap">
+
+        
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+
+        
+        <div class="pswp__ui pswp__ui--hidden">
+
+            <div class="pswp__top-bar">
+
+                
+
+                <div class="pswp__counter"></div>
+
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+
+                
+                
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                        <div class="pswp__preloader__cut">
+                            <div class="pswp__preloader__donut"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div>
+            </div>
+
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+
+        </div>
+
+    </div>
+
+</div><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.js"integrity="sha256-ePwmChbbvXbsO02lbM3HoHbSHTHFAeChekF1xKJdleo="crossorigin="anonymous"
+                defer
+                >
+            </script><script 
+                src="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe-ui-default.min.js"integrity="sha256-UKkzOn/w1mBxRmLLGrSeyB4e1xbrp4xylgAWb3M42pU="crossorigin="anonymous"
+                defer
+                >
+            </script><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/default-skin/default-skin.min.css"crossorigin="anonymous"
+            ><link 
+                rel="stylesheet" 
+                href="https://cdn.jsdelivr.net/npm/photoswipe@4.1.3/dist/photoswipe.min.css"crossorigin="anonymous"
+            >
+
+            </main>
+        </div>
+        <script 
+                src="https://cdn.jsdelivr.net/npm/node-vibrant@3.1.6/dist/vibrant.min.js"integrity="sha256-awcR2jno4kI5X0zL8ex0vi2z&#43;KMkF24hUW8WePSA9HM="crossorigin="anonymous"
+                
+                >
+            </script><script type="text/javascript" src="/ts/main.js" defer></script>
+<script>
+    (function () {
+        const customFont = document.createElement('link');
+        customFont.href = "https://fonts.googleapis.com/css2?family=Lato:wght@300;400;700&display=swap";
+
+        customFont.type = "text/css";
+        customFont.rel = "stylesheet";
+
+        document.head.appendChild(customFont);
+    }());
+</script>
+
+    </body>
+</html>

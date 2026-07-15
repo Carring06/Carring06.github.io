@@ -9,30 +9,30 @@
         <copyright>车度空间Carring</copyright>
         <lastBuildDate>Tue, 14 Jul 2026 13:16:49 +0800</lastBuildDate><atom:link href="https://Carring06.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>平衡车_NRF24L01模块</title>
-        <link>https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_nrf24l01%E6%A8%A1%E5%9D%97/</link>
+        <link>https://Carring06.github.io/p/nrf24l01-module/</link>
         <pubDate>Tue, 14 Jul 2026 13:16:49 +0800</pubDate>
         
-        <guid>https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_nrf24l01%E6%A8%A1%E5%9D%97/</guid>
+        <guid>https://Carring06.github.io/p/nrf24l01-module/</guid>
         <description>&lt;h2 id=&#34;spi通信底层实现&#34;&gt;SPI通信底层实现
 &lt;/h2&gt;&lt;h2 id=&#34;读取寄存器检测信号质量&#34;&gt;读取寄存器检测信号质量
 &lt;/h2&gt;</description>
         </item>
         <item>
         <title>平衡车_FLASH模块</title>
-        <link>https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_flash%E6%A8%A1%E5%9D%97/</link>
+        <link>https://Carring06.github.io/p/flash-module/</link>
         <pubDate>Tue, 14 Jul 2026 13:16:37 +0800</pubDate>
         
-        <guid>https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_flash%E6%A8%A1%E5%9D%97/</guid>
+        <guid>https://Carring06.github.io/p/flash-module/</guid>
         <description>&lt;h2 id=&#34;代码整体实现&#34;&gt;代码整体实现
 &lt;/h2&gt;&lt;h2 id=&#34;关于flash题外话&#34;&gt;关于FLASH题外话
 &lt;/h2&gt;</description>
         </item>
         <item>
         <title>平衡车_PWM参数配置说明</title>
-        <link>https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_pwm%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/</link>
+        <link>https://Carring06.github.io/p/pwm-config/</link>
         <pubDate>Tue, 14 Jul 2026 13:15:15 +0800</pubDate>
         
-        <guid>https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_pwm%E5%8F%82%E6%95%B0%E9%85%8D%E7%BD%AE%E8%AF%B4%E6%98%8E/</guid>
+        <guid>https://Carring06.github.io/p/pwm-config/</guid>
         <description>&lt;h2 id=&#34;arr选值说明&#34;&gt;ARR选值说明
 &lt;/h2&gt;&lt;h2 id=&#34;psc分频值说明&#34;&gt;PSC分频值说明
 &lt;/h2&gt;&lt;h3 id=&#34;电机出现噪声&#34;&gt;电机出现噪声
@@ -41,30 +41,608 @@
         </item>
         <item>
         <title>平衡车_串口</title>
-        <link>https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%B8%B2%E5%8F%A3/</link>
+        <link>https://Carring06.github.io/p/serial-port/</link>
         <pubDate>Tue, 14 Jul 2026 13:14:49 +0800</pubDate>
         
-        <guid>https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%B8%B2%E5%8F%A3/</guid>
-        <description>&lt;h2 id=&#34;普通中断接收&#34;&gt;普通中断接收
-&lt;/h2&gt;&lt;h2 id=&#34;dma配合中断接收&#34;&gt;DMA配合中断接收
-&lt;/h2&gt;</description>
+        <guid>https://Carring06.github.io/p/serial-port/</guid>
+        <description>&lt;p&gt;这里只针对于蓝牙串口进行展开论述&lt;/p&gt;
+&lt;h2 id=&#34;普通中断接收&#34;&gt;普通中断接收
+&lt;/h2&gt;&lt;p&gt;  普通中断接收的话，就不进行详细说明，只说几句重点！&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;void BLE_UART_Init(void)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    // 开启USART2接收中断
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    HAL_UART_Receive_IT(&amp;amp;huart2, &amp;amp;RxData, 1);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;  常规中断接收，需要调用&lt;code&gt;HAL_UART_Receive_IT(&amp;amp;huart2, &amp;amp;RxData, 1)&lt;/code&gt;开启 USART2 接收中断；第二个参数是接收缓冲区，用于存放串口收到的数据，缓冲区的形式由第三个参数决定；第三个参数代表收满多少字节后触发接收完成中断。当前参数为 1，每收到 1 字节就进入一次中断，缓冲区使用单个&lt;code&gt;uint8_t&lt;/code&gt;变量；若第三个参数大于等于 2，则需要传入数组作为缓冲区存储多字节数据。该函数不限制只能在主函数调用，初始化、中断回调、自定义函数内均可调用。&lt;/p&gt;
+&lt;h3 id=&#34;补充说明&#34;&gt;补充说明
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;串口传输时，每个英文字母、符号都占 1 字节（ASCII 编码）；&lt;/li&gt;
+&lt;li&gt;如果你代码里存到数组还额外加了 &lt;code&gt;\0&lt;/code&gt; 字符串结束符，内存中会占用 11 字节，但&lt;strong&gt;线上传输的帧长度依旧是 10 字节&lt;/strong&gt;；&lt;/li&gt;
+&lt;li&gt;结合你上面的 1 字节接收中断：这一整帧会触发 10 次接收中断，逐字符存入缓存数组。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;以下是回调函数代码，自行参考学习。&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;27
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;28
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;29
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;30
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;31
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;32
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;33
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;34
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;35
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;36
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;37
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;38
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;39
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;40
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;41
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;42
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;43
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;44
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;#include &amp;#34;../Inc/uart_callback.h&amp;#34;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;char BlueSerial_RxPacket[100];
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uint8_t BlueSerial_RxFlag;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uint8_t RxData;       // 存放接收到的单个字节
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;static uint8_t RxState = 0;  // 接收状态机，0空闲，1接收中
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;static uint8_t pRxPacket = 0;// 数据包指针，0空闲，1接收中
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/**
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; * @brief  UART接收中断回调函数，处理数据包
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; * @note  状态机解析[]包裹的数据，全局变量无修改
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt; */
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    if (huart-&amp;gt;Instance == USART2)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        if (RxState == 0)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            if (RxData == &amp;#39;[&amp;#39; &amp;amp;&amp;amp; BlueSerial_RxFlag == 0)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                RxState = 1;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                pRxPacket = 0;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        else if (RxState == 1)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            if (RxData == &amp;#39;]&amp;#39;)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                RxState = 0;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                BlueSerial_RxPacket[pRxPacket] = &amp;#39;\0&amp;#39;;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                BlueSerial_RxFlag = 1;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            else
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                BlueSerial_RxPacket[pRxPacket] = RxData;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                pRxPacket ++;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                // 防止数组越界截断
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                if (pRxPacket &amp;gt;= 99) pRxPacket = 99;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        // 重新开启单次接收中断
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        HAL_UART_Receive_IT(&amp;amp;huart2, &amp;amp;RxData, 1);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h2 id=&#34;dma配合中断接收&#34;&gt;DMA配合中断接收
+&lt;/h2&gt;&lt;p&gt;  本章节其实主要是想来讲一下DMA配合串口进行中断接收。当然，上面讲述的常规中断就能实现对小车蓝牙串口的数据解析。而且 &lt;code&gt;HAL_UART_Receive_IT(&amp;amp;huart2, &amp;amp;RxData, 1);&lt;/code&gt;的最后一个参数为1，这样每接收到一个字节就会进一次中断，况且有帧头帧尾，这样也可以实现不定长数据接收，这在当前的平衡车是行的通的。但每接收一个字节就让CPU处理一下，若在数据发送频率很高时，CPU也就太忙了，可能会导致CPU处理其他数据时处理不过来，所以，在我平衡车蓝牙遥控效果不太理想时，我尝试了利用DMA进行不定长数组的接收与处理。&lt;strong&gt;虽然现在已经证实蓝牙串口并不是蓝牙遥控控制效果不好的主要决定因素，就算不使用DMA，平衡车也能实现较好的蓝牙遥控&lt;/strong&gt;,而且在我改完小车大部分BUG后，小车能实现直立和速度环控制效果正常后，我又试着用DMA，结果&lt;mark&gt;发现控制效果比没使用DMA的控制效果差，具体原因目前还没发现&lt;/mark&gt;，所以，接下来的DMA配合中断接收，&lt;strong&gt;也许不适合用在平衡车上，也也许存在些许BUG，若又发现什么不对，请在评论区告知一声，若评论区使用不了的话，请发邮箱告诉我！谢谢！邮箱：3152067902@qq.com。&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;初始化函数&#34;&gt;初始化函数
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/*以下是开启DMA后需要使用的初始化函数*/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;void BLE_UART_Init(void)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    HAL_UARTEx_ReceiveToIdle_DMA(&amp;amp;huart2, BLERxInitialData, sizeof(BLERxInitialData));
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    __HAL_DMA_DISABLE_IT(&amp;amp;hdma_usart2_rx, DMA_IT_HT);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;__HAL_DMA_DISABLE_IT(&amp;amp;hdma_usart2_rx, DMA_IT_HT);是关闭DMA传输过半所触发的中断，避免数据还未传输完成，就进行数据处理了。&lt;/p&gt;
+&lt;h3 id=&#34;数据处理函数&#34;&gt;数据处理函数
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;/*以下是开启DMA后需要使用的数据处理函数*/
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;void BLE_UART_CopyData(uint8_t Size)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    if (Size &amp;lt; 3) return;  // 防下溢（越界 / 非法拷贝）。江协数据包格式&amp;gt;=4字节
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    memcpy(BLEProcessed_Data, BLERxInitialData + 1, Size - 2);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    BLEProcessed_Data[Size - 2] = &amp;#39;\0&amp;#39;;  // 加终止符，字符串处理函数读到`\0`才停止
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;因为当前采用DMA进行不定长数据的接收，所以会把帧头帧尾一同储存，所以要进行对原始数据的处理。&lt;code&gt;if (Size &amp;lt; 3) return;  // 防下溢&lt;/code&gt;与&lt;code&gt;BLEProcessed_Data[Size - 2] = &#39;\0&#39;;  // 加终止符&lt;/code&gt;必须有，否则会出现问题的。&lt;/p&gt;
+&lt;h3 id=&#34;回调函数&#34;&gt;回调函数
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;extern DMA_HandleTypeDef hdma_usart2_rx;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uint8_t BlueSerial_RxFlag = 0;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uint8_t BLERxInitialData[150];
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    if (huart-&amp;gt;Instance == USART1) {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        //串口1暂时不处理
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    if (huart-&amp;gt;Instance == USART2) {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        BLE_UART_CopyData(Size);//去帧头帧尾
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        HAL_UARTEx_ReceiveToIdle_DMA(&amp;amp;huart2, BLERxInitialData, sizeof(BLERxInitialData));
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        BlueSerial_RxFlag = 1;//标志位置1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        __HAL_DMA_DISABLE_IT(&amp;amp;hdma_usart2_rx, DMA_IT_HT);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;Size大小并不确定，这取决于你所发送的数据帧大小。那如何确定数据已经完全接收了呢？实现逻辑本人觉得是，每个字节进行接收时，会有一个时间限制，当某一次接收，发现超过时间限制，还没数据来，这时候就默认接收到完整数据帧了。以上为个人想法，具体以官方为准，可以自行去查资料学习。&lt;/p&gt;
+&lt;h3 id=&#34;dma配合中断接收小车蓝牙控制体验不好bug修复&#34;&gt;DMA配合中断接收小车蓝牙控制体验不好BUG修复！！！
+&lt;/h3&gt;&lt;p&gt;以下进行的代码修改是针对于上述DMA相关章节的BUG，而后进行修复，最终将修改完的代码呈现出来，放置修改前的代码，目的是可以拿来对比，看看改哪了。&lt;/p&gt;
+&lt;h4 id=&#34;修改前蓝牙遥控控制代码&#34;&gt;修改前蓝牙遥控控制代码
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;void BlueSerial_Control(void)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    if (BlueSerial_RxFlag == 1)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        char *Tag = strtok(BLEProcessed_Data, &amp;#34;,&amp;#34;);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        if (strcmp(Tag, &amp;#34;joystick&amp;#34;) == 0)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            int8_t LH = atoi(strtok(NULL, &amp;#34;,&amp;#34;));
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            int8_t LV = atoi(strtok(NULL, &amp;#34;,&amp;#34;));
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            int8_t RH = atoi(strtok(NULL, &amp;#34;,&amp;#34;));
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            int8_t RV = atoi(strtok(NULL, &amp;#34;,&amp;#34;));
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            SpeedPID.Target = LV / 25;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            TurnPID.Target = -(RH / 25);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        BlueSerial_RxFlag = 0;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;修改前的回调函数&#34;&gt;修改前的回调函数
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;extern DMA_HandleTypeDef hdma_usart2_rx;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uint8_t BlueSerial_RxFlag = 0;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uint8_t BLERxInitialData[150];
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    if (huart-&amp;gt;Instance == USART1) {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        //串口1暂时不处理
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    if (huart-&amp;gt;Instance == USART2) {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        BLE_UART_CopyData(Size);//去帧头帧尾
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        HAL_UARTEx_ReceiveToIdle_DMA(&amp;amp;huart2, BLERxInitialData, sizeof(BLERxInitialData));
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        BlueSerial_RxFlag = 1;//标志位置1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        __HAL_DMA_DISABLE_IT(&amp;amp;hdma_usart2_rx, DMA_IT_HT);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;修改后蓝牙遥控控制代码&#34;&gt;&lt;mark&gt;修改后蓝牙遥控控制代码&lt;/mark&gt;
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;21
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;22
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;23
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;24
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;25
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;26
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;void BlueSerial_Control(void)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    if (BlueSerial_RxFlag == 1)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        // 关闭 DMA 接收中断，安全拷贝备份
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        HAL_NVIC_DisableIRQ(DMA1_Channel6_IRQn);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        char LocalBuffer[150];
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        memcpy(LocalBuffer, BLEBackupBuffer, sizeof(BLEBackupBuffer));
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        HAL_NVIC_EnableIRQ(DMA1_Channel6_IRQn);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        char *Tag = strtok(LocalBuffer, &amp;#34;,&amp;#34;);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        if (strcmp(Tag, &amp;#34;joystick&amp;#34;) == 0)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            int8_t LH = atoi(strtok(NULL, &amp;#34;,&amp;#34;));
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            int8_t LV = atoi(strtok(NULL, &amp;#34;,&amp;#34;));
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            int8_t RH = atoi(strtok(NULL, &amp;#34;,&amp;#34;));
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            int8_t RV = atoi(strtok(NULL, &amp;#34;,&amp;#34;));
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            SpeedPID.Target = LV / 25;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;            TurnPID.Target = -(RH / 25);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        BlueSerial_RxFlag = 0;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;修改后的回调函数代码&#34;&gt;&lt;mark&gt;修改后的回调函数代码&lt;/mark&gt;
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;17
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;18
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;19
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;20
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uint8_t BlueSerial_RxFlag = 0;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uint8_t BLERxInitialData[150];
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;uint8_t BLEBackupBuffer[150];  // 备份缓冲区，供主循环安全读取
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;void HAL_UARTEx_RxEventCallback(UART_HandleTypeDef *huart, uint16_t Size) {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    if (huart-&amp;gt;Instance == USART1) {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        //串口1暂时不处理
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    if (huart-&amp;gt;Instance == USART2) {
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        BLE_UART_CopyData(Size);  // 去帧头帧尾
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        // 立即拷贝到备份缓冲区，供主循环安全读取
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        memcpy(BLEBackupBuffer, BLEProcessed_Data, Size);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        HAL_UARTEx_ReceiveToIdle_DMA(&amp;amp;huart2, BLERxInitialData, sizeof(BLERxInitialData));
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        __HAL_DMA_DISABLE_IT(&amp;amp;hdma_usart2_rx, DMA_IT_HT);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        BlueSerial_RxFlag = 1;  // 标志位置1
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    }
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;mark&gt;请阅读前后代码，后再进行看讲解！！！&lt;/mark&gt;&lt;/p&gt;
+&lt;h2 id=&#34;第2小节存在的bug-原因分析数据竞争race-condition&#34;&gt;第2小节存在的BUG 原因分析：数据竞争（Race Condition）
+&lt;/h2&gt;&lt;h3 id=&#34;根本问题&#34;&gt;根本问题
+&lt;/h3&gt;&lt;p&gt;DMA 串口接收中断和主循环同时访问同一个缓冲区 &lt;code&gt;BLEProcessed_Data&lt;/code&gt;，没有任何保护机制。&lt;/p&gt;
+&lt;h3 id=&#34;问题链路图&#34;&gt;问题链路图
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DMA中断写入 BLEProcessed_Data
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;         ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;主循环正在用 strtok 解析 BLEProcessed_Data
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;         ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DMA中断再次触发，覆盖了正在解析的数据
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;         ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;strtok 解析到垃圾值 → 遥控目标值被意外修改 → 控制效果变差
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;具体表现&#34;&gt;具体表现
+&lt;/h3&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;问题&lt;/th&gt;
+&lt;th&gt;后果&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;BLEProcessed_Data&lt;/code&gt; 被 DMA 中断覆盖&lt;/td&gt;
+&lt;td&gt;主循环解析到不完整的数据&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;strtok&lt;/code&gt; 不是线程安全的&lt;/td&gt;
+&lt;td&gt;中断打断解析状态，导致越界读取&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;遥控目标值被错误修改&lt;/td&gt;
+&lt;td&gt;目标错误，平衡车控制失常&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;h3 id=&#34;解决方案双缓冲--临界区保护&#34;&gt;解决方案：双缓冲 + 临界区保护
+&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;核心思路&lt;/strong&gt;：中断中写入数据，主循环中读取数据，必须使用临界区或双缓冲来保护共享资源。&lt;/p&gt;
+&lt;h4 id=&#34;1-回调函数中添加备份缓冲区&#34;&gt;1. 回调函数中添加备份缓冲区
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;16
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// 新增全局变量
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;uint8_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;BLEBackupBuffer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;150&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;// 备份缓冲区
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;HAL_UARTEx_RxEventCallback&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;UART_HandleTypeDef&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;huart&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;uint16_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;huart&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;-&amp;gt;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Instance&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;USART2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nf&#34;&gt;BLE_UART_CopyData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;  &lt;span class=&#34;c1&#34;&gt;// 去帧头帧尾
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;// 关键：立即拷贝到备份缓冲区
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;nf&#34;&gt;memcpy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BLEBackupBuffer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;BLEProcessed_Data&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;Size&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nf&#34;&gt;HAL_UARTEx_ReceiveToIdle_DMA&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;huart2&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;BLERxInitialData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;sizeof&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BLERxInitialData&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nf&#34;&gt;__HAL_DMA_DISABLE_IT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;&amp;amp;&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;hdma_usart2_rx&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;DMA_IT_HT&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;n&#34;&gt;BlueSerial_RxFlag&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;2-主循环中使用临界区安全读取&#34;&gt;2. 主循环中使用临界区安全读取
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;15
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;BlueSerial_Control&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;kt&#34;&gt;void&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;k&#34;&gt;if&lt;/span&gt; &lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BlueSerial_RxFlag&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;==&lt;/span&gt; &lt;span class=&#34;mi&#34;&gt;1&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;)&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    &lt;span class=&#34;p&#34;&gt;{&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;// 关闭 DMA 接收中断，防止拷贝过程中数据被覆盖
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;nf&#34;&gt;HAL_NVIC_DisableIRQ&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;DMA1_Channel6_IRQn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;LocalBuffer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;150&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nf&#34;&gt;memcpy&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;LocalBuffer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;BLEBackupBuffer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;k&#34;&gt;sizeof&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;BLEBackupBuffer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;));&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;nf&#34;&gt;HAL_NVIC_EnableIRQ&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;DMA1_Channel6_IRQn&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;// 使用本地副本进行解析，安全！
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;        &lt;span class=&#34;kt&#34;&gt;char&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;*&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;Tag&lt;/span&gt; &lt;span class=&#34;o&#34;&gt;=&lt;/span&gt; &lt;span class=&#34;nf&#34;&gt;strtok&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;(&lt;/span&gt;&lt;span class=&#34;n&#34;&gt;LocalBuffer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;,&lt;/span&gt; &lt;span class=&#34;s&#34;&gt;&amp;#34;,&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;);&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;        &lt;span class=&#34;c1&#34;&gt;// ... 后续解析逻辑
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;    &lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;}&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;3-头文件中添加-extern-声明&#34;&gt;3. 头文件中添加 extern 声明
+&lt;/h4&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-c&#34; data-lang=&#34;c&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;// uart_callback.h
+&lt;/span&gt;&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;c1&#34;&gt;&lt;/span&gt;&lt;span class=&#34;k&#34;&gt;extern&lt;/span&gt; &lt;span class=&#34;kt&#34;&gt;uint8_t&lt;/span&gt; &lt;span class=&#34;n&#34;&gt;BLEBackupBuffer&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;[&lt;/span&gt;&lt;span class=&#34;mi&#34;&gt;150&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;];&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h3 id=&#34;工作流程总结&#34;&gt;工作流程总结
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;7
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;DMA中断收到数据
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;写入 BLEProcessed_Data → 拷贝到 BLEBackupBuffer
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;                              ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;主循环读取 ← 关闭DMA中断 ← 从BLEBackupBuffer拷贝到LocalBuffer
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    ↓
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;开启DMA中断 → 用 strtok 解析 LocalBuffer（本地变量，安全）
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;这样 DMA 中断和主循环不再共享同一个正在被修改的缓冲区，数据竞争问题彻底解决。&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>平衡车_MPU6050&#43;OLED</title>
-        <link>https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/</link>
+        <link>https://Carring06.github.io/p/mpu6050-oled/</link>
         <pubDate>Tue, 14 Jul 2026 13:14:17 +0800</pubDate>
         
-        <guid>https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/</guid>
+        <guid>https://Carring06.github.io/p/mpu6050-oled/</guid>
         <description>&lt;h2 id=&#34;mpu6050的i2c模式选择&#34;&gt;MPU6050的I2C模式选择
 &lt;/h2&gt;&lt;p&gt;  MPU6050 是独立的外部传感器芯片，不属于单片机片上外设；若要读取该外设内部寄存器数据，主控需要通过总线与该芯片建立通信。单片机与外部芯片常用通信协议包含 I2C、SPI、UART、CAN 等，本章将以 MPU6050 为例，讲解 I2C 通信原理与实操。&lt;/p&gt;
 &lt;h3 id=&#34;软件i2c&#34;&gt;软件I2C
 &lt;/h3&gt;&lt;p&gt;  软件 I2C 通过代码手动控制 SCL、SDA 两根通信引脚的高低电平，模拟标准 I2C 协议时序，实现主控与外部传感器芯片通信。
 软件 I2C 优势是引脚选择灵活，绝大部分通用 GPIO 引脚，只要支持开漏输出配置，搭配内部上拉或外部上拉电阻，即可实现 I2C 总线通信；软件 I2C 必须严格遵循 I2C 规定时序，具体时序规范可查阅 I2C 官方手册。&lt;br&gt;
   经过实测，HAL库软件模拟进行通信的效率比标准库低，主要是因为在与标准库同样配置下，HAL库手动翻转电平的效率比较耗时。&lt;br&gt;
-&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image.png&#34;
+&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image.png&#34;
 	width=&#34;972&#34;
 	height=&#34;348&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image_hu390731648268003479.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image_hu12753226442328782139.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/mpu6050-oled/image_hu390731648268003479.png 480w, https://Carring06.github.io/p/mpu6050-oled/image_hu12753226442328782139.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;电平最大输出速率&#34;
@@ -106,10 +684,10 @@
   而对于该平衡车项目，我使用软件I2C进行MPU6050数据获取时（也就是函数&lt;code&gt;MPU6050_GetData(&amp;amp;MPU6050_Data);&lt;/code&gt;），经实测发现他大约耗时&lt;mark&gt;578us&lt;/mark&gt;，而同样配置下，&lt;mark&gt;标准库仅耗时约352us&lt;/mark&gt;。这也就让我开始尝试使用硬件I2C进行获取数据了。&lt;/p&gt;
 &lt;h3 id=&#34;硬件i2c&#34;&gt;硬件I2C
 &lt;/h3&gt;&lt;p&gt;  硬件I2C，是指应用单片机为我们提供的片上外设,在CubeMx对应I2C模式，而后进行I2C通信，这里直接调用官方的函数接口就可以完成一系列操作，并不需要我们手动翻转电平来产生起始、终止信号等等。&lt;br&gt;
-&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-1.png&#34;
+&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-1.png&#34;
 	width=&#34;390&#34;
 	height=&#34;378&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-1_hu2668296420720525037.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-1_hu16768546210987516951.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/mpu6050-oled/image-1_hu2668296420720525037.png 480w, https://Carring06.github.io/p/mpu6050-oled/image-1_hu16768546210987516951.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;I2C外设&#34;
@@ -120,10 +698,10 @@
 		data-flex-basis=&#34;247px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-2.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-2.png&#34;
 	width=&#34;1038&#34;
 	height=&#34;200&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-2_hu16050020688416545406.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-2_hu12614030538006318621.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/mpu6050-oled/image-2_hu16050020688416545406.png 480w, https://Carring06.github.io/p/mpu6050-oled/image-2_hu12614030538006318621.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;I2C外设&#34;
@@ -135,10 +713,10 @@
 	
 &gt;&lt;/p&gt;
 &lt;h4 id=&#34;标准i2c&#34;&gt;标准I2C
-&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-3.png&#34;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-3.png&#34;
 	width=&#34;978&#34;
 	height=&#34;555&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-3_hu3687220923763825776.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-3_hu14752230997016060849.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/mpu6050-oled/image-3_hu3687220923763825776.png 480w, https://Carring06.github.io/p/mpu6050-oled/image-3_hu14752230997016060849.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;alt text&#34;
@@ -152,10 +730,10 @@
   硬件I2C又分为标准模式和快速模式。标准模式下，I2C的时钟频率仅100KHZ，与MPU6050通信速度反而比软件I2C慢。个人在实验中，测出的硬件I2C的MPU6050数据获取耗时1594，1595us，这和软件I2C耗时578us，差了不止一个等级。不仅达不到我的目的——提高MPU6050获取数据的效率，反而还拖了后腿（当然，这里我都是基于HAL库版本进行讨论的）！因而这也就引出了后续选取硬件I2C的快速模式作为I2C通信模式。 &lt;br&gt;
   在引入快速I2C时，先来解释一下这里的&lt;mark&gt;I2C Clock Speed (Hz)&lt;/mark&gt;。I2C 时钟频率，指&lt;strong&gt;I2C 总线 SCL 时钟信号的方波频率&lt;/strong&gt;，代表每秒在 SCL 线上完整高低电平切换的次数，直接决定数据传输快慢。
 100kHz = SCL 每秒完整跳变 10 万次；400kHz = 每秒跳变 40 万次。而我们知道，SCL作为时钟信号线，间接影响了SDA的数据读取和数据写入，具体表现是：SCL低电平期间，允许主机写数据，高电平期间允许从机读数据。因此，时钟频率越高，I2C读取速率也越大。但值得注意的是，快速模式并不是所有外部芯片都支持的，具体得去查阅芯片手册！当前的MPU6050是支持的。   &lt;br&gt;
-&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-6.png&#34;
+&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-6.png&#34;
 	width=&#34;1434&#34;
 	height=&#34;380&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-6_hu7001892002220500546.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-6_hu8269255028160483890.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/mpu6050-oled/image-6_hu7001892002220500546.png 480w, https://Carring06.github.io/p/mpu6050-oled/image-6_hu8269255028160483890.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;MPU6050芯片手册原图&#34;
@@ -186,10 +764,10 @@
 &lt;/tbody&gt;
 &lt;/table&gt;
 &lt;h4 id=&#34;快速i2c&#34;&gt;快速I2C
-&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-4.png&#34;
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-4.png&#34;
 	width=&#34;984&#34;
 	height=&#34;473&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-4_hu6930167809416218308.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-4_hu14262182137309055705.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/mpu6050-oled/image-4_hu6930167809416218308.png 480w, https://Carring06.github.io/p/mpu6050-oled/image-4_hu14262182137309055705.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;快速I2C&#34;
@@ -201,10 +779,10 @@
 	
 &gt;&lt;br&gt;
 值得注意的是，快速I2C多了个选项，&lt;code&gt;Fast Mode Duty Cycle&lt;/code&gt;&lt;br&gt;
-&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-5.png&#34;
+&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-5.png&#34;
 	width=&#34;491&#34;
 	height=&#34;66&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-5_hu15219335084681902956.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-5_hu3009643492169438241.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/mpu6050-oled/image-5_hu15219335084681902956.png 480w, https://Carring06.github.io/p/mpu6050-oled/image-5_hu3009643492169438241.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;电平时间占比&#34;
@@ -219,15 +797,15 @@
   以MPU6050为例子，其实选择2/1或者16/9，都是能进行通信的。我进行测试的时候，2/1的组别能将MPU6050数据获取速率提快至&lt;mark&gt;416，417us&lt;/mark&gt;，而16/9为&lt;mark&gt;461，462us&lt;/mark&gt;，所以这里建议选择2/1占比的。&lt;br&gt;
   这样，&lt;mark&gt;MPU6050的数据获取速率比使用软件I2C快了160us左右&lt;/mark&gt;，但是始终比标准库的软件I2C读取速率慢！这也尽我所能了，如若有别的方法能进一步提高读取速率，麻烦发邮箱告知我一声！QQ邮箱：3152067902@qq.com！
   当然，这里没有采用DMA协助数据运输以及I2C的中断，个人经考量觉得意义不大，因而没有进行测试。而且个人觉得416us的速率对于平衡车还是够快的了，所以跳过了DMA协助数据运输以及I2C的中断的测试。各位可以自行尝试一下。后续等我博客开启评论功能，可于评论区告诉一声！&lt;br&gt;
-&lt;strong&gt;小总结&lt;/strong&gt;&lt;/p&gt;
+&lt;strong&gt;总结&lt;/strong&gt;&lt;/p&gt;
 &lt;ol&gt;
 &lt;li&gt;DMA&lt;strong&gt;不能提高 I2C 硬件最高通信速率（SCL 频率不变）&lt;/strong&gt;；&lt;/li&gt;
 &lt;li&gt;DMA 代替 CPU 搬运字节，消除 CPU 延迟造成的总线停顿，&lt;strong&gt;批量连续传输时实际有效吞吐更高、耗时更少&lt;/strong&gt;；&lt;/li&gt;
 &lt;li&gt;核心定位：减负 CPU，不是提速总线硬件时序。
-&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-7.png&#34;
+&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-7.png&#34;
 	width=&#34;1890&#34;
 	height=&#34;822&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-7_hu12640475953994752697.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-7_hu8838806885294876337.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/mpu6050-oled/image-7_hu12640475953994752697.png 480w, https://Carring06.github.io/p/mpu6050-oled/image-7_hu8838806885294876337.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;AI之言&#34;
@@ -238,10 +816,10 @@
 		data-flex-basis=&#34;551px&#34;
 	
 &gt;&lt;br&gt;
-&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-8.png&#34;
+&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-8.png&#34;
 	width=&#34;1913&#34;
 	height=&#34;533&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-8_hu16164920525699539962.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-8_hu15156522668958905650.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/mpu6050-oled/image-8_hu16164920525699539962.png 480w, https://Carring06.github.io/p/mpu6050-oled/image-8_hu15156522668958905650.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;AI之言&#34;
@@ -875,10 +1453,10 @@ S_I2C.c&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;h2 id=&#34;oled部分说明&#34;&gt;OLED部分说明
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-9.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-9.png&#34;
 	width=&#34;1641&#34;
 	height=&#34;1040&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-9_hu15696122449552352766.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_mpu6050-oled/image-9_hu17669698083527990128.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/mpu6050-oled/image-9_hu15696122449552352766.png 480w, https://Carring06.github.io/p/mpu6050-oled/image-9_hu17669698083527990128.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;延时说明&#34;
@@ -894,10 +1472,10 @@ S_I2C.c&lt;/p&gt;
         </item>
         <item>
         <title>平衡车_按键说明</title>
-        <link>https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E6%8C%89%E9%94%AE%E8%AF%B4%E6%98%8E/</link>
+        <link>https://Carring06.github.io/p/key-description/</link>
         <pubDate>Tue, 14 Jul 2026 13:13:54 +0800</pubDate>
         
-        <guid>https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E6%8C%89%E9%94%AE%E8%AF%B4%E6%98%8E/</guid>
+        <guid>https://Carring06.github.io/p/key-description/</guid>
         <description>&lt;h2 id=&#34;按键代码&#34;&gt;按键代码
 &lt;/h2&gt;&lt;p&gt;&lt;mark&gt;使用说明:&lt;/mark&gt;&lt;br&gt;
 （1）Key_Scan()每1ms执行一次，使用前必须放在定时中断里；&lt;br&gt;
@@ -1843,16 +2421,16 @@ S_I2C.c&lt;/p&gt;
 </description>
         </item>
         <item>
-        <title>平衡车_代码整体</title>
-        <link>https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/</link>
+        <title>平衡车_代码整体框架</title>
+        <link>https://Carring06.github.io/p/full-code/</link>
         <pubDate>Tue, 14 Jul 2026 13:13:39 +0800</pubDate>
         
-        <guid>https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/</guid>
+        <guid>https://Carring06.github.io/p/full-code/</guid>
         <description>&lt;h2 id=&#34;工程整体代码框架介绍&#34;&gt;工程整体代码框架介绍
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/full-code/image.png&#34;
 	width=&#34;372&#34;
 	height=&#34;405&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image_hu4645169002020453081.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image_hu4121673354070452444.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/full-code/image_hu4645169002020453081.png 480w, https://Carring06.github.io/p/full-code/image_hu4121673354070452444.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;代码基本框架介绍&#34;
@@ -1865,10 +2443,10 @@ S_I2C.c&lt;/p&gt;
 &gt;&lt;/p&gt;
 &lt;p&gt;  在撰写代码时，我是将自己所写的代码统一放在User文件夹，意为用户层代码。随后在User目录下根据各个模块的作用分为了&lt;strong&gt;Algorithm（算法）层&lt;/strong&gt;、&lt;strong&gt;Callback（回调）层&lt;/strong&gt;、&lt;strong&gt;Comm_Prot（通信协议）层&lt;/strong&gt;、&lt;strong&gt;Device（设备）层&lt;/strong&gt;、&lt;strong&gt;System（系统）层&lt;/strong&gt;。其中，&lt;mark&gt;回调层&lt;/mark&gt;是存放各回调函数的一层，&lt;mark&gt;系统层&lt;/mark&gt;则是存放关于芯片本身的函数接口层，如读写FLASH等。其余接口层自行查看且易于理，因此不做多余解释。&lt;/p&gt;
 &lt;h2 id=&#34;hal库与标准库的对比&#34;&gt;HAL库与标准库的对比
-&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-1.png&#34;
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/full-code/image-1.png&#34;
 	width=&#34;867&#34;
 	height=&#34;761&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-1_hu18264175641202856647.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-1_hu181401979137950699.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/full-code/image-1_hu18264175641202856647.png 480w, https://Carring06.github.io/p/full-code/image-1_hu181401979137950699.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;核心对比&#34;
@@ -1883,10 +2461,10 @@ S_I2C.c&lt;/p&gt;
   标准库和HAL库的优缺点本博客不重点论述，这里只重点论述不同版本库的函数代码&lt;strong&gt;执行效率&lt;/strong&gt;以及&lt;strong&gt;资源占用情况&lt;/strong&gt;，如若需要了解其他特点，自行询问AI即可。&lt;br&gt;
   对于函数以及代码的执行效率，标准库是胜于HAL库的。标准库寄存器封装很浅，几乎直接操作外设寄存器，能看懂硬件时序、寄存器行为；没有额外封装层，不会出现 HAL 库复杂回调 / 状态机绕弯。举实际例子说明，如下图：&lt;br&gt;
 &lt;mark&gt;标准库：&lt;/mark&gt;
-&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-2.png&#34;
+&lt;img src=&#34;https://Carring06.github.io/p/full-code/image-2.png&#34;
 	width=&#34;1085&#34;
 	height=&#34;909&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-2_hu16562657313853834851.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-2_hu5819800852075757240.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/full-code/image-2_hu16562657313853834851.png 480w, https://Carring06.github.io/p/full-code/image-2_hu5819800852075757240.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;标准库版&#34;
@@ -1897,10 +2475,10 @@ S_I2C.c&lt;/p&gt;
 		data-flex-basis=&#34;286px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-3.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/full-code/image-3.png&#34;
 	width=&#34;666&#34;
 	height=&#34;417&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-3_hu13324498071752771757.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-3_hu15097697441306848714.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/full-code/image-3_hu13324498071752771757.png 480w, https://Carring06.github.io/p/full-code/image-3_hu15097697441306848714.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;标准库中断耗时时间&#34;
@@ -1912,10 +2490,10 @@ S_I2C.c&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;&lt;mark&gt;HAL库:&lt;/mark&gt;
-&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-4.png&#34;
+&lt;img src=&#34;https://Carring06.github.io/p/full-code/image-4.png&#34;
 	width=&#34;1002&#34;
 	height=&#34;501&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-4_hu16695916618714898650.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-4_hu18178601980015308396.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/full-code/image-4_hu16695916618714898650.png 480w, https://Carring06.github.io/p/full-code/image-4_hu18178601980015308396.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;HAL版&#34;
@@ -1926,10 +2504,10 @@ S_I2C.c&lt;/p&gt;
 		data-flex-basis=&#34;480px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-5.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/full-code/image-5.png&#34;
 	width=&#34;1083&#34;
 	height=&#34;402&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-5_hu7613682127228525759.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-5_hu18330054688497004359.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/full-code/image-5_hu7613682127228525759.png 480w, https://Carring06.github.io/p/full-code/image-5_hu18330054688497004359.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;HAL版&#34;
@@ -1940,10 +2518,10 @@ S_I2C.c&lt;/p&gt;
 		data-flex-basis=&#34;646px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-6.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/full-code/image-6.png&#34;
 	width=&#34;498&#34;
 	height=&#34;470&#34;
-	srcset=&#34;https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-6_hu17862601933786752526.png 480w, https://Carring06.github.io/p/%E5%B9%B3%E8%A1%A1%E8%BD%A6_%E4%BB%A3%E7%A0%81%E6%95%B4%E4%BD%93/image-6_hu7311283897917171099.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/full-code/image-6_hu17862601933786752526.png 480w, https://Carring06.github.io/p/full-code/image-6_hu7311283897917171099.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;HAL中断耗时时间&#34;
@@ -1970,15 +2548,15 @@ BUG4:若蓝牙串口与DMA配合接收，会出现程序卡死跑飞；&lt;br&gt
         </item>
         <item>
         <title>STM32HAL库版平衡车序言</title>
-        <link>https://Carring06.github.io/p/stm32hal%E5%BA%93%E7%89%88%E5%B9%B3%E8%A1%A1%E8%BD%A6%E5%BA%8F%E8%A8%80/</link>
+        <link>https://Carring06.github.io/p/stm32hal-preface/</link>
         <pubDate>Tue, 14 Jul 2026 08:55:20 +0800</pubDate>
         
-        <guid>https://Carring06.github.io/p/stm32hal%E5%BA%93%E7%89%88%E5%B9%B3%E8%A1%A1%E8%BD%A6%E5%BA%8F%E8%A8%80/</guid>
+        <guid>https://Carring06.github.io/p/stm32hal-preface/</guid>
         <description>&lt;!-- 现在 `draft = true`，线上部署会直接隐藏这篇文章，网页看不到。 --&gt;
-&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/stm32hal%E5%BA%93%E7%89%88%E5%B9%B3%E8%A1%A1%E8%BD%A6%E5%BA%8F%E8%A8%80/image.png&#34;
+&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/stm32hal-preface/image.png&#34;
 	width=&#34;1844&#34;
 	height=&#34;974&#34;
-	srcset=&#34;https://Carring06.github.io/p/stm32hal%E5%BA%93%E7%89%88%E5%B9%B3%E8%A1%A1%E8%BD%A6%E5%BA%8F%E8%A8%80/image_hu11863676851657142552.png 480w, https://Carring06.github.io/p/stm32hal%E5%BA%93%E7%89%88%E5%B9%B3%E8%A1%A1%E8%BD%A6%E5%BA%8F%E8%A8%80/image_hu1600644056648027569.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/stm32hal-preface/image_hu11863676851657142552.png 480w, https://Carring06.github.io/p/stm32hal-preface/image_hu1600644056648027569.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;平衡车实物&#34;
@@ -1995,10 +2573,10 @@ BUG4:若蓝牙串口与DMA配合接收，会出现程序卡死跑飞；&lt;br&gt
 &lt;p&gt;  &lt;em&gt;平衡车&lt;/em&gt;，是一个对于嵌入式新手相对不错的入门实操项目。图中所展示的平衡车与江协平衡车在总体上相似，需要的可自行去江协科技店铺购买或自行简易制作，这里不过多赘述。让我困惑的是，现在在各大平台或者其他博客上，&lt;strong&gt;用标准库搭建平衡小车平台的数不胜数，而用HAL库的却实在少见&lt;/strong&gt;，而且就算找到了用HAL库编写的平衡车，因其代码不分明，我们也无从下手进行学习。例如我，在用HAL库撰写的时候也遇到了不少麻烦，也找了几份HAL库版本的小车代码打算准备从中学习一下，遗憾的是，他们的代码要么过于简略，要么注释稀少、层次不分明，因此，只能自己一遍遍自行试错，花费了不少精力才把HAL库版本的小车代码搭建好了。&lt;br&gt;
   &lt;strong&gt;当然，如果是完全跟着视频走，包括&lt;mark&gt;硬件接口的各个模块，CubeMx所配置的全部参数，整体思路&lt;/mark&gt;，其实并不会有多难，只是进行改成写的话，本人实测，不用一天就可以完成。这样是不会遇到我所遇到的问题，可以达到“一遍过”的效果，但个人不太推荐这样。&lt;/strong&gt;&lt;br&gt;
   开发工具链：本人选择的是gcc+CMake工具链，而不是传统的ARMCC+Keil MDK的工具链。其实只是开发工具不同，使用哪个都行，个人觉得Keil的调试功能更全面，后续我会将Keil MDK的版本也开源出来，这样使用Keil的也可以进行使用，减少不必要的麻烦。&lt;br&gt;
-&lt;img src=&#34;https://Carring06.github.io/p/stm32hal%E5%BA%93%E7%89%88%E5%B9%B3%E8%A1%A1%E8%BD%A6%E5%BA%8F%E8%A8%80/image-3.png&#34;
+&lt;img src=&#34;https://Carring06.github.io/p/stm32hal-preface/image-3.png&#34;
 	width=&#34;992&#34;
 	height=&#34;230&#34;
-	srcset=&#34;https://Carring06.github.io/p/stm32hal%E5%BA%93%E7%89%88%E5%B9%B3%E8%A1%A1%E8%BD%A6%E5%BA%8F%E8%A8%80/image-3_hu18019816377294713286.png 480w, https://Carring06.github.io/p/stm32hal%E5%BA%93%E7%89%88%E5%B9%B3%E8%A1%A1%E8%BD%A6%E5%BA%8F%E8%A8%80/image-3_hu16340706164006742532.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/stm32hal-preface/image-3_hu18019816377294713286.png 480w, https://Carring06.github.io/p/stm32hal-preface/image-3_hu16340706164006742532.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;工具链差异选项&#34;
@@ -2012,10 +2590,10 @@ BUG4:若蓝牙串口与DMA配合接收，会出现程序卡死跑飞；&lt;br&gt
 &lt;hr&gt;
 &lt;h2 id=&#34;二项目开发提交记录时间轴&#34;&gt;二、项目开发提交记录时间轴
 &lt;/h2&gt;&lt;h3 id=&#34;个人平衡车的时间轴&#34;&gt;个人平衡车的时间轴
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/stm32hal%E5%BA%93%E7%89%88%E5%B9%B3%E8%A1%A1%E8%BD%A6%E5%BA%8F%E8%A8%80/image-1.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/stm32hal-preface/image-1.png&#34;
 	width=&#34;1562&#34;
 	height=&#34;2773&#34;
-	srcset=&#34;https://Carring06.github.io/p/stm32hal%E5%BA%93%E7%89%88%E5%B9%B3%E8%A1%A1%E8%BD%A6%E5%BA%8F%E8%A8%80/image-1_hu14026279753918794093.png 480w, https://Carring06.github.io/p/stm32hal%E5%BA%93%E7%89%88%E5%B9%B3%E8%A1%A1%E8%BD%A6%E5%BA%8F%E8%A8%80/image-1_hu8382204998732130140.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/stm32hal-preface/image-1_hu14026279753918794093.png 480w, https://Carring06.github.io/p/stm32hal-preface/image-1_hu8382204998732130140.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;MyCar时间轴&#34;
@@ -2028,10 +2606,10 @@ BUG4:若蓝牙串口与DMA配合接收，会出现程序卡死跑飞；&lt;br&gt
 &gt;&lt;/p&gt;
 &lt;p&gt;此时间轴可以简要概括为：&lt;strong&gt;硬件驱动&lt;/strong&gt;——&amp;gt;&lt;strong&gt;添加俯仰角计算与滤波算法、PID算法&lt;/strong&gt;——&amp;gt;&lt;strong&gt;BUG修复&lt;/strong&gt;——&amp;gt;&lt;strong&gt;整体完善&lt;/strong&gt;&lt;/p&gt;
 &lt;h3 id=&#34;直接模仿改写江协的时间轴&#34;&gt;直接模仿改写江协的时间轴
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/stm32hal%E5%BA%93%E7%89%88%E5%B9%B3%E8%A1%A1%E8%BD%A6%E5%BA%8F%E8%A8%80/image-2.png&#34;
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/stm32hal-preface/image-2.png&#34;
 	width=&#34;1556&#34;
 	height=&#34;278&#34;
-	srcset=&#34;https://Carring06.github.io/p/stm32hal%E5%BA%93%E7%89%88%E5%B9%B3%E8%A1%A1%E8%BD%A6%E5%BA%8F%E8%A8%80/image-2_hu5044999612378479289.png 480w, https://Carring06.github.io/p/stm32hal%E5%BA%93%E7%89%88%E5%B9%B3%E8%A1%A1%E8%BD%A6%E5%BA%8F%E8%A8%80/image-2_hu15707928230771555122.png 1024w&#34;
+	srcset=&#34;https://Carring06.github.io/p/stm32hal-preface/image-2_hu5044999612378479289.png 480w, https://Carring06.github.io/p/stm32hal-preface/image-2_hu15707928230771555122.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;JX_Car时间轴&#34;
@@ -2040,6 +2618,119 @@ BUG4:若蓝牙串口与DMA配合接收，会出现程序卡死跑飞；&lt;br&gt
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;559&#34;
 		data-flex-basis=&#34;1343px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这里不进行过多赘述，只供参见&lt;/p&gt;
+&lt;h2 id=&#34;三平衡车博客章节总览&#34;&gt;三、平衡车博客章节总览
+&lt;/h2&gt;&lt;h3 id=&#34;项目整体介绍&#34;&gt;项目整体介绍
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93/#%e5%b7%a5%e7%a8%8b%e6%95%b4%e4%bd%93%e4%bb%a3%e7%a0%81%e6%a1%86%e6%9e%b6%e4%bb%8b%e7%bb%8d&#34; &gt;工程整体代码框架介绍&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93/#hal%e5%ba%93%e4%b8%8e%e6%a0%87%e5%87%86%e5%ba%93%e7%9a%84%e5%af%b9%e6%af%94&#34; &gt;HAL库与标准库的对比&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;3.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93/#bug%e5%a4%8d%e7%9b%98%e6%b1%87%e6%80%bb&#34; &gt;BUG复盘汇总&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;按键驱动模块说明&#34;&gt;按键驱动模块说明
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e6%8c%89%e9%94%ae%e8%af%b4%e6%98%8e/#%e6%8c%89%e9%94%ae%e4%bb%a3%e7%a0%81&#34; &gt;按键代码&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e6%8c%89%e9%94%ae%e8%af%b4%e6%98%8e/#%e7%a7%bb%e6%a4%8d%e8%af%b4%e6%98%8e&#34; &gt;移植说明&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;mpu6050--oled&#34;&gt;MPU6050 + OLED
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#mpu6050%e7%9a%84i2c%e6%a8%a1%e5%bc%8f%e9%80%89%e6%8b%a9&#34; &gt;MPU6050的I2C模式选择&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e8%bd%af%e4%bb%b6i2c&#34; &gt;软件I2C&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e7%a1%ac%e4%bb%b6i2c&#34; &gt;硬件I2C&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e6%a0%87%e5%87%86i2c&#34; &gt;标准I2C&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e5%bf%ab%e9%80%9fi2c&#34; &gt;快速I2C&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#OLED%e9%83%a8%e5%88%86%e8%af%b4%e6%98%8e&#34; &gt;OLED部分说明&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;串口通讯&#34;&gt;串口通讯
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%b8%b2%e5%8f%a3/#%e6%99%ae%e9%80%9a%e4%b8%ad%e6%96%ad%e6%8e%a5%e6%94%b6&#34; &gt;普通中断接收&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%b8%b2%e5%8f%a3/#dma%e9%85%8d%e5%90%88%e4%b8%ad%e6%96%ad%e6%8e%a5%e6%94%b6&#34; &gt;DMA配合中断接收&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;电机pwm的参数配置&#34;&gt;电机PWM的参数配置
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#arr%e9%80%89%e5%80%bc%e8%af%b4%e6%98%8e&#34; &gt;ARR选值说明&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#psc%e5%88%86%e9%a2%91%e5%80%bc%e8%af%b4%e6%98%8e&#34; &gt;PSC分频值说明&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#%e7%94%b5%e6%9c%ba%e5%87%ba%e7%8e%b0%e5%99%aa%e5%a3%b0&#34; &gt;电机出现噪声&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#%e7%94%b5%e6%9c%ba%e8%be%93%e5%87%ba%e5%8a%9b%e7%9f%a9%e4%b8%8d%e5%a4%9f&#34; &gt;电机输出力矩不够&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;flash掉电存储模块的实现&#34;&gt;FLASH掉电存储模块的实现
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_flash%e6%a8%a1%e5%9d%97/#%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93%e5%ae%9e%e7%8e%b0&#34; &gt;代码整体实现&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_flash%e6%a8%a1%e5%9d%97/#%e5%85%b3%e4%ba%8eflash%e9%a2%98%e5%a4%96%e8%af%9d&#34; &gt;关于FLASH题外话&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;nrf24l01无线遥控&#34;&gt;NRF24L01无线遥控
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_nrf24l01%e6%a8%a1%e5%9d%97/#spi%e9%80%9a%e4%bf%a1%e5%ba%95%e5%b1%82%e5%ae%9e%e7%8e%b0&#34; &gt;SPI通信底层实现&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_nrf24l01%e6%a8%a1%e5%9d%97/#%e8%af%bb%e5%8f%96%e5%af%84%e5%ad%98%e5%99%a8%e6%a3%80%e6%b5%8b%e4%bf%a1%e5%8f%b7%e8%b4%a8%e9%87%8f&#34; &gt;读取寄存器检测信号质量&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>平衡车_STM32HAL库版序言</title>
+        <link>https://Carring06.github.io/p/stm32hal-preface/</link>
+        <pubDate>Tue, 14 Jul 2026 08:55:20 +0800</pubDate>
+        
+        <guid>https://Carring06.github.io/p/stm32hal-preface/</guid>
+        <description>&lt;!-- 现在 `draft = true`，线上部署会直接隐藏这篇文章，网页看不到。 --&gt;
+&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/image.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;平衡车实物&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;一开篇说明&#34;&gt;一、开篇说明
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;提前说明：&lt;mark&gt;如若你是完全跟着江协科技视频与源码进行HAL库改写，代码全部跟着他写，自己没有进行独立撰写，只是进行简单的改HAL库函数接口的话，那么本篇不适合你！&lt;/mark&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;  &lt;em&gt;平衡车&lt;/em&gt;，是一个对于嵌入式新手相对不错的入门实操项目。图中所展示的平衡车与江协平衡车在总体上相似，需要的可自行去江协科技店铺购买或自行简易制作，这里不过多赘述。让我困惑的是，现在在各大平台或者其他博客上，&lt;strong&gt;用标准库搭建平衡小车平台的数不胜数，而用HAL库的却实在少见&lt;/strong&gt;，而且就算找到了用HAL库编写的平衡车，因其代码不分明，我们也无从下手进行学习。例如我，在用HAL库撰写的时候也遇到了不少麻烦，也找了几份HAL库版本的小车代码打算准备从中学习一下，遗憾的是，他们的代码要么过于简略，要么注释稀少、层次不分明，因此，只能自己一遍遍自行试错，花费了不少精力才把HAL库版本的小车代码搭建好了。&lt;br&gt;
+  &lt;strong&gt;当然，如果是完全跟着视频走，包括&lt;mark&gt;硬件接口的各个模块，CubeMx所配置的全部参数，整体思路&lt;/mark&gt;，其实并不会有多难，只是进行改成写的话，本人实测，不用一天就可以完成。这样是不会遇到我所遇到的问题，可以达到“一遍过”的效果，但个人不太推荐这样。&lt;/strong&gt;&lt;br&gt;
+  开发工具链：本人选择的是gcc+CMake工具链，而不是传统的ARMCC+Keil MDK的工具链。其实只是开发工具不同，使用哪个都行，个人觉得Keil的调试功能更全面，后续我会将Keil MDK的版本也开源出来，这样使用Keil的也可以进行使用，减少不必要的麻烦。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/image-3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;工具链差异选项&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;二项目开发提交记录时间轴&#34;&gt;二、项目开发提交记录时间轴
+&lt;/h2&gt;&lt;h3 id=&#34;个人平衡车的时间轴&#34;&gt;个人平衡车的时间轴
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/image-1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;MyCar时间轴&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;此时间轴可以简要概括为：&lt;strong&gt;硬件驱动&lt;/strong&gt;——&amp;gt;&lt;strong&gt;添加俯仰角计算与滤波算法、PID算法&lt;/strong&gt;——&amp;gt;&lt;strong&gt;BUG修复&lt;/strong&gt;——&amp;gt;&lt;strong&gt;整体完善&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;直接模仿改写江协的时间轴&#34;&gt;直接模仿改写江协的时间轴
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/image-2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;JX_Car时间轴&#34;
+	
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;这里不进行过多赘述，只供参见&lt;/p&gt;
