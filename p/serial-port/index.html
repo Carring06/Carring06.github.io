@@ -362,7 +362,7 @@
             <time class="article-time--published">2026 - 07 - 14</time>
         </div>
         <div>
-            <span class="article-time--words">📝 2893 字</span>
+            <span class="article-time--words">📝 3230 字</span>
         </div>
         
         <div>
@@ -502,7 +502,37 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="dma配合中断接收">DMA配合中断接收
-</h2><p>  本章节其实主要是想来讲一下DMA配合串口进行中断接收。当然，上面讲述的常规中断就能实现对小车蓝牙串口的数据解析。而且 <code>HAL_UART_Receive_IT(&amp;huart2, &amp;RxData, 1);</code>的最后一个参数为1，这样每接收到一个字节就会进一次中断，况且有帧头帧尾，这样也可以实现不定长数据接收，这在当前的平衡车是行的通的。但每接收一个字节就让CPU处理一下，若在数据发送频率很高时，CPU也就太忙了，可能会导致CPU处理其他数据时处理不过来，所以，在我平衡车蓝牙遥控效果不太理想时，我尝试了利用DMA进行不定长数组的接收与处理。<strong>虽然现在已经证实蓝牙串口并不是蓝牙遥控控制效果不好的主要决定因素，就算不使用DMA，平衡车也能实现较好的蓝牙遥控</strong>,而且在我改完小车大部分BUG后，小车能实现直立和速度环控制效果正常后，我又试着用DMA，结果<mark>发现控制效果比没使用DMA的控制效果差，具体原因目前还没发现</mark>，所以，接下来的DMA配合中断接收，<strong>也许不适合用在平衡车上，也也许存在些许BUG，若又发现什么不对，请在评论区告知一声，若评论区使用不了的话，请发邮箱告诉我！谢谢！邮箱：3152067902@qq.com。</strong></p>
+</h2><p><strong>CubeMx相关配置</strong>
+<img src="/p/serial-port/image.png"
+	width="993"
+	height="311"
+	srcset="/p/serial-port/image_hu10982177768397174022.png 480w, /p/serial-port/image_hu10847696156535126165.png 1024w"
+	loading="lazy"
+	
+		alt="DMA"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="319"
+		data-flex-basis="766px"
+	
+>
+<img src="/p/serial-port/image-1.png"
+	width="957"
+	height="222"
+	srcset="/p/serial-port/image-1_hu5300656323680639731.png 480w, /p/serial-port/image-1_hu15616960169080295871.png 1024w"
+	loading="lazy"
+	
+		alt="dma"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="431"
+		data-flex-basis="1034px"
+	
+></p>
+<p><mark>注意！一定要选择正常模式而不是连续模式！<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup></mark></p>
+<p>  本章节其实主要是想来讲一下DMA配合串口进行中断接收。当然，上面讲述的常规中断就能实现对小车蓝牙串口的数据解析。而且 <code>HAL_UART_Receive_IT(&amp;huart2, &amp;RxData, 1);</code>的最后一个参数为1，这样每接收到一个字节就会进一次中断，况且有帧头帧尾，这样也可以实现不定长数据接收，这在当前的平衡车是行的通的。但每接收一个字节就让CPU处理一下，若在数据发送频率很高时，CPU也就太忙了，可能会导致CPU处理其他数据时处理不过来，所以，在我平衡车蓝牙遥控效果不太理想时，我尝试了利用DMA进行不定长数组的接收与处理。<strong>虽然现在已经证实蓝牙串口并不是蓝牙遥控控制效果不好的主要决定因素，就算不使用DMA，平衡车也能实现较好的蓝牙遥控</strong>,而且在我改完小车大部分BUG后，小车能实现直立和速度环控制效果正常后，我又试着用DMA，结果<mark>发现控制效果比没使用DMA的控制效果差，具体原因目前还没发现</mark>，所以，接下来的DMA配合中断接收，<strong>也许不适合用在平衡车上，也也许存在些许BUG，若又发现什么不对，请在评论区告知一声，若评论区使用不了的话，请发邮箱告诉我！谢谢！邮箱：3152067902@qq.com。</strong></p>
 <h3 id="初始化函数">初始化函数
 </h3><div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
@@ -960,6 +990,14 @@
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>这样 DMA 中断和主循环不再共享同一个正在被修改的缓冲区，数据竞争问题彻底解决。</p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>串口通信大多是不定长、按需收发的指令数据包，Normal 模式传输完成后自动停止，不会覆盖未处理数据；Circular 循环模式会持续循环覆盖缓冲区，极易造成丢帧、数据错乱，因此串口 DMA 一般选用 Normal 正常模式。且Circular 循环 DMA 强制固定传输长度、持续覆盖缓存，不适合长度不固定的串口指令包；Normal 模式传输完成后自动停止，配合 IDLE 空闲中断可精准捕获不定长<code>[]</code>数据包，避免数据覆盖丢失。且Circular 循环 DMA 发送完成后会自动重置地址并持续重复发送缓冲区内容，无新数据下发也会无限刷屏，常规指令串口不适合选用；Normal 模式发送一次后自动停止，更适配按需收发的串口场景。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 
 </section>
 
