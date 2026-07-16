@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="ARR选值说明 PSC分频值说明 电机出现噪声 电机输出力矩不够">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="前言：本章节PWM_Mode为PWM模式1，也就是CNT &lt; CCR：输出有效电平；CNT ≥ CCR：输出无效电平，占空比 = CCR / ARR。 提一嘴：P">
 <title>平衡车_PWM参数配置说明</title>
 
 <link rel='canonical' href='https://Carring06.github.io/p/pwm-config/'>
 
 <link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="平衡车_PWM参数配置说明">
-<meta property='og:description' content="ARR选值说明 PSC分频值说明 电机出现噪声 电机输出力矩不够">
+<meta property='og:description' content="前言：本章节PWM_Mode为PWM模式1，也就是CNT &lt; CCR：输出有效电平；CNT ≥ CCR：输出无效电平，占空比 = CCR / ARR。 提一嘴：P">
 <meta property='og:url' content='https://Carring06.github.io/p/pwm-config/'>
 <meta property='og:site_name' content='车度空间'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-07-14T13:15:15&#43;08:00'/><meta property='article:modified_time' content='2026-07-16T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="平衡车_PWM参数配置说明">
-<meta name="twitter:description" content="ARR选值说明 PSC分频值说明 电机出现噪声 电机输出力矩不够">
+<meta name="twitter:description" content="前言：本章节PWM_Mode为PWM模式1，也就是CNT &lt; CCR：输出有效电平；CNT ≥ CCR：输出无效电平，占空比 = CCR / ARR。 提一嘴：P">
     <link rel="shortcut icon" href="/favicon.ico" />
 
   
@@ -290,7 +290,11 @@
     <li><a href="#psc分频值说明">PSC分频值说明</a>
       <ol>
         <li><a href="#电机出现噪声">电机出现噪声</a></li>
-        <li><a href="#电机输出力矩不够">电机输出力矩不够</a></li>
+        <li><a href="#电机输出力矩不够">电机输出力矩不够</a>
+          <ol>
+            <li><a href="#力矩相关补充">力矩相关补充</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
   </ol>
@@ -353,7 +357,7 @@
         </div>
         
         <div>
-            <span class="article-time--words">📝 29 字</span>
+            <span class="article-time--words">📝 3528 字</span>
         </div>
         
         <div>
@@ -371,11 +375,92 @@
     <section class="article-content">
     
     
-    <h2 id="arr选值说明">ARR选值说明
-</h2><h2 id="psc分频值说明">PSC分频值说明
-</h2><h3 id="电机出现噪声">电机出现噪声
-</h3><h3 id="电机输出力矩不够">电机输出力矩不够
-</h3>
+    <p>  前言：本章节PWM_Mode为<mark>PWM模式1</mark>，也就是<mark>CNT &lt; CCR：输出有效电平；CNT ≥ CCR：输出无效电平</mark>，<strong>占空比 = CCR / ARR</strong>。<br>
+  提一嘴：<mark>PWM模式2</mark>为<mark>CNT &lt; CCR：输出无效电平；CNT ≥ CCR：输出有效电平</mark>，<strong>占空比 = (ARR - CCR) / ARR。</strong><br>
+  总结来说，占空比 = 有效电平/（ARR + 1）。其中，有效电平常为高电平。</p>
+<h2 id="arr选值说明">ARR选值说明
+</h2><p>  对于平衡车来说，ARR的值取（100 - 1）就行，步距变化为1%，对于平衡车算是足够精细的了。在调试期间，在平衡车的直立效果不是很好时，我也有尝试过将ARR的值调整至（1000 - 1），这样最小步进就为0.1%，相较于1%更为精细。不过，也因步进太小，导致PID进行调控时，当最终输出给电机进行PWM调控的值不够大，例如范围在0~50时，电机几乎无法产生有效调节力矩，可以说是没有什么调控效果。所以ARR的值最终我又调整回来了。</p>
+<h2 id="psc分频值说明">PSC分频值说明
+</h2><p>  对于PSC分频值，因为ARR确定为100 - 1，那么，这个分频值的选值就要有点讲究了。如果选择不切当，就会出现<strong>电机转动时有噪声</strong>，<strong>电机输出力矩不够大</strong>等问题，其中，输出力矩不够，就会导致平衡车直立效果不好，速度环无法发挥真正作用，这也是我平衡车卡在控速这一个环节那么久的原因！</p>
+<h3 id="电机出现噪声">电机出现噪声
+</h3><p>PWM频率：Freq = CK_PSC / (PSC + 1) / (ARR + 1)，其中CK_PSC为定时器时钟频率。<br>
+<img src="/p/pwm-config/image-1.png"
+	width="1521"
+	height="930"
+	srcset="/p/pwm-config/image-1_hu9267385473636117538.png 480w, /p/pwm-config/image-1_hu16612333662684708695.png 1024w"
+	loading="lazy"
+	
+		alt="时钟频率图"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="163"
+		data-flex-basis="392px"
+	
+></p>
+<p><img src="/p/pwm-config/%E6%80%BB%E7%BA%BF%E6%8C%82%E8%BD%BD.png"
+	width="1326"
+	height="1177"
+	srcset="/p/pwm-config/%E6%80%BB%E7%BA%BF%E6%8C%82%E8%BD%BD_hu15740789454260550609.png 480w, /p/pwm-config/%E6%80%BB%E7%BA%BF%E6%8C%82%E8%BD%BD_hu13243320608222685803.png 1024w"
+	loading="lazy"
+	
+		alt="F1总线挂载图"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="112"
+		data-flex-basis="270px"
+	
+></p>
+<p>  确认CK_PSC时，要知道所选定时器是挂载在那条总线的，然后去看时钟树看分配该总线定时器的时钟频率。<br>
+  结合以上论述，可知当前<strong>FPWM = 72M/ (PSC + 1) / (100 - 1 + 1)</strong>。<br>
+  首先，人耳标准听觉范围是20 Hz ～ 20000 Hz（20kHz）
+，当PWM频率在该范围内，PWM产生的噪声<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>就会被我们所听见。所以，要避免噪声的出现，我们可以将PWM的频率<strong>降至20HZ以下</strong>或<strong>提高至20KHZ以上</strong>，当然，我们是采取<strong>提高至20KHZ以上</strong>的方法。<br>
+  例如，我的ARR为100-1，PSC为720-1，计算出来的频率就为10KHZ，这也就在人耳听力范围内， 因为ARR的值我们不打算整改，所以，我索性将PSC设为2-1，这样噪声就消失了。但是正因为我的&quot;索性&quot;，导致了电机输出力矩不够 ，进而成为了一个最隐秘的错误点，也成为了平衡车PID控制效果差劲的一个最大决定因素之一。</p>
+<h3 id="电机输出力矩不够">电机输出力矩不够
+</h3><p>  也许会有人觉得，电机的力矩怎么可能会和PWM的ARR和PSC的选值有关呢？其实，一开始我也没注意到，也并不知道这个点。所以在我对电机的噪声进行处理时，我的PSC分频值给的很随意，几乎是单纯为了处理噪声而随意给个(2-1)，而后再进行Debug排查问题时，也没从这个点切入，一致认为平衡车控速效果差，单纯是PID参数给的不好导致的，甚至一度认为，会不会是HAL库自身的原因，有这个想法主要是因为在市面上很难找到一份用HAL库撰写的平衡车代码能来适配我的小车，而且不说能不能适配，HAL库版本的平衡车代码本身就很难找得到，反正我找的大都是标准库，而且又因为我发现使用HAL库时，我的FLASH使用率比标准库大得多，代码执行速度也比不上标准库，于是我就乱猜：会不会是因为使用HAL库编写的小车效果不好，所以才找不到相关资料。虽然说，PID参数调控效果不好时，就要去找找硬件的问题，但是大部分硬件我都进行了测试，该改的也改了，但平衡车的控速效果还是不尽人意。电机方面的Debug，我也只一直停留在整改ARR的值，并未注意到是因当前电机的频率太高而导致的问题&hellip;..<br>
+  在实际上手来看，我用HAL库写的代码（其实单纯让小车直立这个环节，我也卡很久，后面才一步一步Debug出来，找到了原因，具体在章节<a class="link" href="/p/mpu6050-oled/#mpu6050%e5%a7%bf%e6%80%81%e8%a7%92%e5%81%8f%e5%b7%ae%e6%a0%a1%e5%87%86" >MPU6050姿态角偏差校准</a>讲解），能让小车直立，但是用手推一下小车，小车只会无厘头加速，根本停不下来。其实能看出来小车是有进行控速的，但是却没什么效果，后面我去下载的标准库源码，下载进去后，发现小车很有力气！推他的时候，他迅速且有力进行调整，没有那种软绵绵无力感，这就说明了，我自己写的HAL库小车的电机力矩不够！反观标准库源码，力矩就大得多。后面就自然而然能确定，问题就出现在电机方面。<br>
+  电机力矩公式 T=Kt​⋅​：电流越大，扭转力度越强。其中<strong>T：电机输出电磁力矩，单位 N⋅m</strong>,<strong>Kt​：电机力矩常数（出厂固定，单位 N⋅m/A）</strong>,<strong>Ia​：电机电枢平均电流</strong>。
+  电机内部由线圈组成，线圈实质是电感。电感有个特性：电流不能突变。电感的净电压公式为<strong>U = L · (ΔI / Δt)</strong>，这个 U 指的是电感线圈两端测到的实际电压。而电感的感应电压<strong>E = -L · (ΔI / Δt)</strong>.<mark>当你给电感接通电源（施加正向电压U1​）</mark>，电流想要瞬间跳变，(ΔI / Δt)很大，产生反向的反电动势E，抵消大部分外加电压，线圈净驱动电压U很小，电流只能缓慢上升；随着电流逐步变大，电流变化速率(ΔI / Δt)​持续降低，反电动势E不断减小，线圈净电压逐步增大，电流爬升速度放缓、持续增大。<mark>而当你断开外加电压（PWM 拉低，供电消失）</mark>，电感要维持原有电流不突变，电流急速下降，(ΔI / Δt)​ 绝对值变得极大，反向感应电动势E大幅升高；此时电感充当临时电源，依靠续流回路维持电流流动，随着能量消耗、电流慢慢降低，反电动势同步减小，最终电流归零。所以，总结来说，WM 导通供电阶段，电机线圈电流缓慢上升；断开供电续流阶段，电流缓慢下跌。<br>
+  PWM 一个周期分为两段：导通 + 续流(高电平 + 低电平)。据我们所知，PWM引脚是接在电机控制芯片上的（本平衡车使用的是：TB6612）。当PWM为高电平时，TB6612芯片H桥上桥打开，电源电压施加给电机，因为电感特性，线圈电流是缓慢上升，这个过程是在积累力矩的；当PWM为高电平时，TB6612芯片上下桥全关，没有电源供电，但又因为电感电流不能突变，所以电流缓慢下跌，力矩衰减。<br>
+  根据上述分析，当PWM频率大时，单个PWM的周期很短，而电流又是缓慢上升，所以，在导通阶段，电流还没来得及升的足够大，就被切换成续流阶段，这样就导致平均电流被压低。又因为电磁力矩（电机输出力矩）和平均电流相关，T=Kt​⋅Ia​，电流小，就造成了力矩小，最终导致平衡车PID控制效果差，造成了没力气调控速度的现象。
+  所以，后来，因为ARR的值要保持（100 - 1），所以我增大了PSC的值——36 - 1，这样PWM的频率刚好为20KHZ,这样既没有噪声，力矩又足够大了。
+  至此，PID控制变得丝滑有效，平衡车在PID方面的问题也就解决了，小车的角度环，速度环，转向环的作用效果也就变得正常了。<br>
+  当然，也许有人会问为什么不把频率控制在20HZ以内。这里提一嘴，就是频率低，单个 PWM 周期长，导通阶段电流冲到很高，关断续流阶段电流跌到很低，电流大幅起伏，力矩剧烈忽大忽小，平衡车车身会剧烈抖动，可能会导致根本稳不住。不过这就留给你们实验尝试了，我就不过度探讨了。</p>
+<h4 id="力矩相关补充">力矩相关补充
+</h4><p>大学物理力矩完整总结</p>
+<ol>
+<li>定义式（力学基础）力矩是改变物体转动状态的物理量：<br>
+<mark>M=r×F</mark>
+大小：<mark>M=rFsinθ</mark><br>
+r：转轴到力作用点的位矢（力臂）<br>
+F：作用力<br>
+θ：位矢与作用力夹角<br>
+θ=90∘ 力矩最大；θ=0∘ 力矩为 0</li>
+<li>转动定律（核心公式，对应牛顿第二定律）<br>
+<mark>M=Jβ</mark><br>
+J：刚体转动惯量<br>
+β：角加速度<br>
+合外力矩决定角加速度，力矩越大，物体转动速度变化越快（对应平衡车电机修正晃动）。</li>
+<li>刚体转动动能、功率关联转动功率：<br>
+<mark>P=Mω</mark><br>
+ω 角速度，力矩 × 角速度 = 机械功率。</li>
+<li>电磁学补充（电机电磁力矩）载流线圈在磁场中力矩：<br>
+<mark>M=NISBsinθ</mark><br>
+直流电机简化工程式：<mark>T=Kt​I</mark>，本质是该公式的工程简化版。</li>
+</ol>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>电机线圈通交变电流时，磁场周期性强弱变化，铁芯会微小伸缩振动，振动频率 = PWM 频率；振动带动空气就产生人耳能听到的声音。交流电是因为PWM就是在输出高电平和低电平间快速转变，从而实现控制输出电压大小，这也可以认为是高速变化的交流电。当然，并不是将PWM产生的IO口直接接在电机引脚上，而是将PWMIO口接在电机控制芯片上，电机控制芯片再去根据PWM信号进行控制电机。若将PWM产生的IO口直接接在电机引脚上，芯片IO口甚至芯片，都可能被烧坏了，原因如下： <br>
+原因 1：IO 电流太小，带不动电机，直接过载烧坏<br>
+原因 2：电机线圈是电感，断电瞬间切割磁感线产生高压尖峰击穿引脚。<br>
+针对于原因一，这里做一下解释：正常来说，对于纯电阻负载的话，例如LED，若输出的电流小，造成的后果只是LED亮度不够，而不会造成引脚或者芯片被烧坏；但是，电机并不是纯电阻，电机内部是由线圈组成的，也就是电感，电感在通电瞬间需要很大的电流以来建立磁场，电感会主动 从引脚抽取大电流。这个过程不是单片机完成的，而是电感自身特性造成的。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
+
 </section>
 
 

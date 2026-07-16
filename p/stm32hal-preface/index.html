@@ -2,7 +2,7 @@
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="一、开篇说明 提前说明：如若你是完全跟着江协科技视频与源码进行HAL库改写，代码全部跟着他写，自己没有进行独立撰写，只是进行简单的改HAL库函">
-<title>STM32HAL库版平衡车序言</title>
+<title>平衡车_STM32HAL库版序言</title>
 
 <link rel='canonical' href='https://Carring06.github.io/p/stm32hal-preface/'>
 
@@ -454,54 +454,54 @@
 <h2 id="三平衡车博客章节总览">三、平衡车博客章节总览
 </h2><h3 id="项目整体介绍">项目整体介绍
 </h3><ul>
-<li>1.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93/#%e5%b7%a5%e7%a8%8b%e6%95%b4%e4%bd%93%e4%bb%a3%e7%a0%81%e6%a1%86%e6%9e%b6%e4%bb%8b%e7%bb%8d" >工程整体代码框架介绍</a></li>
-<li>2.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93/#hal%e5%ba%93%e4%b8%8e%e6%a0%87%e5%87%86%e5%ba%93%e7%9a%84%e5%af%b9%e6%af%94" >HAL库与标准库的对比</a></li>
-<li>3.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93/#bug%e5%a4%8d%e7%9b%98%e6%b1%87%e6%80%bb" >BUG复盘汇总</a></li>
+<li>1.<a class="link" href="/p/full-code/#%e5%b7%a5%e7%a8%8b%e6%95%b4%e4%bd%93%e4%bb%a3%e7%a0%81%e6%a1%86%e6%9e%b6%e4%bb%8b%e7%bb%8d" >工程整体代码框架介绍</a></li>
+<li>2.<a class="link" href="/p/full-code/#hal%e5%ba%93%e4%b8%8e%e6%a0%87%e5%87%86%e5%ba%93%e7%9a%84%e5%af%b9%e6%af%94" >HAL库与标准库的对比</a></li>
+<li>3.<a class="link" href="/p/full-code/#bug%e5%a4%8d%e7%9b%98%e6%b1%87%e6%80%bb" >BUG复盘汇总</a></li>
 </ul>
 <h3 id="按键驱动模块说明">按键驱动模块说明
 </h3><ul>
-<li>1.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e6%8c%89%e9%94%ae%e8%af%b4%e6%98%8e/#%e6%8c%89%e9%94%ae%e4%bb%a3%e7%a0%81" >按键代码</a></li>
-<li>2.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e6%8c%89%e9%94%ae%e8%af%b4%e6%98%8e/#%e7%a7%bb%e6%a4%8d%e8%af%b4%e6%98%8e" >移植说明</a></li>
+<li>1.<a class="link" href="/p/key-description/#%e6%8c%89%e9%94%ae%e4%bb%a3%e7%a0%81" >按键代码</a></li>
+<li>2.<a class="link" href="/p/key-description/#%e7%a7%bb%e6%a4%8d%e8%af%b4%e6%98%8e" >移植说明</a></li>
 </ul>
 <h3 id="mpu6050--oled">MPU6050 + OLED
 </h3><ul>
-<li>1.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#mpu6050%e7%9a%84i2c%e6%a8%a1%e5%bc%8f%e9%80%89%e6%8b%a9" >MPU6050的I2C模式选择</a>
+<li>1.<a class="link" href="/p/mpu6050-oled/#mpu6050%e7%9a%84i2c%e6%a8%a1%e5%bc%8f%e9%80%89%e6%8b%a9" >MPU6050的I2C模式选择</a>
 <ul>
-<li>1.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e8%bd%af%e4%bb%b6i2c" >软件I2C</a></li>
-<li>2.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e7%a1%ac%e4%bb%b6i2c" >硬件I2C</a>
+<li>1.<a class="link" href="/p/mpu6050-oled/#%e8%bd%af%e4%bb%b6i2c" >软件I2C</a></li>
+<li>2.<a class="link" href="/p/mpu6050-oled/#%e7%a1%ac%e4%bb%b6i2c" >硬件I2C</a>
 <ul>
-<li>1.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e6%a0%87%e5%87%86i2c" >标准I2C</a></li>
-<li>2.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e5%bf%ab%e9%80%9fi2c" >快速I2C</a></li>
+<li>1.<a class="link" href="/p/mpu6050-oled/#%e6%a0%87%e5%87%86i2c" >标准I2C</a></li>
+<li>2.<a class="link" href="/p/mpu6050-oled/#%e5%bf%ab%e9%80%9fi2c" >快速I2C</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li>2.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#OLED%e9%83%a8%e5%88%86%e8%af%b4%e6%98%8e" >OLED部分说明</a></li>
+<li>2.<a class="link" href="/p/mpu6050-oled/#oled%e9%83%a8%e5%88%86%e8%af%b4%e6%98%8e" >OLED部分说明</a></li>
 </ul>
 <h3 id="串口通讯">串口通讯
 </h3><ul>
-<li>1.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%b8%b2%e5%8f%a3/#%e6%99%ae%e9%80%9a%e4%b8%ad%e6%96%ad%e6%8e%a5%e6%94%b6" >普通中断接收</a></li>
-<li>2.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%b8%b2%e5%8f%a3/#dma%e9%85%8d%e5%90%88%e4%b8%ad%e6%96%ad%e6%8e%a5%e6%94%b6" >DMA配合中断接收</a></li>
+<li>1.<a class="link" href="/p/serial-port/#%e6%99%ae%e9%80%9a%e4%b8%ad%e6%96%ad%e6%8e%a5%e6%94%b6" >普通中断接收</a></li>
+<li>2.<a class="link" href="/p/serial-port/#dma%e9%85%8d%e5%90%88%e4%b8%ad%e6%96%ad%e6%8e%a5%e6%94%b6" >DMA配合中断接收</a></li>
 </ul>
 <h3 id="电机pwm的参数配置">电机PWM的参数配置
 </h3><ul>
-<li>1.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#arr%e9%80%89%e5%80%bc%e8%af%b4%e6%98%8e" >ARR选值说明</a></li>
-<li>2.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#psc%e5%88%86%e9%a2%91%e5%80%bc%e8%af%b4%e6%98%8e" >PSC分频值说明</a>
+<li>1.<a class="link" href="/p/pwm-config/#arr%e9%80%89%e5%80%bc%e8%af%b4%e6%98%8e" >ARR选值说明</a></li>
+<li>2.<a class="link" href="/p/pwm-config/#psc%e5%88%86%e9%a2%91%e5%80%bc%e8%af%b4%e6%98%8e" >PSC分频值说明</a>
 <ul>
-<li>1.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#%e7%94%b5%e6%9c%ba%e5%87%ba%e7%8e%b0%e5%99%aa%e5%a3%b0" >电机出现噪声</a></li>
-<li>2.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#%e7%94%b5%e6%9c%ba%e8%be%93%e5%87%ba%e5%8a%9b%e7%9f%a9%e4%b8%8d%e5%a4%9f" >电机输出力矩不够</a></li>
+<li>1.<a class="link" href="/p/pwm-config/#%e7%94%b5%e6%9c%ba%e5%87%ba%e7%8e%b0%e5%99%aa%e5%a3%b0" >电机出现噪声</a></li>
+<li>2.<a class="link" href="/p/pwm-config/#%e7%94%b5%e6%9c%ba%e8%be%93%e5%87%ba%e5%8a%9b%e7%9f%a9%e4%b8%8d%e5%a4%9f" >电机输出力矩不够</a></li>
 </ul>
 </li>
 </ul>
 <h3 id="flash掉电存储模块的实现">FLASH掉电存储模块的实现
 </h3><ul>
-<li>1.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_flash%e6%a8%a1%e5%9d%97/#%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93%e5%ae%9e%e7%8e%b0" >代码整体实现</a></li>
-<li>2.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_flash%e6%a8%a1%e5%9d%97/#%e5%85%b3%e4%ba%8eflash%e9%a2%98%e5%a4%96%e8%af%9d" >关于FLASH题外话</a></li>
+<li>1.<a class="link" href="/p/flash-module/#%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93%e5%ae%9e%e7%8e%b0" >代码整体实现</a></li>
+<li>2.<a class="link" href="/p/flash-module/#%e5%85%b3%e4%ba%8eflash%e9%a2%98%e5%a4%96%e8%af%9d" >关于FLASH题外话</a></li>
 </ul>
 <h3 id="nrf24l01无线遥控">NRF24L01无线遥控
 </h3><ul>
-<li>1.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_nrf24l01%e6%a8%a1%e5%9d%97/#spi%e9%80%9a%e4%bf%a1%e5%ba%95%e5%b1%82%e5%ae%9e%e7%8e%b0" >SPI通信底层实现</a></li>
-<li>2.<a class="link" href="/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_nrf24l01%e6%a8%a1%e5%9d%97/#%e8%af%bb%e5%8f%96%e5%af%84%e5%ad%98%e5%99%a8%e6%a3%80%e6%b5%8b%e4%bf%a1%e5%8f%b7%e8%b4%a8%e9%87%8f" >读取寄存器检测信号质量</a></li>
+<li>1.<a class="link" href="/p/nrf24l01-module/#spi%e9%80%9a%e4%bf%a1%e5%ba%95%e5%b1%82%e5%ae%9e%e7%8e%b0" >SPI通信底层实现</a></li>
+<li>2.<a class="link" href="/p/nrf24l01-module/#%e8%af%bb%e5%8f%96%e5%af%84%e5%ad%98%e5%99%a8%e6%a3%80%e6%b5%8b%e4%bf%a1%e5%8f%b7%e8%b4%a8%e9%87%8f" >读取寄存器检测信号质量</a></li>
 </ul>
 
 </section>

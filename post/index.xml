@@ -33,11 +33,92 @@
         <pubDate>Tue, 14 Jul 2026 13:15:15 +0800</pubDate>
         
         <guid>https://Carring06.github.io/p/pwm-config/</guid>
-        <description>&lt;h2 id=&#34;arr选值说明&#34;&gt;ARR选值说明
-&lt;/h2&gt;&lt;h2 id=&#34;psc分频值说明&#34;&gt;PSC分频值说明
-&lt;/h2&gt;&lt;h3 id=&#34;电机出现噪声&#34;&gt;电机出现噪声
-&lt;/h3&gt;&lt;h3 id=&#34;电机输出力矩不够&#34;&gt;电机输出力矩不够
-&lt;/h3&gt;</description>
+        <description>&lt;p&gt;  前言：本章节PWM_Mode为&lt;mark&gt;PWM模式1&lt;/mark&gt;，也就是&lt;mark&gt;CNT &amp;lt; CCR：输出有效电平；CNT ≥ CCR：输出无效电平&lt;/mark&gt;，&lt;strong&gt;占空比 = CCR / ARR&lt;/strong&gt;。&lt;br&gt;
+  提一嘴：&lt;mark&gt;PWM模式2&lt;/mark&gt;为&lt;mark&gt;CNT &amp;lt; CCR：输出无效电平；CNT ≥ CCR：输出有效电平&lt;/mark&gt;，&lt;strong&gt;占空比 = (ARR - CCR) / ARR。&lt;/strong&gt;&lt;br&gt;
+  总结来说，占空比 = 有效电平/（ARR + 1）。其中，有效电平常为高电平。&lt;/p&gt;
+&lt;h2 id=&#34;arr选值说明&#34;&gt;ARR选值说明
+&lt;/h2&gt;&lt;p&gt;  对于平衡车来说，ARR的值取（100 - 1）就行，步距变化为1%，对于平衡车算是足够精细的了。在调试期间，在平衡车的直立效果不是很好时，我也有尝试过将ARR的值调整至（1000 - 1），这样最小步进就为0.1%，相较于1%更为精细。不过，也因步进太小，导致PID进行调控时，当最终输出给电机进行PWM调控的值不够大，例如范围在0~50时，电机几乎无法产生有效调节力矩，可以说是没有什么调控效果。所以ARR的值最终我又调整回来了。&lt;/p&gt;
+&lt;h2 id=&#34;psc分频值说明&#34;&gt;PSC分频值说明
+&lt;/h2&gt;&lt;p&gt;  对于PSC分频值，因为ARR确定为100 - 1，那么，这个分频值的选值就要有点讲究了。如果选择不切当，就会出现&lt;strong&gt;电机转动时有噪声&lt;/strong&gt;，&lt;strong&gt;电机输出力矩不够大&lt;/strong&gt;等问题，其中，输出力矩不够，就会导致平衡车直立效果不好，速度环无法发挥真正作用，这也是我平衡车卡在控速这一个环节那么久的原因！&lt;/p&gt;
+&lt;h3 id=&#34;电机出现噪声&#34;&gt;电机出现噪声
+&lt;/h3&gt;&lt;p&gt;PWM频率：Freq = CK_PSC / (PSC + 1) / (ARR + 1)，其中CK_PSC为定时器时钟频率。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/pwm-config/image-1.png&#34;
+	width=&#34;1521&#34;
+	height=&#34;930&#34;
+	srcset=&#34;https://Carring06.github.io/p/pwm-config/image-1_hu9267385473636117538.png 480w, https://Carring06.github.io/p/pwm-config/image-1_hu16612333662684708695.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;时钟频率图&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;163&#34;
+		data-flex-basis=&#34;392px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/pwm-config/%E6%80%BB%E7%BA%BF%E6%8C%82%E8%BD%BD.png&#34;
+	width=&#34;1326&#34;
+	height=&#34;1177&#34;
+	srcset=&#34;https://Carring06.github.io/p/pwm-config/%E6%80%BB%E7%BA%BF%E6%8C%82%E8%BD%BD_hu15740789454260550609.png 480w, https://Carring06.github.io/p/pwm-config/%E6%80%BB%E7%BA%BF%E6%8C%82%E8%BD%BD_hu13243320608222685803.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;F1总线挂载图&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;112&#34;
+		data-flex-basis=&#34;270px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;  确认CK_PSC时，要知道所选定时器是挂载在那条总线的，然后去看时钟树看分配该总线定时器的时钟频率。&lt;br&gt;
+  结合以上论述，可知当前&lt;strong&gt;FPWM = 72M/ (PSC + 1) / (100 - 1 + 1)&lt;/strong&gt;。&lt;br&gt;
+  首先，人耳标准听觉范围是20 Hz ～ 20000 Hz（20kHz）
+，当PWM频率在该范围内，PWM产生的噪声&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;就会被我们所听见。所以，要避免噪声的出现，我们可以将PWM的频率&lt;strong&gt;降至20HZ以下&lt;/strong&gt;或&lt;strong&gt;提高至20KHZ以上&lt;/strong&gt;，当然，我们是采取&lt;strong&gt;提高至20KHZ以上&lt;/strong&gt;的方法。&lt;br&gt;
+  例如，我的ARR为100-1，PSC为720-1，计算出来的频率就为10KHZ，这也就在人耳听力范围内， 因为ARR的值我们不打算整改，所以，我索性将PSC设为2-1，这样噪声就消失了。但是正因为我的&amp;quot;索性&amp;quot;，导致了电机输出力矩不够 ，进而成为了一个最隐秘的错误点，也成为了平衡车PID控制效果差劲的一个最大决定因素之一。&lt;/p&gt;
+&lt;h3 id=&#34;电机输出力矩不够&#34;&gt;电机输出力矩不够
+&lt;/h3&gt;&lt;p&gt;  也许会有人觉得，电机的力矩怎么可能会和PWM的ARR和PSC的选值有关呢？其实，一开始我也没注意到，也并不知道这个点。所以在我对电机的噪声进行处理时，我的PSC分频值给的很随意，几乎是单纯为了处理噪声而随意给个(2-1)，而后再进行Debug排查问题时，也没从这个点切入，一致认为平衡车控速效果差，单纯是PID参数给的不好导致的，甚至一度认为，会不会是HAL库自身的原因，有这个想法主要是因为在市面上很难找到一份用HAL库撰写的平衡车代码能来适配我的小车，而且不说能不能适配，HAL库版本的平衡车代码本身就很难找得到，反正我找的大都是标准库，而且又因为我发现使用HAL库时，我的FLASH使用率比标准库大得多，代码执行速度也比不上标准库，于是我就乱猜：会不会是因为使用HAL库编写的小车效果不好，所以才找不到相关资料。虽然说，PID参数调控效果不好时，就要去找找硬件的问题，但是大部分硬件我都进行了测试，该改的也改了，但平衡车的控速效果还是不尽人意。电机方面的Debug，我也只一直停留在整改ARR的值，并未注意到是因当前电机的频率太高而导致的问题&amp;hellip;..&lt;br&gt;
+  在实际上手来看，我用HAL库写的代码（其实单纯让小车直立这个环节，我也卡很久，后面才一步一步Debug出来，找到了原因，具体在章节&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#mpu6050%e5%a7%bf%e6%80%81%e8%a7%92%e5%81%8f%e5%b7%ae%e6%a0%a1%e5%87%86&#34; &gt;MPU6050姿态角偏差校准&lt;/a&gt;讲解），能让小车直立，但是用手推一下小车，小车只会无厘头加速，根本停不下来。其实能看出来小车是有进行控速的，但是却没什么效果，后面我去下载的标准库源码，下载进去后，发现小车很有力气！推他的时候，他迅速且有力进行调整，没有那种软绵绵无力感，这就说明了，我自己写的HAL库小车的电机力矩不够！反观标准库源码，力矩就大得多。后面就自然而然能确定，问题就出现在电机方面。&lt;br&gt;
+  电机力矩公式 T=Kt​⋅​：电流越大，扭转力度越强。其中&lt;strong&gt;T：电机输出电磁力矩，单位 N⋅m&lt;/strong&gt;,&lt;strong&gt;Kt​：电机力矩常数（出厂固定，单位 N⋅m/A）&lt;/strong&gt;,&lt;strong&gt;Ia​：电机电枢平均电流&lt;/strong&gt;。
+  电机内部由线圈组成，线圈实质是电感。电感有个特性：电流不能突变。电感的净电压公式为&lt;strong&gt;U = L · (ΔI / Δt)&lt;/strong&gt;，这个 U 指的是电感线圈两端测到的实际电压。而电感的感应电压&lt;strong&gt;E = -L · (ΔI / Δt)&lt;/strong&gt;.&lt;mark&gt;当你给电感接通电源（施加正向电压U1​）&lt;/mark&gt;，电流想要瞬间跳变，(ΔI / Δt)很大，产生反向的反电动势E，抵消大部分外加电压，线圈净驱动电压U很小，电流只能缓慢上升；随着电流逐步变大，电流变化速率(ΔI / Δt)​持续降低，反电动势E不断减小，线圈净电压逐步增大，电流爬升速度放缓、持续增大。&lt;mark&gt;而当你断开外加电压（PWM 拉低，供电消失）&lt;/mark&gt;，电感要维持原有电流不突变，电流急速下降，(ΔI / Δt)​ 绝对值变得极大，反向感应电动势E大幅升高；此时电感充当临时电源，依靠续流回路维持电流流动，随着能量消耗、电流慢慢降低，反电动势同步减小，最终电流归零。所以，总结来说，WM 导通供电阶段，电机线圈电流缓慢上升；断开供电续流阶段，电流缓慢下跌。&lt;br&gt;
+  PWM 一个周期分为两段：导通 + 续流(高电平 + 低电平)。据我们所知，PWM引脚是接在电机控制芯片上的（本平衡车使用的是：TB6612）。当PWM为高电平时，TB6612芯片H桥上桥打开，电源电压施加给电机，因为电感特性，线圈电流是缓慢上升，这个过程是在积累力矩的；当PWM为高电平时，TB6612芯片上下桥全关，没有电源供电，但又因为电感电流不能突变，所以电流缓慢下跌，力矩衰减。&lt;br&gt;
+  根据上述分析，当PWM频率大时，单个PWM的周期很短，而电流又是缓慢上升，所以，在导通阶段，电流还没来得及升的足够大，就被切换成续流阶段，这样就导致平均电流被压低。又因为电磁力矩（电机输出力矩）和平均电流相关，T=Kt​⋅Ia​，电流小，就造成了力矩小，最终导致平衡车PID控制效果差，造成了没力气调控速度的现象。
+  所以，后来，因为ARR的值要保持（100 - 1），所以我增大了PSC的值——36 - 1，这样PWM的频率刚好为20KHZ,这样既没有噪声，力矩又足够大了。
+  至此，PID控制变得丝滑有效，平衡车在PID方面的问题也就解决了，小车的角度环，速度环，转向环的作用效果也就变得正常了。&lt;br&gt;
+  当然，也许有人会问为什么不把频率控制在20HZ以内。这里提一嘴，就是频率低，单个 PWM 周期长，导通阶段电流冲到很高，关断续流阶段电流跌到很低，电流大幅起伏，力矩剧烈忽大忽小，平衡车车身会剧烈抖动，可能会导致根本稳不住。不过这就留给你们实验尝试了，我就不过度探讨了。&lt;/p&gt;
+&lt;h4 id=&#34;力矩相关补充&#34;&gt;力矩相关补充
+&lt;/h4&gt;&lt;p&gt;大学物理力矩完整总结&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;定义式（力学基础）力矩是改变物体转动状态的物理量：&lt;br&gt;
+&lt;mark&gt;M=r×F&lt;/mark&gt;
+大小：&lt;mark&gt;M=rFsinθ&lt;/mark&gt;&lt;br&gt;
+r：转轴到力作用点的位矢（力臂）&lt;br&gt;
+F：作用力&lt;br&gt;
+θ：位矢与作用力夹角&lt;br&gt;
+θ=90∘ 力矩最大；θ=0∘ 力矩为 0&lt;/li&gt;
+&lt;li&gt;转动定律（核心公式，对应牛顿第二定律）&lt;br&gt;
+&lt;mark&gt;M=Jβ&lt;/mark&gt;&lt;br&gt;
+J：刚体转动惯量&lt;br&gt;
+β：角加速度&lt;br&gt;
+合外力矩决定角加速度，力矩越大，物体转动速度变化越快（对应平衡车电机修正晃动）。&lt;/li&gt;
+&lt;li&gt;刚体转动动能、功率关联转动功率：&lt;br&gt;
+&lt;mark&gt;P=Mω&lt;/mark&gt;&lt;br&gt;
+ω 角速度，力矩 × 角速度 = 机械功率。&lt;/li&gt;
+&lt;li&gt;电磁学补充（电机电磁力矩）载流线圈在磁场中力矩：&lt;br&gt;
+&lt;mark&gt;M=NISBsinθ&lt;/mark&gt;&lt;br&gt;
+直流电机简化工程式：&lt;mark&gt;T=Kt​I&lt;/mark&gt;，本质是该公式的工程简化版。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;电机线圈通交变电流时，磁场周期性强弱变化，铁芯会微小伸缩振动，振动频率 = PWM 频率；振动带动空气就产生人耳能听到的声音。交流电是因为PWM就是在输出高电平和低电平间快速转变，从而实现控制输出电压大小，这也可以认为是高速变化的交流电。当然，并不是将PWM产生的IO口直接接在电机引脚上，而是将PWMIO口接在电机控制芯片上，电机控制芯片再去根据PWM信号进行控制电机。若将PWM产生的IO口直接接在电机引脚上，芯片IO口甚至芯片，都可能被烧坏了，原因如下： &lt;br&gt;
+原因 1：IO 电流太小，带不动电机，直接过载烧坏&lt;br&gt;
+原因 2：电机线圈是电感，断电瞬间切割磁感线产生高压尖峰击穿引脚。&lt;br&gt;
+针对于原因一，这里做一下解释：正常来说，对于纯电阻负载的话，例如LED，若输出的电流小，造成的后果只是LED亮度不够，而不会造成引脚或者芯片被烧坏；但是，电机并不是纯电阻，电机内部是由线圈组成的，也就是电感，电感在通电瞬间需要很大的电流以来建立磁场，电感会主动 从引脚抽取大电流。这个过程不是单片机完成的，而是电感自身特性造成的。&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
+</description>
         </item>
         <item>
         <title>平衡车_串口</title>
@@ -1490,7 +1571,8 @@ S_I2C.c&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
-&lt;/div&gt;&lt;h2 id=&#34;oled部分说明&#34;&gt;OLED部分说明
+&lt;/div&gt;&lt;h2 id=&#34;mpu6050姿态角偏差校准&#34;&gt;MPU6050姿态角偏差校准
+&lt;/h2&gt;&lt;h2 id=&#34;oled部分说明&#34;&gt;OLED部分说明
 &lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-9.png&#34;
 	width=&#34;1641&#34;
 	height=&#34;1040&#34;
@@ -2479,7 +2561,7 @@ S_I2C.c&lt;/p&gt;
 		data-flex-basis=&#34;220px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;  在撰写代码时，我是将自己所写的代码统一放在User文件夹，意为用户层代码。随后在User目录下根据各个模块的作用分为了&lt;strong&gt;Algorithm（算法）层&lt;/strong&gt;、&lt;strong&gt;Callback（回调）层&lt;/strong&gt;、&lt;strong&gt;Comm_Prot（通信协议）层&lt;/strong&gt;、&lt;strong&gt;Device（设备）层&lt;/strong&gt;、&lt;strong&gt;System（系统）层&lt;/strong&gt;。其中，&lt;mark&gt;回调层&lt;/mark&gt;是存放各回调函数的一层，&lt;mark&gt;系统层&lt;/mark&gt;则是存放关于芯片本身的函数接口层，如读写FLASH等。其余接口层自行查看且易于理，因此不做多余解释。&lt;/p&gt;
+&lt;p&gt;A在撰写代码时，我是将自己所写的代码统一放在User文件夹，意为用户层代码。随后在User目录下根据各个模块的作用分为了&lt;strong&gt;Algorithm（算法）层&lt;/strong&gt;、&lt;strong&gt;Callback（回调）层&lt;/strong&gt;、&lt;strong&gt;Comm_Prot（通信协议）层&lt;/strong&gt;、&lt;strong&gt;Device（设备）层&lt;/strong&gt;、&lt;strong&gt;System（系统）层&lt;/strong&gt;。其中，&lt;mark&gt;回调层&lt;/mark&gt;是存放各回调函数的一层，&lt;mark&gt;系统层&lt;/mark&gt;则是存放关于芯片本身的函数接口层，如读写FLASH等。其余接口层自行查看且易于理，因此不做多余解释。&lt;/p&gt;
 &lt;h2 id=&#34;hal库与标准库的对比&#34;&gt;HAL库与标准库的对比
 &lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/full-code/image-1.png&#34;
 	width=&#34;867&#34;
@@ -2571,21 +2653,134 @@ S_I2C.c&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;&lt;mark&gt;Key_Tick()实测发现仅占用34us&lt;/mark&gt;&lt;/p&gt;
-&lt;p&gt;  两版代码定时中断均为1ms触发一次，其中ARR的值均为1000 - 1，定时器 CNT 向上计数至 999 时溢出归零并产生中断，&lt;strong&gt;计数步进为 1 微秒&lt;/strong&gt;，因此可通过读取 CNT 寄存器数值测算代码执行耗时，所以可以通过&lt;strong&gt;读取CNT计数器的值来衡量执行效率&lt;/strong&gt;。两版代码的各个配置和函数都是相同的，实测能看出标准库读取 MPU6050 效率更高，这也能侧面反映：同等业务逻辑下，标准库底层执行开销低于 HAL 库。标准库单次传感器读取耗时约 355μs；HAL 库总耗时 602μs，扣除固定占用 34μs 的按键扫描&lt;code&gt;Key_Tick&lt;/code&gt;后，纯 MPU6050 读取耗时为 568μs。因此，我在搭建HAL库配置时，并&lt;strong&gt;未复用标准库的软件I2C 配置&lt;/strong&gt;，而是选择了&lt;mark&gt;硬件I2C快速模式&lt;/mark&gt;，相关要点在章节：&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e5%bf%ab%e9%80%9fi2c&#34; &gt;快速I2C&lt;/a&gt;。&lt;br&gt;
-  &lt;strong&gt;HAL库多层封装，代码臃肿，资源占用更大&lt;/strong&gt;，大量状态判断、if 容错、锁机制，相同功能代码比标准库大 30%~80%；小 Flash 芯片（F103C4 16K）容易出现 Flash 溢出。后续&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_flash%e6%8e%89%e7%94%b5%e5%ad%98%e5%82%a8%e6%a8%a1%e5%9d%97%e7%9a%84%e5%ae%9e%e7%8e%b0/#%e5%85%b3%e4%ba%8eflash%e9%a2%98%e5%a4%96%e8%af%9d&#34; &gt;章节&lt;/a&gt;会对此进行论述。&lt;/p&gt;
+&lt;p&gt;  两版代码定时中断均为1ms触发一次，其中ARR的值均为1000 - 1，定时器 CNT 向上计数至 999 时溢出归零并产生中断，&lt;strong&gt;计数步进为 1 微秒&lt;/strong&gt;，因此可通过读取 CNT 寄存器数值测算代码执行耗时，所以可以通过&lt;strong&gt;读取CNT计数器的值来衡量执行效率&lt;/strong&gt;。两版代码的各个配置和函数都是相同的，实测能看出标准库读取 MPU6050 效率更高，这也能侧面反映：同等业务逻辑下，标准库底层执行开销低于 HAL 库。标准库单次传感器读取耗时约 355μs；HAL 库总耗时 602μs，扣除固定占用 34μs 的按键扫描&lt;code&gt;Key_Tick&lt;/code&gt;后，纯 MPU6050 读取耗时为 568μs。因此，我在搭建HAL库配置时，并&lt;strong&gt;未复用标准库的软件I2C 配置&lt;/strong&gt;，而是选择了&lt;mark&gt;硬件I2C快速模式&lt;/mark&gt;，相关要点在章节：&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#%e5%bf%ab%e9%80%9fi2c&#34; &gt;快速I2C&lt;/a&gt;。&lt;br&gt;
+  &lt;strong&gt;HAL库多层封装，代码臃肿，资源占用更大&lt;/strong&gt;，大量状态判断、if 容错、锁机制，相同功能代码比标准库大 30%~80%；小 Flash 芯片（F103C4 16K）容易出现 Flash 溢出。后续&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/flash-module/#%e5%85%b3%e4%ba%8eflash%e9%a2%98%e5%a4%96%e8%af%9d&#34; &gt;章节&lt;/a&gt;会对此进行论述。&lt;/p&gt;
 &lt;h2 id=&#34;bug复盘汇总&#34;&gt;BUG复盘汇总
 &lt;/h2&gt;&lt;p&gt;BUG1:MPU6050的函数运行速度太慢，导致了中断卡死，PID不能及时反应；&lt;br&gt;
-——————&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e5%bf%ab%e9%80%9fi2c&#34; &gt;快速I2C&lt;/a&gt;&lt;br&gt;
-BUG2:车子保持直立后，用手推一下小车时，小车无法停下来，只会一直加速， 即速度环无法发挥作用；&lt;br&gt;
-—————— &lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#%e7%94%b5%e6%9c%ba%e8%be%93%e5%87%ba%e5%8a%9b%e7%9f%a9%e4%b8%8d%e5%a4%9f&#34; &gt;电机输出力矩不够&lt;/a&gt;&lt;br&gt;
-BUG3:遥控器按下K2后，平衡车无法正确接收到；  &lt;br&gt;
-——————  &lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_nrf24l01%e6%97%a0%e7%ba%bf%e9%81%a5%e6%8e%a7/#%e8%af%bb%e5%8f%96%e5%af%84%e5%ad%98%e5%99%a8%e6%a3%80%e6%b5%8b%e4%bf%a1%e5%8f%b7%e8%b4%a8%e9%87%8f&#34; &gt;读取寄存器检测信号质量&lt;/a&gt;&lt;br&gt;
-BUG4:若蓝牙串口与DMA配合接收，会出现程序卡死跑飞；&lt;br&gt;
-——————  &lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%b8%b2%e5%8f%a3/#DMA%e9%85%8d%e5%90%88%e4%b8%ad%e6%96%ad%e6%8e%a5%e6%94%b6&#34; &gt;DMA配合中断接收&lt;/a&gt;&lt;/p&gt;
+——————&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#%e5%bf%ab%e9%80%9fi2c&#34; &gt;快速I2C&lt;/a&gt; &lt;br&gt;
+BUG2:MPU6050解算出来的角度有偏差&lt;br&gt;
+——————&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#mpu6050%e5%a7%bf%e6%80%81%e8%a7%92%e5%81%8f%e5%b7%ae%e6%a0%a1%e5%87%86&#34; &gt;MPU6050姿态角偏差校准&lt;/a&gt;&lt;br&gt;
+BUG3:车子保持直立后，用手推一下小车时，小车无法停下来，只会一直加速， 即速度环无法发挥作用；&lt;br&gt;
+—————— &lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/pwm-config/#%e7%94%b5%e6%9c%ba%e8%be%93%e5%87%ba%e5%8a%9b%e7%9f%a9%e4%b8%8d%e5%a4%9f&#34; &gt;电机输出力矩不够&lt;/a&gt;&lt;br&gt;
+BUG4:遥控器按下K2后，平衡车无法正确接收到；  &lt;br&gt;
+——————  &lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/nrf24l01-module/#%e8%af%bb%e5%8f%96%e5%af%84%e5%ad%98%e5%99%a8%e6%a3%80%e6%b5%8b%e4%bf%a1%e5%8f%b7%e8%b4%a8%e9%87%8f&#34; &gt;读取寄存器检测信号质量&lt;/a&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
-        <title>STM32HAL库版平衡车序言</title>
+        <title>平衡车_STM32HAL库版序言</title>
+        <link>https://Carring06.github.io/p/stm32hal-preface/</link>
+        <pubDate>Tue, 14 Jul 2026 08:55:20 +0800</pubDate>
+        
+        <guid>https://Carring06.github.io/p/stm32hal-preface/</guid>
+        <description>&lt;!-- 现在 `draft = true`，线上部署会直接隐藏这篇文章，网页看不到。 --&gt;
+&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/image.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;平衡车实物&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;一开篇说明&#34;&gt;一、开篇说明
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;提前说明：&lt;mark&gt;如若你是完全跟着江协科技视频与源码进行HAL库改写，代码全部跟着他写，自己没有进行独立撰写，只是进行简单的改HAL库函数接口的话，那么本篇不适合你！&lt;/mark&gt;&lt;/strong&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;p&gt;  &lt;em&gt;平衡车&lt;/em&gt;，是一个对于嵌入式新手相对不错的入门实操项目。图中所展示的平衡车与江协平衡车在总体上相似，需要的可自行去江协科技店铺购买或自行简易制作，这里不过多赘述。让我困惑的是，现在在各大平台或者其他博客上，&lt;strong&gt;用标准库搭建平衡小车平台的数不胜数，而用HAL库的却实在少见&lt;/strong&gt;，而且就算找到了用HAL库编写的平衡车，因其代码不分明，我们也无从下手进行学习。例如我，在用HAL库撰写的时候也遇到了不少麻烦，也找了几份HAL库版本的小车代码打算准备从中学习一下，遗憾的是，他们的代码要么过于简略，要么注释稀少、层次不分明，因此，只能自己一遍遍自行试错，花费了不少精力才把HAL库版本的小车代码搭建好了。&lt;br&gt;
+  &lt;strong&gt;当然，如果是完全跟着视频走，包括&lt;mark&gt;硬件接口的各个模块，CubeMx所配置的全部参数，整体思路&lt;/mark&gt;，其实并不会有多难，只是进行改成写的话，本人实测，不用一天就可以完成。这样是不会遇到我所遇到的问题，可以达到“一遍过”的效果，但个人不太推荐这样。&lt;/strong&gt;&lt;br&gt;
+  开发工具链：本人选择的是gcc+CMake工具链，而不是传统的ARMCC+Keil MDK的工具链。其实只是开发工具不同，使用哪个都行，个人觉得Keil的调试功能更全面，后续我会将Keil MDK的版本也开源出来，这样使用Keil的也可以进行使用，减少不必要的麻烦。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/image-3.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;工具链差异选项&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;hr&gt;
+&lt;h2 id=&#34;二项目开发提交记录时间轴&#34;&gt;二、项目开发提交记录时间轴
+&lt;/h2&gt;&lt;h3 id=&#34;个人平衡车的时间轴&#34;&gt;个人平衡车的时间轴
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/image-1.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;MyCar时间轴&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;此时间轴可以简要概括为：&lt;strong&gt;硬件驱动&lt;/strong&gt;——&amp;gt;&lt;strong&gt;添加俯仰角计算与滤波算法、PID算法&lt;/strong&gt;——&amp;gt;&lt;strong&gt;BUG修复&lt;/strong&gt;——&amp;gt;&lt;strong&gt;整体完善&lt;/strong&gt;&lt;/p&gt;
+&lt;h3 id=&#34;直接模仿改写江协的时间轴&#34;&gt;直接模仿改写江协的时间轴
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/image-2.png&#34;
+	
+	
+	
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;JX_Car时间轴&#34;
+	
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;这里不进行过多赘述，只供参见&lt;/p&gt;
+&lt;h2 id=&#34;三平衡车博客章节总览&#34;&gt;三、平衡车博客章节总览
+&lt;/h2&gt;&lt;h3 id=&#34;项目整体介绍&#34;&gt;项目整体介绍
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/full-code/#%e5%b7%a5%e7%a8%8b%e6%95%b4%e4%bd%93%e4%bb%a3%e7%a0%81%e6%a1%86%e6%9e%b6%e4%bb%8b%e7%bb%8d&#34; &gt;工程整体代码框架介绍&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/full-code/#hal%e5%ba%93%e4%b8%8e%e6%a0%87%e5%87%86%e5%ba%93%e7%9a%84%e5%af%b9%e6%af%94&#34; &gt;HAL库与标准库的对比&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;3.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/full-code/#bug%e5%a4%8d%e7%9b%98%e6%b1%87%e6%80%bb&#34; &gt;BUG复盘汇总&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;按键驱动模块说明&#34;&gt;按键驱动模块说明
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/key-description/#%e6%8c%89%e9%94%ae%e4%bb%a3%e7%a0%81&#34; &gt;按键代码&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/key-description/#%e7%a7%bb%e6%a4%8d%e8%af%b4%e6%98%8e&#34; &gt;移植说明&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;mpu6050--oled&#34;&gt;MPU6050 + OLED
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#mpu6050%e7%9a%84i2c%e6%a8%a1%e5%bc%8f%e9%80%89%e6%8b%a9&#34; &gt;MPU6050的I2C模式选择&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#%e8%bd%af%e4%bb%b6i2c&#34; &gt;软件I2C&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#%e7%a1%ac%e4%bb%b6i2c&#34; &gt;硬件I2C&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#%e6%a0%87%e5%87%86i2c&#34; &gt;标准I2C&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#%e5%bf%ab%e9%80%9fi2c&#34; &gt;快速I2C&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#oled%e9%83%a8%e5%88%86%e8%af%b4%e6%98%8e&#34; &gt;OLED部分说明&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;串口通讯&#34;&gt;串口通讯
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/serial-port/#%e6%99%ae%e9%80%9a%e4%b8%ad%e6%96%ad%e6%8e%a5%e6%94%b6&#34; &gt;普通中断接收&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/serial-port/#dma%e9%85%8d%e5%90%88%e4%b8%ad%e6%96%ad%e6%8e%a5%e6%94%b6&#34; &gt;DMA配合中断接收&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;电机pwm的参数配置&#34;&gt;电机PWM的参数配置
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/pwm-config/#arr%e9%80%89%e5%80%bc%e8%af%b4%e6%98%8e&#34; &gt;ARR选值说明&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/pwm-config/#psc%e5%88%86%e9%a2%91%e5%80%bc%e8%af%b4%e6%98%8e&#34; &gt;PSC分频值说明&lt;/a&gt;
+&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/pwm-config/#%e7%94%b5%e6%9c%ba%e5%87%ba%e7%8e%b0%e5%99%aa%e5%a3%b0&#34; &gt;电机出现噪声&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/pwm-config/#%e7%94%b5%e6%9c%ba%e8%be%93%e5%87%ba%e5%8a%9b%e7%9f%a9%e4%b8%8d%e5%a4%9f&#34; &gt;电机输出力矩不够&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;flash掉电存储模块的实现&#34;&gt;FLASH掉电存储模块的实现
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/flash-module/#%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93%e5%ae%9e%e7%8e%b0&#34; &gt;代码整体实现&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/flash-module/#%e5%85%b3%e4%ba%8eflash%e9%a2%98%e5%a4%96%e8%af%9d&#34; &gt;关于FLASH题外话&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;nrf24l01无线遥控&#34;&gt;NRF24L01无线遥控
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/nrf24l01-module/#spi%e9%80%9a%e4%bf%a1%e5%ba%95%e5%b1%82%e5%ae%9e%e7%8e%b0&#34; &gt;SPI通信底层实现&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/nrf24l01-module/#%e8%af%bb%e5%8f%96%e5%af%84%e5%ad%98%e5%99%a8%e6%a3%80%e6%b5%8b%e4%bf%a1%e5%8f%b7%e8%b4%a8%e9%87%8f&#34; &gt;读取寄存器检测信号质量&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>平衡车_STM32HAL库版序言</title>
         <link>https://Carring06.github.io/p/stm32hal-preface/</link>
         <pubDate>Tue, 14 Jul 2026 08:55:20 +0800</pubDate>
         
@@ -2662,167 +2857,54 @@ BUG4:若蓝牙串口与DMA配合接收，会出现程序卡死跑飞；&lt;br&gt
 &lt;h2 id=&#34;三平衡车博客章节总览&#34;&gt;三、平衡车博客章节总览
 &lt;/h2&gt;&lt;h3 id=&#34;项目整体介绍&#34;&gt;项目整体介绍
 &lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93/#%e5%b7%a5%e7%a8%8b%e6%95%b4%e4%bd%93%e4%bb%a3%e7%a0%81%e6%a1%86%e6%9e%b6%e4%bb%8b%e7%bb%8d&#34; &gt;工程整体代码框架介绍&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93/#hal%e5%ba%93%e4%b8%8e%e6%a0%87%e5%87%86%e5%ba%93%e7%9a%84%e5%af%b9%e6%af%94&#34; &gt;HAL库与标准库的对比&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;3.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93/#bug%e5%a4%8d%e7%9b%98%e6%b1%87%e6%80%bb&#34; &gt;BUG复盘汇总&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/full-code/#%e5%b7%a5%e7%a8%8b%e6%95%b4%e4%bd%93%e4%bb%a3%e7%a0%81%e6%a1%86%e6%9e%b6%e4%bb%8b%e7%bb%8d&#34; &gt;工程整体代码框架介绍&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/full-code/#hal%e5%ba%93%e4%b8%8e%e6%a0%87%e5%87%86%e5%ba%93%e7%9a%84%e5%af%b9%e6%af%94&#34; &gt;HAL库与标准库的对比&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;3.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/full-code/#bug%e5%a4%8d%e7%9b%98%e6%b1%87%e6%80%bb&#34; &gt;BUG复盘汇总&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;按键驱动模块说明&#34;&gt;按键驱动模块说明
 &lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e6%8c%89%e9%94%ae%e8%af%b4%e6%98%8e/#%e6%8c%89%e9%94%ae%e4%bb%a3%e7%a0%81&#34; &gt;按键代码&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e6%8c%89%e9%94%ae%e8%af%b4%e6%98%8e/#%e7%a7%bb%e6%a4%8d%e8%af%b4%e6%98%8e&#34; &gt;移植说明&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/key-description/#%e6%8c%89%e9%94%ae%e4%bb%a3%e7%a0%81&#34; &gt;按键代码&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/key-description/#%e7%a7%bb%e6%a4%8d%e8%af%b4%e6%98%8e&#34; &gt;移植说明&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;mpu6050--oled&#34;&gt;MPU6050 + OLED
 &lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#mpu6050%e7%9a%84i2c%e6%a8%a1%e5%bc%8f%e9%80%89%e6%8b%a9&#34; &gt;MPU6050的I2C模式选择&lt;/a&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#mpu6050%e7%9a%84i2c%e6%a8%a1%e5%bc%8f%e9%80%89%e6%8b%a9&#34; &gt;MPU6050的I2C模式选择&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e8%bd%af%e4%bb%b6i2c&#34; &gt;软件I2C&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e7%a1%ac%e4%bb%b6i2c&#34; &gt;硬件I2C&lt;/a&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#%e8%bd%af%e4%bb%b6i2c&#34; &gt;软件I2C&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#%e7%a1%ac%e4%bb%b6i2c&#34; &gt;硬件I2C&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e6%a0%87%e5%87%86i2c&#34; &gt;标准I2C&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e5%bf%ab%e9%80%9fi2c&#34; &gt;快速I2C&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#%e6%a0%87%e5%87%86i2c&#34; &gt;标准I2C&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#%e5%bf%ab%e9%80%9fi2c&#34; &gt;快速I2C&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#OLED%e9%83%a8%e5%88%86%e8%af%b4%e6%98%8e&#34; &gt;OLED部分说明&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#oled%e9%83%a8%e5%88%86%e8%af%b4%e6%98%8e&#34; &gt;OLED部分说明&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;串口通讯&#34;&gt;串口通讯
 &lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%b8%b2%e5%8f%a3/#%e6%99%ae%e9%80%9a%e4%b8%ad%e6%96%ad%e6%8e%a5%e6%94%b6&#34; &gt;普通中断接收&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%b8%b2%e5%8f%a3/#dma%e9%85%8d%e5%90%88%e4%b8%ad%e6%96%ad%e6%8e%a5%e6%94%b6&#34; &gt;DMA配合中断接收&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/serial-port/#%e6%99%ae%e9%80%9a%e4%b8%ad%e6%96%ad%e6%8e%a5%e6%94%b6&#34; &gt;普通中断接收&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/serial-port/#dma%e9%85%8d%e5%90%88%e4%b8%ad%e6%96%ad%e6%8e%a5%e6%94%b6&#34; &gt;DMA配合中断接收&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;电机pwm的参数配置&#34;&gt;电机PWM的参数配置
 &lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#arr%e9%80%89%e5%80%bc%e8%af%b4%e6%98%8e&#34; &gt;ARR选值说明&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#psc%e5%88%86%e9%a2%91%e5%80%bc%e8%af%b4%e6%98%8e&#34; &gt;PSC分频值说明&lt;/a&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/pwm-config/#arr%e9%80%89%e5%80%bc%e8%af%b4%e6%98%8e&#34; &gt;ARR选值说明&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/pwm-config/#psc%e5%88%86%e9%a2%91%e5%80%bc%e8%af%b4%e6%98%8e&#34; &gt;PSC分频值说明&lt;/a&gt;
 &lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#%e7%94%b5%e6%9c%ba%e5%87%ba%e7%8e%b0%e5%99%aa%e5%a3%b0&#34; &gt;电机出现噪声&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#%e7%94%b5%e6%9c%ba%e8%be%93%e5%87%ba%e5%8a%9b%e7%9f%a9%e4%b8%8d%e5%a4%9f&#34; &gt;电机输出力矩不够&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/pwm-config/#%e7%94%b5%e6%9c%ba%e5%87%ba%e7%8e%b0%e5%99%aa%e5%a3%b0&#34; &gt;电机出现噪声&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/pwm-config/#%e7%94%b5%e6%9c%ba%e8%be%93%e5%87%ba%e5%8a%9b%e7%9f%a9%e4%b8%8d%e5%a4%9f&#34; &gt;电机输出力矩不够&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;flash掉电存储模块的实现&#34;&gt;FLASH掉电存储模块的实现
 &lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_flash%e6%a8%a1%e5%9d%97/#%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93%e5%ae%9e%e7%8e%b0&#34; &gt;代码整体实现&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_flash%e6%a8%a1%e5%9d%97/#%e5%85%b3%e4%ba%8eflash%e9%a2%98%e5%a4%96%e8%af%9d&#34; &gt;关于FLASH题外话&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/flash-module/#%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93%e5%ae%9e%e7%8e%b0&#34; &gt;代码整体实现&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/flash-module/#%e5%85%b3%e4%ba%8eflash%e9%a2%98%e5%a4%96%e8%af%9d&#34; &gt;关于FLASH题外话&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;nrf24l01无线遥控&#34;&gt;NRF24L01无线遥控
 &lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_nrf24l01%e6%a8%a1%e5%9d%97/#spi%e9%80%9a%e4%bf%a1%e5%ba%95%e5%b1%82%e5%ae%9e%e7%8e%b0&#34; &gt;SPI通信底层实现&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_nrf24l01%e6%a8%a1%e5%9d%97/#%e8%af%bb%e5%8f%96%e5%af%84%e5%ad%98%e5%99%a8%e6%a3%80%e6%b5%8b%e4%bf%a1%e5%8f%b7%e8%b4%a8%e9%87%8f&#34; &gt;读取寄存器检测信号质量&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-</description>
-        </item>
-        <item>
-        <title>平衡车_STM32HAL库版序言</title>
-        <link>https://Carring06.github.io/p/stm32hal-preface/</link>
-        <pubDate>Tue, 14 Jul 2026 08:55:20 +0800</pubDate>
-        
-        <guid>https://Carring06.github.io/p/stm32hal-preface/</guid>
-        <description>&lt;!-- 现在 `draft = true`，线上部署会直接隐藏这篇文章，网页看不到。 --&gt;
-&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/image.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;平衡车实物&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;h2 id=&#34;一开篇说明&#34;&gt;一、开篇说明
-&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;提前说明：&lt;mark&gt;如若你是完全跟着江协科技视频与源码进行HAL库改写，代码全部跟着他写，自己没有进行独立撰写，只是进行简单的改HAL库函数接口的话，那么本篇不适合你！&lt;/mark&gt;&lt;/strong&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;p&gt;  &lt;em&gt;平衡车&lt;/em&gt;，是一个对于嵌入式新手相对不错的入门实操项目。图中所展示的平衡车与江协平衡车在总体上相似，需要的可自行去江协科技店铺购买或自行简易制作，这里不过多赘述。让我困惑的是，现在在各大平台或者其他博客上，&lt;strong&gt;用标准库搭建平衡小车平台的数不胜数，而用HAL库的却实在少见&lt;/strong&gt;，而且就算找到了用HAL库编写的平衡车，因其代码不分明，我们也无从下手进行学习。例如我，在用HAL库撰写的时候也遇到了不少麻烦，也找了几份HAL库版本的小车代码打算准备从中学习一下，遗憾的是，他们的代码要么过于简略，要么注释稀少、层次不分明，因此，只能自己一遍遍自行试错，花费了不少精力才把HAL库版本的小车代码搭建好了。&lt;br&gt;
-  &lt;strong&gt;当然，如果是完全跟着视频走，包括&lt;mark&gt;硬件接口的各个模块，CubeMx所配置的全部参数，整体思路&lt;/mark&gt;，其实并不会有多难，只是进行改成写的话，本人实测，不用一天就可以完成。这样是不会遇到我所遇到的问题，可以达到“一遍过”的效果，但个人不太推荐这样。&lt;/strong&gt;&lt;br&gt;
-  开发工具链：本人选择的是gcc+CMake工具链，而不是传统的ARMCC+Keil MDK的工具链。其实只是开发工具不同，使用哪个都行，个人觉得Keil的调试功能更全面，后续我会将Keil MDK的版本也开源出来，这样使用Keil的也可以进行使用，减少不必要的麻烦。&lt;br&gt;
-&lt;img src=&#34;https://Carring06.github.io/image-3.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;工具链差异选项&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;hr&gt;
-&lt;h2 id=&#34;二项目开发提交记录时间轴&#34;&gt;二、项目开发提交记录时间轴
-&lt;/h2&gt;&lt;h3 id=&#34;个人平衡车的时间轴&#34;&gt;个人平衡车的时间轴
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/image-1.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;MyCar时间轴&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;此时间轴可以简要概括为：&lt;strong&gt;硬件驱动&lt;/strong&gt;——&amp;gt;&lt;strong&gt;添加俯仰角计算与滤波算法、PID算法&lt;/strong&gt;——&amp;gt;&lt;strong&gt;BUG修复&lt;/strong&gt;——&amp;gt;&lt;strong&gt;整体完善&lt;/strong&gt;&lt;/p&gt;
-&lt;h3 id=&#34;直接模仿改写江协的时间轴&#34;&gt;直接模仿改写江协的时间轴
-&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/image-2.png&#34;
-	
-	
-	
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;JX_Car时间轴&#34;
-	
-	
-&gt;&lt;/p&gt;
-&lt;p&gt;这里不进行过多赘述，只供参见&lt;/p&gt;
-&lt;h2 id=&#34;三平衡车博客章节总览&#34;&gt;三、平衡车博客章节总览
-&lt;/h2&gt;&lt;h3 id=&#34;项目整体介绍&#34;&gt;项目整体介绍
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93/#%e5%b7%a5%e7%a8%8b%e6%95%b4%e4%bd%93%e4%bb%a3%e7%a0%81%e6%a1%86%e6%9e%b6%e4%bb%8b%e7%bb%8d&#34; &gt;工程整体代码框架介绍&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93/#hal%e5%ba%93%e4%b8%8e%e6%a0%87%e5%87%86%e5%ba%93%e7%9a%84%e5%af%b9%e6%af%94&#34; &gt;HAL库与标准库的对比&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;3.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93/#bug%e5%a4%8d%e7%9b%98%e6%b1%87%e6%80%bb&#34; &gt;BUG复盘汇总&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;按键驱动模块说明&#34;&gt;按键驱动模块说明
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e6%8c%89%e9%94%ae%e8%af%b4%e6%98%8e/#%e6%8c%89%e9%94%ae%e4%bb%a3%e7%a0%81&#34; &gt;按键代码&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e6%8c%89%e9%94%ae%e8%af%b4%e6%98%8e/#%e7%a7%bb%e6%a4%8d%e8%af%b4%e6%98%8e&#34; &gt;移植说明&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;mpu6050--oled&#34;&gt;MPU6050 + OLED
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#mpu6050%e7%9a%84i2c%e6%a8%a1%e5%bc%8f%e9%80%89%e6%8b%a9&#34; &gt;MPU6050的I2C模式选择&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e8%bd%af%e4%bb%b6i2c&#34; &gt;软件I2C&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e7%a1%ac%e4%bb%b6i2c&#34; &gt;硬件I2C&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e6%a0%87%e5%87%86i2c&#34; &gt;标准I2C&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#%e5%bf%ab%e9%80%9fi2c&#34; &gt;快速I2C&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_mpu6050-oled/#OLED%e9%83%a8%e5%88%86%e8%af%b4%e6%98%8e&#34; &gt;OLED部分说明&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;串口通讯&#34;&gt;串口通讯
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%b8%b2%e5%8f%a3/#%e6%99%ae%e9%80%9a%e4%b8%ad%e6%96%ad%e6%8e%a5%e6%94%b6&#34; &gt;普通中断接收&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_%e4%b8%b2%e5%8f%a3/#dma%e9%85%8d%e5%90%88%e4%b8%ad%e6%96%ad%e6%8e%a5%e6%94%b6&#34; &gt;DMA配合中断接收&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;电机pwm的参数配置&#34;&gt;电机PWM的参数配置
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#arr%e9%80%89%e5%80%bc%e8%af%b4%e6%98%8e&#34; &gt;ARR选值说明&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#psc%e5%88%86%e9%a2%91%e5%80%bc%e8%af%b4%e6%98%8e&#34; &gt;PSC分频值说明&lt;/a&gt;
-&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#%e7%94%b5%e6%9c%ba%e5%87%ba%e7%8e%b0%e5%99%aa%e5%a3%b0&#34; &gt;电机出现噪声&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_pwm%e5%8f%82%e6%95%b0%e9%85%8d%e7%bd%ae%e8%af%b4%e6%98%8e/#%e7%94%b5%e6%9c%ba%e8%be%93%e5%87%ba%e5%8a%9b%e7%9f%a9%e4%b8%8d%e5%a4%9f&#34; &gt;电机输出力矩不够&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;flash掉电存储模块的实现&#34;&gt;FLASH掉电存储模块的实现
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_flash%e6%a8%a1%e5%9d%97/#%e4%bb%a3%e7%a0%81%e6%95%b4%e4%bd%93%e5%ae%9e%e7%8e%b0&#34; &gt;代码整体实现&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_flash%e6%a8%a1%e5%9d%97/#%e5%85%b3%e4%ba%8eflash%e9%a2%98%e5%a4%96%e8%af%9d&#34; &gt;关于FLASH题外话&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;h3 id=&#34;nrf24l01无线遥控&#34;&gt;NRF24L01无线遥控
-&lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_nrf24l01%e6%a8%a1%e5%9d%97/#spi%e9%80%9a%e4%bf%a1%e5%ba%95%e5%b1%82%e5%ae%9e%e7%8e%b0&#34; &gt;SPI通信底层实现&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/%e5%b9%b3%e8%a1%a1%e8%bd%a6_nrf24l01%e6%a8%a1%e5%9d%97/#%e8%af%bb%e5%8f%96%e5%af%84%e5%ad%98%e5%99%a8%e6%a3%80%e6%b5%8b%e4%bf%a1%e5%8f%b7%e8%b4%a8%e9%87%8f&#34; &gt;读取寄存器检测信号质量&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/nrf24l01-module/#spi%e9%80%9a%e4%bf%a1%e5%ba%95%e5%b1%82%e5%ae%9e%e7%8e%b0&#34; &gt;SPI通信底层实现&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/nrf24l01-module/#%e8%af%bb%e5%8f%96%e5%af%84%e5%ad%98%e5%99%a8%e6%a3%80%e6%b5%8b%e4%bf%a1%e5%8f%b7%e8%b4%a8%e9%87%8f&#34; &gt;读取寄存器检测信号质量&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         </item>
