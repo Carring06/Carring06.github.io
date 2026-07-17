@@ -4743,6 +4743,64 @@ S_I2C.c&lt;/p&gt;
 	
 &gt;&lt;/p&gt;
 &lt;p&gt;OLED的动画可以自行研究，问问AI即可知道实现逻辑，其实也不难。&lt;/p&gt;
+&lt;p&gt;Keil若报错：
+&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-10.png&#34;
+	width=&#34;1292&#34;
+	height=&#34;734&#34;
+	srcset=&#34;https://Carring06.github.io/p/mpu6050-oled/image-10_hu584198733701810240.png 480w, https://Carring06.github.io/p/mpu6050-oled/image-10_hu6889746620739262009.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;报错&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;176&#34;
+		data-flex-basis=&#34;422px&#34;
+	
+&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-11.png&#34;
+	width=&#34;426&#34;
+	height=&#34;258&#34;
+	srcset=&#34;https://Carring06.github.io/p/mpu6050-oled/image-11_hu3758213604372980496.png 480w, https://Carring06.github.io/p/mpu6050-oled/image-11_hu3513953695746121040.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;165&#34;
+		data-flex-basis=&#34;396px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-12.png&#34;
+	width=&#34;1148&#34;
+	height=&#34;879&#34;
+	srcset=&#34;https://Carring06.github.io/p/mpu6050-oled/image-12_hu1473094145237611000.png 480w, https://Carring06.github.io/p/mpu6050-oled/image-12_hu3959369787565739259.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;130&#34;
+		data-flex-basis=&#34;313px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&amp;ndash;no-multibyte-chars
+&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-13.png&#34;
+	width=&#34;1034&#34;
+	height=&#34;603&#34;
+	srcset=&#34;https://Carring06.github.io/p/mpu6050-oled/image-13_hu14274541619758716146.png 480w, https://Carring06.github.io/p/mpu6050-oled/image-13_hu17008975191114852699.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;3&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;171&#34;
+		data-flex-basis=&#34;411px&#34;
+	
+&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -5941,6 +5999,9 @@ BUG4:遥控器按下K2后，平衡车无法正确接收到；  &lt;br&gt;
         
         <guid>https://Carring06.github.io/p/stm32hal-preface/</guid>
         <description>&lt;!-- 现在 `draft = true`，线上部署会直接隐藏这篇文章，网页看不到。 --&gt;
+&lt;p&gt;点击跳转下载程序代码&lt;br&gt;
+&lt;a class=&#34;link&#34; href=&#34;https://github.com/Carring06/OpenSource-Project&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;平衡车代码下载&lt;/a&gt;&lt;/p&gt;
 &lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/stm32hal-preface/image.png&#34;
 	width=&#34;1844&#34;
 	height=&#34;974&#34;
