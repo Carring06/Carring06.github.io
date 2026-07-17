@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://Carring06.github.io/p/mpu6050-oled/'>
 
-<link rel="stylesheet" href="/scss/style.min.0304c6baf04e01a8fe70693791cb744d56a3578a3120a8796cefc66825aa39c7.css"><meta property='og:title' content="平衡车_MPU6050+OLED">
+<link rel="stylesheet" href="/scss/style.min.326dad0bb2c3ae4ad5c9a79fbec7a230f22001366c9e0e11fc90a9965b977acd.css"><meta property='og:title' content="平衡车_MPU6050+OLED">
 <meta property='og:description' content="MPU6050的I2C模式选择 MPU6050 是独立的外部传感器芯片，不属于单片机片上外设；若要读取该外设内部寄存器数据，主控需要通过总线与该芯片建立通信">
 <meta property='og:url' content='https://Carring06.github.io/p/mpu6050-oled/'>
 <meta property='og:site_name' content='车度空间'>
@@ -74,9 +74,45 @@
         
         <div class="site-meta">
             <h1 class="site-name"><a href="/">车度空间</a></h1>
-            <h2 class="site-description">欢迎来到我的技术博客😎</h2>
+            <h2 class="site-description">欢迎来到我的技术博客😎
+</h2>
         </div>
     </header><ol class="menu-social">
+            
+                <li>
+                    <a 
+                        href='https://mail.qq.com'
+                        target="_blank"
+                        title="3152067902@qq.com"
+                        rel="me"
+                    >
+                        
+                        
+                            <svg
+  xmlns="http://www.w3.org/2000/svg"
+  width="24"
+  height="24"
+  viewBox="0 0 24 24"
+  fill="none"
+  stroke="currentColor"
+  stroke-width="2"
+  stroke-linecap="round"
+  stroke-linejoin="round"
+>
+  <path d="M6 9.748a14.716 14.716 0 0 0 11.995 -.052c.275 -9.236 -11.104 -11.256 -11.995 .052" />
+  <path d="M18 10c.984 2.762 1.949 4.765 2 7.153c.014 .688 -.664 1.346 -1.184 .303c-.346 -.696 -.952 -1.181 -1.816 -1.456" />
+  <path d="M17 16c.031 1.831 .147 3.102 -1 4" />
+  <path d="M8 20c-1.099 -.87 -.914 -2.24 -1 -4" />
+  <path d="M6 10c-.783 2.338 -1.742 4.12 -1.968 6.43c-.217 2.227 .716 1.644 1.16 .917c.296 -.487 .898 -.934 1.808 -1.347" />
+  <path d="M15.898 13l-.476 -2" />
+  <path d="M8 20l-1.5 1c-.5 .5 -.5 1 .5 1h10c1 0 1 -.5 .5 -1l-1.5 -1" />
+  <path d="M12.75 7a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+  <path d="M9.25 7a1 1 0 1 0 2 0a1 1 0 1 0 -2 0" />
+</svg>
+
+                        
+                    </a>
+                </li>
             
                 <li>
                     <a 
@@ -297,7 +333,12 @@
         </li>
       </ol>
     </li>
-    <li><a href="#mpu6050姿态角偏差校准">MPU6050姿态角偏差校准</a></li>
+    <li><a href="#mpu6050姿态角偏差校准">MPU6050姿态角偏差校准</a>
+      <ol>
+        <li><a href="#校准函数">校准函数</a></li>
+        <li><a href="#互补滤波计算函数">互补滤波计算函数</a></li>
+      </ol>
+    </li>
     <li><a href="#oled部分说明">OLED部分说明</a></li>
   </ol>
 </nav>
@@ -359,7 +400,7 @@
         </div>
         
         <div>
-            <span class="article-time--words">📝 3785 字</span>
+            <span class="article-time--words">📝 5500 字</span>
         </div>
         
         <div>
@@ -1197,7 +1238,211 @@ S_I2C.c</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><h2 id="mpu6050姿态角偏差校准">MPU6050姿态角偏差校准
-</h2><h2 id="oled部分说明">OLED部分说明
+</h2><p>  要想实现平衡车能有一个很好的直立效果时，那么，我们利用MPU6050所计算出来的角度就应该保持精准。但是，往往由于芯片安装误差以及其他不可控因素，就会导致解算前的数据有偏差，解算后的角度有偏差以及最终经过互补滤波所得到的真实角度有误差。而在这种误差会导致小车的实际角度获取错误，进而影响小车的直立效果。所以，再得到实际角度前，我们应该先进行数据校准，以来减小角度存在的偏差。</p>
+<h3 id="校准函数"><mark>校准函数</mark>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/*
+</span></span><span class="line"><span class="cl"> * MPU6050_Calibrate  上电静止校准
+</span></span><span class="line"><span class="cl"> * 功能：采集200组静止数据，计算陀螺仪Y轴零偏和加速度计角度偏移
+</span></span><span class="line"><span class="cl"> * 原理：静止时陀螺仪理想输出应为0，加速度计计算的角度应为0，
+</span></span><span class="line"><span class="cl"> *       实际值不为0是因为芯片零偏和机械安装误差。
+</span></span><span class="line"><span class="cl"> *       取平均值后用&#34;取反&#34;作为偏移量，使用时加上即可抵消。
+</span></span><span class="line"><span class="cl"> * 注意：必须在 MPU6050_Init() 之后调用，校准时小车水平静止。
+</span></span><span class="line"><span class="cl"> *       不满足静止条件会导致偏移量不准，影响角度估计。
+</span></span><span class="line"><span class="cl"> */
+</span></span><span class="line"><span class="cl">void MPU6050_Calibrate(void)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    int32_t gy_sum = 0;             // 陀螺仪Y轴累加器
+</span></span><span class="line"><span class="cl">    double angle_sum = 0;           // 加速度计角度累加器
+</span></span><span class="line"><span class="cl">    int16_t ax, ay, az, gx, gy, gz; // 存放原始数据
+</span></span><span class="line"><span class="cl">    int count = 200;                // 采样次数，越多越准，但耗时更长
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    for (int i = 0; i &lt; count; i++)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        /* 读取MPU6050原始6轴数据 */
+</span></span><span class="line"><span class="cl">        MPU6050_GetData0(&amp;ax, &amp;ay, &amp;az, &amp;gx, &amp;gy, &amp;gz);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        /* 累加陀螺仪Y轴原始值（静止时应该接近0） */
+</span></span><span class="line"><span class="cl">        gy_sum += gy;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        /* 累加加速度计计算出的角度（静止水平时应该接近0） */
+</span></span><span class="line"><span class="cl">        angle_sum += -atan2(ax, az) / 3.1415926535 * 180;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">        /* 每5ms采集一次，留出数据更新间隔 */
+</span></span><span class="line"><span class="cl">        HAL_Delay(5);
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /*
+</span></span><span class="line"><span class="cl">     * GY_Offset：取平均后取反，使用时 gy + GY_Offset ≈ 0
+</span></span><span class="line"><span class="cl">     * 例如：静止时gy平均值为31，则GY_Offset = -31，
+</span></span><span class="line"><span class="cl">     *       使用时 gy + (-31) 抵消零偏得到接近0的值
+</span></span><span class="line"><span class="cl">     */
+</span></span><span class="line"><span class="cl">    GY_Offset = -(int16_t)(gy_sum / count);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /*
+</span></span><span class="line"><span class="cl">     * AngleAcc_Offset：取平均后取反，使用时 AngleAcc_Raw + AngleAcc_Offset ≈ 0
+</span></span><span class="line"><span class="cl">     * 例如：静止时角度平均值为2.49°，则AngleAcc_Offset = -2.49，
+</span></span><span class="line"><span class="cl">     *       使用时 AngleAcc_Raw + (-2.49) 抵消安装倾斜
+</span></span><span class="line"><span class="cl">     */
+</span></span><span class="line"><span class="cl">    AngleAcc_Offset = -(float)(angle_sum / count);
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  这里矫正一个观念，就是说，为什么我这里不对最终解算的角度Angle进行校准，直接把Angle的偏差进行加减校准不就行了。倘若你对解算后的角度进行矫正，矫正完的瞬间的角度确实是正确的，但是，加速度计解算出的角度AngleAcc和陀螺仪本身的偏差仍然是存在的，这样属于治标不治本。陀螺仪零偏未消除会导致积分漂移持续累积，几秒后角度再次跑偏；加速度计安装偏移残留，静态基准错位，互补滤波权重计算完全失真。<br>
+  所以，只有将源头误差校准了，解算后的数据才是合理的！</p>
+<h3 id="互补滤波计算函数"><mark>互补滤波计算函数</mark>
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span><span class="lnt">15
+</span><span class="lnt">16
+</span><span class="lnt">17
+</span><span class="lnt">18
+</span><span class="lnt">19
+</span><span class="lnt">20
+</span><span class="lnt">21
+</span><span class="lnt">22
+</span><span class="lnt">23
+</span><span class="lnt">24
+</span><span class="lnt">25
+</span><span class="lnt">26
+</span><span class="lnt">27
+</span><span class="lnt">28
+</span><span class="lnt">29
+</span><span class="lnt">30
+</span><span class="lnt">31
+</span><span class="lnt">32
+</span><span class="lnt">33
+</span><span class="lnt">34
+</span><span class="lnt">35
+</span><span class="lnt">36
+</span><span class="lnt">37
+</span><span class="lnt">38
+</span><span class="lnt">39
+</span><span class="lnt">40
+</span><span class="lnt">41
+</span><span class="lnt">42
+</span><span class="lnt">43
+</span><span class="lnt">44
+</span><span class="lnt">45
+</span><span class="lnt">46
+</span><span class="lnt">47
+</span><span class="lnt">48
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">/*--------------------------------------------------------------各角度值*/
+</span></span><span class="line"><span class="cl">float AngleAcc;
+</span></span><span class="line"><span class="cl">float AngleAcc_Raw;         // 原始加速度计角度（未滤波），用于调试
+</span></span><span class="line"><span class="cl">float AngleAcc_Filter;      // 经一阶低通滤波后的加速度计角度
+</span></span><span class="line"><span class="cl">float AngleGyro;
+</span></span><span class="line"><span class="cl">float Angle;
+</span></span><span class="line"><span class="cl">/*----------------------------------------------互补滤波的 &#34;融合权重系数&#34;*/
+</span></span><span class="line"><span class="cl">double Alpha = 0.028;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">/*
+</span></span><span class="line"><span class="cl"> * Complementary_Filter  互补滤波函数
+</span></span><span class="line"><span class="cl"> * 功能：融合加速度计和陀螺仪数据，得到稳定的角度估计
+</span></span><span class="line"><span class="cl"> * 原理：
+</span></span><span class="line"><span class="cl"> *   1. 使用 GY_Offset 校准陀螺仪零偏，代替原来写死的 -= 31
+</span></span><span class="line"><span class="cl"> *   2. 使用 AngleAcc_Offset 校准加速度计安装倾斜，代替原来写死的 -= 2.49
+</span></span><span class="line"><span class="cl"> *   3. 对加速度计角度做一阶低通预滤波（α=0.8），滤除高频噪声
+</span></span><span class="line"><span class="cl"> *   4. 陀螺仪积分得到 AngleGyro
+</span></span><span class="line"><span class="cl"> *   5. 动态Alpha：角度偏差越大，越信任加速度计
+</span></span><span class="line"><span class="cl"> *   6. Angle = Alpha * AngleAcc_Filter + (1 - Alpha) * AngleGyro
+</span></span><span class="line"><span class="cl"> * 参数：dt — 中断执行间隔（单位：秒），通常为 0.008 或 0.010
+</span></span><span class="line"><span class="cl"> */
+</span></span><span class="line"><span class="cl">void Complementary_Filter(float dt, float DifSpeed)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    /* 计算原始加速度计角度，并用偏移量校准安装倾斜 */
+</span></span><span class="line"><span class="cl">    AngleAcc_Raw = -atan2(MPU6050_Data.Accel_X, MPU6050_Data.Accel_Z) / 3.14159 * 180;
+</span></span><span class="line"><span class="cl">    AngleAcc_Raw += AngleAcc_Offset;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /* 一阶低通预滤波：滤除加速度计的高频噪声，使角度变化更平滑 */
+</span></span><span class="line"><span class="cl">    AngleAcc_Filter = 0.8 * AngleAcc_Raw + 0.2 * AngleAcc_Filter;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /* 陀螺仪积分：使用 GY_Offset 校准后的角速度 */
+</span></span><span class="line"><span class="cl">    AngleGyro = Angle + (MPU6050_Data.Gyro_Y + GY_Offset) / 32768.0 * 2000 * dt;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /* 动态Alpha：传感器差异越大越信任加速度计（抑制陀螺仪漂移） */
+</span></span><span class="line"><span class="cl">    Alpha = fabs(AngleAcc_Filter - AngleGyro) * 0.005 + 0.005;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /* 转向时加速度计受惯性力干扰，降低对加速度计的信任 */
+</span></span><span class="line"><span class="cl">    if (fabs(DifSpeed) &gt; 5.0f)
+</span></span><span class="line"><span class="cl">    {
+</span></span><span class="line"><span class="cl">        if (Alpha &gt; 0.008f) Alpha = 0.008f;
+</span></span><span class="line"><span class="cl">    }
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    if (Alpha &gt; 0.02) Alpha = 0.02;
+</span></span><span class="line"><span class="cl">    if (Alpha &lt; 0.005) Alpha = 0.005;
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    /* 互补滤波融合 */
+</span></span><span class="line"><span class="cl">    Angle = Alpha * AngleAcc_Filter + (1 - Alpha) * AngleGyro;
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  这里互补滤波计算的函数，加上了两个参数，其中的DifSpeed是为了在转向时降低对加速度计的信任。具体可以看代码注释！</p>
+<h2 id="oled部分说明">OLED部分说明
 </h2><p><img src="/p/mpu6050-oled/image-9.png"
 	width="1641"
 	height="1040"
