@@ -3797,7 +3797,7 @@ J：刚体转动惯量&lt;br&gt;
 		data-flex-basis=&#34;422px&#34;
 	
 &gt;
-  硬件I2C又分为标准模式和快速模式。标准模式下，I2C的时钟频率仅100KHZ，与MPU6050通信速度反而比软件I2C慢。个人在实验中，测出的硬件I2C的MPU6050数据获取耗时1594，1595us，这和软件I2C耗时578us，差了不止一个等级。不仅达不到我的目的——提高MPU6050获取数据的效率，反而还拖了后腿（当然，这里我都是基于HAL库版本进行讨论的）！因而这也就引出了后续选取硬件I2C的快速模式作为I2C通信模式。 &lt;br&gt;
+  硬件I2C又分为标准模式和快速模式。标准模式下，I2C的时钟频率仅100KHZ，与MPU6050通信速度反而比软件I2C慢&lt;sup id=&#34;fnref:1&#34;&gt;&lt;a href=&#34;#fn:1&#34; class=&#34;footnote-ref&#34; role=&#34;doc-noteref&#34;&gt;1&lt;/a&gt;&lt;/sup&gt;。个人在实验中，测出的硬件I2C的MPU6050数据获取耗时1594，1595us，这和软件I2C耗时578us，差了不止一个等级。不仅达不到我的目的——提高MPU6050获取数据的效率，反而还拖了后腿（当然，这里我都是基于HAL库版本进行讨论的）！因而这也就引出了后续选取硬件I2C的快速模式作为I2C通信模式。 &lt;br&gt;
   在引入快速I2C时，先来解释一下这里的&lt;mark&gt;I2C Clock Speed (Hz)&lt;/mark&gt;。I2C 时钟频率，指&lt;strong&gt;I2C 总线 SCL 时钟信号的方波频率&lt;/strong&gt;，代表每秒在 SCL 线上完整高低电平切换的次数，直接决定数据传输快慢。
 100kHz = SCL 每秒完整跳变 10 万次；400kHz = 每秒跳变 40 万次。而我们知道，SCL作为时钟信号线，间接影响了SDA的数据读取和数据写入，具体表现是：SCL低电平期间，允许主机写数据，高电平期间允许从机读数据。因此，时钟频率越高，I2C读取速率也越大。但值得注意的是，快速模式并不是所有外部芯片都支持的，具体得去查阅芯片手册！当前的MPU6050是支持的。   &lt;br&gt;
 &lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-6.png&#34;
@@ -4727,6 +4727,77 @@ S_I2C.c&lt;/p&gt;
 &lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
 &lt;/div&gt;
 &lt;/div&gt;&lt;p&gt;  这里互补滤波计算的函数，加上了两个参数，其中的DifSpeed是为了在转向时降低对加速度计的信任。具体可以看代码注释！&lt;/p&gt;
+&lt;h3 id=&#34;额外补充mpu6050初始化函数说明&#34;&gt;额外补充MPU6050初始化函数说明
+&lt;/h3&gt;&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt; 1
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 2
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 3
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 4
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 5
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 6
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 7
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 8
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt; 9
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;10
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;11
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;12
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;13
+&lt;/span&gt;&lt;span class=&#34;lnt&#34;&gt;14
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-fallback&#34; data-lang=&#34;fallback&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;void MPU6050_Init(void)
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;{
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    MPU6050_WriteData(MPU6050_PWR_MGMT_1, 0x01);//退出睡眠模式
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    MPU6050_WriteData(MPU6050_PWR_MGMT_2, 0x00);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    MPU6050_WriteData(MPU6050_SMPLRT_DIV, 0x00);//数据输出最快,这样更能获取实际值
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    MPU6050_WriteData(MPU6050_CONFIG, 0x00);//放弃滤波，减小延时
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    MPU6050_WriteData(MPU6050_GYRO_CONFIG, 0x18);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;    MPU6050_WriteData(MPU6050_ACCEL_CONFIG, 0x18);
+&lt;/span&gt;&lt;/span&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;}
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;h4 id=&#34;config寄存器&#34;&gt;CONFIG寄存器
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-14.png&#34;
+	width=&#34;1479&#34;
+	height=&#34;1686&#34;
+	srcset=&#34;https://Carring06.github.io/p/mpu6050-oled/image-14_hu11608675945355174651.png 480w, https://Carring06.github.io/p/mpu6050-oled/image-14_hu17225931936146877707.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;CONFIG寄存器&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;87&#34;
+		data-flex-basis=&#34;210px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;  针对于Bit7,Bit6，他们是作为保留位存在的，所以进行寄存器配置的时候，应该在对应位写0（不能写1，这是命令！）&lt;br&gt;
+  对于Bit5&lt;del&gt;Bit3，是用来决定要不要读取 FSYNC引脚上的电平并决定如果读了，把这个 0/1 信号塞到 6 轴 / 温度数据的哪一组原始 16 位数据最低位里。这个功能好像是为摄像头而准备的。具体情况好像是当无人机或者其他设备在拍照时，就传递信号给FSYNC引脚，这样就能判断是在哪个角度下拍照的，再结合照片解算出当前坐标，最终实现定位功能。我也是按照自己的想法说的，具体可自行了解。我们只需要知道，当前平衡车并不需要用到这个输入引脚，所以这几位给0就行。&lt;br&gt;
+  接下来Bit2&lt;/del&gt;Bit0这几位是配置互补滤波的,配置的数值越大，滤波效果越好，不过对应就会更延时。这里配置为0，就是要放弃精度而选择速度，也就是原值快速直出。&lt;br&gt;
+  在我小车实现直立以及控速效果很好时，我有去再次把该寄存器的初始化值配置为0x06，也就是滤波效果最好，精度最高，但是延时最久，然后当我把代码烧入后，点启动按键，小车啪的一声倒地不起。实践证明，这个配置的修改，也是实现小车直立效果的一个重要优化点！或许配置成0x02，0x01也是没问题的，但这就留给大家一一去尝试了。&lt;br&gt;
+  这也很好的体现出一个点，再进行硬件配置以及初始化时，要注意一些参数配置后会造成的影响，例如精度与延时，最终在在两个之中进行抉择，看是要精度还是要速度！&lt;/p&gt;
+&lt;h4 id=&#34;smplrt_div寄存器&#34;&gt;SMPLRT_DIV寄存器
+&lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-15.png&#34;
+	width=&#34;1230&#34;
+	height=&#34;887&#34;
+	srcset=&#34;https://Carring06.github.io/p/mpu6050-oled/image-15_hu12250790242408782426.png 480w, https://Carring06.github.io/p/mpu6050-oled/image-15_hu12289320495238545895.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;SMPLRT_DIV寄存器&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;138&#34;
+		data-flex-basis=&#34;332px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;  Sample Rate = 陀螺基准频率 ÷ (1 + SMPLRT_DIV)。当SMPLRT_DIV配置为0，采样率越大，数据输出就越快。这里说的采样是指MPU6050芯片采取内部处理后的完整 6 轴传感器数据，采样率越大，获取到新数据就越快。所以，我觉得把他配置为0x00就行。当然，因为获取MPU6050数据函数是放在定时中断里面的，而且是每50ms获取一次，所以他的刷新速度，也就是采样率并不用那么大。因为陀螺基准频率是由数字低通滤波器（DLPF）决定的，因为我们将其配置为0，所以陀螺基准频率为8KHz(寄存器图有介绍，请仔细阅读)。所以把他配置成1KHZ也是可以的，这样就是1ms,MPU6050刷新一次数据。但这里我就配置成最快采样率了。&lt;/p&gt;
 &lt;h2 id=&#34;oled部分说明&#34;&gt;OLED部分说明
 &lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/mpu6050-oled/image-9.png&#34;
 	width=&#34;1641&#34;
@@ -4801,6 +4872,15 @@ S_I2C.c&lt;/p&gt;
 		data-flex-basis=&#34;411px&#34;
 	
 &gt;&lt;/p&gt;
+&lt;div class=&#34;footnotes&#34; role=&#34;doc-endnotes&#34;&gt;
+&lt;hr&gt;
+&lt;ol&gt;
+&lt;li id=&#34;fn:1&#34;&gt;
+&lt;p&gt;可能原因是，HAL库硬件I2C的封装过于&amp;quot;精细&amp;quot;,有很多的状态判断，if容错，锁机制等，又自带硬件自带严格时序校验；而反观软件I2C
+只是进行简单翻转IO口，所以才造成这种结果。&amp;#160;&lt;a href=&#34;#fnref:1&#34; class=&#34;footnote-backref&#34; role=&#34;doc-backlink&#34;&gt;&amp;#x21a9;&amp;#xfe0e;&lt;/a&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/div&gt;
 </description>
         </item>
         <item>
@@ -5872,10 +5952,12 @@ S_I2C.c&lt;/p&gt;
 &lt;/h2&gt;&lt;p&gt;BUG1:MPU6050的函数运行速度太慢，导致了中断卡死，PID不能及时反应；&lt;br&gt;
 ——————&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#%e5%bf%ab%e9%80%9fi2c&#34; &gt;快速I2C&lt;/a&gt; &lt;br&gt;
 BUG2:MPU6050解算出来的角度有偏差&lt;br&gt;
-——————&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#mpu6050%e5%a7%bf%e6%80%81%e8%a7%92%e5%81%8f%e5%b7%ae%e6%a0%a1%e5%87%86&#34; &gt;MPU6050姿态角偏差校准&lt;/a&gt;&lt;br&gt;
-BUG3:车子保持直立后，用手推一下小车时，小车无法停下来，只会一直加速， 即速度环无法发挥作用；&lt;br&gt;
+——————&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#mpu6050%e5%a7%bf%e6%80%81%e8%a7%92%e5%81%8f%e5%b7%ae%e6%a0%a1%e5%87%86&#34; &gt;MPU6050姿态角偏差校准&lt;/a&gt;  &lt;br&gt;
+BUG3:平衡车直立效果不好，MPU6050数据采取时有延迟&lt;br&gt;
+——————&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/mpu6050-oled/#%e9%a2%9d%e5%a4%96%e8%a1%a5%e5%85%85mpu6050%e5%88%9d%e5%a7%8b%e5%8c%96%e5%87%bd%e6%95%b0%e8%af%b4%e6%98%8e&#34; &gt;MPU6050初始化配置说明&lt;/a&gt;  &lt;br&gt;
+BUG4:车子保持直立后，用手推一下小车时，小车无法停下来，只会一直加速， 即速度环无法发挥作用；&lt;br&gt;
 —————— &lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/pwm-config/#%e7%94%b5%e6%9c%ba%e8%be%93%e5%87%ba%e5%8a%9b%e7%9f%a9%e4%b8%8d%e5%a4%9f&#34; &gt;电机输出力矩不够&lt;/a&gt;&lt;br&gt;
-BUG4:遥控器按下K2后，平衡车无法正确接收到；  &lt;br&gt;
+BUG5:遥控器按下K2后，平衡车无法正确接收到；  &lt;br&gt;
 ——————  &lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/nrf24l01-module/#%e8%af%bb%e5%8f%96%e5%af%84%e5%ad%98%e5%99%a8%e6%a3%80%e6%b5%8b%e4%bf%a1%e5%8f%b7%e8%b4%a8%e9%87%8f&#34; &gt;读取寄存器检测信号质量&lt;/a&gt;&lt;/p&gt;
 </description>
         </item>

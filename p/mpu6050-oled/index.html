@@ -10,7 +10,7 @@
 <meta property='og:description' content="MPU6050的I2C模式选择 MPU6050 是独立的外部传感器芯片，不属于单片机片上外设；若要读取该外设内部寄存器数据，主控需要通过总线与该芯片建立通信">
 <meta property='og:url' content='https://Carring06.github.io/p/mpu6050-oled/'>
 <meta property='og:site_name' content='车度空间'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-07-14T13:14:17&#43;08:00'/><meta property='article:modified_time' content='2026-07-16T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-07-14T13:14:17&#43;08:00'/><meta property='article:modified_time' content='2026-07-18T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="平衡车_MPU6050+OLED">
 <meta name="twitter:description" content="MPU6050的I2C模式选择 MPU6050 是独立的外部传感器芯片，不属于单片机片上外设；若要读取该外设内部寄存器数据，主控需要通过总线与该芯片建立通信">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -337,6 +337,12 @@
       <ol>
         <li><a href="#校准函数">校准函数</a></li>
         <li><a href="#互补滤波计算函数">互补滤波计算函数</a></li>
+        <li><a href="#额外补充mpu6050初始化函数说明">额外补充MPU6050初始化函数说明</a>
+          <ol>
+            <li><a href="#config寄存器">CONFIG寄存器</a></li>
+            <li><a href="#smplrt_div寄存器">SMPLRT_DIV寄存器</a></li>
+          </ol>
+        </li>
       </ol>
     </li>
     <li><a href="#oled部分说明">OLED部分说明</a></li>
@@ -395,12 +401,12 @@
 
 
             <time class="article-time--modified">
-                最后更新于 2026-07-16
+                最后更新于 2026-07-18
             </time>
         </div>
         
         <div>
-            <span class="article-time--words">📝 5509 字</span>
+            <span class="article-time--words">📝 6647 字</span>
         </div>
         
         <div>
@@ -512,7 +518,7 @@
 		data-flex-basis="422px"
 	
 >
-  硬件I2C又分为标准模式和快速模式。标准模式下，I2C的时钟频率仅100KHZ，与MPU6050通信速度反而比软件I2C慢。个人在实验中，测出的硬件I2C的MPU6050数据获取耗时1594，1595us，这和软件I2C耗时578us，差了不止一个等级。不仅达不到我的目的——提高MPU6050获取数据的效率，反而还拖了后腿（当然，这里我都是基于HAL库版本进行讨论的）！因而这也就引出了后续选取硬件I2C的快速模式作为I2C通信模式。 <br>
+  硬件I2C又分为标准模式和快速模式。标准模式下，I2C的时钟频率仅100KHZ，与MPU6050通信速度反而比软件I2C慢<sup id="fnref:1"><a href="#fn:1" class="footnote-ref" role="doc-noteref">1</a></sup>。个人在实验中，测出的硬件I2C的MPU6050数据获取耗时1594，1595us，这和软件I2C耗时578us，差了不止一个等级。不仅达不到我的目的——提高MPU6050获取数据的效率，反而还拖了后腿（当然，这里我都是基于HAL库版本进行讨论的）！因而这也就引出了后续选取硬件I2C的快速模式作为I2C通信模式。 <br>
   在引入快速I2C时，先来解释一下这里的<mark>I2C Clock Speed (Hz)</mark>。I2C 时钟频率，指<strong>I2C 总线 SCL 时钟信号的方波频率</strong>，代表每秒在 SCL 线上完整高低电平切换的次数，直接决定数据传输快慢。
 100kHz = SCL 每秒完整跳变 10 万次；400kHz = 每秒跳变 40 万次。而我们知道，SCL作为时钟信号线，间接影响了SDA的数据读取和数据写入，具体表现是：SCL低电平期间，允许主机写数据，高电平期间允许从机读数据。因此，时钟频率越高，I2C读取速率也越大。但值得注意的是，快速模式并不是所有外部芯片都支持的，具体得去查阅芯片手册！当前的MPU6050是支持的。   <br>
 <img src="/p/mpu6050-oled/image-6.png"
@@ -1442,6 +1448,77 @@ S_I2C.c</p>
 </span></span></code></pre></td></tr></table>
 </div>
 </div><p>  这里互补滤波计算的函数，加上了两个参数，其中的DifSpeed是为了在转向时降低对加速度计的信任。具体可以看代码注释！</p>
+<h3 id="额外补充mpu6050初始化函数说明">额外补充MPU6050初始化函数说明
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt"> 1
+</span><span class="lnt"> 2
+</span><span class="lnt"> 3
+</span><span class="lnt"> 4
+</span><span class="lnt"> 5
+</span><span class="lnt"> 6
+</span><span class="lnt"> 7
+</span><span class="lnt"> 8
+</span><span class="lnt"> 9
+</span><span class="lnt">10
+</span><span class="lnt">11
+</span><span class="lnt">12
+</span><span class="lnt">13
+</span><span class="lnt">14
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">void MPU6050_Init(void)
+</span></span><span class="line"><span class="cl">{
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_PWR_MGMT_1, 0x01);//退出睡眠模式
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_PWR_MGMT_2, 0x00);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_SMPLRT_DIV, 0x00);//数据输出最快,这样更能获取实际值
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_CONFIG, 0x00);//放弃滤波，减小延时
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_GYRO_CONFIG, 0x18);
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">    MPU6050_WriteData(MPU6050_ACCEL_CONFIG, 0x18);
+</span></span><span class="line"><span class="cl">}
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h4 id="config寄存器">CONFIG寄存器
+</h4><p><img src="/p/mpu6050-oled/image-14.png"
+	width="1479"
+	height="1686"
+	srcset="/p/mpu6050-oled/image-14_hu11608675945355174651.png 480w, /p/mpu6050-oled/image-14_hu17225931936146877707.png 1024w"
+	loading="lazy"
+	
+		alt="CONFIG寄存器"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="87"
+		data-flex-basis="210px"
+	
+></p>
+<p>  针对于Bit7,Bit6，他们是作为保留位存在的，所以进行寄存器配置的时候，应该在对应位写0（不能写1，这是命令！）<br>
+  对于Bit5<del>Bit3，是用来决定要不要读取 FSYNC引脚上的电平并决定如果读了，把这个 0/1 信号塞到 6 轴 / 温度数据的哪一组原始 16 位数据最低位里。这个功能好像是为摄像头而准备的。具体情况好像是当无人机或者其他设备在拍照时，就传递信号给FSYNC引脚，这样就能判断是在哪个角度下拍照的，再结合照片解算出当前坐标，最终实现定位功能。我也是按照自己的想法说的，具体可自行了解。我们只需要知道，当前平衡车并不需要用到这个输入引脚，所以这几位给0就行。<br>
+  接下来Bit2</del>Bit0这几位是配置互补滤波的,配置的数值越大，滤波效果越好，不过对应就会更延时。这里配置为0，就是要放弃精度而选择速度，也就是原值快速直出。<br>
+  在我小车实现直立以及控速效果很好时，我有去再次把该寄存器的初始化值配置为0x06，也就是滤波效果最好，精度最高，但是延时最久，然后当我把代码烧入后，点启动按键，小车啪的一声倒地不起。实践证明，这个配置的修改，也是实现小车直立效果的一个重要优化点！或许配置成0x02，0x01也是没问题的，但这就留给大家一一去尝试了。<br>
+  这也很好的体现出一个点，再进行硬件配置以及初始化时，要注意一些参数配置后会造成的影响，例如精度与延时，最终在在两个之中进行抉择，看是要精度还是要速度！</p>
+<h4 id="smplrt_div寄存器">SMPLRT_DIV寄存器
+</h4><p><img src="/p/mpu6050-oled/image-15.png"
+	width="1230"
+	height="887"
+	srcset="/p/mpu6050-oled/image-15_hu12250790242408782426.png 480w, /p/mpu6050-oled/image-15_hu12289320495238545895.png 1024w"
+	loading="lazy"
+	
+		alt="SMPLRT_DIV寄存器"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="138"
+		data-flex-basis="332px"
+	
+></p>
+<p>  Sample Rate = 陀螺基准频率 ÷ (1 + SMPLRT_DIV)。当SMPLRT_DIV配置为0，采样率越大，数据输出就越快。这里说的采样是指MPU6050芯片采取内部处理后的完整 6 轴传感器数据，采样率越大，获取到新数据就越快。所以，我觉得把他配置为0x00就行。当然，因为获取MPU6050数据函数是放在定时中断里面的，而且是每50ms获取一次，所以他的刷新速度，也就是采样率并不用那么大。因为陀螺基准频率是由数字低通滤波器（DLPF）决定的，因为我们将其配置为0，所以陀螺基准频率为8KHz(寄存器图有介绍，请仔细阅读)。所以把他配置成1KHZ也是可以的，这样就是1ms,MPU6050刷新一次数据。但这里我就配置成最快采样率了。</p>
 <h2 id="oled部分说明">OLED部分说明
 </h2><p><img src="/p/mpu6050-oled/image-9.png"
 	width="1641"
@@ -1516,6 +1593,15 @@ S_I2C.c</p>
 		data-flex-basis="411px"
 	
 ></p>
+<div class="footnotes" role="doc-endnotes">
+<hr>
+<ol>
+<li id="fn:1">
+<p>可能原因是，HAL库硬件I2C的封装过于&quot;精细&quot;,有很多的状态判断，if容错，锁机制等，又自带硬件自带严格时序校验；而反观软件I2C
+只是进行简单翻转IO口，所以才造成这种结果。&#160;<a href="#fnref:1" class="footnote-backref" role="doc-backlink">&#x21a9;&#xfe0e;</a></p>
+</li>
+</ol>
+</div>
 
 </section>
 
@@ -1545,7 +1631,7 @@ S_I2C.c</p>
 
 
         <span>
-            最后更新于 2026-07-16
+            最后更新于 2026-07-18
         </span>
     </section></footer>
 
