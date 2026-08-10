@@ -7,7 +7,87 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>车度空间Carring</copyright>
-        <lastBuildDate>Tue, 14 Jul 2026 13:16:49 +0800</lastBuildDate><atom:link href="https://Carring06.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 10 Aug 2026 11:38:36 +0800</lastBuildDate><atom:link href="https://Carring06.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>大一_总结与反思(内含遥控测试板反思)</title>
+        <link>https://Carring06.github.io/p/summary1/</link>
+        <pubDate>Mon, 10 Aug 2026 11:38:36 +0800</pubDate>
+        
+        <guid>https://Carring06.github.io/p/summary1/</guid>
+        <description>&lt;p&gt;&lt;strong&gt;双击放大视频&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;video controls src=&#34;767967ab9b31bac1056783a6df5ea475_raw.mp4&#34; title=&#34;遥控测试板&#34;&gt;&lt;/video&gt;&lt;/p&gt;
+&lt;p&gt;  经历了大一一年的嵌入式学习（主要是针对于&lt;strong&gt;软件方面&lt;/strong&gt;进行学习，如各种&lt;mark&gt;通信协议&lt;/mark&gt; ——&lt;strong&gt;CAN,UART,SPI,I2C&lt;/strong&gt;&amp;hellip;, &lt;mark&gt;平衡车的代码撰写&lt;/mark&gt;[&lt;strong&gt;基于HAL库&lt;/strong&gt;]以及&lt;mark&gt;Freertos的相关学习&lt;/mark&gt;[&lt;strong&gt;运用在六轴机械臂以及AGV舵轮底盘&lt;/strong&gt;]等）。虽然期间也掺杂了对电路分析以及PCB绘制等硬件的相关学习，并制作了一个USB拓展坞，但是并未深入的学习硬件电路相关的。所以，为了提高自身的综合能力，于暑假期间，预筹划进行&lt;strong&gt;遥控器+四轴飞行器&lt;/strong&gt;的电路设计，PCB绘制与焊接以及相关代码撰写。&lt;br&gt;
+  虽说我已经画过了好几个板子了，比如&lt;em&gt;51单片机系统板，拓展坞板，32单片机系统板&lt;/em&gt;。但其中仅仅&lt;strong&gt;USB拓展坞板子&lt;/strong&gt;进行了焊接并最终完成。所以，自己还是没什么把握能够将&lt;strong&gt;遥控器板&lt;/strong&gt;和&lt;strong&gt;飞控板&lt;/strong&gt;这两个项目“一遍过”。所以，我打算在绘制这两个板子的过程中，绘制一些额外的测试版，先把一些基本的外设电路一一测试后，再将整个板子画出来，并焊接。如上面视频所示，便其中一个测试版。    。 &lt;br&gt;
+  在焊接测试版的过程中，一方面是能够提升我的焊接水准，另一方面是能加深对某些元器件的作用与选型要求。当然，从中揪出一些毛病，避免在最终这两个项目出现也是我绘制与焊接测试版的原因之一！接下来先对一些注意事项进行总结一下。&lt;/p&gt;
+&lt;h2 id=&#34;测试版注意事项说明&#34;&gt;测试版注意事项说明
+&lt;/h2&gt;&lt;h3 id=&#34;电池供电部分&#34;&gt;电池供电部分
+&lt;/h3&gt;&lt;p&gt;  首先，要让单片机以及各个电路模块发挥作用，电源是必不可少的！在遥控测试板中，我采用了3.7V锂电池供电。注意：&lt;strong&gt;3.7V并不是说明该锂电池仅为3.7V，实际上，锂电池放电区间大致：4.2V（满电） ~ 3.0V（放电截止），3.7V 只是放电过程中的典型中间电压&lt;/strong&gt;。而后，我直接将锂电池的电压输出直接进行LDO压降至3.3V，如下图所示：  
+&lt;img src=&#34;https://Carring06.github.io/p/summary1/image.png&#34;
+	width=&#34;1118&#34;
+	height=&#34;570&#34;
+	srcset=&#34;https://Carring06.github.io/p/summary1/image_hu14326931690150994790.png 480w, https://Carring06.github.io/p/summary1/image_hu855677604363208479.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;开关电路&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;196&#34;
+		data-flex-basis=&#34;470px&#34;
+	
+&gt;&lt;img src=&#34;https://Carring06.github.io/p/summary1/image-1.png&#34;
+	width=&#34;1131&#34;
+	height=&#34;434&#34;
+	srcset=&#34;https://Carring06.github.io/p/summary1/image-1_hu12053861184734326911.png 480w, https://Carring06.github.io/p/summary1/image-1_hu6948690004144906386.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;降压电路&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;260&#34;
+		data-flex-basis=&#34;625px&#34;
+	
+&gt;&lt;br&gt;
+  这样直接将锂电池的电压输出直接进行LDO压降是不太好的。因为AMS1117‑3.3 是LDO线性稳压器，LDO有关键参数是压价，AMS1117‑3.3器件的&lt;strong&gt;典型压差为1.1V&lt;/strong&gt;，也就是，如果想降压至3.3V，那么输入电压必须与目标电压的压差大于等于1.1V，也就是3.3V + 1.1V = 4.4V。当然这只是一个典型值而不是真实值，真实值是在4.4V附近。现在这个测试版，因为压差不够，进行降压后的电压输出值小于3.3V，实际用下来，其实对这个板子的影响不大，但是，为了严谨，这样是不可行的！所以这里要采取的操作是：&lt;mark&gt;先DCDC升压至5V，再使用LDO降压！&lt;/mark&gt;&lt;/p&gt;
+&lt;h3 id=&#34;晶振起振部分&#34;&gt;晶振起振部分
+&lt;/h3&gt;&lt;p&gt;  晶振相当于芯片的心跳，用来提供稳定的时钟节拍。对单片机而言，时钟系统为程序运行提供统一时间基准，直接影响代码执行速率。STM32共有四类时钟源，两个内部时钟＋两个外部时钟——低速内部时钟，高速内部时钟 + 低速外部时钟，高速外部时钟。我们通常使用的是高速外部时钟，也就是外部晶振，其时钟精度更高。外部晶振，又分为外部无源晶振与外部有源晶振，通常我们使用的是无源晶振，如图所示：&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/summary1/image-2.png&#34;
+	width=&#34;548&#34;
+	height=&#34;237&#34;
+	srcset=&#34;https://Carring06.github.io/p/summary1/image-2_hu7537434745307678018.png 480w, https://Carring06.github.io/p/summary1/image-2_hu18141922624539822721.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;晶振电路 &#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;231&#34;
+		data-flex-basis=&#34;554px&#34;
+	
+&gt;&lt;br&gt;
+  一般接外部高速晶振就足够了，外部低速晶振选择性接，可以不接的。在接外部无源晶振时，需要加两个起振电容（有源晶振不需要起振电容，因为有源晶振的电路是集成在晶振内部的），起振电容的大小为：&lt;mark&gt;20 ~ 22pF&lt;/mark&gt;。图中所示12pF是错误选值,一开始，我焊接了两个12pF的电容，单片机跑外部晶振时，一直死机，而改为内部晶振后就不会死机，所以这说明外部晶振起振失败，导致了代码卡死在等待晶振就绪的循环里面。后面，我将12pF改成了22pF后，单片机就正常运转了。起振电容大小可以由公式计算得来，不过我还没进行深究。&lt;/p&gt;
+&lt;h3 id=&#34;boot启动部分&#34;&gt;BOOT启动部分
+&lt;/h3&gt;&lt;p&gt;  焊接完，进行代码烧录前，必须先将BOOT0拉低至0，BOOT1拉低拉高没什么讲究，不过一般是拉低至0。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/summary1/image-3.png&#34;
+	width=&#34;953&#34;
+	height=&#34;567&#34;
+	srcset=&#34;https://Carring06.github.io/p/summary1/image-3_hu16094413056808560235.png 480w, https://Carring06.github.io/p/summary1/image-3_hu2390183202285243482.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;启动方式&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;168&#34;
+		data-flex-basis=&#34;403px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;回归正题&#34;&gt;回归正题
+&lt;/h2&gt;&lt;p&gt;  好了，现在回归正题，对于AI时代的到来与我这一年的学习了解，处于AI时代，AI并不是完全取代程序员，而是辅佐有能力的程序员，放大他们的效率。对于嵌入式来说，软件方面也有一定的冲击，对我来说，AI是放大了我们学习东西的能力，学习了一年的软件，我越来越发觉，现在以及未来，对于仅是具有单方面能力的人，职业竞争能力大大消弱，所以我于大一暑假，开始了硬件的学习，如模电数电，焊接技巧，PCB绘制等。&lt;br&gt;
+  现在，有了AI的加持，个人觉得企业对技术栈的要求只会越来越高，所以，趁现在才大一，应扩宽视野，了解更广泛些，当然不能广而不精，应有着重的学习方向！&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>平衡车_NRF24L01模块</title>
         <link>https://Carring06.github.io/p/nrf24l01-module/</link>
         <pubDate>Tue, 14 Jul 2026 13:16:49 +0800</pubDate>
