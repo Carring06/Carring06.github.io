@@ -7,7 +7,162 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>车度空间Carring</copyright>
-        <lastBuildDate>Mon, 10 Aug 2026 11:38:36 +0800</lastBuildDate><atom:link href="https://Carring06.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 16 Sep 2026 11:38:36 +0800</lastBuildDate><atom:link href="https://Carring06.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>可调电源1.0_“纹波”展示</title>
+        <link>https://Carring06.github.io/p/power-ripple/</link>
+        <pubDate>Wed, 16 Sep 2026 11:38:36 +0800</pubDate>
+        
+        <guid>https://Carring06.github.io/p/power-ripple/</guid>
+        <description>&lt;h2 id=&#34;纹波简介&#34;&gt;”纹波“简介
+&lt;/h2&gt;&lt;p&gt;  首先，我要在这里纠正一个概念！标题中，我是使用&lt;mark&gt;纹波&lt;/mark&gt;来表明输入电压的波动，但是&lt;strong&gt;输入电压、输出电压波动并不就直接等同于纹波&lt;/strong&gt;！狭义上来说，只有当&lt;strong&gt;开关电源正常工作&lt;/strong&gt;时，且&lt;strong&gt;负载恒定时的输出波形&lt;/strong&gt;才能成为&lt;mark&gt;纹波&lt;/mark&gt;，如下图所示。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/power-ripple/image.png&#34;
+	width=&#34;1181&#34;
+	height=&#34;822&#34;
+	srcset=&#34;https://Carring06.github.io/p/power-ripple/image_hu7364267815222064748.png 480w, https://Carring06.github.io/p/power-ripple/image_hu8632838889221256727.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;纹波&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;143&#34;
+		data-flex-basis=&#34;344px&#34;
+	
+&gt;&lt;br&gt;
+  关于开关电源的知识点将在&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/buck-boost/&#34; &gt;BUCK-BOOST&lt;/a&gt;文章中讲解。  &lt;br&gt;
+  而那些杂乱的波形，很可能是由纹波+电压跌落+噪声+震荡叠加而成的，这并不能算作是纹波。&lt;br&gt;
+  如视频所示，测得的是 12V 直流输入波形。波形噪声杂乱，一方面是测量时未使用弹簧接地环，另一方面是这款 5.5 元购入的廉价电源适配器本身品质较差。从波形能够看出，该适配器会向电路板引入噪声，干扰板上升降压开关芯片，造成开关电源输出纹波变大，甚至引发其他异常。
+若用它降压得到 3.3V 给单片机等模拟电路供电，一旦 3.3V 电压波动剧烈，会直接降低主控芯片的工作稳定性。 &lt;br&gt;
+&lt;mark&gt;（双击可放大视频）&lt;/mark&gt;
+&lt;video controls src=&#34;25c277952c20d5992cf6f97c6268221d.mp4&#34; title=&#34;DC输入&#34;&gt;&lt;/video&gt;&lt;/p&gt;
+&lt;p&gt;PS:我使用的示波器夹子回路较长，可能会引入示波器自身的高频信号干扰，如下视频所展示，最好还是使用&lt;mark&gt;弹簧接地环&lt;/mark&gt;进行测试，具体可自行了解。 &lt;br&gt;
+  以下是一小部分波形的展示： &lt;br&gt;
+TypeC+5V升12V纹波：&lt;br&gt;
+&lt;mark&gt;（双击可放大视频）&lt;/mark&gt;
+&lt;video controls src=&#34;112dff77d06724f9822498262d69b7b8.mp4&#34; title=&#34;TypeC5V输入&#34;&gt;&lt;/video&gt;
+DC+12v转5V波型：&lt;br&gt;
+&lt;mark&gt;（双击可放大视频）&lt;/mark&gt;
+&lt;video controls src=&#34;e31d80cd86b1f570c575d541a7f0d549.mp4&#34; title=&#34;DC+12v转5V&#34;&gt;&lt;/video&gt;&lt;br&gt;
+锂电池转5V纹波：&lt;br&gt;
+&lt;mark&gt;（双击可放大视频）&lt;/mark&gt;
+&lt;video controls src=&#34;fa64cd7cac3b807e1eb3ed8c55c104fd.mp4&#34; title=&#34;锂电池转5V&#34;&gt;&lt;/video&gt;&lt;/p&gt;
+&lt;h2 id=&#34;优化纹波&#34;&gt;优化纹波
+&lt;/h2&gt;</description>
+        </item>
+        <item>
+        <title>可调电源1.0_BUCK BOOST</title>
+        <link>https://Carring06.github.io/p/buck-boost/</link>
+        <pubDate>Wed, 16 Sep 2026 11:38:36 +0800</pubDate>
+        
+        <guid>https://Carring06.github.io/p/buck-boost/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>可调电源1.0_序言</title>
+        <link>https://Carring06.github.io/p/power-pre/</link>
+        <pubDate>Wed, 16 Sep 2026 11:38:36 +0800</pubDate>
+        
+        <guid>https://Carring06.github.io/p/power-pre/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/power-pre/image.png&#34;
+	width=&#34;587&#34;
+	height=&#34;648&#34;
+	srcset=&#34;https://Carring06.github.io/p/power-pre/image_hu5285898547652512527.png 480w, https://Carring06.github.io/p/power-pre/image_hu5107055138591608723.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;正面&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;90&#34;
+		data-flex-basis=&#34;217px&#34;
+	
+&gt;!&lt;img src=&#34;https://Carring06.github.io/p/power-pre/image-3.png&#34;
+	width=&#34;572&#34;
+	height=&#34;639&#34;
+	srcset=&#34;https://Carring06.github.io/p/power-pre/image-3_hu1725136905625906702.png 480w, https://Carring06.github.io/p/power-pre/image-3_hu8265611936430169145.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;背面&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;89&#34;
+		data-flex-basis=&#34;214px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;  首先，先说明一下，截至在这篇文章发布时，当前这个项目算不上太完美。所以当前，我只打算在这里记录一下在制作这个项目中做学习到的知识、所解决和发现的BUG，以及一些我自己的想法和感悟。其次，我打算在后续的更新中，同步并行改善这个项目，使其更加完善！&lt;br&gt;
+  当然，当前这个项目，已经可以实现可调升压————&lt;em&gt;&lt;strong&gt;5V ~ 30V&lt;/strong&gt;&lt;/em&gt;，可调降压————&lt;em&gt;&lt;strong&gt;12V ~ 1.2V&lt;/strong&gt;&lt;/em&gt;，锂电池充电管理，以及主控方面的OLED显示可调电压大小、LED控制、按键控制以及串口输出，这一方面后续可根据实际需求进行编程。不足的是，DC12V输入端子处，未进行任何滤波处理，导致接入的电压波形大，振荡大，这样对后续的DCDC降压转5V很不友好（当然，有部分原因也可能是我在pdd用5.5块钱买的电源适配器很差劲导致的），但是，如果在板子上，能尽量做点优化就做点，这样才能增加板子的适应性。 &lt;br&gt;
+PS:我使用的示波器夹子回路较长，可能会引入示波器自身的高频信号干扰，如下视频所展示，最好还是使用弹簧接地环进行测试，具体可自行了解。&lt;br&gt;
+&lt;mark&gt;（双击可放大视频）&lt;/mark&gt;
+&lt;video controls src=&#34;25c277952c20d5992cf6f97c6268221d.mp4&#34; title=&#34;DC输入&#34;&gt;&lt;/video&gt;&lt;br&gt;
+  当然，为了避免本文篇幅过长，后续详细内容我将沿用以往的写作习惯，分章节独立成文。读者可以清晰了解整套博客的内容规划，并按需跳转至对应文章查阅。&lt;/p&gt;
+&lt;h3 id=&#34;项目介绍&#34;&gt;项目介绍
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/power-intro/&#34; &gt;整体功能介绍&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/power-ripple/&#34; &gt;可调电源1.0版本的&amp;quot;纹波&amp;quot;&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;涉及知识点&#34;&gt;涉及知识点
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/buck-boost/&#34; &gt;BUCK-BOOST&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;&#34; &gt;原理图设计&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;debug&#34;&gt;DEBUG
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;&#34; &gt;BUG总览&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;&#34; &gt;调试过程&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;改版&#34;&gt;改版
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;&#34; &gt;改版说明&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;&#34; &gt;改版测试&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</description>
+        </item>
+        <item>
+        <title>可调电源1.0_整体功能介绍</title>
+        <link>https://Carring06.github.io/p/power-intro/</link>
+        <pubDate>Wed, 16 Sep 2026 11:38:36 +0800</pubDate>
+        
+        <guid>https://Carring06.github.io/p/power-intro/</guid>
+        <description>&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/power-intro/image.png&#34;
+	width=&#34;1193&#34;
+	height=&#34;1262&#34;
+	srcset=&#34;https://Carring06.github.io/p/power-intro/image_hu11056379218166331143.png 480w, https://Carring06.github.io/p/power-intro/image_hu311746366337077834.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;总览&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;94&#34;
+		data-flex-basis=&#34;226px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;  进行使用的核心部分分为如图五大区。  &lt;/p&gt;
+&lt;p&gt;  1区为&lt;strong&gt;输入端&lt;/strong&gt;，从上到下依次是，DC端子+12V输入，TypeC+5V输入，锂电池+3.7~4.2输入。  &lt;/p&gt;
+&lt;p&gt;  2区为&lt;strong&gt;锂电池充电接口&lt;/strong&gt;，接口右侧有红绿灯指示，红灯表示充电中，绿灯表示充电完成。目前我只试过低电压锂电池的充电（5V以下），5V以上的电池充电有待斟酌。  &lt;/p&gt;
+&lt;p&gt;  3区是&lt;strong&gt;可调电压的调节旋钮&lt;/strong&gt;，图中右侧为升压调节（5V到30V），左侧为降压调节（12V大1.2V）。  &lt;/p&gt;
+&lt;p&gt;  4区为&lt;strong&gt;主控区&lt;/strong&gt;，4个自定义按键与LED，OLED显示屏（板子背后有分压电阻，可由分压计算出升降压电压值&amp;mdash;-不过听说这种电阻方式分压方式不妥，后续再来斟酌）。  &lt;/p&gt;
+&lt;p&gt;  5区为&lt;strong&gt;输出端&lt;/strong&gt;，具体输出什么电压这里不做详细说明，请看丝印！
+&lt;img src=&#34;https://Carring06.github.io/p/power-intro/image-1.png&#34;
+	width=&#34;1010&#34;
+	height=&#34;1065&#34;
+	srcset=&#34;https://Carring06.github.io/p/power-intro/image-1_hu9831738205639749699.png 480w, https://Carring06.github.io/p/power-intro/image-1_hu17479794462618507126.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;丝印&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;94&#34;
+		data-flex-basis=&#34;227px&#34;
+	
+&gt;&lt;br&gt;
+  可调升压电压展示视频：&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1nDec6oEtJ/?spm_id_from=333.1387.homepage.video_card.click&amp;amp;vd_source=78685689b7fcc5ce8f7790e12b5f996d&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;可调升压电压展示视频&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>大一_总结与反思(内含遥控测试板反思)</title>
         <link>https://Carring06.github.io/p/summary1/</link>
         <pubDate>Mon, 10 Aug 2026 11:38:36 +0800</pubDate>
