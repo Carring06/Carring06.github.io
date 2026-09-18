@@ -55,7 +55,108 @@ DC+12v转5V波型：&lt;br&gt;
         <pubDate>Wed, 16 Sep 2026 11:38:36 +0800</pubDate>
         
         <guid>https://Carring06.github.io/p/buck-boost/</guid>
-        <description></description>
+        <description>&lt;p&gt;  这个章节主要是来讲一下BUCK电路和BOOST电路的一些基础知识的，其实这一部分内容，大家有稍微了解一下便是可以的。对于我，因为我先前也只是对这部分进行视频学习，学习后并没有做任何反馈，所以导致的问题是，我对这部分掌握的并不是太彻底。也就是说，在写这篇文章前，我仅仅只对这部分知识点进行了“输入”，并没有进行“输出”。所以，为了加深我个人对BUCK-BOOST电路的理解，我打算重新学习这一部分，并将其进行总结。各位也可以对其进行学习了解一下，如若有错请在评论区严肃指出！&lt;/p&gt;
+&lt;h2 id=&#34;ldo与dcdc&#34;&gt;LDO与DCDC
+&lt;/h2&gt;&lt;p&gt;  LDO（Low Dropout Regulator）是一种降压型稳压器，它通过将输入电压降低到一个固定值来输出稳定的电压。而DCDC（Direct Current to Direct Current Converter）是一种直流到直流转换器，它通过将输入电压转换为一个不同的电压来输出稳定的电压。&lt;br&gt;
+  LDO作为线性稳压器，只能进行降压而不能进行升压，而DCDC既可以升压也可以降压。我们需要知道的是LDO是将多余电压直接消耗，转化为热量，而 DCDC 是通过电子开关的开关频率来进行升压降压的。在实际电路中，倘若要进行降压的压差较大，那么LDO的发热会很严重，在我先前的平衡车中，我的AMS1117芯片就因为发热而烧毁了（用手触摸芯片，手会直接条件反射缩回）。&lt;br&gt;
+  Buck、Boost 专指 DCDC 的拓扑结构，LDO 不属于这一类。所以接下来的BUCK-BOOST均是针对DCDC开关电源讲述的。&lt;/p&gt;
+&lt;h2 id=&#34;buck电路&#34;&gt;BUCK电路
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/buck-boost/image.png&#34;
+	width=&#34;1217&#34;
+	height=&#34;615&#34;
+	srcset=&#34;https://Carring06.github.io/p/buck-boost/image_hu4881099497787968997.png 480w, https://Carring06.github.io/p/buck-boost/image_hu16613696118516917348.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;buck&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;197&#34;
+		data-flex-basis=&#34;474px&#34;
+	
+&gt;&lt;br&gt;
+  如图是一个BUCK电路，其中M1为MOS管（至于是NMOS还是PMOS，这里暂不进行探讨），大家可以将其理解成一个电子开关，这个开关的闭合与打开是通过电信号控制的。为了便于分析与理解，我将其换成一个普通开关，如下图所示。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/buck-boost/image-1.png&#34;
+	width=&#34;1020&#34;
+	height=&#34;582&#34;
+	srcset=&#34;https://Carring06.github.io/p/buck-boost/image-1_hu5349805277565836596.png 480w, https://Carring06.github.io/p/buck-boost/image-1_hu5941803587105552699.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;175&#34;
+		data-flex-basis=&#34;420px&#34;
+	
+&gt;&lt;br&gt;
+  在分析这个电路前，我们要先知道两个公式：i = C*(du/dt)与u = L*(di/dt)。这两个公式，很好地反映了电容与电感的特性——&lt;strong&gt;电容两端电压不能突变，电感两端电流不能突变&lt;/strong&gt;。也就是说，使用电容电感，有个很重要的作用是能用来抑制上电时的浪涌电压与浪涌电流!所谓的浪涌电压，浪涌电流，指的是短时间突然爆发，远超正常额定值的电压/电流。这里提一嘴，如果遇到不懂的知识点，可以问一下AI进行粗略的了解，倘若想继续深究，再去网上找一些资料进行补充学习，这个方法是适配与任何新手的（Me也是）。&lt;br&gt;
+  既然提到了这两个公式，那我也顺便来以我的见解来分析一下电容电感具有抑制电压/电流突变的原因，以下为个人见解，如若有错，欢迎指出!&lt;br&gt;
+  对于电容相关公式&lt;mark&gt;i = C*(du/dt)&lt;/mark&gt;：正常来说，刚上电的时候，负载两端电压会在短时间内从零骤变成我们的上电电压，而对于电容来说，我们假设电容两端的电压也会阶跃突变（时间趋近于 0），那么，电容的U-t特性曲线的斜率，也就是du/dt的值会无穷大，对应的电流i = C*无穷大 = 无穷大，也就是说，如果我们的假设成立的话，那么电路中的电流理应是无穷大的，但是在实际中，电路中的电流是不能也不会无穷大的，那么可以反推出，我们的假设不成立。那么可以推出，电容两端的电压是不能突变的。所以，有了这个特性，我们就可以在负载两端并联个电容，来抑制浪涌电压。&lt;br&gt;
+  对于电感相关公式&lt;mark&gt;u = L *(di/dt)&lt;/mark&gt;，我们按照上一段的逻辑分析一下，也可以得出结论：流经电感的电流是不能突变的。因此，我们可以在电路中串上一个电感，来抑制浪涌电流。&lt;br&gt;
+  当然，BUCK电路中的电感电容，也是有应用以上论述的功能的，而且，还有利用电感电容的另一个重要特性：储能! &lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/buck-boost/image-2.png&#34;
+	width=&#34;936&#34;
+	height=&#34;414&#34;
+	srcset=&#34;https://Carring06.github.io/p/buck-boost/image-2_hu12179281822837032005.png 480w, https://Carring06.github.io/p/buck-boost/image-2_hu8217784417065844480.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;开关闭合&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;226&#34;
+		data-flex-basis=&#34;542px&#34;
+	
+&gt;
+  当开关闭合时，电流流动方向如上图蓝色箭头所示。因为在从a点流向b点过程中，电流流经一个电阻，此时电势会下降，所以a点电势高于b点。所以电流是不会从b点倒流至a点的。 &lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/buck-boost/image-3.png&#34;
+	width=&#34;881&#34;
+	height=&#34;597&#34;
+	srcset=&#34;https://Carring06.github.io/p/buck-boost/image-3_hu1656404184892963096.png 480w, https://Carring06.github.io/p/buck-boost/image-3_hu4826002246102375787.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;开关打开&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;147&#34;
+		data-flex-basis=&#34;354px&#34;
+	
+&gt;
+  当开关闭合时，输入部分的电路不用去分析，直接看后面电路。前文中，我们也有提到，在这个电路中，我们使用用到了电容电感的储能特性。如上图所示，当开关打开时，因为电容电压电感电流不能突变，所以，即使没有电源输入，电路中的电流电压是不会立马变为0的，以电感为例，此时的电感相当于一个电源，还会向电路提供电流，电流方向如图所示。二极管的存在，就是给电感电流一个续流的回路，所以称他为续流二极管。也许有人会觉得，为什么还要多加个元器件，为什么不让电流直接流向参考地就好了？ 这里提一嘴，就是，如果不给电感一个续流的回路，那么当电感要释放电流时，会发现压根没有回路可以走电流，没有回路走电流的话，电流只能为0了，而由公式u = L *(di/dt)，电流在较短时间变为0的话，di/dt很大，会感应出一个很大的电压，这个电压也许会大到击穿MOS管。所以综合上述分析，是应该给电感释放电流的回路的，而结合二极管的单向导电特性，我们不难发现，使用二极管放置在电感续流路径，是一个较好的选择，当然，二极管也并不是唯一或者说最优的元器件选择，当前图中的BUCK电路，使用的是续流二极管，那么我们称他为异步BUCK。倘若我们将这个二极管换成另一个MOS管，那么就称之为同步BUCK，同步BUCK可以降低续流时候的损耗，提升电源效率，但对应的芯片电路就会更复杂，成本会更高。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/buck-boost/1.png&#34;
+	width=&#34;2082&#34;
+	height=&#34;1335&#34;
+	srcset=&#34;https://Carring06.github.io/p/buck-boost/1_hu6399872021596344553.png 480w, https://Carring06.github.io/p/buck-boost/1_hu6517962185494767142.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;同步异步&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;155&#34;
+		data-flex-basis=&#34;374px&#34;
+	
+&gt;&lt;br&gt;
+  上述我们好像只是论述了电路相关的，并没有说明是如何实现降压的。那我这里就来简单说明一下（网上教学视频很多，这里就不过多论述）。我们说过，MOS管是个电子开关，在我目前学习过的，大多都是通过输出PWM波来控制MOS管的导通与断开，在很多的开关芯片里，会将PWM的频率称之为开关频率，在绝大多数情况下，开关频率越高，该开关芯片输出的电压更好，电压纹波会更平滑（这个PWM波是芯片自身生成的，并不需要我们进行PWM生成操作）。&lt;/p&gt;
+&lt;h2 id=&#34;boost电路&#34;&gt;BOOST电路
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/buck-boost/image-4.png&#34;
+	width=&#34;795&#34;
+	height=&#34;1025&#34;
+	srcset=&#34;https://Carring06.github.io/p/buck-boost/image-4_hu6445221973216318359.png 480w, https://Carring06.github.io/p/buck-boost/image-4_hu8920782234123511528.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;BOOST&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;77&#34;
+		data-flex-basis=&#34;186px&#34;
+	
+&gt;
+  上图，是BOOST电路的电路图，我们同样用一个普通开关替换MOS管，以来更简洁的分析。&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>可调电源1.0_序言</title>
