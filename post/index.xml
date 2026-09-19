@@ -13,7 +13,62 @@
         <pubDate>Fri, 18 Sep 2026 11:38:36 +0800</pubDate>
         
         <guid>https://Carring06.github.io/p/look-bug/</guid>
-        <description></description>
+        <description>&lt;p&gt;  从原理图绘制到PCB绘制，从打板到焊接，从想法到落地，这一过程中，难免出现一些离奇现象，难免出现一个又一个的BUG。而且，要找出并修改BUG，这也是一个重难点，因为，大多数BUG我们是无法一眼定位出BUG根源，也许是原理图某个不起眼的细节画错了，也许是PCB绘图时元件摆放位置/走线不规范导致的，又或许说，是PCB在生产中出现的错误，可能出问题的地方多，我们DEBUG的过程就越艰难。况且，对于一个小白来说，没有任何DEBUG经验，而且没人带的话，可以说是举步维艰。这就会导致他们内心起伏大，毫无思绪，最终萌生了放弃的念头。&lt;br&gt;
+  就拿我举例，我从9.1号打板后，9.7号开始焊接，最终在9.16号完成焊接，在这期间，我把打样的6块板子（感谢嘉立创多送我一块板子！！！）全部都进行了焊接，元器件拆了又焊，焊了又拆，反反复复，这也使得我内心开始动摇，想着要不算了吧。但秉承着“打不倒我的终将是我更强大”原则，我又坚持了下来。每一次将元器件重新拆下来，再将其重新焊在另一块板子上，这个过程中很打击人，但也是的我对下一次新板子的焊接更有底更有思路。最终，在对第六块板子进行焊接调试后，对功能进行了测试，最终才完成这个项目（尽管还不算完美）！&lt;br&gt;
+  接下来，我将在焊接过程中出现的BUG进行一个汇总。&lt;/p&gt;
+&lt;h2 id=&#34;bug1&#34;&gt;BUG1
+&lt;/h2&gt;&lt;p&gt;DC输入12V，但12V输出处仅为5V左右，5V输出仅仅为2.8V，3.3 V仅仅为2V&lt;/p&gt;
+&lt;h2 id=&#34;bug2&#34;&gt;BUG2
+&lt;/h2&gt;&lt;p&gt;当我仅用DC端子供电时，5V转12V的MBRD1045二极管的负极处也检测到了12V&lt;/p&gt;
+&lt;h2 id=&#34;bug3&#34;&gt;BUG3
+&lt;/h2&gt;&lt;p&gt;锂电池供电后，5V输出仅仅为4.5左右，3.3仅仅为3.1左右，12V输出为7.5左右，但是！在板子上有检测到12V 说明升压还是起作用的&lt;/p&gt;
+&lt;h2 id=&#34;bug4&#34;&gt;BUG4
+&lt;/h2&gt;&lt;p&gt;将可调升压部分电路焊接上去后，3.3V，5V，12V输出全部异常，可调升压部分的输出电压很大，可以达到45V 。只有将下图引脚短接一下，3.3V，5V就正常，可调升压也正常，但是在调节升压过程中，他会再一次异常，所以得再一次短接
+&lt;img src=&#34;https://Carring06.github.io/p/look-bug/image.png&#34;
+	width=&#34;1004&#34;
+	height=&#34;602&#34;
+	srcset=&#34;https://Carring06.github.io/p/look-bug/image_hu7965283354627711355.png 480w, https://Carring06.github.io/p/look-bug/image_hu13766239937425564300.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;166&#34;
+		data-flex-basis=&#34;400px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;bug5&#34;&gt;BUG5
+&lt;/h2&gt;&lt;p&gt;降压芯片焊接后&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/look-bug/image-1.png&#34;
+	width=&#34;546&#34;
+	height=&#34;849&#34;
+	srcset=&#34;https://Carring06.github.io/p/look-bug/image-1_hu6821410921045723742.png 480w, https://Carring06.github.io/p/look-bug/image-1_hu7083646077823685670.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;·&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;64&#34;
+		data-flex-basis=&#34;154px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;bug5-1&#34;&gt;BUG5
+&lt;/h2&gt;&lt;p&gt;在焊接完芯片后，3.3V和5V直接短路，换个芯片也会&lt;/p&gt;
+&lt;h2 id=&#34;bug6&#34;&gt;BUG6
+&lt;/h2&gt;&lt;p&gt;在最后一块板子焊接时，先焊接了TSP5450,12V转5V正常，但是焊接了5V转12V的电路元件后，12V转5V失效，TSP5450的反馈引脚才0.2V&lt;/p&gt;
+&lt;h2 id=&#34;bug7&#34;&gt;BUG7
+&lt;/h2&gt;&lt;p&gt;解决完BUG6后，将可调升压元器件焊接上去，前面原本正常的锂电池转5V直接失效&lt;/p&gt;
+&lt;h2 id=&#34;bug8&#34;&gt;BUG8
+&lt;/h2&gt;&lt;p&gt;解决完BUG7后，将可调降压元器件焊接上去，前面原本正常的锂电池转5V又失效&lt;/p&gt;
+&lt;h2 id=&#34;bug9&#34;&gt;BUG9
+&lt;/h2&gt;&lt;p&gt;在电源部分焊接调试后，就去焊接了MCU，发现程序时而能烧录时而不能；时而能执行程序，时而不能。有时候芯片卡死，烧录也烧录不进去，用热风枪吹一下，就又好了，就这样反复坏，反复吹&lt;/p&gt;
+&lt;h2 id=&#34;bug10&#34;&gt;BUG10
+&lt;/h2&gt;&lt;p&gt;芯片引脚有时候不能正常输出高低电平，NRST明明我有上拉，但他却一直为低电平&lt;/p&gt;
+&lt;h2 id=&#34;bug11&#34;&gt;BUG11
+&lt;/h2&gt;&lt;p&gt;主控部分DEBUG后，我进行了最后一部分焊接，锂电池充电管理。但是焊接后，5V一直短路，换了芯片也会&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>可调电源1.0_调试过程</title>
@@ -196,6 +251,51 @@
 &lt;h3 id=&#34;ldo降压至33v&#34;&gt;LDO降压至3.3V
 &lt;/h3&gt;&lt;p&gt;  详细请看&lt;a class=&#34;link&#34; href=&#34;https://carring06.github.io/p/summary1/#%E7%94%B5%E6%B1%A0%E4%BE%9B%E7%94%B5%E9%83%A8%E5%88%86&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;-&amp;gt;AMS1117-3.3&amp;lt;-&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;额外说明&#34;&gt;额外说明
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/schematic-design/image-10.png&#34;
+	width=&#34;941&#34;
+	height=&#34;678&#34;
+	srcset=&#34;https://Carring06.github.io/p/schematic-design/image-10_hu16251715405896241024.png 480w, https://Carring06.github.io/p/schematic-design/image-10_hu8697137060507729203.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;138&#34;
+		data-flex-basis=&#34;333px&#34;
+	
+&gt;&lt;br&gt;
+  该原理图中，MBRD1045二极管发挥了一个我意想不到的作用，就是防止外部电压电流倒灌。其实这个问题造成的原因是我的12V合路设计的不好。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/schematic-design/image-11.png&#34;
+	width=&#34;1944&#34;
+	height=&#34;700&#34;
+	srcset=&#34;https://Carring06.github.io/p/schematic-design/image-11_hu16080898981012732896.png 480w, https://Carring06.github.io/p/schematic-design/image-11_hu4649290983749098742.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;合路&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;277&#34;
+		data-flex-basis=&#34;666px&#34;
+	
+&gt; &lt;br&gt;
+  虽然说，我有意识到，需要加二极管防止倒灌，但是实际绘制时，我并没有对此进行处理。才导致了，在我只接入DC+12V时，在MBRD1045二极管的负极处也检测到了12V。还好MBRD1045二极管的反向耐压值为45V，如果倒灌电压大于45V，那么在使用过程中，该二极管就会被反向击穿（如果只是电击穿，那断电后该二极管还可以恢复正常严重的话会造成二次击穿，也就是热击穿，这是不可逆的）。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/schematic-design/image-12.png&#34;
+	width=&#34;1046&#34;
+	height=&#34;119&#34;
+	srcset=&#34;https://Carring06.github.io/p/schematic-design/image-12_hu16079519829260665213.png 480w, https://Carring06.github.io/p/schematic-design/image-12_hu12481937732415881535.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;数据手册&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;878&#34;
+		data-flex-basis=&#34;2109px&#34;
+	
+&gt;&lt;/p&gt;
 </description>
         </item>
         <item>

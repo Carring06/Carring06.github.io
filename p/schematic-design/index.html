@@ -336,6 +336,7 @@
         <li><a href="#ldo降压至33v">LDO降压至3.3V</a></li>
       </ol>
     </li>
+    <li><a href="#额外说明">额外说明</a></li>
   </ol>
 </nav>
         </div>
@@ -396,7 +397,7 @@
         </div>
         
         <div>
-            <span class="article-time--words">📝 1638 字</span>
+            <span class="article-time--words">📝 1901 字</span>
         </div>
         
         <div>
@@ -581,6 +582,51 @@
 <h3 id="ldo降压至33v">LDO降压至3.3V
 </h3><p>  详细请看<a class="link" href="https://carring06.github.io/p/summary1/#%E7%94%B5%E6%B1%A0%E4%BE%9B%E7%94%B5%E9%83%A8%E5%88%86"  target="_blank" rel="noopener"
     >-&gt;AMS1117-3.3&lt;-</a></p>
+<h2 id="额外说明">额外说明
+</h2><p><img src="/p/schematic-design/image-10.png"
+	width="941"
+	height="678"
+	srcset="/p/schematic-design/image-10_hu16251715405896241024.png 480w, /p/schematic-design/image-10_hu8697137060507729203.png 1024w"
+	loading="lazy"
+	
+		alt="1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="138"
+		data-flex-basis="333px"
+	
+><br>
+  该原理图中，MBRD1045二极管发挥了一个我意想不到的作用，就是防止外部电压电流倒灌。其实这个问题造成的原因是我的12V合路设计的不好。<br>
+<img src="/p/schematic-design/image-11.png"
+	width="1944"
+	height="700"
+	srcset="/p/schematic-design/image-11_hu16080898981012732896.png 480w, /p/schematic-design/image-11_hu4649290983749098742.png 1024w"
+	loading="lazy"
+	
+		alt="合路"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="277"
+		data-flex-basis="666px"
+	
+> <br>
+  虽然说，我有意识到，需要加二极管防止倒灌，但是实际绘制时，我并没有对此进行处理。才导致了，在我只接入DC+12V时，在MBRD1045二极管的负极处也检测到了12V。还好MBRD1045二极管的反向耐压值为45V，如果倒灌电压大于45V，那么在使用过程中，该二极管就会被反向击穿（如果只是电击穿，那断电后该二极管还可以恢复正常严重的话会造成二次击穿，也就是热击穿，这是不可逆的）。<br>
+<img src="/p/schematic-design/image-12.png"
+	width="1046"
+	height="119"
+	srcset="/p/schematic-design/image-12_hu16079519829260665213.png 480w, /p/schematic-design/image-12_hu12481937732415881535.png 1024w"
+	loading="lazy"
+	
+		alt="数据手册"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="878"
+		data-flex-basis="2109px"
+	
+></p>
 
 </section>
 
