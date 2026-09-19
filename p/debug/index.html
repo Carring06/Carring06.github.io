@@ -411,7 +411,7 @@
         </div>
         
         <div>
-            <span class="article-time--words">📝 6420 字</span>
+            <span class="article-time--words">📝 6474 字</span>
         </div>
         
         <div>
@@ -475,7 +475,7 @@
 		data-flex-basis="185px"
 	
 >     <br>
-  而后，我开始焊接DC+12V输入部分，也是先将小器件焊接后，再焊接DC端子。然后进行上电测试，发现指示灯正常亮，但是12V输出排插检测到只有7.5V（刚上电是5V，后面不知为何升到7.5V）。然后我就去检查了DC输入，发现DC输入确实是12V。这就让我很疑惑了。明明我这个12V的电路就经过个自恢复保险丝，怎么就有5V左右压降呢？后面，我换了好几个板子，发现都会出现这种情况。所以就排除了是板子自身问题了。因此，我把视线转移到板子12V流经路线。我沿着12V的相关电路进行检测，发现DC输入的12V是在经过这颗保险丝后才变成7V多的。可是我买的是60V耐压的自恢复保险丝，可输入只有12V啊，而且明明是自恢复保险丝，就算烧断了，理应该也会回复吧？但事实是，我换了个保险丝后，12V输出就正常了，那就证明问题确实是在这颗保险丝上。其实在后续焊接中，也发现5V输出也有很大压降了，然后换了个保险丝后，也恢复正常了。&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG1</mark><br>
+  而后，我开始焊接<strong>DC+12V输入部分</strong>，也是先将小器件焊接后，再焊接DC端子。然后进行上电测试，发现指示灯正常亮，但是12V输出排插检测到只有7.5V（刚上电是5V，后面不知为何升到7.5V）。然后我就去检查了DC输入，发现DC输入确实是12V。这就让我很疑惑了。明明我这个12V的电路就经过个自恢复保险丝，怎么就有5V左右压降呢？后面，我换了好几个板子，发现都会出现这种情况。所以就排除了是板子自身问题了。因此，我把视线转移到板子12V流经路线。我沿着12V的相关电路进行检测，发现DC输入的12V是在经过这颗保险丝后才变成7V多的。可是我买的是60V耐压的自恢复保险丝，可输入只有12V啊，而且明明是自恢复保险丝，就算烧断了，理应该也会回复吧？但事实是，我换了个保险丝后，12V输出就正常了，那就证明问题确实是在这颗保险丝上。其实在后续焊接中，也发现5V输出也有很大压降了，然后换了个保险丝后，也恢复正常了。&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <a id="mark-bug1"></a><a class="link" href="#bug1" ><mark>BUG1</mark></a><br>
 <img src="/p/debug/image-4.png"
 	width="1548"
 	height="942"
@@ -505,7 +505,7 @@
 		data-flex-basis="592px"
 	
 >  <br>
-   接着，我进行了开关芯片部分的焊接，首先是TPS5450-12V转5V焊接以及AMS1117-3.3的焊接,验证说明12V转5V转3.3V均正常。<br>
+   接着，我进行了<strong>开关芯片部分</strong>的焊接，首先是<strong>TPS5450-12V转5V焊接以及AMS1117-3.3</strong>的焊接,验证说明12V转5V转3.3V均正常。<br>
 <img src="/p/debug/image-6.png"
 	width="822"
 	height="512"
@@ -520,8 +520,8 @@
 		data-flex-basis="385px"
 	
 >   <br>
-  接着，我进行了XL6019-5V升12V的焊接,发现5V转12V是成功的。然后，我将TypeC拆了下来，转为12V的DC端子供电（之所以这么操作，是因为在前面的板子焊接中，当我焊接多个元器件后，出现过DC输入转5V时异常的现象），发现12V转5V失效了，5V输出只有2.8V左右。
-  在检查保险丝，发现不是保险丝的问题后。我去检查了TPS5450的反馈引脚，发现其电压仅为0.6V，并不是数据手册上所标称的1.221V.然后我去换了芯片，结果依旧如此。再联想到再没焊接XL6019的电路前，TPS5450还是正常的，我就打算先把XL6019相关的元器件拆下来。所以，我把下图红框内的电解电容拆了后，发现12V转5V恢复正常了。
+  接着，我进行了<strong>XL6019-5V升12V</strong>的焊接,发现5V转12V是成功的。然后，我将TypeC拆了下来，转为12V的DC端子供电（之所以这么操作，是因为在前面的板子焊接中，当我焊接多个元器件后，出现过DC输入转5V时异常的现象），发现12V转5V失效了，5V输出只有2.8V左右。<br>
+  在检查保险丝，发现不是保险丝的问题后。我去检查了<strong>TPS5450的反馈引脚</strong>，发现其电压仅为<strong>0.6V</strong>，并不是数据手册上所标称的<strong>1.221V</strong>.然后我去换了芯片，结果依旧如此。再联想到再没焊接XL6019的电路前，TPS5450还是正常的，我就打算先把XL6019相关的元器件拆下来。所以，我把下图红框内的电解电容拆了后，发现12V转5V恢复正常了。
 <img src="/p/debug/image-7.png"
 	width="947"
 	height="705"
@@ -551,7 +551,7 @@
 	
 ><br>
   再后来我发现，同一颗电容放在1位置时，12转5就不正常；放在2时却正常了（后续再来探讨原因！）。所以，这给我提了个醒，先别焊铝电解电容！！！【可是我这两铝电解电容又不是TPA5450的，怎么会影响到5450呢？】  <br>
-&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG2-1</mark><br>
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <a id="mark-bug2-1"></a><a class="link" href="#bug2" ><mark>BUG2-1</mark></a><br>
   而后，在焊接锂电池升压转5V的电路中，我故意不焊接两颗铝电解电容，发现锂电池转5转12转3.3正常。而且我也对其他两个输入进行了检查，发现都正常后，我才开始去焊接两颗铝电解电容。焊接后，发现一切正常。 <br>
 <img src="/p/debug/image-9.png"
 	width="761"
@@ -568,7 +568,7 @@
 	
 ><br>
   再然后，来到了可调升压相关电路。焊接后（除了两个电解电容），三个输入的测试都正常，可调电压范围是5V到30V.然后我进行了两颗铝电解电容焊接上去，发现TypeC,DC端子输入测试都正常，但是锂电池输入转5V不正常，最终把下图红红框内电容去了，才恢复正常。<br>
-&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG2-2</mark> <br>
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <a id="mark-bug2-2"></a><a class="link" href="#bug2" ><mark>BUG2-2</mark></a> <br>
 <img src="/p/debug/image-10.png"
 	width="1080"
 	height="729"
@@ -584,7 +584,7 @@
 	
 ><br>
   接着是可调降压部分，结果也是如此，只有拆了下图的铝电解电容，锂电池输入转5V才能正常。 <br>
-&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG2-3</mark><br>
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <a id="mark-bug2-3"></a><a class="link" href="#bug2" ><mark>BUG2-3</mark></a><br>
 <img src="/p/debug/image-11.png"
 	width="677"
 	height="531"
@@ -600,29 +600,29 @@
 	
 >     <br>
   说实话，锂电池充电部分我是等到MCU焊接后才进行焊接的，一开始，焊接完充电管理芯片4056后，5V也短路了。那时候换了好几个芯片，但最终都是短路。然后换了4056芯片旁的几个滤波电容，结果就好了。不过现在仍存在一个小问题，就是充电引脚上，没接锂电池进行检测，他也有电压，这就导致了我没办法进行锂电池的电压实时监测，好几个芯片都这样，应该是芯片设计的问题吧！？<br>
-&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG3-1</mark></p>
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <a id="mark-bug3-1"></a><a class="link" href="#bug3" ><mark>BUG3-1</mark></a></p>
 <h3 id="mcu">MCU
 </h3><p>  在上述焊接完成后，电源部分大体完成了（差个锂电池充电），接下来就是针对于MCU相关的焊接了。<br>
   因为可调电源1.0的MCU部分并不复杂，所以焊接起来比较迅速，所以我一开始一股脑全焊接了，而且是焊接完后再去测试，这一点我做的很不好，大家别学习。<br>
-  我在一股脑把MCU部分全焊接后（LED,按键，滤波电容，芯片，晶振等）。一上电，MCU芯片烧了。这一点我也做的很不好，大家是应该先检查是否短路后再上电的。 <br>
-  然后我换了个芯片焊接，然后在上电前，用万用表进行检测，发现还是短路。然后我就用放大镜在芯片的电源引脚检查了很久，但是就是觉得芯片不会短路的。所以后面，我试着把几个芯片滤波电容拆了，然后发现就不短路了。后面我就换了几个芯片滤波电容，然后就正常了。
-&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG3-2</mark><br>
-  接着，我将复位电路也焊接了上去，然后准备烧录程序进行。刚开始还是能烧录的，但是烧录一次后，就直接烧录不进去了。Keil给的报错是，无法阻止设备运行，而且烧录进去的程序一会能运行一会不能。那时候我琢磨很久，一直想不清楚原因。然后我去测试了复位引脚，发现，明明复位引脚应该是被拉高至3.3V，结果检测出来却是0V。所以，我去对复位引脚的上拉电阻一端进行了检测，结果还是0V。后面我实在没头绪了，就把复位电路的电容和芯片，按键都拆下来，然后又去测试上拉电阻一端的电压，结果发现拆完电容电阻后，焊盘上确实能检测出3.3V。所以我怀疑可能又是电容的问题。后面，我就去换了新电容，然后再把复位电路重新焊接，发现复位引脚依旧是低电平0，代码依旧下载不了，程序依旧不能正常运行。然后，我直接把电阻电容拆了。直接用一根杜邦线短接复位引脚和3.3V。此时，我发现程序被正常运行了。但是还是不能下载程序，后面查清楚原因，此时不能下载程序，是因为我把复位引脚强制拉高，而每次芯片要下载程序时都会把复位引脚拉低，但是他又只是弱下拉，对不过我的外部强上拉，所以下载不进去程序。后面我重新换了一个芯片，又顺便电容，结果发现复位引脚正常了，在常态下默认高电平，按复位键时才被拉低。<br>
-&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG4</mark><br>
-  然后，单片机能正常下载程序了。所以我开始测试相关的程序。结果发现，单片机跑着跑着容易死机，而我将晶振换成内部晶振后，又正常了，在再三考虑后，我决定使用内部晶振就好，在我这个场景足够使用。<br>
-&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG5</mark><br>
-  但是，不出意外的话，意外又来了。我的按键电路，发生了异常。一开始，我以为是焊接不好，我就又去焊接一遍芯片，并再上一次锡。结果证明，确实有一部分原因是焊接不良导致的。但是还有一个按键失效。然后我就去测了一下这个贴片按键是否正常，是否能正常导通，结果也是可以的。然后我去测试了这个案按键的引脚，发现他是输出低电平，但是，我在CubeMX配置了上拉，他不应该是低电平啊。然后我把按键的滤波电容拆了，然后这个按键就正常了，换了个新电容，也是ok的。
-&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG3-3</mark><br>
+  我在一股脑把MCU部分全焊接后（<strong>LED,按键，滤波电容，芯片，晶振</strong>等）。一上电，MCU芯片烧了。这一点我也做的很不好，大家是应该先检查是否短路后再上电的。 <br>
+  然后我换了个芯片焊接，然后在上电前，用万用表进行检测，发现还是短路。然后我就用放大镜在芯片的电源引脚检查了很久，但是就是觉得芯片不会短路的。所以后面，我试着把几个<strong>芯片滤波电容</strong>拆了，然后发现就不短路了。后面我就换了几个<strong>芯片滤波电容</strong>，然后就正常了。
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <a id="mark-bug3-2"></a><a class="link" href="#bug3" ><mark>BUG3-2</mark></a><br>
+  接着，我将<strong>复位电路相关器件</strong>也焊接了上去，然后准备<strong>烧录程序</strong>进行。刚开始还是能烧录的，但是<strong>烧录一次</strong>后，就<strong>直接烧录不进去</strong>了。Keil给的报错是，<strong>无法阻止设备运行</strong>，而且烧录进去的程序<strong>一会能运行一会不能</strong>。那时候我琢磨很久，一直想不清楚原因。然后我去<strong>测试了复位引脚</strong>，发现，明明<strong>复位引脚</strong>应该是被<strong>拉高至3.3V</strong>，结果检测出来却是<strong>0V</strong>。所以，我去对复位引脚的<strong>上拉电阻接3.3V的那一端</strong>进行了检测，结果还是0V。后面我实在没头绪了，就把<strong>复位电路的电容和芯片，按键都拆下来</strong>，然后又去测试上拉电阻一端的电压，结果发现拆完电容电阻后，焊盘上<strong>确实能检测出3.3V</strong>。所以我怀疑可能又是<strong>电容</strong>的问题。后面，我就去<strong>换了新电容</strong>，然后再把复位电路重新焊接，发现<strong>复位引脚依旧是低电平0</strong>，代码依旧下载不了，程序依旧不能正常运行。然后，我<strong>直接把电阻电容拆</strong>了。直接用一根<strong>杜邦线短接复位引脚和3.3V</strong>。此时，我发现程序被正常运行了。但是还是<strong>不能下载程序</strong>，后面查清楚原因，此时不能下载程序，是因为我把复位引脚<strong>强制拉高</strong>，而每次芯片要下载程序时都会把复位引脚拉低，但是他又只是弱下拉，对不过我的外部强上拉，所以下载不进去程序。后面我重新换了一个芯片，又顺便电容，结果发现<strong>复位引脚正常</strong>了，在<strong>常态下默认高电平</strong>，<strong>按复位键时才被拉低</strong>。<br>
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <a id="mark-bug4"></a><a class="link" href="#bug4" ><mark>BUG4</mark></a><br>
+  然后，单片机能<strong>正常下载程序</strong>了。所以我开始测试相关的程序。结果发现，单片机跑着跑着<strong>容易死机</strong>，而我将晶振换成<strong>内部晶振</strong>后，又正常了，在再三考虑后，我<strong>决定使用内部晶振</strong>就好，在我这个场景足够使用。<br>
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <a id="mark-bug5"></a><a class="link" href="#bug5" ><mark>BUG5</mark></a><br>
+  但是，不出意外的话，意外又来了。我的<strong>按键电路，发生了异常</strong>。一开始，我以为是焊接不好，我就又去焊接一遍芯片，并再上一次锡。结果证明，确实<strong>有一部分原因</strong>是焊接不良导致的。但是还有一个按键失效。然后我就去测了一下这个贴片按键是否正常，是否能正常导通，结果也是可以的。然后我去测试了这个<strong>按键的引脚</strong>，发现他是输出<strong>低电平</strong>，但是，我在CubeMX<strong>配置了上拉</strong>，他不应该是低电平啊。然后我把按键的<strong>滤波电容拆了</strong>，然后这个按键就<strong>正常上拉</strong>了，换了个新电容，也是ok的。
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <a id="mark-bug3-3"></a><a class="link" href="#bug3" ><mark>BUG3-3</mark></a><br>
   至此，该板子大部分功能正常，但还是存在一些些不足之处以及BUG。这一部分会在下文加以说明</p>
 <h2 id="bug原因">BUG原因
 </h2><p>仍存在的BUG和不足说明：<br>
   虽然说，大部分BUG已经得到优化，但是，可调电源1.0还存在着一个严重不足！就是上电时间比较久时，主控方面可能会出现死机。我有进行一次测试，发现使用手机充电器进行5V供电时，能维持较长时间，而使用电源适配器进行12V供电，维持的时间最短。每次一死机，就得用热风枪吹一下芯片，才能正常使用。</p>
 <h3 id="bug1">BUG1
-</h3><p>  BUG1：虽然说，保险丝的耐压值确实比我的输入电压大很多，但是 DC12V 输入波形杂乱，负载侧产生瞬时大电流，导致了保险丝过流很严重，造成不可逆的后果，导致保险丝无法 “自恢复”。但其实我觉得，也有可能是我在焊接时候的温度太高导致的（该可能性极低）。</p>
+</h3><p>  BUG1：虽然说，保险丝的耐压值确实比我的输入电压大很多，但是 DC12V 输入波形杂乱，负载侧产生瞬时大电流，导致了保险丝过流很严重，造成不可逆的后果，导致保险丝无法 “自恢复”。但其实我觉得，也有可能是我在焊接时候的温度太高导致的（该可能性极低）。<a class="link" href="#mark-bug1" >返回调试过程</a></p>
 <h3 id="bug2">BUG2
-</h3><p>  BUG2-1：原理图上 C24 为 U14（XL6019）升压输出端 220uF 铝电解电容。原理图电路本身没有错误，但 PCB 上焊接 C24 之后，XL6019 开关大电流会通过 C24 负极流入公共 GND 铜皮，产生地弹噪声。该噪声会污染 TPS5450 的 FB 反馈采样地，造成 TPS5450 反馈电压异常，输出电压被拉低。将 C24 拆除，XL6019 对应的这条交流地回流环路消失，地弹噪声消失，TPS5450 工作恢复正常。同一颗电容放在位置 1 时会引入干扰，放到位置 2 时 XL6019 功率回流地远离 TPS5450 反馈网络，不会干扰采样，电路可以正常工作。</p>
-<p>  BUG2-2：原理图上 C9 为 U5（XL6019 可调升压）输出端 220uF 铝电解电容。原理和 C24 一致，焊接 C9 之后，XL6019 开关脉动电流会在公共地产生地弹噪声，干扰周边电源芯片的反馈采样。只焊接 XL6019 其他器件、不焊 C9 时，电路全部测试正常；焊上 C9 后锂电池输入转 5V 工作异常，拆掉 C9 后恢复正常。</p>
-<p>  BUG2-3：原理图上 C27 为 LM2596 可调降压输入侧的 220uF 铝电解电容。C27 并联在 12V 主输入，焊接后输入回路的脉动电流会在公共 GND 铜皮产生地噪声，同样会干扰附近电源反馈采样。焊接该铝电解时锂电池输入转 5V 异常，拆除 C27 之后电路恢复正常。</p>
+</h3><p>  BUG2-1：原理图上 C24 为 U14（XL6019）升压输出端 220uF 铝电解电容。原理图电路本身没有错误，但 PCB 上焊接 C24 之后，XL6019 开关大电流会通过 C24 负极流入公共 GND 铜皮，产生地弹噪声。该噪声会污染 TPS5450 的 FB 反馈采样地，造成 TPS5450 反馈电压异常，输出电压被拉低。将 C24 拆除，XL6019 对应的这条交流地回流环路消失，地弹噪声消失，TPS5450 工作恢复正常。同一颗电容放在位置 1 时会引入干扰，放到位置 2 时 XL6019 功率回流地远离 TPS5450 反馈网络，不会干扰采样，电路可以正常工作。<a class="link" href="#mark-bug2-1" >返回调试过程</a></p>
+<p>  BUG2-2：原理图上 C9 为 U5（XL6019 可调升压）输出端 220uF 铝电解电容。原理和 C24 一致，焊接 C9 之后，XL6019 开关脉动电流会在公共地产生地弹噪声，干扰周边电源芯片的反馈采样。只焊接 XL6019 其他器件、不焊 C9 时，电路全部测试正常；焊上 C9 后锂电池输入转 5V 工作异常，拆掉 C9 后恢复正常。<a class="link" href="#mark-bug2-2" >返回调试过程</a></p>
+<p>  BUG2-3：原理图上 C27 为 LM2596 可调降压输入侧的 220uF 铝电解电容。C27 并联在 12V 主输入，焊接后输入回路的脉动电流会在公共 GND 铜皮产生地噪声，同样会干扰附近电源反馈采样。焊接该铝电解时锂电池输入转 5V 异常，拆除 C27 之后电路恢复正常。<a class="link" href="#mark-bug2-3" >返回调试过程</a></p>
 <blockquote>
 <p>底层原因：原理图所有 GND 画在一起是没问题的，但 PCB 铜皮存在阻抗，XL6019、LM2596 这类开关电源的高频大电流流过公共地铜皮会产生地弹；铝电解 ESR、ESL 偏大，焊接后会改变开关电流的地回流路径，噪声串入 FB 这类微弱反馈信号，导致稳压失控，并非电容本身损坏。</p>
 </blockquote>
@@ -633,11 +633,11 @@
 电容引脚、内部铝箔卷绕结构自带一点点电感，就是 ESL。铝电解卷绕结构，ESL 明显大于 MLCC。
 电感有个特性：<strong>阻碍高频电流变化</strong>。频率越高，ESL 带来的阻碍越强。高频开关噪声很难通过铝电解滤除。</p>
 <h3 id="bug3">BUG3
-</h3><p>  电容直流漏电阻在正常状态下的阻值特别大，大约在 10MΩ 前后。如果电容损坏，它的阻值可能会特别低。这几个电容导致的短路，我个人感觉是这个原因，电容损坏，导致电路近似导通，最终使电源端直接接地，造成短路（滤波电容的一端一定接电源，另一端一直是接地；排查时需要区分是电容击穿，还是芯片寄生二极管带来的假短路）。</p>
+</h3><p>  电容直流漏电阻在正常状态下的阻值特别大，大约在 10MΩ 前后。如果电容损坏，它的阻值可能会特别低。这几个电容导致的短路，我个人感觉是这个原因，电容损坏，导致电路近似导通，最终使电源端直接接地，造成短路（滤波电容的一端一定接电源，另一端一直是接地；排查时需要区分是电容击穿，还是芯片寄生二极管带来的假短路）。<a class="link" href="#mark-bug3-2" >返回调试过程</a></p>
 <h3 id="bug4">BUG4
-</h3><p>  造成复位引脚一直为0其实可以认为有两个原因，一是芯片内部将其直接拉低（因为我们复位电路的上拉电阻很大，电流小，上拉能力比芯片的内部下拉弱，这样才能保证在按复位键时，能正常将复位引脚拉低），然后外部强拉直接不起作用；二是电容损坏，直接接地了。</p>
+</h3><p>  造成复位引脚一直为0其实可以认为有两个原因，一是芯片内部将其直接拉低（因为我们复位电路的上拉电阻很大，电流小，上拉能力比芯片的内部下拉弱，这样才能保证在按复位键时，能正常将复位引脚拉低），然后外部强拉直接不起作用；二是电容损坏，直接接地了。<a class="link" href="#mark-bug4" >返回调试过程</a></p>
 <h3 id="bug5">BUG5
-</h3><p>  可能是外部晶振起振出问题了。这一部分，我觉得不是晶振和电容的原因，因为我将它们换在别的板子上，却能正常使用，在这个板子上却不能。很大可能是我的 PCB 布局布线不太好导致的；同时也要留意芯片供电、复位、BOOT 引脚、虚焊这类问题，也会出现类似现象。</p>
+</h3><p>  可能是外部晶振起振出问题了。这一部分，我觉得不是晶振和电容的原因，因为我将它们换在别的板子上，却能正常使用，在这个板子上却不能。很大可能是我的 PCB 布局布线不太好导致的；同时也要留意芯片供电、复位、BOOT 引脚、虚焊这类问题，也会出现类似现象。<a class="link" href="#mark-bug5" >返回调试过程</a></p>
 <h2 id="bug2豆包精讲">BUG2豆包精讲：
 </h2><p>先明确三个电容归属：</p>
 <ol>

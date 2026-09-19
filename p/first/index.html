@@ -10,7 +10,7 @@
 <meta property='og:description' content="车度空间Carring 开启我的博客之行 两个常用的hugo指令 （1）hugo server -D：预览含草稿的站点（日常开发首选）； （2）hugo new content pos">
 <meta property='og:url' content='https://Carring06.github.io/p/first/'>
 <meta property='og:site_name' content='车度空间'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-07-13T18:09:17&#43;08:00'/><meta property='article:modified_time' content='2026-07-16T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-07-13T18:09:17&#43;08:00'/><meta property='article:modified_time' content='2026-09-19T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="First">
 <meta name="twitter:description" content="车度空间Carring 开启我的博客之行 两个常用的hugo指令 （1）hugo server -D：预览含草稿的站点（日常开发首选）； （2）hugo new content pos">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -330,6 +330,14 @@
 
   <ol>
     <li><a href="#二级标题">二级标题</a></li>
+    <li><a href="#hugo-文章内跳转锚点链接">Hugo 文章内跳转（锚点链接）</a>
+      <ol>
+        <li><a href="#1-跳转到标题自动id">1. 跳转到标题（自动ID）</a></li>
+        <li><a href="#2-跳转到任意位置自定义id">2. 跳转到任意位置（自定义ID）</a></li>
+        <li><a href="#3-给标题添加自定义id">3. 给标题添加自定义ID</a></li>
+        <li><a href="#4-双向跳转实例调试过程--bug说明">4. 双向跳转实例（调试过程 ↔ BUG说明）</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -385,12 +393,12 @@
 
 
             <time class="article-time--modified">
-                最后更新于 2026-07-16
+                最后更新于 2026-09-19
             </time>
         </div>
         
         <div>
-            <span class="article-time--words">📝 192 字</span>
+            <span class="article-time--words">📝 532 字</span>
         </div>
         
         <div>
@@ -446,6 +454,78 @@
 </ul>
 <p><a class="link" href="https://favicon.io/"  target="_blank" rel="noopener"
     >ICO转换网址</a></p>
+<h2 id="hugo-文章内跳转锚点链接">Hugo 文章内跳转（锚点链接）
+</h2><h3 id="1-跳转到标题自动id">1. 跳转到标题（自动ID）
+</h3><p>Hugo 会自动为标题生成 ID，格式：标题文本转小写、空格变 <code>-</code>、去掉特殊字符。</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gu">## BUG原因    ← 自动获得 ID: #bug原因
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl">[<span class="nt">跳转到BUG原因</span>](<span class="na">#bug原因</span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="2-跳转到任意位置自定义id">2. 跳转到任意位置（自定义ID）
+</h3><p>在目标位置用 HTML 锚点：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;my-anchor&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">我要跳到这里
+</span></span><span class="line"><span class="cl">
+</span></span><span class="line"><span class="cl">[<span class="nt">点击跳转</span>](<span class="na">#my-anchor</span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="3-给标题添加自定义id">3. 给标题添加自定义ID
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gu">## BUG说明 {#bug-section}
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span>
+</span></span><span class="line"><span class="cl">[<span class="nt">跳转到BUG说明</span>](<span class="na">#bug-section</span>)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="4-双向跳转实例调试过程--bug说明">4. 双向跳转实例（调试过程 ↔ BUG说明）
+</h3><p><strong>调试过程中的标记：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">a</span> <span class="na">id</span><span class="o">=</span><span class="s">&#34;mark-bug1&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">a</span><span class="p">&gt;</span>[==BUG1==](#bug1)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>BUG说明段落的标题：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl"><span class="gu">### BUG1 {#bug1}
+</span></span></span><span class="line"><span class="cl"><span class="gu"></span><span class="ni">&amp;emsp;&amp;emsp;</span>BUG1的说明内容...[返回调试过程](#mark-bug1)
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>效果：</strong></p>
+<ul>
+<li>调试过程 → 点击 <code>==BUG1==</code> 跳到 BUG1 说明</li>
+<li>BUG说明 → 点击 <code>返回调试过程</code> 跳回调试过程中的对应位置</li>
+</ul>
 
 </section>
 
@@ -475,7 +555,7 @@
 
 
         <span>
-            最后更新于 2026-07-16
+            最后更新于 2026-09-19
         </span>
     </section></footer>
 
