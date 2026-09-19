@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="! 首先，先说明一下，截至在这篇文章发布时，当前这个项目算不上太完美。所以当前，我只打算在这里记录一下在制作这个项目中做学习到的知识、所解决和">
-<title>可调电源1.0_序言</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="对于原理图与PCB设计，我使用的是嘉立创EDA专业版设计的，不得不说，嘉立创给了我们打样测试的勇气，使我们大学生们更加敢于去设计去实现一些小">
+<title>可调电源1.0_原理图设计</title>
 
-<link rel='canonical' href='https://Carring06.github.io/p/power-pre/'>
+<link rel='canonical' href='https://Carring06.github.io/p/schematic-design/'>
 
-<link rel="stylesheet" href="/scss/style.min.326dad0bb2c3ae4ad5c9a79fbec7a230f22001366c9e0e11fc90a9965b977acd.css"><meta property='og:title' content="可调电源1.0_序言">
-<meta property='og:description' content="! 首先，先说明一下，截至在这篇文章发布时，当前这个项目算不上太完美。所以当前，我只打算在这里记录一下在制作这个项目中做学习到的知识、所解决和">
-<meta property='og:url' content='https://Carring06.github.io/p/power-pre/'>
+<link rel="stylesheet" href="/scss/style.min.326dad0bb2c3ae4ad5c9a79fbec7a230f22001366c9e0e11fc90a9965b977acd.css"><meta property='og:title' content="可调电源1.0_原理图设计">
+<meta property='og:description' content="对于原理图与PCB设计，我使用的是嘉立创EDA专业版设计的，不得不说，嘉立创给了我们打样测试的勇气，使我们大学生们更加敢于去设计去实现一些小">
+<meta property='og:url' content='https://Carring06.github.io/p/schematic-design/'>
 <meta property='og:site_name' content='车度空间'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-09-16T11:38:36&#43;08:00'/><meta property='article:modified_time' content='2026-09-16T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="可调电源1.0_序言">
-<meta name="twitter:description" content="! 首先，先说明一下，截至在这篇文章发布时，当前这个项目算不上太完美。所以当前，我只打算在这里记录一下在制作这个项目中做学习到的知识、所解决和">
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-09-18T11:38:36&#43;08:00'/><meta property='article:modified_time' content='2026-09-19T00:00:00&#43;00:00'/>
+<meta name="twitter:title" content="可调电源1.0_原理图设计">
+<meta name="twitter:description" content="对于原理图与PCB设计，我使用的是嘉立创EDA专业版设计的，不得不说，嘉立创给了我们打样测试的勇气，使我们大学生们更加敢于去设计去实现一些小">
     <link rel="shortcut icon" href="/favicon.ico" />
 
   
@@ -322,12 +322,18 @@
         <div class="widget--toc">
             <nav id="TableOfContents">
   <ol>
-    <li>
+    <li><a href="#mcu层">MCU层</a>
       <ol>
-        <li><a href="#项目介绍">项目介绍</a></li>
-        <li><a href="#涉及知识点">涉及知识点</a></li>
-        <li><a href="#debug">DEBUG</a></li>
-        <li><a href="#改版">改版</a></li>
+        <li><a href="#外部晶振">外部晶振</a></li>
+        <li><a href="#boot引脚">BOOT引脚</a></li>
+        <li><a href="#adc检测电压">ADC检测电压</a></li>
+      </ol>
+    </li>
+    <li><a href="#power层">POWER层</a>
+      <ol>
+        <li><a href="#xl6019升压">XL6019升压</a></li>
+        <li><a href="#lm2596降压">LM2596降压</a></li>
+        <li><a href="#ldo降压至33v">LDO降压至3.3V</a></li>
       </ol>
     </li>
   </ol>
@@ -349,7 +355,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/power-pre/">可调电源1.0_序言</a>
+            <a href="/p/schematic-design/">可调电源1.0_原理图设计</a>
         </h2>
     
         
@@ -371,7 +377,7 @@
   <path d="M18 16.496v1.504l1 1" />
 </svg>
             <time class="article-time--published">
-                    创作于 2026 - 09 - 16</time>
+                    创作于 2026 - 09 - 18</time>
         </div>
         
         
@@ -385,12 +391,12 @@
 
 
             <time class="article-time--modified">
-                最后更新于 2026-09-16
+                最后更新于 2026-09-19
             </time>
         </div>
         
         <div>
-            <span class="article-time--words">📝 593 字</span>
+            <span class="article-time--words">📝 1638 字</span>
         </div>
         
         <div>
@@ -408,59 +414,173 @@
     <section class="article-content">
     
     
-    <p><img src="/p/power-pre/image.png"
-	width="587"
-	height="648"
-	srcset="/p/power-pre/image_hu5285898547652512527.png 480w, /p/power-pre/image_hu5107055138591608723.png 1024w"
+    <p>  对于原理图与PCB设计，我使用的是嘉立创EDA专业版设计的，不得不说，嘉立创给了我们打样测试的勇气，使我们大学生们更加敢于去设计去实现一些小创意。如今嘉立创成功上市，我在这里也祝愿嘉立创步步高升！ <br>
+  可调电源1.0的原理图，我分为了MCU层和POWER层。其中MCU层主要走的是四个按键，四个指示灯，OLED排插以及电阻分压检测；POWER层走的便是BUCK,BOOST等等电源模块的原理图。其实大部分是没有什么太难的，而且也有许多可以参考数据手册，或者说直接找开源项目进行参考，所以，这里我打算说几个我认为比较需要注意的点就行。</p>
+<h2 id="mcu层">MCU层
+</h2><h3 id="外部晶振">外部晶振
+</h3><p><img src="/p/schematic-design/image.png"
+	width="464"
+	height="196"
+	srcset="/p/schematic-design/image_hu14821584320909643357.png 480w, /p/schematic-design/image_hu2383894317518057422.png 1024w"
 	loading="lazy"
 	
-		alt="正面"
+		alt="高速晶振"
 	
 	
 		class="gallery-image" 
-		data-flex-grow="90"
-		data-flex-basis="217px"
+		data-flex-grow="236"
+		data-flex-basis="568px"
 	
->!<img src="/p/power-pre/image-3.png"
-	width="572"
-	height="639"
-	srcset="/p/power-pre/image-3_hu1725136905625906702.png 480w, /p/power-pre/image-3_hu8265611936430169145.png 1024w"
+>   <img src="/p/schematic-design/image-1.png"
+	width="344"
+	height="154"
+	srcset="/p/schematic-design/image-1_hu18091019881971949308.png 480w, /p/schematic-design/image-1_hu12423348192749162801.png 1024w"
 	loading="lazy"
 	
-		alt="背面"
+		alt="低速晶振"
 	
 	
 		class="gallery-image" 
-		data-flex-grow="89"
-		data-flex-basis="214px"
+		data-flex-grow="223"
+		data-flex-basis="536px"
 	
 ></p>
-<p>  首先，先说明一下，截至在这篇文章发布时，当前这个项目算不上太完美。所以当前，我只打算在这里记录一下在制作这个项目中做学习到的知识、所解决和发现的BUG，以及一些我自己的想法和感悟。其次，我打算在后续的更新中，同步并行改善这个项目，使其更加完善！<br>
-  当然，当前这个项目，已经可以实现可调升压————<em><strong>5V ~ 30V</strong></em>，可调降压————<em><strong>12V ~ 1.2V</strong></em>，锂电池充电管理，以及主控方面的OLED显示可调电压大小、LED控制、按键控制以及串口输出，这一方面后续可根据实际需求进行编程。不足的是，DC12V输入端子处，未进行任何滤波处理，导致接入的电压波形大，振荡大，这样对后续的DCDC降压转5V很不友好（当然，有部分原因也可能是我在pdd用5.5块钱买的电源适配器很差劲导致的），但是，如果在板子上，能尽量做点优化就做点，这样才能增加板子的适应性。 <br>
-PS:我使用的示波器夹子回路较长，可能会引入示波器自身的高频信号干扰，如下视频所展示，最好还是使用弹簧接地环进行测试，具体可自行了解。<br>
-<mark>（双击可放大视频）</mark>
-<video controls src="25c277952c20d5992cf6f97c6268221d.mp4" title="DC输入"></video><br>
-  当然，为了避免本文篇幅过长，后续详细内容我将沿用以往的写作习惯，分章节独立成文。读者可以清晰了解整套博客的内容规划，并按需跳转至对应文章查阅。</p>
-<h3 id="项目介绍">项目介绍
-</h3><ul>
-<li>1.<a class="link" href="/p/power-intro/" >整体功能介绍</a></li>
-<li>2.<a class="link" href="/p/power-ripple/" >可调电源1.0版本的&quot;纹波&quot;</a></li>
-</ul>
-<h3 id="涉及知识点">涉及知识点
-</h3><ul>
-<li>1.<a class="link" href="/p/look-bug/" >BUCK-BOOST</a></li>
-<li>2.<a class="link" href="/p/debug/" >原理图设计</a></li>
-</ul>
-<h3 id="debug">DEBUG
-</h3><ul>
-<li>1.<a class="link" href="" >BUG总览</a></li>
-<li>2.<a class="link" href="" >调试过程</a></li>
-</ul>
-<h3 id="改版">改版
-</h3><ul>
-<li>1.<a class="link" href="" >改版说明</a></li>
-<li>2.<a class="link" href="" >改版测试</a></li>
-</ul>
+<p>  晶振这一部分，主要的是要注意好外部的两颗起振电容的选值。对于外部高速晶振，他的起振电容经验值是在20pF ~ 22pF之间，经我实测（<a class="link" href="https://carring06.github.io/p/summary1/#%e6%99%b6%e6%8c%af%e8%b5%b7%e6%8c%af%e9%83%a8%e5%88%86"  target="_blank" rel="noopener"
+    >-&gt;遥控测试板&lt;-</a>），22pF是可以成功起振的；对于外部低速晶振，起振电容经验值是在10pF~12pF之间，但是我们其实很少使用低速外部晶振，所以这里不过多赘述。
+  其实，在这个板子，我将高速晶振焊接后，当我使用外部晶振时，程序跑不起来，一直卡死，换了晶振和电容也还是会这样。但是同一块晶振和电容焊在别的板子上却没问题，所以我想，可能是电源噪声对这部分造成了干扰，后续我会在<a class="link" href="/p/look-bug/" >-&gt;BUG总览&lt;-</a>或<a class="link" href="/p/debug/" >-&gt;调试过程&lt;-</a>中，详细来讨论一下。<br>
+  所以，经过测试和考虑，我最终决定采用内部晶振。在当前简单的程序设计中，内部晶振也是足够使用的!后续，我打算在可调电源2.0中将晶振去了，以此减少焊接成本[思考中]。</p>
+<h3 id="boot引脚">BOOT引脚
+</h3><p><img src="/p/schematic-design/image-2.png"
+	width="414"
+	height="176"
+	srcset="/p/schematic-design/image-2_hu4175846409136329890.png 480w, /p/schematic-design/image-2_hu2142240504584699485.png 1024w"
+	loading="lazy"
+	
+		alt="原版"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="235"
+		data-flex-basis="564px"
+	
+><img src="/p/schematic-design/image-3.png"
+	width="450"
+	height="174"
+	srcset="/p/schematic-design/image-3_hu15563553227889158398.png 480w, /p/schematic-design/image-3_hu17897008011732222469.png 1024w"
+	loading="lazy"
+	
+		alt="改版"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="258"
+		data-flex-basis="620px"
+	
+></p>
+<p>  针对于BOOT引脚的配置，我最终是采用右图，这样的话BOOT0就是默认下拉，我们就不是一定要先把排插焊上去，然后再用跳线帽接地。</p>
+<h3 id="adc检测电压">ADC检测电压
+</h3><p><img src="/p/schematic-design/image-4.png"
+	width="243"
+	height="466"
+	srcset="/p/schematic-design/image-4_hu11172025352258492678.png 480w, /p/schematic-design/image-4_hu1358199831716064813.png 1024w"
+	loading="lazy"
+	
+		alt="ADC检测"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="52"
+		data-flex-basis="125px"
+	
+></p>
+<p>  对于分压检测这部分，想必大家是可以理解的。但是我听别人说，这种采用电阻分压检测电压有弊端，等我后续再去深究一下！</p>
+<h2 id="power层">POWER层
+</h2><h3 id="xl6019升压">XL6019升压
+</h3><p><a class="link" href="https://item.szlcsc.com/datasheet/XL6019E1/74131.html"  target="_blank" rel="noopener"
+    >-&gt;XL6019数据手册&lt;-</a></p>
+<p>  详细的芯片信息，大家可以去看数据手册，我这里仅说明一下他的原理图设计。<br>
+<img src="/p/schematic-design/image-5.png"
+	width="1397"
+	height="861"
+	srcset="/p/schematic-design/image-5_hu2163986555183315187.png 480w, /p/schematic-design/image-5_hu4278241888752983971.png 1024w"
+	loading="lazy"
+	
+		alt="5转12"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="162"
+		data-flex-basis="389px"
+	
+></p>
+<p>  我们在画原理图的时候，都是要打开数据手册进行查找相关的电路连接部分，如上图所示。大家直接照着画其实就OK的。<br>
+  由原理图我们知道，Vout=1.25*(1+R2/R1)，即输出电压的大小和R2,R1的电阻值紧密相关。所以，要实现可调升压，仅需要将R1,R2其中一端换成滑动电阻器就行。根据公式，R2作为分子，R2越大，Vout就越大，所以，应该选择在R2端加滑动变阻器。建议在滑动电阻器那端再串上一个1K/2K的保护电阻，保证当滑动电阻器为0时，该路上有阻值，可以达到限流效果。如下图我画的原理图，可以参考一下。<br>
+<img src="/p/schematic-design/image-6.png"
+	width="835"
+	height="738"
+	srcset="/p/schematic-design/image-6_hu4898619066130901440.png 480w, /p/schematic-design/image-6_hu4272487302459868771.png 1024w"
+	loading="lazy"
+	
+		alt="可调升压参考"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="113"
+		data-flex-basis="271px"
+	
+></p>
+<h3 id="lm2596降压">LM2596降压
+</h3><p><a class="link" href="https://item.szlcsc.com/datasheet/LM2596S-ADJ%28UMW%29/324083.html"  target="_blank" rel="noopener"
+    >-&gt;LM2596数据手册&lt;-</a>  <br>
+  其实，如果想要降低开销，那我们也可以使用XL6019来降压，这样就不用花多一分钱去买另一款芯片了，当然，这边一份交给大家完成。因为两种芯片我目前都还有库存。<br>
+<img src="/p/schematic-design/image-7.png"
+	width="1275"
+	height="470"
+	srcset="/p/schematic-design/image-7_hu15537014333232116634.png 480w, /p/schematic-design/image-7_hu13804846796222916840.png 1024w"
+	loading="lazy"
+	
+		alt="LM2596"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="271"
+		data-flex-basis="651px"
+	
+><br>
+<img src="/p/schematic-design/image-8.png"
+	width="1409"
+	height="1104"
+	srcset="/p/schematic-design/image-8_hu16155680282362048324.png 480w, /p/schematic-design/image-8_hu3541526169296545528.png 1024w"
+	loading="lazy"
+	
+		alt="LM2596"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="127"
+		data-flex-basis="306px"
+	
+>
+  原理图也照着数据手册画其实就可以了。其实看原理图，我们会发现他和BUCK电路很像，因为其实他就是BUCK电路，只是电子开关MOS管集成在芯片内部而已。<br>
+  有了原理图其实还不够，我们应该知道输出电压的计算公式，数据手册肯定是有给的。上图已经有公式了。可调降压的原理也和可调升压同理。下图是我画的原理图，大家可作参考。<br>
+<img src="/p/schematic-design/image-9.png"
+	width="924"
+	height="680"
+	srcset="/p/schematic-design/image-9_hu4256342987161308106.png 480w, /p/schematic-design/image-9_hu6650042107996288414.png 1024w"
+	loading="lazy"
+	
+		alt="可调"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="135"
+		data-flex-basis="326px"
+	
+><br>
+  其实我感觉，上图这个原理图的滑动变阻器接的不是那么好，我感觉XL6019那个原理图的接法比较好。因为上图这么接的话，滑动变阻器的阻值会同时影响反馈引脚上端阻值以及下端阻值，所以图中的计算公式其实就不太正确了，应该是VCC_DOWN_OUT = 1.23 * [1 + R滑/(1K + 20K-R滑）]。但是实际测试下来，LM2596可调降压功能也确实没问题。如果按公式计算的话，理论值是可以到25V，但因为是降压芯片，输出电压最大值肯定小于输入电压，所以我的降压变化确实是在1.23到12V左右。</p>
+<h3 id="ldo降压至33v">LDO降压至3.3V
+</h3><p>  详细请看<a class="link" href="https://carring06.github.io/p/summary1/#%E7%94%B5%E6%B1%A0%E4%BE%9B%E7%94%B5%E9%83%A8%E5%88%86"  target="_blank" rel="noopener"
+    >-&gt;AMS1117-3.3&lt;-</a></p>
 
 </section>
 
@@ -490,7 +610,7 @@ PS:我使用的示波器夹子回路较长，可能会引入示波器自身的�
 
 
         <span>
-            最后更新于 2026-09-16
+            最后更新于 2026-09-19
         </span>
     </section></footer>
 

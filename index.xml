@@ -7,7 +7,198 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>车度空间Carring</copyright>
-        <lastBuildDate>Wed, 16 Sep 2026 11:38:36 +0800</lastBuildDate><atom:link href="https://Carring06.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Fri, 18 Sep 2026 11:38:36 +0800</lastBuildDate><atom:link href="https://Carring06.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>可调电源1.0_BUG总览</title>
+        <link>https://Carring06.github.io/p/look-bug/</link>
+        <pubDate>Fri, 18 Sep 2026 11:38:36 +0800</pubDate>
+        
+        <guid>https://Carring06.github.io/p/look-bug/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>可调电源1.0_调试过程</title>
+        <link>https://Carring06.github.io/p/debug/</link>
+        <pubDate>Fri, 18 Sep 2026 11:38:36 +0800</pubDate>
+        
+        <guid>https://Carring06.github.io/p/debug/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>可调电源1.0_原理图设计</title>
+        <link>https://Carring06.github.io/p/schematic-design/</link>
+        <pubDate>Fri, 18 Sep 2026 11:38:36 +0800</pubDate>
+        
+        <guid>https://Carring06.github.io/p/schematic-design/</guid>
+        <description>&lt;p&gt;  对于原理图与PCB设计，我使用的是嘉立创EDA专业版设计的，不得不说，嘉立创给了我们打样测试的勇气，使我们大学生们更加敢于去设计去实现一些小创意。如今嘉立创成功上市，我在这里也祝愿嘉立创步步高升！ &lt;br&gt;
+  可调电源1.0的原理图，我分为了MCU层和POWER层。其中MCU层主要走的是四个按键，四个指示灯，OLED排插以及电阻分压检测；POWER层走的便是BUCK,BOOST等等电源模块的原理图。其实大部分是没有什么太难的，而且也有许多可以参考数据手册，或者说直接找开源项目进行参考，所以，这里我打算说几个我认为比较需要注意的点就行。&lt;/p&gt;
+&lt;h2 id=&#34;mcu层&#34;&gt;MCU层
+&lt;/h2&gt;&lt;h3 id=&#34;外部晶振&#34;&gt;外部晶振
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/schematic-design/image.png&#34;
+	width=&#34;464&#34;
+	height=&#34;196&#34;
+	srcset=&#34;https://Carring06.github.io/p/schematic-design/image_hu14821584320909643357.png 480w, https://Carring06.github.io/p/schematic-design/image_hu2383894317518057422.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;高速晶振&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;236&#34;
+		data-flex-basis=&#34;568px&#34;
+	
+&gt;   &lt;img src=&#34;https://Carring06.github.io/p/schematic-design/image-1.png&#34;
+	width=&#34;344&#34;
+	height=&#34;154&#34;
+	srcset=&#34;https://Carring06.github.io/p/schematic-design/image-1_hu18091019881971949308.png 480w, https://Carring06.github.io/p/schematic-design/image-1_hu12423348192749162801.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;低速晶振&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;223&#34;
+		data-flex-basis=&#34;536px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;  晶振这一部分，主要的是要注意好外部的两颗起振电容的选值。对于外部高速晶振，他的起振电容经验值是在20pF ~ 22pF之间，经我实测（&lt;a class=&#34;link&#34; href=&#34;https://carring06.github.io/p/summary1/#%e6%99%b6%e6%8c%af%e8%b5%b7%e6%8c%af%e9%83%a8%e5%88%86&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;-&amp;gt;遥控测试板&amp;lt;-&lt;/a&gt;），22pF是可以成功起振的；对于外部低速晶振，起振电容经验值是在10pF~12pF之间，但是我们其实很少使用低速外部晶振，所以这里不过多赘述。
+  其实，在这个板子，我将高速晶振焊接后，当我使用外部晶振时，程序跑不起来，一直卡死，换了晶振和电容也还是会这样。但是同一块晶振和电容焊在别的板子上却没问题，所以我想，可能是电源噪声对这部分造成了干扰，后续我会在&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/look-bug/&#34; &gt;-&amp;gt;BUG总览&amp;lt;-&lt;/a&gt;或&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/debug/&#34; &gt;-&amp;gt;调试过程&amp;lt;-&lt;/a&gt;中，详细来讨论一下。&lt;br&gt;
+  所以，经过测试和考虑，我最终决定采用内部晶振。在当前简单的程序设计中，内部晶振也是足够使用的!后续，我打算在可调电源2.0中将晶振去了，以此减少焊接成本[思考中]。&lt;/p&gt;
+&lt;h3 id=&#34;boot引脚&#34;&gt;BOOT引脚
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/schematic-design/image-2.png&#34;
+	width=&#34;414&#34;
+	height=&#34;176&#34;
+	srcset=&#34;https://Carring06.github.io/p/schematic-design/image-2_hu4175846409136329890.png 480w, https://Carring06.github.io/p/schematic-design/image-2_hu2142240504584699485.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;原版&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;235&#34;
+		data-flex-basis=&#34;564px&#34;
+	
+&gt;&lt;img src=&#34;https://Carring06.github.io/p/schematic-design/image-3.png&#34;
+	width=&#34;450&#34;
+	height=&#34;174&#34;
+	srcset=&#34;https://Carring06.github.io/p/schematic-design/image-3_hu15563553227889158398.png 480w, https://Carring06.github.io/p/schematic-design/image-3_hu17897008011732222469.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;改版&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;258&#34;
+		data-flex-basis=&#34;620px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;  针对于BOOT引脚的配置，我最终是采用右图，这样的话BOOT0就是默认下拉，我们就不是一定要先把排插焊上去，然后再用跳线帽接地。&lt;/p&gt;
+&lt;h3 id=&#34;adc检测电压&#34;&gt;ADC检测电压
+&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/schematic-design/image-4.png&#34;
+	width=&#34;243&#34;
+	height=&#34;466&#34;
+	srcset=&#34;https://Carring06.github.io/p/schematic-design/image-4_hu11172025352258492678.png 480w, https://Carring06.github.io/p/schematic-design/image-4_hu1358199831716064813.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;ADC检测&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;52&#34;
+		data-flex-basis=&#34;125px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;  对于分压检测这部分，想必大家是可以理解的。但是我听别人说，这种采用电阻分压检测电压有弊端，等我后续再去深究一下！&lt;/p&gt;
+&lt;h2 id=&#34;power层&#34;&gt;POWER层
+&lt;/h2&gt;&lt;h3 id=&#34;xl6019升压&#34;&gt;XL6019升压
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://item.szlcsc.com/datasheet/XL6019E1/74131.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;-&amp;gt;XL6019数据手册&amp;lt;-&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;  详细的芯片信息，大家可以去看数据手册，我这里仅说明一下他的原理图设计。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/schematic-design/image-5.png&#34;
+	width=&#34;1397&#34;
+	height=&#34;861&#34;
+	srcset=&#34;https://Carring06.github.io/p/schematic-design/image-5_hu2163986555183315187.png 480w, https://Carring06.github.io/p/schematic-design/image-5_hu4278241888752983971.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;5转12&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;162&#34;
+		data-flex-basis=&#34;389px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;  我们在画原理图的时候，都是要打开数据手册进行查找相关的电路连接部分，如上图所示。大家直接照着画其实就OK的。&lt;br&gt;
+  由原理图我们知道，Vout=1.25*(1+R2/R1)，即输出电压的大小和R2,R1的电阻值紧密相关。所以，要实现可调升压，仅需要将R1,R2其中一端换成滑动电阻器就行。根据公式，R2作为分子，R2越大，Vout就越大，所以，应该选择在R2端加滑动变阻器。建议在滑动电阻器那端再串上一个1K/2K的保护电阻，保证当滑动电阻器为0时，该路上有阻值，可以达到限流效果。如下图我画的原理图，可以参考一下。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/schematic-design/image-6.png&#34;
+	width=&#34;835&#34;
+	height=&#34;738&#34;
+	srcset=&#34;https://Carring06.github.io/p/schematic-design/image-6_hu4898619066130901440.png 480w, https://Carring06.github.io/p/schematic-design/image-6_hu4272487302459868771.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;可调升压参考&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;113&#34;
+		data-flex-basis=&#34;271px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;lm2596降压&#34;&gt;LM2596降压
+&lt;/h3&gt;&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://item.szlcsc.com/datasheet/LM2596S-ADJ%28UMW%29/324083.html&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;-&amp;gt;LM2596数据手册&amp;lt;-&lt;/a&gt;  &lt;br&gt;
+  其实，如果想要降低开销，那我们也可以使用XL6019来降压，这样就不用花多一分钱去买另一款芯片了，当然，这边一份交给大家完成。因为两种芯片我目前都还有库存。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/schematic-design/image-7.png&#34;
+	width=&#34;1275&#34;
+	height=&#34;470&#34;
+	srcset=&#34;https://Carring06.github.io/p/schematic-design/image-7_hu15537014333232116634.png 480w, https://Carring06.github.io/p/schematic-design/image-7_hu13804846796222916840.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;LM2596&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;271&#34;
+		data-flex-basis=&#34;651px&#34;
+	
+&gt;&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/schematic-design/image-8.png&#34;
+	width=&#34;1409&#34;
+	height=&#34;1104&#34;
+	srcset=&#34;https://Carring06.github.io/p/schematic-design/image-8_hu16155680282362048324.png 480w, https://Carring06.github.io/p/schematic-design/image-8_hu3541526169296545528.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;LM2596&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;127&#34;
+		data-flex-basis=&#34;306px&#34;
+	
+&gt;
+  原理图也照着数据手册画其实就可以了。其实看原理图，我们会发现他和BUCK电路很像，因为其实他就是BUCK电路，只是电子开关MOS管集成在芯片内部而已。&lt;br&gt;
+  有了原理图其实还不够，我们应该知道输出电压的计算公式，数据手册肯定是有给的。上图已经有公式了。可调降压的原理也和可调升压同理。下图是我画的原理图，大家可作参考。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/schematic-design/image-9.png&#34;
+	width=&#34;924&#34;
+	height=&#34;680&#34;
+	srcset=&#34;https://Carring06.github.io/p/schematic-design/image-9_hu4256342987161308106.png 480w, https://Carring06.github.io/p/schematic-design/image-9_hu6650042107996288414.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;可调&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;135&#34;
+		data-flex-basis=&#34;326px&#34;
+	
+&gt;&lt;br&gt;
+  其实我感觉，上图这个原理图的滑动变阻器接的不是那么好，我感觉XL6019那个原理图的接法比较好。因为上图这么接的话，滑动变阻器的阻值会同时影响反馈引脚上端阻值以及下端阻值，所以图中的计算公式其实就不太正确了，应该是VCC_DOWN_OUT = 1.23 * [1 + R滑/(1K + 20K-R滑）]。但是实际测试下来，LM2596可调降压功能也确实没问题。如果按公式计算的话，理论值是可以到25V，但因为是降压芯片，输出电压最大值肯定小于输入电压，所以我的降压变化确实是在1.23到12V左右。&lt;/p&gt;
+&lt;h3 id=&#34;ldo降压至33v&#34;&gt;LDO降压至3.3V
+&lt;/h3&gt;&lt;p&gt;  详细请看&lt;a class=&#34;link&#34; href=&#34;https://carring06.github.io/p/summary1/#%E7%94%B5%E6%B1%A0%E4%BE%9B%E7%94%B5%E9%83%A8%E5%88%86&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;-&amp;gt;AMS1117-3.3&amp;lt;-&lt;/a&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>可调电源1.0_“纹波”展示</title>
         <link>https://Carring06.github.io/p/power-ripple/</link>
         <pubDate>Wed, 16 Sep 2026 11:38:36 +0800</pubDate>
@@ -217,7 +408,7 @@ DC+12v转5V波型：&lt;br&gt;
 		data-flex-basis=&#34;1675px&#34;
 	
 &gt;&lt;br&gt;
-  上述时BOOST电路的电感值，占空比以及输出电压的计算公式，详细可看&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1CvYsz3EES?spm_id_from=333.788.videopod.sections&amp;amp;vd_source=78685689b7fcc5ce8f7790e12b5f996d&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+  上述是BOOST电路的电感值，占空比以及输出电压的计算公式，详细可看&lt;a class=&#34;link&#34; href=&#34;https://www.bilibili.com/video/BV1CvYsz3EES?spm_id_from=333.788.videopod.sections&amp;amp;vd_source=78685689b7fcc5ce8f7790e12b5f996d&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;&amp;ndash;&amp;gt;电路小匠&amp;lt;&amp;ndash;&lt;/a&gt;。后续若我对这一部分有更深入的理解，也会再次更新本文章的！&lt;/p&gt;
 </description>
         </item>
@@ -267,8 +458,8 @@ PS:我使用的示波器夹子回路较长，可能会引入示波器自身的�
 &lt;/ul&gt;
 &lt;h3 id=&#34;涉及知识点&#34;&gt;涉及知识点
 &lt;/h3&gt;&lt;ul&gt;
-&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/buck-boost/&#34; &gt;BUCK-BOOST&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;&#34; &gt;原理图设计&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;1.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/look-bug/&#34; &gt;BUCK-BOOST&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;2.&lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/debug/&#34; &gt;原理图设计&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 &lt;h3 id=&#34;debug&#34;&gt;DEBUG
 &lt;/h3&gt;&lt;ul&gt;
