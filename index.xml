@@ -194,22 +194,109 @@
 		data-flex-grow=&#34;127&#34;
 		data-flex-basis=&#34;305px&#34;
 	
-&gt;&lt;/p&gt;
+&gt;     &lt;br&gt;
+  说实话，锂电池充电部分我是等到MCU焊接后才进行焊接的，一开始，焊接完充电管理芯片4056后，5V也短路了。那时候换了好几个芯片，但最终都是短路。然后换了4056芯片旁的几个滤波电容，结果就好了。不过现在仍存在一个小问题，就是充电引脚上，没接锂电池进行检测，他也有电压，这就导致了我没办法进行锂电池的电压实时监测，好几个芯片都这样，应该是芯片设计的问题吧！？&lt;br&gt;
+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&amp;gt; &lt;mark&gt;BUG3-1&lt;/mark&gt;&lt;/p&gt;
 &lt;h3 id=&#34;mcu&#34;&gt;MCU
 &lt;/h3&gt;&lt;p&gt;  在上述焊接完成后，电源部分大体完成了（差个锂电池充电），接下来就是针对于MCU相关的焊接了。&lt;br&gt;
   因为可调电源1.0的MCU部分并不复杂，所以焊接起来比较迅速，所以我一开始一股脑全焊接了，而且是焊接完后再去测试，这一点我做的很不好，大家别学习。&lt;br&gt;
   我在一股脑把MCU部分全焊接后（LED,按键，滤波电容，芯片，晶振等）。一上电，MCU芯片烧了。这一点我也做的很不好，大家是应该先检查是否短路后再上电的。 &lt;br&gt;
-  然后我换了个芯片焊接，然后在上电前，用万用表进行检测，发现还是短路。然后我就用放大镜在芯片的电源引脚检查了很久，但是就是觉得芯片不会短路的。所以后面，我试着把几个芯片滤波电容拆了，然后发现就不短路了。后面我就换了几个芯片滤波电容，然后就正常了。（这也对后续埋下伏笔）&lt;br&gt;
-&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&amp;gt; &lt;mark&gt;BUG3-1&lt;/mark&gt;&lt;br&gt;
+  然后我换了个芯片焊接，然后在上电前，用万用表进行检测，发现还是短路。然后我就用放大镜在芯片的电源引脚检查了很久，但是就是觉得芯片不会短路的。所以后面，我试着把几个芯片滤波电容拆了，然后发现就不短路了。后面我就换了几个芯片滤波电容，然后就正常了。
+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&amp;gt; &lt;mark&gt;BUG3-2&lt;/mark&gt;&lt;br&gt;
   接着，我将复位电路也焊接了上去，然后准备烧录程序进行。刚开始还是能烧录的，但是烧录一次后，就直接烧录不进去了。Keil给的报错是，无法阻止设备运行，而且烧录进去的程序一会能运行一会不能。那时候我琢磨很久，一直想不清楚原因。然后我去测试了复位引脚，发现，明明复位引脚应该是被拉高至3.3V，结果检测出来却是0V。所以，我去对复位引脚的上拉电阻一端进行了检测，结果还是0V。后面我实在没头绪了，就把复位电路的电容和芯片，按键都拆下来，然后又去测试上拉电阻一端的电压，结果发现拆完电容电阻后，焊盘上确实能检测出3.3V。所以我怀疑可能又是电容的问题。后面，我就去换了新电容，然后再把复位电路重新焊接，发现复位引脚依旧是低电平0，代码依旧下载不了，程序依旧不能正常运行。然后，我直接把电阻电容拆了。直接用一根杜邦线短接复位引脚和3.3V。此时，我发现程序被正常运行了。但是还是不能下载程序，后面查清楚原因，此时不能下载程序，是因为我把复位引脚强制拉高，而每次芯片要下载程序时都会把复位引脚拉低，但是他又只是弱下拉，对不过我的外部强上拉，所以下载不进去程序。后面我重新换了一个芯片，又顺便电容，结果发现复位引脚正常了，在常态下默认高电平，按复位键时才被拉低。&lt;br&gt;
 &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&amp;gt; &lt;mark&gt;BUG4&lt;/mark&gt;&lt;br&gt;
   然后，单片机能正常下载程序了。所以我开始测试相关的程序。结果发现，单片机跑着跑着容易死机，而我将晶振换成内部晶振后，又正常了，在再三考虑后，我决定使用内部晶振就好，在我这个场景足够使用。&lt;br&gt;
 &amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&amp;gt; &lt;mark&gt;BUG5&lt;/mark&gt;&lt;br&gt;
   但是，不出意外的话，意外又来了。我的按键电路，发生了异常。一开始，我以为是焊接不好，我就又去焊接一遍芯片，并再上一次锡。结果证明，确实有一部分原因是焊接不良导致的。但是还有一个按键失效。然后我就去测了一下这个贴片按键是否正常，是否能正常导通，结果也是可以的。然后我去测试了这个案按键的引脚，发现他是输出低电平，但是，我在CubeMX配置了上拉，他不应该是低电平啊。然后我把按键的滤波电容拆了，然后这个按键就正常了，换了个新电容，也是ok的。
-&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&amp;gt; &lt;mark&gt;BUG3-2&lt;/mark&gt;&lt;br&gt;
+&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;mdash;&amp;ndash;&amp;gt; &lt;mark&gt;BUG3-3&lt;/mark&gt;&lt;br&gt;
   至此，该板子大部分功能正常，但还是存在一些些不足之处以及BUG。这一部分会在下文加以说明&lt;/p&gt;
 &lt;h2 id=&#34;bug原因&#34;&gt;BUG原因
-&lt;/h2&gt;&lt;p&gt;  仍存在的BUG和不足说明：&lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;仍存在的BUG和不足说明：&lt;br&gt;
+  虽然说，大部分BUG已经得到优化，但是，可调电源1.0还存在着一个严重不足！就是上电时间比较久时，主控方面可能会出现死机。我有进行一次测试，发现使用手机充电器进行5V供电时，能维持较长时间，而使用电源适配器进行12V供电，维持的时间最短。每次一死机，就得用热风枪吹一下芯片，才能正常使用。&lt;/p&gt;
+&lt;h3 id=&#34;bug1&#34;&gt;BUG1
+&lt;/h3&gt;&lt;p&gt;  BUG1：虽然说，保险丝的耐压值确实比我的输入电压大很多，但是 DC12V 输入波形杂乱，负载侧产生瞬时大电流，导致了保险丝过流很严重，造成不可逆的后果，导致保险丝无法 “自恢复”。但其实我觉得，也有可能是我在焊接时候的温度太高导致的（该可能性极低）。&lt;/p&gt;
+&lt;h3 id=&#34;bug2&#34;&gt;BUG2
+&lt;/h3&gt;&lt;p&gt;  BUG2-1：原理图上 C24 为 U14（XL6019）升压输出端 220uF 铝电解电容。原理图电路本身没有错误，但 PCB 上焊接 C24 之后，XL6019 开关大电流会通过 C24 负极流入公共 GND 铜皮，产生地弹噪声。该噪声会污染 TPS5450 的 FB 反馈采样地，造成 TPS5450 反馈电压异常，输出电压被拉低。将 C24 拆除，XL6019 对应的这条交流地回流环路消失，地弹噪声消失，TPS5450 工作恢复正常。同一颗电容放在位置 1 时会引入干扰，放到位置 2 时 XL6019 功率回流地远离 TPS5450 反馈网络，不会干扰采样，电路可以正常工作。&lt;/p&gt;
+&lt;p&gt;  BUG2-2：原理图上 C9 为 U5（XL6019 可调升压）输出端 220uF 铝电解电容。原理和 C24 一致，焊接 C9 之后，XL6019 开关脉动电流会在公共地产生地弹噪声，干扰周边电源芯片的反馈采样。只焊接 XL6019 其他器件、不焊 C9 时，电路全部测试正常；焊上 C9 后锂电池输入转 5V 工作异常，拆掉 C9 后恢复正常。&lt;/p&gt;
+&lt;p&gt;  BUG2-3：原理图上 C27 为 LM2596 可调降压输入侧的 220uF 铝电解电容。C27 并联在 12V 主输入，焊接后输入回路的脉动电流会在公共 GND 铜皮产生地噪声，同样会干扰附近电源反馈采样。焊接该铝电解时锂电池输入转 5V 异常，拆除 C27 之后电路恢复正常。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;底层原因：原理图所有 GND 画在一起是没问题的，但 PCB 铜皮存在阻抗，XL6019、LM2596 这类开关电源的高频大电流流过公共地铜皮会产生地弹；铝电解 ESR、ESL 偏大，焊接后会改变开关电流的地回流路径，噪声串入 FB 这类微弱反馈信号，导致稳压失控，并非电容本身损坏。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;&lt;strong&gt;ESR：等效串联电阻&lt;/strong&gt;&lt;br&gt;
+电容不是理想元件，内部引线、铝箔本身存在电阻，这个等效电阻就是 ESR。铝电解的 ESR 相比 MLCC 陶瓷电容大很多。
+当高频开关电流流过电容时，ESR 上会产生电压纹波、发热。高频电流不太愿意走铝电解，更多走旁边的 MLCC。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;ESL：等效串联电感&lt;/strong&gt;&lt;br&gt;
+电容引脚、内部铝箔卷绕结构自带一点点电感，就是 ESL。铝电解卷绕结构，ESL 明显大于 MLCC。
+电感有个特性：&lt;strong&gt;阻碍高频电流变化&lt;/strong&gt;。频率越高，ESL 带来的阻碍越强。高频开关噪声很难通过铝电解滤除。&lt;/p&gt;
+&lt;h3 id=&#34;bug3&#34;&gt;BUG3
+&lt;/h3&gt;&lt;p&gt;  电容直流漏电阻在正常状态下的阻值特别大，大约在 10MΩ 前后。如果电容损坏，它的阻值可能会特别低。这几个电容导致的短路，我个人感觉是这个原因，电容损坏，导致电路近似导通，最终使电源端直接接地，造成短路（滤波电容的一端一定接电源，另一端一直是接地；排查时需要区分是电容击穿，还是芯片寄生二极管带来的假短路）。&lt;/p&gt;
+&lt;h3 id=&#34;bug4&#34;&gt;BUG4
+&lt;/h3&gt;&lt;p&gt;  造成复位引脚一直为0其实可以认为有两个原因，一是芯片内部将其直接拉低（因为我们复位电路的上拉电阻很大，电流小，上拉能力比芯片的内部下拉弱，这样才能保证在按复位键时，能正常将复位引脚拉低），然后外部强拉直接不起作用；二是电容损坏，直接接地了。&lt;/p&gt;
+&lt;h3 id=&#34;bug5&#34;&gt;BUG5
+&lt;/h3&gt;&lt;p&gt;  可能是外部晶振起振出问题了。这一部分，我觉得不是晶振和电容的原因，因为我将它们换在别的板子上，却能正常使用，在这个板子上却不能。很大可能是我的 PCB 布局布线不太好导致的；同时也要留意芯片供电、复位、BOOT 引脚、虚焊这类问题，也会出现类似现象。&lt;/p&gt;
+&lt;h2 id=&#34;bug2豆包精讲&#34;&gt;BUG2豆包精讲：
+&lt;/h2&gt;&lt;p&gt;先明确三个电容归属：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;C24：U14（XL6019 TypeC-UP-12V 升压）输出端 220u 铝电解&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;C9：U5（XL6019 VCC_UP_OUT 可调升压）输出端 220u 铝电解&lt;/strong&gt;&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;C27：LM2596 可调降压的输入侧 12V 主输入 220u 铝电解&lt;/strong&gt;&lt;/li&gt;
+&lt;/ol&gt;
+&lt;blockquote&gt;
+&lt;p&gt;现象回顾：焊上 C24，TPS5450（独立 12V 转 5V）FB 电压掉到 0.6V，输出只有 2.8V；把 C24 拆掉，TPS5450 立刻恢复正常。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;原理层面拆解&#34;&gt;原理层面拆解
+&lt;/h3&gt;&lt;h4 id=&#34;1-c24u14-xl6019-升压输出电容就是元凶&#34;&gt;1. C24（U14 XL6019 升压输出电容），就是元凶
+&lt;/h4&gt;&lt;p&gt;U14 是 Boost 拓扑，&lt;strong&gt;SW 节点会产生高频大脉动电流&lt;/strong&gt;。
+Boost 输出电容 C24 的作用：滤除 XL6019 输出的低频纹波。
+但在 PCB 上：
+C24 的&lt;strong&gt;GND 引脚是 XL6019 功率大电流回流点&lt;/strong&gt;。XL6019 开关的交流电流路径：
+&lt;code&gt;XL6019 SW → L3 → C24正极 → C24负极 → GND铜皮 → XL6019 GND&lt;/code&gt;
+👉 大的高频交流电流会流过 C24 到 GND 的这段铜皮，铜皮存在微小电阻 + 电感，产生&lt;strong&gt;地弹噪声（Ground Bounce）&lt;/strong&gt;。&lt;/p&gt;
+&lt;p&gt;TPS5450 的 FB 反馈分压电阻，它的参考点也是&lt;strong&gt;同一块公共 GND&lt;/strong&gt;。FB 引脚是弱信号，采样输出电压是相对于本地 GND。
+当 XL6019 开关工作，C24 负极 GND 点电压不停上下抖动，&lt;strong&gt;TPS5450 分压网络的参考地电位被抬高 / 抖动&lt;/strong&gt;。芯片收到错误的反馈电压，误判输出电压偏低，疯狂拉高占空比，进入振荡异常，输出被锁死在低压，FB 读数异常。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;关键：C24 的摆放位置决定了&lt;strong&gt;功率回流地的路径&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;C24 放在位置 1：XL6019 大电流回流 GND 铜皮刚好经过 TPS5450 反馈网络的地，噪声串入 FB，故障。&lt;/li&gt;
+&lt;li&gt;C24 挪到位置 2：XL6019 功率回流地远离 TPS5450 信号地，地弹噪声不再污染 FB，电路正常。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/blockquote&gt;
+&lt;h4 id=&#34;2-c9u5-xl6019-可调升压输出电容和-c24-原理完全一致&#34;&gt;2. C9（U5 XL6019 可调升压输出电容），和 C24 原理完全一致
+&lt;/h4&gt;&lt;p&gt;U5 也是 Boost，C9 是它输出储能铝电解。只要 PCB 上 C9 的 GND 回流路径靠近 TPS5450/LM2596 的反馈信号地，XL6019 开关电流就会在公共地产生地弹，干扰相邻电源的反馈采样。
+这就对应 BUG2-2：焊上这组铝电解，锂电池输入转 5V 异常，拆掉恢复。&lt;/p&gt;
+&lt;h4 id=&#34;3-c27lm2596-降压输入-12v-主电源电解&#34;&gt;3. C27（LM2596 降压输入 12V 主电源电解）
+&lt;/h4&gt;&lt;p&gt;C27 是&lt;strong&gt;输入侧滤波电容&lt;/strong&gt;，并联在 12V 主输入 VCC+12V 与 GND 之间。
+它的电流是输入侧的脉动电流，相比 Boost 输出电容，产生的地弹会轻一点，但仍然有风险：
+如果 C27 的 GND 焊盘，和 TPS5450 反馈地、LM2596 FB 分压地共用一小段铜皮，12V 输入的开关脉动电流同样会带来地噪声，干扰采样。对应 BUG2-3。&lt;/p&gt;
+&lt;h3 id=&#34;为什么铝电解c24c9c27会比-mlcc-更容易引发这个问题&#34;&gt;为什么铝电解（C24/C9/C27）会比 MLCC 更容易引发这个问题？
+&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;MLCC：ESL、ESR 极小，高频交流电流主要走 MLCC。&lt;/li&gt;
+&lt;li&gt;铝电解：&lt;strong&gt;ESR、ESL 更大&lt;/strong&gt;，高频开关电流不会完全从铝电解走，但铝电解的负极焊盘是功率回流主干；一旦铝电解放在功率地与信号地交界，会&lt;strong&gt;改变整个开关环路的电流回流路径&lt;/strong&gt;，把高频大电流引入信号地区域。
+不是电容本身漏电 / 击穿，是&lt;strong&gt;电容的 GND 引脚，改变了开关电源的交流回流环路&lt;/strong&gt;。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;原理图本身有没有错误&#34;&gt;原理图本身有没有错误？
+&lt;/h3&gt;&lt;p&gt;✅ 原理图电路拓扑没问题：
+XL6019、LM2596 输入输出，MLCC + 铝电解组合滤波，是标准设计。
+❌ 问题&lt;strong&gt;不在原理图，而在 PCB 布局和 GND 分割&lt;/strong&gt;：
+所有 DCDC 功率地、反馈信号地全部共用整块 GND 铜皮，没有做功率地 / 信号地分割、单点接地。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;原理图上所有 GND 画在一起，在原理层面没问题；但 PCB 铜皮是有阻抗的，高频大电流流过铜皮就会产生电位差，这就是模拟硬件调试里最经典的&lt;strong&gt;共地干扰&lt;/strong&gt;。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h3 id=&#34;整改建议对应原理图&#34;&gt;整改建议（对应原理图）
+&lt;/h3&gt;&lt;ol&gt;
+&lt;li&gt;每一颗 DCDC 芯片：&lt;strong&gt;紧贴芯片引脚优先放置 100nF MLCC，铝电解放远一点&lt;/strong&gt;。MLCC 负责高频噪声，铝电解只做低频储能，不要把铝电解放在两个电源模块中间。
+&lt;ul&gt;
+&lt;li&gt;C24：100nF C22 紧贴 U14 输出引脚；C24 铝电解挪到远离 TPS5450 反馈区域。&lt;/li&gt;
+&lt;li&gt;C9：100nF C10 紧贴 U5 输出；C9 铝电解远离敏感反馈网络。&lt;/li&gt;
+&lt;li&gt;C27：100nF C26 紧贴 LM2596 Vin 引脚；C27 铝电解放在 12V 输入端口附近。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;PCB 地处理：
+XL6019、LM2596、TPS5450 的&lt;strong&gt;功率 GND（电感、二极管、输出电容负极）归为功率地&lt;/strong&gt;；
+FB 分压电阻、MCU、AD 采样的地作为&lt;strong&gt;信号地&lt;/strong&gt;；
+功率地与信号地&lt;strong&gt;只在一个点单点连接&lt;/strong&gt;，切断开关大电流流入信号地的路径。&lt;/li&gt;
+&lt;li&gt;FB 反馈走线：分压电阻靠近 FB 引脚，走线短，远离电感、SW 走线、功率电容 GND 焊盘。&lt;/li&gt;
+&lt;/ol&gt;
 </description>
         </item>
         <item>
