@@ -2,16 +2,16 @@
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
 <meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="从原理图绘制到PCB绘制，从打板到焊接，从想法到落地，这一过程中，难免出现一些离奇现象，难免出现一个又一个的BUG。而且，要找出并修改BUG">
-<title>可调电源1.0_BUG总览</title>
+<title>可调电源1.0_BUG前瞻序言</title>
 
 <link rel='canonical' href='https://Carring06.github.io/p/look-bug/'>
 
-<link rel="stylesheet" href="/scss/style.min.326dad0bb2c3ae4ad5c9a79fbec7a230f22001366c9e0e11fc90a9965b977acd.css"><meta property='og:title' content="可调电源1.0_BUG总览">
+<link rel="stylesheet" href="/scss/style.min.326dad0bb2c3ae4ad5c9a79fbec7a230f22001366c9e0e11fc90a9965b977acd.css"><meta property='og:title' content="可调电源1.0_BUG前瞻序言">
 <meta property='og:description' content="从原理图绘制到PCB绘制，从打板到焊接，从想法到落地，这一过程中，难免出现一些离奇现象，难免出现一个又一个的BUG。而且，要找出并修改BUG">
 <meta property='og:url' content='https://Carring06.github.io/p/look-bug/'>
 <meta property='og:site_name' content='车度空间'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-09-18T11:38:36&#43;08:00'/><meta property='article:modified_time' content='2026-09-19T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="可调电源1.0_BUG总览">
+<meta name="twitter:title" content="可调电源1.0_BUG前瞻序言">
 <meta name="twitter:description" content="从原理图绘制到PCB绘制，从打板到焊接，从想法到落地，这一过程中，难免出现一些离奇现象，难免出现一个又一个的BUG。而且，要找出并修改BUG">
     <link rel="shortcut icon" href="/favicon.ico" />
 
@@ -300,49 +300,7 @@
     </ol>
 </aside>
 
-    <aside class="sidebar right-sidebar sticky">
-        
-            
-                
-    <section class="widget archives">
-        <div class="widget-icon">
-            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
-  <path stroke="none" d="M0 0h24v24H0z"/>
-  <line x1="5" y1="9" x2="19" y2="9" />
-  <line x1="5" y1="15" x2="19" y2="15" />
-  <line x1="11" y1="4" x2="7" y2="20" />
-  <line x1="17" y1="4" x2="13" y2="20" />
-</svg>
-
-
-
-        </div>
-        <h2 class="widget-title section-title">目录</h2>
-        
-        <div class="widget--toc">
-            <nav id="TableOfContents">
-  <ol>
-    <li><a href="#bug1">BUG1</a></li>
-    <li><a href="#bug2">BUG2</a></li>
-    <li><a href="#bug3">BUG3</a></li>
-    <li><a href="#bug4">BUG4</a></li>
-    <li><a href="#bug5">BUG5</a></li>
-    <li><a href="#bug5-1">BUG5</a></li>
-    <li><a href="#bug6">BUG6</a></li>
-    <li><a href="#bug7">BUG7</a></li>
-    <li><a href="#bug8">BUG8</a></li>
-    <li><a href="#bug9">BUG9</a></li>
-    <li><a href="#bug10">BUG10</a></li>
-    <li><a href="#bug11">BUG11</a></li>
-  </ol>
-</nav>
-        </div>
-    </section>
-
-            
-        
-    </aside>
-
+    
 
             <main class="main full-width">
     <article class="main-article">
@@ -353,7 +311,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/look-bug/">可调电源1.0_BUG总览</a>
+            <a href="/p/look-bug/">可调电源1.0_BUG前瞻序言</a>
         </h2>
     
         
@@ -394,7 +352,7 @@
         </div>
         
         <div>
-            <span class="article-time--words">📝 1177 字</span>
+            <span class="article-time--words">📝 536 字</span>
         </div>
         
         <div>
@@ -413,60 +371,9 @@
     
     
     <p>  从原理图绘制到PCB绘制，从打板到焊接，从想法到落地，这一过程中，难免出现一些离奇现象，难免出现一个又一个的BUG。而且，要找出并修改BUG，这也是一个重难点，因为，大多数BUG我们是无法一眼定位出BUG根源，也许是原理图某个不起眼的细节画错了，也许是PCB绘图时元件摆放位置/走线不规范导致的，又或许说，是PCB在生产中出现的错误，可能出问题的地方多，我们DEBUG的过程就越艰难。况且，对于一个小白来说，没有任何DEBUG经验，而且没人带的话，可以说是举步维艰。这就会导致他们内心起伏大，毫无思绪，最终萌生了放弃的念头。<br>
-  就拿我举例，我从9.1号打板后，9.7号开始焊接，最终在9.16号完成焊接，在这期间，我把打样的6块板子（感谢嘉立创多送我一块板子！！！）全部都进行了焊接，元器件拆了又焊，焊了又拆，反反复复，这也使得我内心开始动摇，想着要不算了吧。但秉承着“打不倒我的终将是我更强大”原则，我又坚持了下来。每一次将元器件重新拆下来，再将其重新焊在另一块板子上，这个过程中很打击人，但也是的我对下一次新板子的焊接更有底更有思路。最终，在对第六块板子进行焊接调试后，对功能进行了测试，最终才完成这个项目（尽管还不算完美）！<br>
-  接下来，我将在焊接过程中出现的BUG进行一个汇总。</p>
-<h2 id="bug1">BUG1
-</h2><p>DC输入12V，但12V输出处仅为5V左右，5V输出仅仅为2.8V，3.3 V仅仅为2V</p>
-<h2 id="bug2">BUG2
-</h2><p>当我仅用DC端子供电时，5V转12V的MBRD1045二极管的负极处也检测到了12V</p>
-<h2 id="bug3">BUG3
-</h2><p>锂电池供电后，5V输出仅仅为4.5左右，3.3仅仅为3.1左右，12V输出为7.5左右，但是！在板子上有检测到12V 说明升压还是起作用的</p>
-<h2 id="bug4">BUG4
-</h2><p>将可调升压部分电路焊接上去后，3.3V，5V，12V输出全部异常，可调升压部分的输出电压很大，可以达到45V 。只有将下图引脚短接一下，3.3V，5V就正常，可调升压也正常，但是在调节升压过程中，他会再一次异常，所以得再一次短接
-<img src="/p/look-bug/image.png"
-	width="1004"
-	height="602"
-	srcset="/p/look-bug/image_hu7965283354627711355.png 480w, /p/look-bug/image_hu13766239937425564300.png 1024w"
-	loading="lazy"
-	
-		alt="1"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="166"
-		data-flex-basis="400px"
-	
-></p>
-<h2 id="bug5">BUG5
-</h2><p>降压芯片焊接后<br>
-<img src="/p/look-bug/image-1.png"
-	width="546"
-	height="849"
-	srcset="/p/look-bug/image-1_hu6821410921045723742.png 480w, /p/look-bug/image-1_hu7083646077823685670.png 1024w"
-	loading="lazy"
-	
-		alt="·"
-	
-	
-		class="gallery-image" 
-		data-flex-grow="64"
-		data-flex-basis="154px"
-	
-></p>
-<h2 id="bug5-1">BUG5
-</h2><p>在焊接完芯片后，3.3V和5V直接短路，换个芯片也会</p>
-<h2 id="bug6">BUG6
-</h2><p>在最后一块板子焊接时，先焊接了TSP5450,12V转5V正常，但是焊接了5V转12V的电路元件后，12V转5V失效，TSP5450的反馈引脚才0.2V</p>
-<h2 id="bug7">BUG7
-</h2><p>解决完BUG6后，将可调升压元器件焊接上去，前面原本正常的锂电池转5V直接失效</p>
-<h2 id="bug8">BUG8
-</h2><p>解决完BUG7后，将可调降压元器件焊接上去，前面原本正常的锂电池转5V又失效</p>
-<h2 id="bug9">BUG9
-</h2><p>在电源部分焊接调试后，就去焊接了MCU，发现程序时而能烧录时而不能；时而能执行程序，时而不能。有时候芯片卡死，烧录也烧录不进去，用热风枪吹一下，就又好了，就这样反复坏，反复吹</p>
-<h2 id="bug10">BUG10
-</h2><p>芯片引脚有时候不能正常输出高低电平，NRST明明我有上拉，但他却一直为低电平</p>
-<h2 id="bug11">BUG11
-</h2><p>主控部分DEBUG后，我进行了最后一部分焊接，锂电池充电管理。但是焊接后，5V一直短路，换了芯片也会</p>
+  就拿我举例，我从9.1号打板后，9.7号开始焊接，最终在9.16号完成焊接，在这期间，我把打样的6块板子（感谢嘉立创多送我一块板子！！！）全部都进行了焊接，元器件拆了又焊，焊了又拆，反反复复，这也使得我内心开始动摇，想着要不算了吧。但秉承着“<strong>打不倒我的终将是我更强大</strong>”原则，我又坚持了下来。每一次将元器件重新拆下来，再将其重新焊在另一块板子上，这个过程中很打击人，但也是的我对下一次新板子的焊接更有底更有思路。最终，在对第六块板子进行焊接调试后，对功能进行了测试，最终才完成这个项目（尽管还不算完美）！<br>
+  调试过程和结果请看<a class="link" href="https://carring06.github.io/p/debug/"  target="_blank" rel="noopener"
+    >-&gt;调试过程&lt;-</a></p>
 
 </section>
 

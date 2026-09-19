@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="">
-<title>可调电源1.0_调试过程</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="不同于平衡车那个章节，这一部分的BUG与调试我不打算一一对应的进行撰写。因为这个项目的BUG有些是联合在一起的，原因也是一样的。所以这里我打">
+<title>可调电源1.0_焊接调试过程</title>
 
 <link rel='canonical' href='https://Carring06.github.io/p/debug/'>
 
-<link rel="stylesheet" href="/scss/style.min.326dad0bb2c3ae4ad5c9a79fbec7a230f22001366c9e0e11fc90a9965b977acd.css"><meta property='og:title' content="可调电源1.0_调试过程">
-<meta property='og:description' content="">
+<link rel="stylesheet" href="/scss/style.min.326dad0bb2c3ae4ad5c9a79fbec7a230f22001366c9e0e11fc90a9965b977acd.css"><meta property='og:title' content="可调电源1.0_焊接调试过程">
+<meta property='og:description' content="不同于平衡车那个章节，这一部分的BUG与调试我不打算一一对应的进行撰写。因为这个项目的BUG有些是联合在一起的，原因也是一样的。所以这里我打">
 <meta property='og:url' content='https://Carring06.github.io/p/debug/'>
 <meta property='og:site_name' content='车度空间'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-09-18T11:38:36&#43;08:00'/><meta property='article:modified_time' content='2026-09-19T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="可调电源1.0_调试过程">
-<meta name="twitter:description" content="">
+<meta name="twitter:title" content="可调电源1.0_焊接调试过程">
+<meta name="twitter:description" content="不同于平衡车那个章节，这一部分的BUG与调试我不打算一一对应的进行撰写。因为这个项目的BUG有些是联合在一起的，原因也是一样的。所以这里我打">
     <link rel="shortcut icon" href="/favicon.ico" />
 
   
@@ -300,7 +300,44 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#焊接与调试">焊接与调试</a>
+      <ol>
+        <li><a href="#power">POWER</a></li>
+        <li><a href="#mcu">MCU</a></li>
+      </ol>
+    </li>
+    <li><a href="#bug原因">BUG原因</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="main-article">
@@ -311,7 +348,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/debug/">可调电源1.0_调试过程</a>
+            <a href="/p/debug/">可调电源1.0_焊接调试过程</a>
         </h2>
     
         
@@ -352,7 +389,7 @@
         </div>
         
         <div>
-            <span class="article-time--words">📝 0 字</span>
+            <span class="article-time--words">📝 3192 字</span>
         </div>
         
         <div>
@@ -370,7 +407,192 @@
     <section class="article-content">
     
     
-    
+    <p>  不同于平衡车那个章节，这一部分的BUG与调试我不打算一一对应的进行撰写。因为这个项目的BUG有些是联合在一起的，原因也是一样的。所以这里我打算按照我的焊接过程、顺序，来讲述我的调试，附带说明BUG原因，在对应到的BUG上，我将会高光提醒。</p>
+<h2 id="焊接与调试">焊接与调试
+</h2><h3 id="power">POWER
+</h3><p>  对于拿到手的板子，我们在进行焊接前，必须打开我们绘制的原理图与PCB图，然后对照着原理图与PCB进行元器件焊接。至于焊接的顺序，我个人的建议是大家<strong>先从电源输入开始焊接，并遵循着小元件先焊接，大元件后焊接，塑料器件(不耐高温器件)不是必须的就留到最后焊接，是必须的就焊接，但是要注意应当防止高温使其融化。并且我建议大家边焊接边测试，最好别等到全部焊接上去后再测试</strong>！然后等到电源部分焊接测试通过后，再去焊接MCU，焊接MCU后，上前前必须检测是否有短路的风险，防止MCU烧了。  <br>
+<img src="/p/debug/image.png"
+	width="761"
+	height="518"
+	srcset="/p/debug/image_hu7460647576446724088.png 480w, /p/debug/image_hu16971364092468011031.png 1024w"
+	loading="lazy"
+	
+		alt="TypeC"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="146"
+		data-flex-basis="352px"
+	
+><br>
+  对于这个可调电源板子，我首先进行了TypeC与相关电阻、指示灯的焊接，而后用万用表去测试焊接部分是否短路，证明该电路不会短路后，就进行上电测试，LED指示灯能亮，5V输入和输出也正常。<br>
+<img src="/p/debug/image-2.png"
+	width="888"
+	height="702"
+	srcset="/p/debug/image-2_hu2522862979392571919.png 480w, /p/debug/image-2_hu12248017682133380552.png 1024w"
+	loading="lazy"
+	
+		alt="DC输入"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="126"
+		data-flex-basis="303px"
+	
+><img src="/p/debug/image-3.png"
+	width="144"
+	height="186"
+	srcset="/p/debug/image-3_hu608653781286137246.png 480w, /p/debug/image-3_hu7845959757592125840.png 1024w"
+	loading="lazy"
+	
+		alt="保险丝"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="77"
+		data-flex-basis="185px"
+	
+>     <br>
+  而后，我开始焊接DC+12V输入部分，也是先将小器件焊接后，再焊接DC端子。然后进行上电测试，发现指示灯正常亮，但是12V输出排插检测到只有7.5V（刚上电是5V，后面不知为何升到7.5V）。然后我就去检查了DC输入，发现DC输入确实是12V。这就让我很疑惑了。明明我这个12V的电路就经过个自恢复保险丝，怎么就有5V左右压降呢？后面，我换了好几个板子，发现都会出现这种情况。所以就排除了是板子自身问题了。因此，我把视线转移到板子12V流经路线。我沿着12V的相关电路进行检测，发现DC输入的12V是在经过这颗保险丝后才变成7V多的。可是我买的是60V耐压的自恢复保险丝，可输入只有12V啊，而且明明是自恢复保险丝，就算烧断了，理应该也会回复吧？但事实是，我换了个保险丝后，12V输出就正常了，那就证明问题确实是在这颗保险丝上。其实在后续焊接中，也发现5V输出也有很大压降了，然后换了个保险丝后，也恢复正常了。&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG1</mark><br>
+<img src="/p/debug/image-4.png"
+	width="1548"
+	height="942"
+	srcset="/p/debug/image-4_hu4596842706629217894.png 480w, /p/debug/image-4_hu16211479705677211545.png 1024w"
+	loading="lazy"
+	
+		alt="解释"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="164"
+		data-flex-basis="394px"
+	
+><br>
+  这里，我给大家一个使用万用表在电路上检测保险丝是否被熔断的方法。就是使用万用表蜂鸣档放在保险丝两端，若万用表鸣叫了，说明此时保险丝还是好的（检测前必须先断电）。电感也可以这么测。<br>
+<img src="/p/debug/image-5.png"
+	width="716"
+	height="290"
+	srcset="/p/debug/image-5_hu8757846200628303672.png 480w, /p/debug/image-5_hu17590871093954415288.png 1024w"
+	loading="lazy"
+	
+		alt="DCDC5"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="246"
+		data-flex-basis="592px"
+	
+>  <br>
+   接着，我进行了开关芯片部分的焊接，首先是TPS5450-12V转5V焊接以及AMS1117-3.3的焊接,验证说明12V转5V转3.3V均正常。<br>
+<img src="/p/debug/image-6.png"
+	width="822"
+	height="512"
+	srcset="/p/debug/image-6_hu6515946684377259216.png 480w, /p/debug/image-6_hu781946120450245820.png 1024w"
+	loading="lazy"
+	
+		alt="xl   "
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="385px"
+	
+>   <br>
+  接着，我进行了XL6019-5V升12V的焊接,发现5V转12V是成功的。然后，我将TypeC拆了下来，转为12V的DC端子供电（之所以这么操作，是因为在前面的板子焊接中，当我焊接多个元器件后，出现过DC输入转5V时异常的现象），发现12V转5V失效了，5V输出只有2.8V左右。
+  在检查保险丝，发现不是保险丝的问题后。我去检查了TPS5450的反馈引脚，发现其电压仅为0.6V，并不是数据手册上所标称的1.221V.然后我去换了芯片，结果依旧如此。再联想到再没焊接XL6019的电路前，TPS5450还是正常的，我就打算先把XL6019相关的元器件拆下来。所以，我把下图红框内的电解电容拆了后，发现12V转5V恢复正常了。
+<img src="/p/debug/image-7.png"
+	width="947"
+	height="705"
+	srcset="/p/debug/image-7_hu1250261740920041018.png 480w, /p/debug/image-7_hu7670916311061084166.png 1024w"
+	loading="lazy"
+	
+		alt="1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="134"
+		data-flex-basis="322px"
+	
+>
+<img src="/p/debug/image-8.png"
+	width="1040"
+	height="801"
+	srcset="/p/debug/image-8_hu460952666070270046.png 480w, /p/debug/image-8_hu4809963487061605459.png 1024w"
+	loading="lazy"
+	
+		alt="2"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="129"
+		data-flex-basis="311px"
+	
+><br>
+  再后来我发现，同一颗电容放在1位置时，12转5就不正常；放在2时却正常了（后续再来探讨原因！）。所以，这给我提了个醒，先别焊铝电解电容！！！【可是我这两铝电解电容又不是TPA5450的，怎么会影响到5450呢？】  <br>
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG2-1</mark><br>
+  而后，在焊接锂电池升压转5V的电路中，我故意不焊接两颗铝电解电容，发现锂电池转5转12转3.3正常。而且我也对其他两个输入进行了检查，发现都正常后，我才开始去焊接两颗铝电解电容。焊接后，发现一切正常。 <br>
+<img src="/p/debug/image-9.png"
+	width="761"
+	height="707"
+	srcset="/p/debug/image-9_hu17531139583026366733.png 480w, /p/debug/image-9_hu11676741272105572621.png 1024w"
+	loading="lazy"
+	
+		alt="可"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="107"
+		data-flex-basis="258px"
+	
+><br>
+  再然后，来到了可调升压相关电路。焊接后（除了两个电解电容），三个输入的测试都正常，可调电压范围是5V到30V.然后我进行了两颗铝电解电容焊接上去，发现TypeC,DC端子输入测试都正常，但是锂电池输入转5V不正常，最终把下图红红框内电容去了，才恢复正常。<br>
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG2-2</mark> <br>
+<img src="/p/debug/image-10.png"
+	width="1080"
+	height="729"
+	srcset="/p/debug/image-10_hu17054363885112744542.png 480w, /p/debug/image-10_hu10774924901453252878.png 1024w"
+	loading="lazy"
+	
+		alt="alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="148"
+		data-flex-basis="355px"
+	
+><br>
+  接着是可调降压部分，结果也是如此，只有拆了下图的铝电解电容，锂电池输入转5V才能正常。 <br>
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG2-3</mark><br>
+<img src="/p/debug/image-11.png"
+	width="677"
+	height="531"
+	srcset="/p/debug/image-11_hu6967735350509717162.png 480w, /p/debug/image-11_hu16289272216916114034.png 1024w"
+	loading="lazy"
+	
+		alt="alt text"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="127"
+		data-flex-basis="305px"
+	
+></p>
+<h3 id="mcu">MCU
+</h3><p>  在上述焊接完成后，电源部分大体完成了（差个锂电池充电），接下来就是针对于MCU相关的焊接了。<br>
+  因为可调电源1.0的MCU部分并不复杂，所以焊接起来比较迅速，所以我一开始一股脑全焊接了，而且是焊接完后再去测试，这一点我做的很不好，大家别学习。<br>
+  我在一股脑把MCU部分全焊接后（LED,按键，滤波电容，芯片，晶振等）。一上电，MCU芯片烧了。这一点我也做的很不好，大家是应该先检查是否短路后再上电的。 <br>
+  然后我换了个芯片焊接，然后在上电前，用万用表进行检测，发现还是短路。然后我就用放大镜在芯片的电源引脚检查了很久，但是就是觉得芯片不会短路的。所以后面，我试着把几个芯片滤波电容拆了，然后发现就不短路了。后面我就换了几个芯片滤波电容，然后就正常了。（这也对后续埋下伏笔）<br>
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG3-1</mark><br>
+  接着，我将复位电路也焊接了上去，然后准备烧录程序进行。刚开始还是能烧录的，但是烧录一次后，就直接烧录不进去了。Keil给的报错是，无法阻止设备运行，而且烧录进去的程序一会能运行一会不能。那时候我琢磨很久，一直想不清楚原因。然后我去测试了复位引脚，发现，明明复位引脚应该是被拉高至3.3V，结果检测出来却是0V。所以，我去对复位引脚的上拉电阻一端进行了检测，结果还是0V。后面我实在没头绪了，就把复位电路的电容和芯片，按键都拆下来，然后又去测试上拉电阻一端的电压，结果发现拆完电容电阻后，焊盘上确实能检测出3.3V。所以我怀疑可能又是电容的问题。后面，我就去换了新电容，然后再把复位电路重新焊接，发现复位引脚依旧是低电平0，代码依旧下载不了，程序依旧不能正常运行。然后，我直接把电阻电容拆了。直接用一根杜邦线短接复位引脚和3.3V。此时，我发现程序被正常运行了。但是还是不能下载程序，后面查清楚原因，此时不能下载程序，是因为我把复位引脚强制拉高，而每次芯片要下载程序时都会把复位引脚拉低，但是他又只是弱下拉，对不过我的外部强上拉，所以下载不进去程序。后面我重新换了一个芯片，又顺便电容，结果发现复位引脚正常了，在常态下默认高电平，按复位键时才被拉低。<br>
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG4</mark><br>
+  然后，单片机能正常下载程序了。所以我开始测试相关的程序。结果发现，单片机跑着跑着容易死机，而我将晶振换成内部晶振后，又正常了，在再三考虑后，我决定使用内部晶振就好，在我这个场景足够使用。<br>
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG5</mark><br>
+  但是，不出意外的话，意外又来了。我的按键电路，发生了异常。一开始，我以为是焊接不好，我就又去焊接一遍芯片，并再上一次锡。结果证明，确实有一部分原因是焊接不良导致的。但是还有一个按键失效。然后我就去测了一下这个贴片按键是否正常，是否能正常导通，结果也是可以的。然后我去测试了这个案按键的引脚，发现他是输出低电平，但是，我在CubeMX配置了上拉，他不应该是低电平啊。然后我把按键的滤波电容拆了，然后这个按键就正常了，换了个新电容，也是ok的。
+&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&mdash;&ndash;&gt; <mark>BUG3-2</mark><br>
+  至此，该板子大部分功能正常，但还是存在一些些不足之处以及BUG。这一部分会在下文加以说明</p>
+<h2 id="bug原因">BUG原因
+</h2><p>  仍存在的BUG和不足说明：</p>
+
 </section>
 
 
