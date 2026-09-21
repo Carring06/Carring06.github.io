@@ -21,18 +21,60 @@
         <pubDate>Sat, 19 Sep 2026 11:38:36 +0800</pubDate>
         
         <guid>https://Carring06.github.io/p/revision-description/</guid>
-        <description>&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/revision-description/image.png&#34;
-	width=&#34;1634&#34;
-	height=&#34;5494&#34;
-	srcset=&#34;https://Carring06.github.io/p/revision-description/image_hu5193417711770249941.png 480w, https://Carring06.github.io/p/revision-description/image_hu15107684921523966446.png 1024w&#34;
+        <description>&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/revision-description/image-4.png&#34;
+	width=&#34;1712&#34;
+	height=&#34;7511&#34;
+	srcset=&#34;https://Carring06.github.io/p/revision-description/image-4_hu1725464006392991865.png 480w, https://Carring06.github.io/p/revision-description/image-4_hu17468470008043429117.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
 		alt=&#34;豆包有话说&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;29&#34;
-		data-flex-basis=&#34;71px&#34;
+		data-flex-grow=&#34;22&#34;
+		data-flex-basis=&#34;54px&#34;
+	
+&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/revision-description/image-2.png&#34;
+	width=&#34;1985&#34;
+	height=&#34;872&#34;
+	srcset=&#34;https://Carring06.github.io/p/revision-description/image-2_hu9686651216088061161.png 480w, https://Carring06.github.io/p/revision-description/image-2_hu3376740092778902299.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;227&#34;
+		data-flex-basis=&#34;546px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/revision-description/image-1.png&#34;
+	width=&#34;444&#34;
+	height=&#34;258&#34;
+	srcset=&#34;https://Carring06.github.io/p/revision-description/image-1_hu5912146999869544366.png 480w, https://Carring06.github.io/p/revision-description/image-1_hu8939789237765441927.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;172&#34;
+		data-flex-basis=&#34;413px&#34;
+	
+&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/revision-description/image-3.png&#34;
+	width=&#34;1650&#34;
+	height=&#34;1475&#34;
+	srcset=&#34;https://Carring06.github.io/p/revision-description/image-3_hu1740223543409160353.png 480w, https://Carring06.github.io/p/revision-description/image-3_hu4017250025488954473.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;111&#34;
+		data-flex-basis=&#34;268px&#34;
 	
 &gt;&lt;/p&gt;
 </description>
@@ -589,7 +631,8 @@ DC+12v转5V波型：&lt;br&gt;
 &lt;mark&gt;（双击可放大视频）&lt;/mark&gt;
 &lt;video controls src=&#34;fa64cd7cac3b807e1eb3ed8c55c104fd.mp4&#34; title=&#34;锂电池转5V&#34;&gt;&lt;/video&gt;&lt;/p&gt;
 &lt;h2 id=&#34;优化纹波&#34;&gt;优化纹波
-&lt;/h2&gt;</description>
+&lt;/h2&gt;&lt;p&gt;  &lt;/p&gt;
+</description>
         </item>
         <item>
         <title>可调电源1.0_BUCK BOOST</title>
