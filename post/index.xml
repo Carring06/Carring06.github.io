@@ -21,62 +21,43 @@
         <pubDate>Sat, 19 Sep 2026 11:38:36 +0800</pubDate>
         
         <guid>https://Carring06.github.io/p/revision-description/</guid>
-        <description>&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/revision-description/image-4.png&#34;
-	width=&#34;1712&#34;
-	height=&#34;7511&#34;
-	srcset=&#34;https://Carring06.github.io/p/revision-description/image-4_hu1725464006392991865.png 480w, https://Carring06.github.io/p/revision-description/image-4_hu17468470008043429117.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;豆包有话说&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;22&#34;
-		data-flex-basis=&#34;54px&#34;
-	
-&gt;      &lt;br&gt;
-&lt;img src=&#34;https://Carring06.github.io/p/revision-description/image-2.png&#34;
+        <description>&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/revision-description/image-2.png&#34;
 	width=&#34;1985&#34;
 	height=&#34;872&#34;
 	srcset=&#34;https://Carring06.github.io/p/revision-description/image-2_hu9686651216088061161.png 480w, https://Carring06.github.io/p/revision-description/image-2_hu3376740092778902299.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;alt text&#34;
+		alt=&#34;报错处&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;227&#34;
 		data-flex-basis=&#34;546px&#34;
 	
-&gt;&lt;/p&gt;
-&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/revision-description/image-1.png&#34;
+&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/revision-description/image-1.png&#34;
 	width=&#34;444&#34;
 	height=&#34;258&#34;
 	srcset=&#34;https://Carring06.github.io/p/revision-description/image-1_hu5912146999869544366.png 480w, https://Carring06.github.io/p/revision-description/image-1_hu8939789237765441927.png 1024w&#34;
 	loading=&#34;lazy&#34;
 	
-		alt=&#34;alt text&#34;
+		alt=&#34;解决方法&#34;
 	
 	
 		class=&#34;gallery-image&#34; 
 		data-flex-grow=&#34;172&#34;
 		data-flex-basis=&#34;413px&#34;
 	
-&gt;
-&lt;img src=&#34;https://Carring06.github.io/p/revision-description/image-3.png&#34;
-	width=&#34;1650&#34;
-	height=&#34;1475&#34;
-	srcset=&#34;https://Carring06.github.io/p/revision-description/image-3_hu1740223543409160353.png 480w, https://Carring06.github.io/p/revision-description/image-3_hu4017250025488954473.png 1024w&#34;
-	loading=&#34;lazy&#34;
-	
-		alt=&#34;alt text&#34;
-	
-	
-		class=&#34;gallery-image&#34; 
-		data-flex-grow=&#34;111&#34;
-		data-flex-basis=&#34;268px&#34;
-	
 &gt;&lt;/p&gt;
+&lt;h2 id=&#34;可调电源20改版说明&#34;&gt;可调电源2.0改版说明
+&lt;/h2&gt;&lt;p&gt;  首先，原版的可调电源1.0采用的是PCB四层板结构，四层分别为：&lt;strong&gt;顶层信号层，内层1-PWR层，内层2-GND层，以及底层信号层&lt;/strong&gt;。因为那时候的我，第一次画四层板，其实是处在一个朦胧的状态中，那时候只知道四层板绘制，可以多两层来走线，但是没有在意太多其他的细节，比如说，电流的回流路径长，没有合理的参考地，没有考虑到开关芯片噪声会耦合进公共地上等等。拿我顶层走线来说，&lt;mark&gt;顶层的电流要回到地，就必须先通过过孔到达内层1，然后再经过过孔到达地平面&lt;/mark&gt;，这样造成的影响就是，电流的环路面积变大，还可能导致寄生电感大幅增加，而且流经PWR层后，也可能会耦合其他电源线的噪声，关于寄生电感增加，我们知道，公式 U = L * di/dt，但开关导通或者关闭瞬间，di/dt会很大，寄生电感会感应出高压尖峰，这样会导致陶瓷去耦电容的作用被削弱，来不及吸收尖峰，电源轨上噪声明显，容易干扰单片机、ADC 采样，甚至可能击穿元器件。&lt;br&gt;
+  针对于上述“&lt;strong&gt;顶层的电流要回到地，就必须先通过过孔到达内层1，然后再经过过孔到达地平面&lt;/strong&gt;”，其实这句话严格上来说是不太严谨的。因为我在顶层和底层也有铺地铜，其实电流是可以在顶层形成回路的。但是，部分高频开关噪声更愿意走阻抗小，环路最小的回路，也就是通过过孔走到内层2。抛开这个问题不谈，我们也可以假想一下，电流流向顶层/底层的GND时，噪声是会耦合在公共地的，这样MCU部分自然会受到噪声的强干扰，所以无论电流是走向内层2好，还是说直接在顶层/底层回路也好，都会造成一些不好的影响的。&lt;br&gt;
+  所以，综合已存在的问题，我决定将可调电源2.0设定为六层板结构。六层分别为：&lt;strong&gt;顶层信号层，内层1-SGND1层，内层3-PWR层，内层4-PGND层，内层5-SGND2层，以及底层信号层&lt;/strong&gt;。首先，这里先说明一下，SGND层以及PGND层具体代表什么。SGND表示的信号地层&amp;mdash;单片机等电路的参考地，PGND表示的是开关芯片的功率地层。然后，在PCB绘制完成后，在顶层/底层铺铜选择的是SGND（因为SGND耦合的开关噪声最小）。其中，功率地和信号地采用的是0Ω电阻进行连接的方法。&lt;br&gt;
+  接下来说一下，当前的改动具备哪些优点。首先，和 1.0 很明显的一个区别就是，2.0 采用了双地策略，也就是将信号参考地以及功率参考地分开，然后用一个 0Ω 电阻单点连接。这样既保证两个参考地直流等电位，又能阻止开关电源的大功率噪声扩散到信号地。主控信号的参考地电位更加平稳，地弹波动更小；其次，本次采用六层板结构，把电源层放置在 SGND 与 PGND 两层地平面之间，利用上下地平面做屏蔽，隔绝 PWR 层噪声通过层间耦合串入顶层 / 底层的信号线；而且，在六层板的结构中，有3层GND铺铜层，这样可以通过过孔带走TPS5450，XL6019功率芯片的热量，这样能减少一下带负载时板子发热过烫的现象。 &lt;br&gt;
+  除此之外，顶层和底层的信号线包裹在相对于稳定的SGND铜皮里面，信号的抗干扰能力会更强。四层板的GND耦合的噪声太大，信号线包裹在其中会没有“安全感”的，然后就导致信号杂乱起来了，这是对我1.0板子存在的异常进行的假想说明与改动，真正结果和缘由还得等进行测试后才得知。&lt;br&gt;
+  异常可以观看：&lt;a class=&#34;link&#34; href=&#34;https://b23.tv/wapxOkl&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;基于嘉立创专业版设计的可调电源1.0-哔哩哔哩视频展示&lt;/a&gt;   或者    &lt;a class=&#34;link&#34; href=&#34;https://Carring06.github.io/p/look-bug/&#34; &gt;BUG前瞻序言&lt;/a&gt; 。  &lt;br&gt;
+  但其实对于那几个电容焊接上去后板子就异常的这个问题，我并没有做出有力的改动，只能做一下增大一下电容与芯片的距离等小改动了，这个也要等待后续测良了。&lt;/p&gt;
 </description>
         </item>
         <item>
@@ -87,6 +68,7 @@
         <guid>https://Carring06.github.io/p/look-bug/</guid>
         <description>&lt;p&gt;  从原理图绘制到PCB绘制，从打板到焊接，从想法到落地，这一过程中，难免出现一些离奇现象，难免出现一个又一个的BUG。而且，要找出并修改BUG，这也是一个重难点，因为，大多数BUG我们是无法一眼定位出BUG根源，也许是原理图某个不起眼的细节画错了，也许是PCB绘图时元件摆放位置/走线不规范导致的，又或许说，是PCB在生产中出现的错误，可能出问题的地方多，我们DEBUG的过程就越艰难。况且，对于一个小白来说，没有任何DEBUG经验，而且没人带的话，可以说是举步维艰。这就会导致他们内心起伏大，毫无思绪，最终萌生了放弃的念头。&lt;br&gt;
   就拿我举例，我从9.1号打板后，9.7号开始焊接，最终在9.16号完成焊接，在这期间，我把打样的6块板子（感谢嘉立创多送我一块板子！！！）全部都进行了焊接，元器件拆了又焊，焊了又拆，反反复复，这也使得我内心开始动摇，想着要不算了吧。但秉承着“&lt;strong&gt;打不倒我的终将是我更强大&lt;/strong&gt;”原则，我又坚持了下来。每一次将元器件重新拆下来，再将其重新焊在另一块板子上，这个过程中很打击人，但也是的我对下一次新板子的焊接更有底更有思路。最终，在对第六块板子进行焊接调试后，对功能进行了测试，最终才完成这个项目（尽管还不算完美）！&lt;br&gt;
+  1.0的板子还存在的异常是：板子运转久后，LED会非程序控制而乱闪，OLED会卡住，得用热风枪吹一下才能恢复正常。
   调试过程和结果请看&lt;a class=&#34;link&#34; href=&#34;https://carring06.github.io/p/debug/&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
     &gt;-&amp;gt;调试过程&amp;lt;-&lt;/a&gt;&lt;/p&gt;
 </description>
@@ -839,7 +821,9 @@ DC+12v转5V波型：&lt;br&gt;
 		data-flex-basis=&#34;214px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;  首先，先说明一下，截至在这篇文章发布时，当前这个项目算不上太完美。所以当前，我只打算在这里记录一下在制作这个项目中做学习到的知识、所解决和发现的BUG，以及一些我自己的想法和感悟。其次，我打算在后续的更新中，同步并行改善这个项目，使其更加完善！&lt;br&gt;
+&lt;p&gt;&lt;a class=&#34;link&#34; href=&#34;https://b23.tv/wapxOkl&#34;  target=&#34;_blank&#34; rel=&#34;noopener&#34;
+    &gt;基于嘉立创专业版设计的可调电源1.0-哔哩哔哩视频展示&lt;/a&gt;&lt;br&gt;
+  首先，先说明一下，截至在这篇文章发布时，当前这个项目算不上太完美。所以当前，我只打算在这里记录一下在制作这个项目中做学习到的知识、所解决和发现的BUG，以及一些我自己的想法和感悟。其次，我打算在后续的更新中，同步并行改善这个项目，使其更加完善！&lt;br&gt;
   当然，当前这个项目，已经可以实现可调升压————&lt;em&gt;&lt;strong&gt;5V ~ 30V&lt;/strong&gt;&lt;/em&gt;，可调降压————&lt;em&gt;&lt;strong&gt;12V ~ 1.2V&lt;/strong&gt;&lt;/em&gt;，锂电池充电管理，以及主控方面的OLED显示可调电压大小、LED控制、按键控制以及串口输出，这一方面后续可根据实际需求进行编程。不足的是，DC12V输入端子处，未进行任何滤波处理，导致接入的电压波形大，振荡大，这样对后续的DCDC降压转5V很不友好（当然，有部分原因也可能是我在pdd用5.5块钱买的电源适配器很差劲导致的），但是，如果在板子上，能尽量做点优化就做点，这样才能增加板子的适应性。 &lt;br&gt;
 PS:我使用的示波器夹子回路较长，可能会引入示波器自身的高频信号干扰，如下视频所展示，最好还是使用弹簧接地环进行测试，具体可自行了解。&lt;br&gt;
 &lt;mark&gt;（双击可放大视频）&lt;/mark&gt;
