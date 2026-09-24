@@ -385,7 +385,7 @@
         </div>
         
         <div>
-            <span class="article-time--words">📝 1603 字</span>
+            <span class="article-time--words">📝 2071 字</span>
         </div>
         
         <div>
@@ -474,7 +474,36 @@ DC+12v转5V波型：<br>
   对于那些对<strong>电源质量有着高要求</strong>的用电芯片，其实我们是应该采取<strong>降低噪声的策略</strong>而不是<strong>降低纹波</strong>，但这样并不就意味着我们可以放任纹波任意大，纹波的大小还是需要进行控制的，只是说当我们纹波尽我们所能优化后，最主要关注的是降低用电端的噪声。<br>
   而对于如何降低噪声，一方面是可以加多几个滤波电容，另一方面是需要对PCB版图进行优化。关于滤波方面，好像有什么LC滤波，π形滤波，这些方面当前我还不太熟悉，等我深究后，再来细谈细谈（等这篇文章写完后）；对于PCB绘制方面，主要是要将电源走线尽可能控制短而粗，一般是采取铺铜操作，然后进行过孔的时候，要多加几个过孔，增加过孔的总过流能力。 <br>
   为针对于测量纹波与噪声，示波器的设置也是有些许不同的。对于相同的点，比如说，都需要使用<strong>交流耦合，探头的放大倍数应该采用×1，还有测量时间稍微久点，还有按AUTO，都使用接地弹簧（接地弹簧可大幅缩短接地环路，降低引线寄生电感，减少空间干扰耦合，保证纹波测量结果真实准确。）</strong>&mdash;<mark>测量的时候弹簧针记得接在电容的 GND 端</mark>。而对于不同的点就是，<strong>纹波</strong>测量的带宽因为限制为<strong>20MHZ</strong>，而<strong>噪声</strong>的测量应该选择<strong>全带宽</strong>。<br>
-  </p>
+  接下来来讲一下<strong>降低纹波电压</strong>的一些策略。（1）首先是<strong>电容选型方面</strong>，根据他人测验可得知，相同容值不同类型的电容，<strong>降低纹波的效果</strong>从好到差分别为：<strong>MLCC（陶瓷电容）＞钽电容＞铝固态电容＞铝电解电容</strong>。所以，为了提高滤波效果，一般采用的是<strong>大封装大容值➕小封装小容值的MLCC进行并联</strong>。（2）其次，我们知道，要降低电压，我们可以先<strong>降低电流</strong>。①<strong>适当增大电感感值</strong>：电感的感值越大，纹波电流就越小，所以在某些特定场景，我们可以先试着增大电感感值但是也不能随意增大，因为当电感感值大起来后，电源的响应会变慢；②<strong>适当提高芯片开关频率</strong>：开关频率越大，纹波电流也会越小，但是伴随的开关损耗就会增大，这样会降低电源的效率，而且开关频率越高，造成的辐射超标的风险就会越大（ps:开关电源的三种损耗分别为：导通损耗，驱动损耗，芯片本身功耗）;(3)然后再是对<strong>PCB的优化</strong>：也是和上面降低噪声的方法一样，适当加电容且电容适当靠近芯片一下，减小电流回路路径，主功率回路避免过孔和换层，加宽铺铜等等。而且一些芯片手册都会有PCB layout的相关图片与指导，大家可以跟着画.<br>
+  <br>
+<img src="/p/power-ripple/image-3.png"
+	width="1328"
+	height="314"
+	srcset="/p/power-ripple/image-3_hu16405772287313070290.png 480w, /p/power-ripple/image-3_hu15059706729459543178.png 1024w"
+	loading="lazy"
+	
+		alt="开关噪声"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="422"
+		data-flex-basis="1015px"
+	
+></p>
+<p><img src="/p/power-ripple/%E7%BA%B9%E6%B3%A2%E4%B8%8E%E5%99%AA%E5%A3%B0.png"
+	width="2309"
+	height="401"
+	srcset="/p/power-ripple/%E7%BA%B9%E6%B3%A2%E4%B8%8E%E5%99%AA%E5%A3%B0_hu13417071770314673527.png 480w, /p/power-ripple/%E7%BA%B9%E6%B3%A2%E4%B8%8E%E5%99%AA%E5%A3%B0_hu15471608635752144815.png 1024w"
+	loading="lazy"
+	
+		alt="纹波与噪声"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="575"
+		data-flex-basis="1381px"
+	
+></p>
 <h2 id="优化纹波">优化纹波
 </h2>
 </section>

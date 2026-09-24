@@ -650,7 +650,36 @@ DC+12v转5V波型：&lt;br&gt;
   对于那些对&lt;strong&gt;电源质量有着高要求&lt;/strong&gt;的用电芯片，其实我们是应该采取&lt;strong&gt;降低噪声的策略&lt;/strong&gt;而不是&lt;strong&gt;降低纹波&lt;/strong&gt;，但这样并不就意味着我们可以放任纹波任意大，纹波的大小还是需要进行控制的，只是说当我们纹波尽我们所能优化后，最主要关注的是降低用电端的噪声。&lt;br&gt;
   而对于如何降低噪声，一方面是可以加多几个滤波电容，另一方面是需要对PCB版图进行优化。关于滤波方面，好像有什么LC滤波，π形滤波，这些方面当前我还不太熟悉，等我深究后，再来细谈细谈（等这篇文章写完后）；对于PCB绘制方面，主要是要将电源走线尽可能控制短而粗，一般是采取铺铜操作，然后进行过孔的时候，要多加几个过孔，增加过孔的总过流能力。 &lt;br&gt;
   为针对于测量纹波与噪声，示波器的设置也是有些许不同的。对于相同的点，比如说，都需要使用&lt;strong&gt;交流耦合，探头的放大倍数应该采用×1，还有测量时间稍微久点，还有按AUTO，都使用接地弹簧（接地弹簧可大幅缩短接地环路，降低引线寄生电感，减少空间干扰耦合，保证纹波测量结果真实准确。）&lt;/strong&gt;&amp;mdash;&lt;mark&gt;测量的时候弹簧针记得接在电容的 GND 端&lt;/mark&gt;。而对于不同的点就是，&lt;strong&gt;纹波&lt;/strong&gt;测量的带宽因为限制为&lt;strong&gt;20MHZ&lt;/strong&gt;，而&lt;strong&gt;噪声&lt;/strong&gt;的测量应该选择&lt;strong&gt;全带宽&lt;/strong&gt;。&lt;br&gt;
-  &lt;/p&gt;
+  接下来来讲一下&lt;strong&gt;降低纹波电压&lt;/strong&gt;的一些策略。（1）首先是&lt;strong&gt;电容选型方面&lt;/strong&gt;，根据他人测验可得知，相同容值不同类型的电容，&lt;strong&gt;降低纹波的效果&lt;/strong&gt;从好到差分别为：&lt;strong&gt;MLCC（陶瓷电容）＞钽电容＞铝固态电容＞铝电解电容&lt;/strong&gt;。所以，为了提高滤波效果，一般采用的是&lt;strong&gt;大封装大容值➕小封装小容值的MLCC进行并联&lt;/strong&gt;。（2）其次，我们知道，要降低电压，我们可以先&lt;strong&gt;降低电流&lt;/strong&gt;。①&lt;strong&gt;适当增大电感感值&lt;/strong&gt;：电感的感值越大，纹波电流就越小，所以在某些特定场景，我们可以先试着增大电感感值但是也不能随意增大，因为当电感感值大起来后，电源的响应会变慢；②&lt;strong&gt;适当提高芯片开关频率&lt;/strong&gt;：开关频率越大，纹波电流也会越小，但是伴随的开关损耗就会增大，这样会降低电源的效率，而且开关频率越高，造成的辐射超标的风险就会越大（ps:开关电源的三种损耗分别为：导通损耗，驱动损耗，芯片本身功耗）;(3)然后再是对&lt;strong&gt;PCB的优化&lt;/strong&gt;：也是和上面降低噪声的方法一样，适当加电容且电容适当靠近芯片一下，减小电流回路路径，主功率回路避免过孔和换层，加宽铺铜等等。而且一些芯片手册都会有PCB layout的相关图片与指导，大家可以跟着画.&lt;br&gt;
+  &lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/power-ripple/image-3.png&#34;
+	width=&#34;1328&#34;
+	height=&#34;314&#34;
+	srcset=&#34;https://Carring06.github.io/p/power-ripple/image-3_hu16405772287313070290.png 480w, https://Carring06.github.io/p/power-ripple/image-3_hu15059706729459543178.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;开关噪声&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;422&#34;
+		data-flex-basis=&#34;1015px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/power-ripple/%E7%BA%B9%E6%B3%A2%E4%B8%8E%E5%99%AA%E5%A3%B0.png&#34;
+	width=&#34;2309&#34;
+	height=&#34;401&#34;
+	srcset=&#34;https://Carring06.github.io/p/power-ripple/%E7%BA%B9%E6%B3%A2%E4%B8%8E%E5%99%AA%E5%A3%B0_hu13417071770314673527.png 480w, https://Carring06.github.io/p/power-ripple/%E7%BA%B9%E6%B3%A2%E4%B8%8E%E5%99%AA%E5%A3%B0_hu15471608635752144815.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;纹波与噪声&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;575&#34;
+		data-flex-basis=&#34;1381px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h2 id=&#34;优化纹波&#34;&gt;优化纹波
 &lt;/h2&gt;</description>
         </item>
