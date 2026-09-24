@@ -10,7 +10,7 @@
 <meta property='og:description' content="”纹波“简介 首先，我要在这里纠正一个概念！标题中，我是使用纹波来表明输入电压的波动，但是输入电压、输出电压波动并不就直接等同于纹波！狭义上来">
 <meta property='og:url' content='https://Carring06.github.io/p/power-ripple/'>
 <meta property='og:site_name' content='车度空间'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-09-16T11:38:36&#43;08:00'/><meta property='article:modified_time' content='2026-09-16T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-09-16T11:38:36&#43;08:00'/><meta property='article:modified_time' content='2026-09-24T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="可调电源1.0_“纹波”展示">
 <meta name="twitter:description" content="”纹波“简介 首先，我要在这里纠正一个概念！标题中，我是使用纹波来表明输入电压的波动，但是输入电压、输出电压波动并不就直接等同于纹波！狭义上来">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -380,12 +380,12 @@
 
 
             <time class="article-time--modified">
-                最后更新于 2026-09-16
+                最后更新于 2026-09-24
             </time>
         </div>
         
         <div>
-            <span class="article-time--words">📝 509 字</span>
+            <span class="article-time--words">📝 1603 字</span>
         </div>
         
         <div>
@@ -437,7 +437,44 @@ DC+12v转5V波型：<br>
 <mark>（双击可放大视频）</mark>
 <video controls src="fa64cd7cac3b807e1eb3ed8c55c104fd.mp4" title="锂电池转5V"></video></p>
 <h2 id="细谈纹波">细谈纹波
-</h2><p>  </p>
+</h2><p>  纹波，全称为纹波电压/电流，指的是实际输出电压与理想恒定电压的偏差波动。我们日常讨论中的纹波，一般分为纹波电压以及纹波电流，指的是叠加在直流恒定量上面的交流电压/电流分量。<br>
+<img src="/p/power-ripple/image-1.png"
+	width="503"
+	height="519"
+	srcset="/p/power-ripple/image-1_hu5584751122582065708.png 480w, /p/power-ripple/image-1_hu813574732103540531.png 1024w"
+	loading="lazy"
+	
+		alt="纹波电压公式"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="96"
+		data-flex-basis="232px"
+	
+><br>
+  对于纹波电压，由其公式可知纹波电压主要是由于<strong>电容的寄生电阻ESR与电容的充放电</strong>引起的，因为其中的开关频率、输入电压以及输出电压等值一般都是在选型和原理图设计时，就已经确认好参数的了。<br>
+<img src="/p/power-ripple/image-2.png"
+	width="887"
+	height="555"
+	srcset="/p/power-ripple/image-2_hu6982467330794984767.png 480w, /p/power-ripple/image-2_hu16040896044284601576.png 1024w"
+	loading="lazy"
+	
+		alt="纹波电流公式"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="159"
+		data-flex-basis="383px"
+	
+><br>
+  对于纹波电流，由其公式可知纹波电流主要是由于<strong>电感周期性储能与释能</strong>引起的，缘由同上。<br>
+  而提到纹波，这里不得不再提一嘴容易和纹波混淆的噪声了。一般来说，只有在开关芯片的输出滤波电容引脚进行波形测试所得到的周期性波形，才能称之为纹波，在<strong>CCM 连续导通模式</strong>下，纹波的周期和开关芯片的开关周期保持一致。所以建议在测量纹波是，一同测量开关引脚的波形（<mark>不过我还没试过，值得一试，待我去学习后来分享分享</mark>）。而假设在受电远端的输出处进行的测量，这个时候测得的大多是噪声了，一般是在用电端的去耦电容两端来进行噪声的测量。<br>
+  纹波的形成时由开关芯片输出<strong>滤波电容的ESR，ESL以及电容的容值</strong>叠加而成的，所以当我们选用的电容的<strong>ESR小，ESL小，容值大</strong>时，其纹波会较小（<mark>使用不同封装的陶瓷电容并联的效果好</mark>）；而噪声是由<strong>电源输入的噪声与输出电压的波动，传导和耦合的信号干扰，负载端电流变化</strong>等多种因素引起的。<br>
+  我们通常讲的纹波是用来考察开关电源的性能指标，而要考察供电质量的好坏是要用噪声的大小来衡量的。<br>
+  对于那些对<strong>电源质量有着高要求</strong>的用电芯片，其实我们是应该采取<strong>降低噪声的策略</strong>而不是<strong>降低纹波</strong>，但这样并不就意味着我们可以放任纹波任意大，纹波的大小还是需要进行控制的，只是说当我们纹波尽我们所能优化后，最主要关注的是降低用电端的噪声。<br>
+  而对于如何降低噪声，一方面是可以加多几个滤波电容，另一方面是需要对PCB版图进行优化。关于滤波方面，好像有什么LC滤波，π形滤波，这些方面当前我还不太熟悉，等我深究后，再来细谈细谈（等这篇文章写完后）；对于PCB绘制方面，主要是要将电源走线尽可能控制短而粗，一般是采取铺铜操作，然后进行过孔的时候，要多加几个过孔，增加过孔的总过流能力。 <br>
+  为针对于测量纹波与噪声，示波器的设置也是有些许不同的。对于相同的点，比如说，都需要使用<strong>交流耦合，探头的放大倍数应该采用×1，还有测量时间稍微久点，还有按AUTO，都使用接地弹簧（接地弹簧可大幅缩短接地环路，降低引线寄生电感，减少空间干扰耦合，保证纹波测量结果真实准确。）</strong>&mdash;<mark>测量的时候弹簧针记得接在电容的 GND 端</mark>。而对于不同的点就是，<strong>纹波</strong>测量的带宽因为限制为<strong>20MHZ</strong>，而<strong>噪声</strong>的测量应该选择<strong>全带宽</strong>。<br>
+  </p>
 <h2 id="优化纹波">优化纹波
 </h2>
 </section>
@@ -468,7 +505,7 @@ DC+12v转5V波型：<br>
 
 
         <span>
-            最后更新于 2026-09-16
+            最后更新于 2026-09-24
         </span>
     </section></footer>
 

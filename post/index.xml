@@ -613,7 +613,44 @@ DC+12v转5V波型：&lt;br&gt;
 &lt;mark&gt;（双击可放大视频）&lt;/mark&gt;
 &lt;video controls src=&#34;fa64cd7cac3b807e1eb3ed8c55c104fd.mp4&#34; title=&#34;锂电池转5V&#34;&gt;&lt;/video&gt;&lt;/p&gt;
 &lt;h2 id=&#34;细谈纹波&#34;&gt;细谈纹波
-&lt;/h2&gt;&lt;p&gt;  &lt;/p&gt;
+&lt;/h2&gt;&lt;p&gt;  纹波，全称为纹波电压/电流，指的是实际输出电压与理想恒定电压的偏差波动。我们日常讨论中的纹波，一般分为纹波电压以及纹波电流，指的是叠加在直流恒定量上面的交流电压/电流分量。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/power-ripple/image-1.png&#34;
+	width=&#34;503&#34;
+	height=&#34;519&#34;
+	srcset=&#34;https://Carring06.github.io/p/power-ripple/image-1_hu5584751122582065708.png 480w, https://Carring06.github.io/p/power-ripple/image-1_hu813574732103540531.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;纹波电压公式&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;96&#34;
+		data-flex-basis=&#34;232px&#34;
+	
+&gt;&lt;br&gt;
+  对于纹波电压，由其公式可知纹波电压主要是由于&lt;strong&gt;电容的寄生电阻ESR与电容的充放电&lt;/strong&gt;引起的，因为其中的开关频率、输入电压以及输出电压等值一般都是在选型和原理图设计时，就已经确认好参数的了。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/power-ripple/image-2.png&#34;
+	width=&#34;887&#34;
+	height=&#34;555&#34;
+	srcset=&#34;https://Carring06.github.io/p/power-ripple/image-2_hu6982467330794984767.png 480w, https://Carring06.github.io/p/power-ripple/image-2_hu16040896044284601576.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;纹波电流公式&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;159&#34;
+		data-flex-basis=&#34;383px&#34;
+	
+&gt;&lt;br&gt;
+  对于纹波电流，由其公式可知纹波电流主要是由于&lt;strong&gt;电感周期性储能与释能&lt;/strong&gt;引起的，缘由同上。&lt;br&gt;
+  而提到纹波，这里不得不再提一嘴容易和纹波混淆的噪声了。一般来说，只有在开关芯片的输出滤波电容引脚进行波形测试所得到的周期性波形，才能称之为纹波，在&lt;strong&gt;CCM 连续导通模式&lt;/strong&gt;下，纹波的周期和开关芯片的开关周期保持一致。所以建议在测量纹波是，一同测量开关引脚的波形（&lt;mark&gt;不过我还没试过，值得一试，待我去学习后来分享分享&lt;/mark&gt;）。而假设在受电远端的输出处进行的测量，这个时候测得的大多是噪声了，一般是在用电端的去耦电容两端来进行噪声的测量。&lt;br&gt;
+  纹波的形成时由开关芯片输出&lt;strong&gt;滤波电容的ESR，ESL以及电容的容值&lt;/strong&gt;叠加而成的，所以当我们选用的电容的&lt;strong&gt;ESR小，ESL小，容值大&lt;/strong&gt;时，其纹波会较小（&lt;mark&gt;使用不同封装的陶瓷电容并联的效果好&lt;/mark&gt;）；而噪声是由&lt;strong&gt;电源输入的噪声与输出电压的波动，传导和耦合的信号干扰，负载端电流变化&lt;/strong&gt;等多种因素引起的。&lt;br&gt;
+  我们通常讲的纹波是用来考察开关电源的性能指标，而要考察供电质量的好坏是要用噪声的大小来衡量的。&lt;br&gt;
+  对于那些对&lt;strong&gt;电源质量有着高要求&lt;/strong&gt;的用电芯片，其实我们是应该采取&lt;strong&gt;降低噪声的策略&lt;/strong&gt;而不是&lt;strong&gt;降低纹波&lt;/strong&gt;，但这样并不就意味着我们可以放任纹波任意大，纹波的大小还是需要进行控制的，只是说当我们纹波尽我们所能优化后，最主要关注的是降低用电端的噪声。&lt;br&gt;
+  而对于如何降低噪声，一方面是可以加多几个滤波电容，另一方面是需要对PCB版图进行优化。关于滤波方面，好像有什么LC滤波，π形滤波，这些方面当前我还不太熟悉，等我深究后，再来细谈细谈（等这篇文章写完后）；对于PCB绘制方面，主要是要将电源走线尽可能控制短而粗，一般是采取铺铜操作，然后进行过孔的时候，要多加几个过孔，增加过孔的总过流能力。 &lt;br&gt;
+  为针对于测量纹波与噪声，示波器的设置也是有些许不同的。对于相同的点，比如说，都需要使用&lt;strong&gt;交流耦合，探头的放大倍数应该采用×1，还有测量时间稍微久点，还有按AUTO，都使用接地弹簧（接地弹簧可大幅缩短接地环路，降低引线寄生电感，减少空间干扰耦合，保证纹波测量结果真实准确。）&lt;/strong&gt;&amp;mdash;&lt;mark&gt;测量的时候弹簧针记得接在电容的 GND 端&lt;/mark&gt;。而对于不同的点就是，&lt;strong&gt;纹波&lt;/strong&gt;测量的带宽因为限制为&lt;strong&gt;20MHZ&lt;/strong&gt;，而&lt;strong&gt;噪声&lt;/strong&gt;的测量应该选择&lt;strong&gt;全带宽&lt;/strong&gt;。&lt;br&gt;
+  &lt;/p&gt;
 &lt;h2 id=&#34;优化纹波&#34;&gt;优化纹波
 &lt;/h2&gt;</description>
         </item>
