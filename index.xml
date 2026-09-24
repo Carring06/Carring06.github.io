@@ -7,7 +7,35 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>车度空间Carring</copyright>
-        <lastBuildDate>Sat, 19 Sep 2026 11:38:36 +0800</lastBuildDate><atom:link href="https://Carring06.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Thu, 24 Sep 2026 11:38:36 +0800</lastBuildDate><atom:link href="https://Carring06.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>可调电源1.0_番外篇</title>
+        <link>https://Carring06.github.io/p/ps/</link>
+        <pubDate>Thu, 24 Sep 2026 11:38:36 +0800</pubDate>
+        
+        <guid>https://Carring06.github.io/p/ps/</guid>
+        <description>&lt;p&gt;   关于番外篇，我是想来讨论一些其他东西。但因为这些相关东西是在做这个可调电源1.0的过程中而学习到的，所以我就决定将其命名为“可调电源1.0_番外篇”。&lt;br&gt;
+   首先，关于可调电源设计，这里值得提的一点是，我们可调电源的“可调”性，是通过更改与开关芯片连接的两个电阻的阻值而来实现可调的原理。但是，其实当我们输出的电压变化时，芯片对应的外接电容，电感等的数值，其实也是应当对应调整的。但是这里没有考虑这点，使用的是固定电容电感。这也可能是可调电源的一个不足之处。&lt;br&gt;
+  其次，就是在进行降压供电给其他芯片的时候，如果要考虑其效率或者准度的话。可以采用开关电源芯片➕LDO进行二次降压的架构，比如说，先使用DCDC芯片进行BUCK降压到一个比目标电压大的电压（这个电压减去目标电压的差值必须大于LDO的dropout电压，也就是LDO要求的压差大小），然后再使用LDO进行降压至目标电压，然后再将目标电压给对噪声要求很高的芯片进行供电。&lt;br&gt;
+  再者，对于电源模块的设计，其实还是应该考虑一下电源的时序要求。比如说，当供电电压低于一个特定电压之前，电源芯片是不能够正常工作的。但是，在这段时间，电源芯片的部分电路其实已经启动了。可能就会导致EN引脚已经开始判断外部是否进行使能了。这里说的不太清楚，我换个例子来说，比如一个芯片是通过检测上升沿或者下降沿来启动或关闭的话，可能在外置电压还没上升到额定电压时，就已经开始判断是否有上升沿或下降沿了，如果此时进行判断发现没有上升沿，芯片就会进入锁死状态，等到供电电压达到额定值时，已经无力挽回了。这个时候我们就必须控制好自己芯片的上电时序了。（说得有点模糊，也有点不太准，请见谅）&lt;br&gt;
+  下面是开关电源需要进行的测试项目总结。&lt;br&gt;
+&lt;mark&gt;电源模块 11 项测试&lt;/mark&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;Output Ripple 输出纹波&lt;/strong&gt;：测量电源输出端周期性电压波动，也就是开关纹波与噪声。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Transient 负载瞬态响应&lt;/strong&gt;：负载电流快速跳变时，观察输出电压的跌落、过冲与恢复时间。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Load Regulation 负载调整率&lt;/strong&gt;：输入电压固定，负载在规定范围内变化，输出电压的变化程度。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Rise Time &amp;amp; OverShoot 上升时间与过冲&lt;/strong&gt;：上电时，输出电压从 0 上升到额定值的时间，以及上电产生的电压过冲。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Fall Time &amp;amp; UnderShoot 下降时间与下冲&lt;/strong&gt;：掉电时，输出电压从额定值下降到 0 的时间，以及掉电过程的电压下冲。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Phase Jitter 相位抖动&lt;/strong&gt;：开关时钟周期的随机偏移，反映开关频率的稳定程度。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Efficiency 转换效率&lt;/strong&gt;：输出功率除以输入功率，衡量电源能量转换损耗。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Switching Waveform 开关波形&lt;/strong&gt;：采集 SW 节点开关管的电压、电流波形，评估开关状态、尖峰与损耗。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Power Sequence 电源时序&lt;/strong&gt;：多路电源上电、掉电的先后顺序，检查是否满足芯片上电时序要求。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Protection 保护功能&lt;/strong&gt;：验证过流、过压、欠压、过热等故障保护机制能否正常触发。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;Line Regulation 线性调整率（输入调整率）&lt;/strong&gt;：负载保持不变，输入电压在允许范围内变化，输出电压的变化程度。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;  这里再额外提一嘴晶振相关的。首先，对于二层板设计中，无论是有源晶振还是无源晶振，在晶振的对层（比如晶振在底层，那他的对层就是顶层）是不建议走线的，特别是高速信号线，万不得已才勉强同意走一些低速线；其次，芯片的对层是不需要禁止铺铜的，有一个完整的铜皮可以起到良好的接地回路，还可以隔绝噪声。而对于四层板或多层板的设计，如果放置晶振的下一层为GND层，那么在后续的内层中也是非必要不走线的。而且，倘若我们做的项目发热严重，我们还需要将晶振下方的相邻GND层进行挖空处理，降低温度对晶振的影响，其余项目一般不进行挖空处理。&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>可调电源1.0_改版测试</title>
         <link>https://Carring06.github.io/p/revision-test/</link>
         <pubDate>Sat, 19 Sep 2026 11:38:36 +0800</pubDate>
@@ -680,8 +708,7 @@ DC+12v转5V波型：&lt;br&gt;
 		data-flex-basis=&#34;1381px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;h2 id=&#34;优化纹波&#34;&gt;优化纹波
-&lt;/h2&gt;</description>
+</description>
         </item>
         <item>
         <title>可调电源1.0_BUCK BOOST</title>
