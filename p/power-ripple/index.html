@@ -6,7 +6,7 @@
 
 <link rel='canonical' href='https://Carring06.github.io/p/power-ripple/'>
 
-<link rel="stylesheet" href="/scss/style.min.326dad0bb2c3ae4ad5c9a79fbec7a230f22001366c9e0e11fc90a9965b977acd.css"><meta property='og:title' content="可调电源1.0_“纹波”展示">
+<link rel="stylesheet" href="/scss/style.min.922202eb35862f3e303162be1bcbc0eea9db1bb2d77a0a85dbae28420757c6bb.css"><meta property='og:title' content="可调电源1.0_“纹波”展示">
 <meta property='og:description' content="”纹波“简介 首先，我要在这里纠正一个概念！标题中，我是使用纹波来表明输入电压的波动，但是输入电压、输出电压波动并不就直接等同于纹波！狭义上来">
 <meta property='og:url' content='https://Carring06.github.io/p/power-ripple/'>
 <meta property='og:site_name' content='车度空间'>
@@ -384,7 +384,7 @@
         </div>
         
         <div>
-            <span class="article-time--words">📝 2067 字</span>
+            <span class="article-time--words">📝 2115 字</span>
         </div>
         
         <div>
@@ -422,19 +422,19 @@
   而那些杂乱的波形，很可能是由纹波+电压跌落+噪声+震荡叠加而成的，这并不能算作是纹波。<br>
   如视频所示，测得的是 12V 直流输入波形。波形噪声杂乱，一方面是测量时未使用弹簧接地环，另一方面是这款 5.5 元购入的廉价电源适配器本身品质较差。从波形能够看出，该适配器会向电路板引入噪声，干扰板上升降压开关芯片，造成开关电源输出纹波变大，甚至引发其他异常。
 若用它降压得到 3.3V 给单片机等模拟电路供电，一旦 3.3V 电压波动剧烈，会直接降低主控芯片的工作稳定性。 <br>
-<mark>（双击可放大视频）</mark>
-<video controls src="25c277952c20d5992cf6f97c6268221d.mp4" title="DC输入"></video></p>
+<mark>（点击播放，播放后点右下角全屏按钮可放大）</mark>
+<video controls playsinline webkit-playsinline preload="metadata" src="25c277952c20d5992cf6f97c6268221d.mp4" title="DC输入"></video></p>
 <p>PS:我使用的示波器夹子回路较长，可能会引入示波器自身的高频信号干扰，如下视频所展示，最好还是使用<mark>弹簧接地环</mark>进行测试，具体可自行了解。 <br>
   以下是一小部分波形的展示： <br>
 TypeC+5V升12V纹波：<br>
-<mark>（双击可放大视频）</mark>
-<video controls src="112dff77d06724f9822498262d69b7b8.mp4" title="TypeC5V输入"></video>
+<mark>（点击播放，播放后点右下角全屏按钮可放大）</mark>
+<video controls playsinline webkit-playsinline preload="metadata" src="112dff77d06724f9822498262d69b7b8.mp4" title="TypeC5V输入"></video>
 DC+12v转5V波型：<br>
-<mark>（双击可放大视频）</mark>
-<video controls src="e31d80cd86b1f570c575d541a7f0d549.mp4" title="DC+12v转5V"></video><br>
+<mark>（点击播放，播放后点右下角全屏按钮可放大）</mark>
+<video controls playsinline webkit-playsinline preload="metadata" src="e31d80cd86b1f570c575d541a7f0d549.mp4" title="DC+12v转5V"></video><br>
 锂电池转5V纹波：<br>
-<mark>（双击可放大视频）</mark>
-<video controls src="fa64cd7cac3b807e1eb3ed8c55c104fd.mp4" title="锂电池转5V"></video></p>
+<mark>（点击播放，播放后点右下角全屏按钮可放大）</mark>
+<video controls playsinline webkit-playsinline preload="metadata" src="fa64cd7cac3b807e1eb3ed8c55c104fd.mp4" title="锂电池转5V"></video></p>
 <h2 id="细谈纹波">细谈纹波
 </h2><p>  纹波，全称为纹波电压/电流，指的是实际输出电压与理想恒定电压的偏差波动。我们日常讨论中的纹波，一般分为纹波电压以及纹波电流，指的是叠加在直流恒定量上面的交流电压/电流分量。<br>
 <img src="/p/power-ripple/image-1.png"
@@ -608,7 +608,7 @@ DC+12v转5V波型：<br>
     
     <section class="powerby">
         
-            嵌入式空间 <br/>
+            电子科技空间 <br/>
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>

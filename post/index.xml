@@ -7,7 +7,33 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>车度空间Carring</copyright>
-        <lastBuildDate>Thu, 24 Sep 2026 11:38:36 +0800</lastBuildDate><atom:link href="https://Carring06.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Mon, 28 Sep 2026 11:38:36 +0800</lastBuildDate><atom:link href="https://Carring06.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>可调电源1.0_改版测试</title>
+        <link>https://Carring06.github.io/p/revision-test/</link>
+        <pubDate>Mon, 28 Sep 2026 11:38:36 +0800</pubDate>
+        
+        <guid>https://Carring06.github.io/p/revision-test/</guid>
+        <description>&lt;p&gt;  对于可调电源2.0，目前暂时没有发现一些大问题。之前1.0版本的MCU异常，在现在的2.0版本中目前还没出现多；而且之前1.0的板子中，“有几颗铝电解电容一焊接上去，板子就出问题了”这个现象在2.0板子中并不存在。&lt;br&gt;
+  其中唯一让我感觉不足的就是，我冗余设计了一两颗SS54，导致了压降严重【输入12V多一点，但是因为经过两颗SS54导致输出电压只有11.7V左右】，不过我们可以选择不焊接SS54而是将两个焊盘短接即可，而且，在其他开关升降压的电路上如果也经过SS54，我们可以改变两颗采样电阻的阻值【也就是接在FB引脚的上下两个电阻】来增大输出电压；还有一个问题是5V升12V是采用TypeC输入升12V，在1.0版本中也是这个操作，但是因为1.0版本并没有加SS54二极管，所以当我们用锂电池转5V时，这个5V可以倒灌进TypeC输入那一路电路，所以也可以正常升12V，但是在当前2.0版本中，加了SS54，这就导致锂电池升5V后再去升12V失效，解决方法也是不焊接相关的SS54。&lt;br&gt;
+  当然，正对于这些问题，我也进行了相关改进，也就是可调电源3.0，但对于我来说，这几个小问题影响并不是很大。所以我不打算打板出来再次焊接。后续开源出来后，大家可以自行选择打板焊接。&lt;br&gt;
+  其他相关介绍我会发布在哔哩哔哩视频中，链接是：&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/revision-test/image.png&#34;
+	width=&#34;1551&#34;
+	height=&#34;396&#34;
+	srcset=&#34;https://Carring06.github.io/p/revision-test/image_hu750804679896575196.png 480w, https://Carring06.github.io/p/revision-test/image_hu3892799176935268410.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;SS54&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;391&#34;
+		data-flex-basis=&#34;940px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
+        </item>
+        <item>
         <title>可调电源1.0_番外篇</title>
         <link>https://Carring06.github.io/p/ps/</link>
         <pubDate>Thu, 24 Sep 2026 11:38:36 +0800</pubDate>
@@ -34,14 +60,6 @@
 &lt;/ol&gt;
 &lt;p&gt;  这里再额外提一嘴晶振相关的。首先，对于二层板设计中，无论是有源晶振还是无源晶振，在晶振的对层（比如晶振在底层，那他的对层就是顶层）是不建议走线的，特别是高速信号线，万不得已才勉强同意走一些低速线；其次，芯片的对层是不需要禁止铺铜的，有一个完整的铜皮可以起到良好的接地回路，还可以隔绝噪声。而对于四层板或多层板的设计，如果放置晶振的下一层为GND层，那么在后续的内层中也是非必要不走线的。而且，倘若我们做的项目发热严重，我们还需要将晶振下方的相邻GND层进行挖空处理，降低温度对晶振的影响，其余项目一般不进行挖空处理。&lt;/p&gt;
 </description>
-        </item>
-        <item>
-        <title>可调电源1.0_改版测试</title>
-        <link>https://Carring06.github.io/p/revision-test/</link>
-        <pubDate>Sat, 19 Sep 2026 11:38:36 +0800</pubDate>
-        
-        <guid>https://Carring06.github.io/p/revision-test/</guid>
-        <description></description>
         </item>
         <item>
         <title>可调电源1.0_改版说明</title>
@@ -627,19 +645,19 @@ FB 分压电阻、MCU、AD 采样的地作为&lt;strong&gt;信号地&lt;/strong&
   而那些杂乱的波形，很可能是由纹波+电压跌落+噪声+震荡叠加而成的，这并不能算作是纹波。&lt;br&gt;
   如视频所示，测得的是 12V 直流输入波形。波形噪声杂乱，一方面是测量时未使用弹簧接地环，另一方面是这款 5.5 元购入的廉价电源适配器本身品质较差。从波形能够看出，该适配器会向电路板引入噪声，干扰板上升降压开关芯片，造成开关电源输出纹波变大，甚至引发其他异常。
 若用它降压得到 3.3V 给单片机等模拟电路供电，一旦 3.3V 电压波动剧烈，会直接降低主控芯片的工作稳定性。 &lt;br&gt;
-&lt;mark&gt;（双击可放大视频）&lt;/mark&gt;
-&lt;video controls src=&#34;25c277952c20d5992cf6f97c6268221d.mp4&#34; title=&#34;DC输入&#34;&gt;&lt;/video&gt;&lt;/p&gt;
+&lt;mark&gt;（点击播放，播放后点右下角全屏按钮可放大）&lt;/mark&gt;
+&lt;video controls playsinline webkit-playsinline preload=&#34;metadata&#34; src=&#34;25c277952c20d5992cf6f97c6268221d.mp4&#34; title=&#34;DC输入&#34;&gt;&lt;/video&gt;&lt;/p&gt;
 &lt;p&gt;PS:我使用的示波器夹子回路较长，可能会引入示波器自身的高频信号干扰，如下视频所展示，最好还是使用&lt;mark&gt;弹簧接地环&lt;/mark&gt;进行测试，具体可自行了解。 &lt;br&gt;
   以下是一小部分波形的展示： &lt;br&gt;
 TypeC+5V升12V纹波：&lt;br&gt;
-&lt;mark&gt;（双击可放大视频）&lt;/mark&gt;
-&lt;video controls src=&#34;112dff77d06724f9822498262d69b7b8.mp4&#34; title=&#34;TypeC5V输入&#34;&gt;&lt;/video&gt;
+&lt;mark&gt;（点击播放，播放后点右下角全屏按钮可放大）&lt;/mark&gt;
+&lt;video controls playsinline webkit-playsinline preload=&#34;metadata&#34; src=&#34;112dff77d06724f9822498262d69b7b8.mp4&#34; title=&#34;TypeC5V输入&#34;&gt;&lt;/video&gt;
 DC+12v转5V波型：&lt;br&gt;
-&lt;mark&gt;（双击可放大视频）&lt;/mark&gt;
-&lt;video controls src=&#34;e31d80cd86b1f570c575d541a7f0d549.mp4&#34; title=&#34;DC+12v转5V&#34;&gt;&lt;/video&gt;&lt;br&gt;
+&lt;mark&gt;（点击播放，播放后点右下角全屏按钮可放大）&lt;/mark&gt;
+&lt;video controls playsinline webkit-playsinline preload=&#34;metadata&#34; src=&#34;e31d80cd86b1f570c575d541a7f0d549.mp4&#34; title=&#34;DC+12v转5V&#34;&gt;&lt;/video&gt;&lt;br&gt;
 锂电池转5V纹波：&lt;br&gt;
-&lt;mark&gt;（双击可放大视频）&lt;/mark&gt;
-&lt;video controls src=&#34;fa64cd7cac3b807e1eb3ed8c55c104fd.mp4&#34; title=&#34;锂电池转5V&#34;&gt;&lt;/video&gt;&lt;/p&gt;
+&lt;mark&gt;（点击播放，播放后点右下角全屏按钮可放大）&lt;/mark&gt;
+&lt;video controls playsinline webkit-playsinline preload=&#34;metadata&#34; src=&#34;fa64cd7cac3b807e1eb3ed8c55c104fd.mp4&#34; title=&#34;锂电池转5V&#34;&gt;&lt;/video&gt;&lt;/p&gt;
 &lt;h2 id=&#34;细谈纹波&#34;&gt;细谈纹波
 &lt;/h2&gt;&lt;p&gt;  纹波，全称为纹波电压/电流，指的是实际输出电压与理想恒定电压的偏差波动。我们日常讨论中的纹波，一般分为纹波电压以及纹波电流，指的是叠加在直流恒定量上面的交流电压/电流分量。&lt;br&gt;
 &lt;img src=&#34;https://Carring06.github.io/p/power-ripple/image-1.png&#34;
@@ -920,8 +938,8 @@ DC+12v转5V波型：&lt;br&gt;
   首先，先说明一下，截至在这篇文章发布时，当前这个项目算不上太完美。所以当前，我只打算在这里记录一下在制作这个项目中做学习到的知识、所解决和发现的BUG，以及一些我自己的想法和感悟。其次，我打算在后续的更新中，同步并行改善这个项目，使其更加完善！&lt;br&gt;
   当然，当前这个项目，已经可以实现可调升压————&lt;em&gt;&lt;strong&gt;5V ~ 30V&lt;/strong&gt;&lt;/em&gt;，可调降压————&lt;em&gt;&lt;strong&gt;12V ~ 1.2V&lt;/strong&gt;&lt;/em&gt;，锂电池充电管理，以及主控方面的OLED显示可调电压大小、LED控制、按键控制以及串口输出，这一方面后续可根据实际需求进行编程。不足的是，DC12V输入端子处，未进行任何滤波处理，导致接入的电压波形大，振荡大，这样对后续的DCDC降压转5V很不友好（当然，有部分原因也可能是我在pdd用5.5块钱买的电源适配器很差劲导致的），但是，如果在板子上，能尽量做点优化就做点，这样才能增加板子的适应性。 &lt;br&gt;
 PS:我使用的示波器夹子回路较长，可能会引入示波器自身的高频信号干扰，如下视频所展示，最好还是使用弹簧接地环进行测试，具体可自行了解。&lt;br&gt;
-&lt;mark&gt;（双击可放大视频）&lt;/mark&gt;
-&lt;video controls src=&#34;25c277952c20d5992cf6f97c6268221d.mp4&#34; title=&#34;DC输入&#34;&gt;&lt;/video&gt;&lt;br&gt;
+&lt;mark&gt;（点击播放，播放后点右下角全屏按钮可放大）&lt;/mark&gt;
+&lt;video controls playsinline webkit-playsinline preload=&#34;metadata&#34; src=&#34;25c277952c20d5992cf6f97c6268221d.mp4&#34; title=&#34;DC输入&#34;&gt;&lt;/video&gt;&lt;br&gt;
   当然，为了避免本文篇幅过长，后续详细内容我将沿用以往的写作习惯，分章节独立成文。读者可以清晰了解整套博客的内容规划，并按需跳转至对应文章查阅。&lt;/p&gt;
 &lt;h3 id=&#34;项目介绍&#34;&gt;项目介绍
 &lt;/h3&gt;&lt;ul&gt;
@@ -995,8 +1013,8 @@ PS:我使用的示波器夹子回路较长，可能会引入示波器自身的�
         <pubDate>Mon, 10 Aug 2026 11:38:36 +0800</pubDate>
         
         <guid>https://Carring06.github.io/p/summary1/</guid>
-        <description>&lt;p&gt;&lt;strong&gt;双击放大视频&lt;/strong&gt;&lt;/p&gt;
-&lt;p&gt;&lt;video controls src=&#34;767967ab9b31bac1056783a6df5ea475_raw.mp4&#34; title=&#34;遥控测试板&#34;&gt;&lt;/video&gt;&lt;/p&gt;
+        <description>&lt;p&gt;&lt;strong&gt;点击播放，播放后点右下角全屏按钮可放大&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;video controls playsinline webkit-playsinline preload=&#34;metadata&#34; src=&#34;767967ab9b31bac1056783a6df5ea475_raw.mp4&#34; title=&#34;遥控测试板&#34;&gt;&lt;/video&gt;&lt;/p&gt;
 &lt;p&gt;  经历了大一一年的嵌入式学习（主要是针对于&lt;strong&gt;软件方面&lt;/strong&gt;进行学习，如各种&lt;mark&gt;通信协议&lt;/mark&gt; ——&lt;strong&gt;CAN,UART,SPI,I2C&lt;/strong&gt;&amp;hellip;, &lt;mark&gt;平衡车的代码撰写&lt;/mark&gt;[&lt;strong&gt;基于HAL库&lt;/strong&gt;]以及&lt;mark&gt;Freertos的相关学习&lt;/mark&gt;[&lt;strong&gt;运用在六轴机械臂以及AGV舵轮底盘&lt;/strong&gt;]等）。虽然期间也掺杂了对电路分析以及PCB绘制等硬件的相关学习，并制作了一个USB拓展坞，但是并未深入的学习硬件电路相关的。所以，为了提高自身的综合能力，于暑假期间，预筹划进行&lt;strong&gt;遥控器+四轴飞行器&lt;/strong&gt;的电路设计，PCB绘制与焊接以及相关代码撰写。&lt;br&gt;
   虽说我已经画过了好几个板子了，比如&lt;em&gt;51单片机系统板，拓展坞板，32单片机系统板&lt;/em&gt;。但其中仅仅&lt;strong&gt;USB拓展坞板子&lt;/strong&gt;进行了焊接并最终完成。所以，自己还是没什么把握能够将&lt;strong&gt;遥控器板&lt;/strong&gt;和&lt;strong&gt;飞控板&lt;/strong&gt;这两个项目“一遍过”。所以，我打算在绘制这两个板子的过程中，绘制一些额外的测试版，先把一些基本的外设电路一一测试后，再将整个板子画出来，并焊接。如上面视频所示，便其中一个测试版。    。 &lt;br&gt;
   在焊接测试版的过程中，一方面是能够提升我的焊接水准，另一方面是能加深对某些元器件的作用与选型要求。当然，从中揪出一些毛病，避免在最终这两个项目出现也是我绘制与焊接测试版的原因之一！接下来先对一些注意事项进行总结一下。&lt;/p&gt;
@@ -7385,6 +7403,73 @@ BUG5:遥控器按下K2后，平衡车无法正确接收到；  &lt;br&gt;
 &lt;ul&gt;
 &lt;li&gt;调试过程 → 点击 &lt;code&gt;==BUG1==&lt;/code&gt; 跳到 BUG1 说明&lt;/li&gt;
 &lt;li&gt;BUG说明 → 点击 &lt;code&gt;返回调试过程&lt;/code&gt; 跳回调试过程中的对应位置&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;改动记录手机端视频修复--关于页2026-10-02&#34;&gt;改动记录：手机端视频修复 + 关于页（2026-10-02）
+&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;问题：&lt;/strong&gt; 视频在手机和电脑上画面被截、放大（全屏）按钮被挡；手机端无法播放/放大；关于页还是模板测试文案。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;根因：&lt;/strong&gt;&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;裸 &lt;code&gt;&amp;lt;video&amp;gt;&lt;/code&gt; 没有任何宽度约束样式，按视频原始像素宽（720~1280px）显示，超出文章卡片的部分被 &lt;code&gt;overflow:hidden&lt;/code&gt; 裁掉，右下角全屏按钮正好落在被裁区域；&lt;/li&gt;
+&lt;li&gt;video 标签缺 &lt;code&gt;playsinline&lt;/code&gt;，iOS/微信内置浏览器不内嵌播放；&lt;/li&gt;
+&lt;li&gt;文案写的&amp;quot;双击放大&amp;quot;是桌面浏览器行为，手机无效。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;strong&gt;本次改动（共 5 个文件）：&lt;/strong&gt;&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;文件&lt;/th&gt;
+&lt;th&gt;改动&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;assets/scss/custom.scss&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;追加 &lt;code&gt;.article-content video&lt;/code&gt; 规则：&lt;code&gt;max-width:100%&lt;/code&gt;、&lt;code&gt;max-height:75vh&lt;/code&gt;、居中，解决画面被截/按钮被挡&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;content/post/可调电源1.0_&amp;quot;纹波&amp;quot;展示/index.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;4 处 video 加 &lt;code&gt;playsinline webkit-playsinline preload=&amp;quot;metadata&amp;quot;&lt;/code&gt;（行16/22/25/28）+ 4 处提示文案（行15/21/24/27）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;content/post/可调电源模块_序言/index.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;1 处 video 加属性（行18）+ 1 处提示文案（行17）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;content/post/大一_总结与反思/index.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;1 处 video 加属性（行11）+ 1 处提示文案（行9）&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;content/page/about/index.zh-cn.md&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;正文测试句替换为关于页简介&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;p&gt;&lt;strong&gt;video 标签标准写法（以后新文章照抄）：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-html&#34; data-lang=&#34;html&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;&lt;span class=&#34;p&#34;&gt;&amp;lt;&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;video&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;controls&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;playsinline&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;webkit-playsinline&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;preload&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;metadata&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;src&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;视频文件.mp4&amp;#34;&lt;/span&gt; &lt;span class=&#34;na&#34;&gt;title&lt;/span&gt;&lt;span class=&#34;o&#34;&gt;=&lt;/span&gt;&lt;span class=&#34;s&#34;&gt;&amp;#34;标题&amp;#34;&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&amp;lt;/&lt;/span&gt;&lt;span class=&#34;nt&#34;&gt;video&lt;/span&gt;&lt;span class=&#34;p&#34;&gt;&amp;gt;&lt;/span&gt;
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;提示文案标准写法：&lt;/strong&gt;&lt;/p&gt;
+&lt;div class=&#34;highlight&#34;&gt;&lt;div class=&#34;chroma&#34;&gt;
+&lt;table class=&#34;lntable&#34;&gt;&lt;tr&gt;&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code&gt;&lt;span class=&#34;lnt&#34;&gt;1
+&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;
+&lt;td class=&#34;lntd&#34;&gt;
+&lt;pre tabindex=&#34;0&#34; class=&#34;chroma&#34;&gt;&lt;code class=&#34;language-markdown&#34; data-lang=&#34;markdown&#34;&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;cl&#34;&gt;==（点击播放，播放后点右下角全屏按钮可放大）==
+&lt;/span&gt;&lt;/span&gt;&lt;/code&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/table&gt;
+&lt;/div&gt;
+&lt;/div&gt;&lt;p&gt;&lt;strong&gt;遗留待办（2026-10-02）：&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; 用剪映把 2 个 &lt;strong&gt;H.265&lt;/strong&gt; 视频重新导出为 &lt;strong&gt;H.264&lt;/strong&gt; 并替换原文件（安卓手机浏览器播不了 H.265）：
+&lt;ul&gt;
+&lt;li&gt;&lt;code&gt;25c277952c20d5992cf6f97c6268221d.mp4&lt;/code&gt;（DC输入，纹波页 + 序言页引用）&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;767967ab9b31bac1056783a6df5ea475_raw.mp4&lt;/code&gt;（遥控测试板，大一总结引用）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;input disabled=&#34;&#34; type=&#34;checkbox&#34;&gt; git push 部署后手机实测播放&lt;/li&gt;
 &lt;/ul&gt;
 </description>
         </item>

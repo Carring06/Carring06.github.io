@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="对于可调电源2.0，目前暂时没有发现一些大问题。之前1.0版本的MCU异常，在现在的2.0版本中目前还没出现多；而且之前1.0的板子中，“有">
 <title>可调电源1.0_改版测试</title>
 
 <link rel='canonical' href='https://Carring06.github.io/p/revision-test/'>
 
-<link rel="stylesheet" href="/scss/style.min.326dad0bb2c3ae4ad5c9a79fbec7a230f22001366c9e0e11fc90a9965b977acd.css"><meta property='og:title' content="可调电源1.0_改版测试">
-<meta property='og:description' content="">
+<link rel="stylesheet" href="/scss/style.min.922202eb35862f3e303162be1bcbc0eea9db1bb2d77a0a85dbae28420757c6bb.css"><meta property='og:title' content="可调电源1.0_改版测试">
+<meta property='og:description' content="对于可调电源2.0，目前暂时没有发现一些大问题。之前1.0版本的MCU异常，在现在的2.0版本中目前还没出现多；而且之前1.0的板子中，“有">
 <meta property='og:url' content='https://Carring06.github.io/p/revision-test/'>
 <meta property='og:site_name' content='车度空间'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-09-19T11:38:36&#43;08:00'/><meta property='article:modified_time' content='2026-09-19T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-09-28T11:38:36&#43;08:00'/><meta property='article:modified_time' content='2026-10-02T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="可调电源1.0_改版测试">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="对于可调电源2.0，目前暂时没有发现一些大问题。之前1.0版本的MCU异常，在现在的2.0版本中目前还没出现多；而且之前1.0的板子中，“有">
     <link rel="shortcut icon" href="/favicon.ico" />
 
   
@@ -333,7 +333,7 @@
   <path d="M18 16.496v1.504l1 1" />
 </svg>
             <time class="article-time--published">
-                    创作于 2026 - 09 - 19</time>
+                    创作于 2026 - 09 - 28</time>
         </div>
         
         
@@ -347,12 +347,12 @@
 
 
             <time class="article-time--modified">
-                最后更新于 2026-09-19
+                最后更新于 2026-10-02
             </time>
         </div>
         
         <div>
-            <span class="article-time--words">📝 0 字</span>
+            <span class="article-time--words">📝 553 字</span>
         </div>
         
         <div>
@@ -370,7 +370,25 @@
     <section class="article-content">
     
     
-    
+    <p>  对于可调电源2.0，目前暂时没有发现一些大问题。之前1.0版本的MCU异常，在现在的2.0版本中目前还没出现多；而且之前1.0的板子中，“有几颗铝电解电容一焊接上去，板子就出问题了”这个现象在2.0板子中并不存在。<br>
+  其中唯一让我感觉不足的就是，我冗余设计了一两颗SS54，导致了压降严重【输入12V多一点，但是因为经过两颗SS54导致输出电压只有11.7V左右】，不过我们可以选择不焊接SS54而是将两个焊盘短接即可，而且，在其他开关升降压的电路上如果也经过SS54，我们可以改变两颗采样电阻的阻值【也就是接在FB引脚的上下两个电阻】来增大输出电压；还有一个问题是5V升12V是采用TypeC输入升12V，在1.0版本中也是这个操作，但是因为1.0版本并没有加SS54二极管，所以当我们用锂电池转5V时，这个5V可以倒灌进TypeC输入那一路电路，所以也可以正常升12V，但是在当前2.0版本中，加了SS54，这就导致锂电池升5V后再去升12V失效，解决方法也是不焊接相关的SS54。<br>
+  当然，正对于这些问题，我也进行了相关改进，也就是可调电源3.0，但对于我来说，这几个小问题影响并不是很大。所以我不打算打板出来再次焊接。后续开源出来后，大家可以自行选择打板焊接。<br>
+  其他相关介绍我会发布在哔哩哔哩视频中，链接是：</p>
+<p><img src="/p/revision-test/image.png"
+	width="1551"
+	height="396"
+	srcset="/p/revision-test/image_hu750804679896575196.png 480w, /p/revision-test/image_hu3892799176935268410.png 1024w"
+	loading="lazy"
+	
+		alt="SS54"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="391"
+		data-flex-basis="940px"
+	
+></p>
+
 </section>
 
 
@@ -399,7 +417,7 @@
 
 
         <span>
-            最后更新于 2026-09-19
+            最后更新于 2026-10-02
         </span>
     </section></footer>
 
@@ -475,7 +493,7 @@
     
     <section class="powerby">
         
-            嵌入式空间 <br/>
+            电子科技空间 <br/>
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>

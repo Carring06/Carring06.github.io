@@ -21,7 +21,14 @@
         <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
         
         <guid>https://Carring06.github.io/%E5%85%B3%E4%BA%8E/</guid>
-        <description>&lt;p&gt;This is a test page for i18n support.&lt;/p&gt;
+        <description>&lt;p&gt;你好，这里是&lt;strong&gt;车度空间&lt;/strong&gt;，一个记录嵌入式学习的个人博客。&lt;/p&gt;
+&lt;p&gt;主要记录：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;strong&gt;STM32 / HAL 库&lt;/strong&gt;：平衡车项目各模块（按键、串口、MPU6050、Flash、NRF24L01）的实践笔记&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;可调电源设计&lt;/strong&gt;：原理图、BUCK-BOOST、纹波测试与 BUG 调试实录&lt;/li&gt;
+&lt;li&gt;学习过程中的总结与反思&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;切勿止步于此。&lt;/p&gt;
 </description>
         </item>
         <item>

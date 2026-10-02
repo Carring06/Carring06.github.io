@@ -6,11 +6,11 @@
 
 <link rel='canonical' href='https://Carring06.github.io/p/first/'>
 
-<link rel="stylesheet" href="/scss/style.min.326dad0bb2c3ae4ad5c9a79fbec7a230f22001366c9e0e11fc90a9965b977acd.css"><meta property='og:title' content="First">
+<link rel="stylesheet" href="/scss/style.min.922202eb35862f3e303162be1bcbc0eea9db1bb2d77a0a85dbae28420757c6bb.css"><meta property='og:title' content="First">
 <meta property='og:description' content="车度空间Carring 开启我的博客之行 两个常用的hugo指令 （1）hugo server -D：预览含草稿的站点（日常开发首选）； （2）hugo new content pos">
 <meta property='og:url' content='https://Carring06.github.io/p/first/'>
 <meta property='og:site_name' content='车度空间'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-07-13T18:09:17&#43;08:00'/><meta property='article:modified_time' content='2026-09-19T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-07-13T18:09:17&#43;08:00'/><meta property='article:modified_time' content='2026-10-02T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="First">
 <meta name="twitter:description" content="车度空间Carring 开启我的博客之行 两个常用的hugo指令 （1）hugo server -D：预览含草稿的站点（日常开发首选）； （2）hugo new content pos">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -338,6 +338,7 @@
         <li><a href="#4-双向跳转实例调试过程--bug说明">4. 双向跳转实例（调试过程 ↔ BUG说明）</a></li>
       </ol>
     </li>
+    <li><a href="#改动记录手机端视频修复--关于页2026-10-02">改动记录：手机端视频修复 + 关于页（2026-10-02）</a></li>
   </ol>
 </nav>
         </div>
@@ -393,12 +394,12 @@
 
 
             <time class="article-time--modified">
-                最后更新于 2026-09-19
+                最后更新于 2026-10-02
             </time>
         </div>
         
         <div>
-            <span class="article-time--words">📝 532 字</span>
+            <span class="article-time--words">📝 1340 字</span>
         </div>
         
         <div>
@@ -526,6 +527,73 @@
 <li>调试过程 → 点击 <code>==BUG1==</code> 跳到 BUG1 说明</li>
 <li>BUG说明 → 点击 <code>返回调试过程</code> 跳回调试过程中的对应位置</li>
 </ul>
+<h2 id="改动记录手机端视频修复--关于页2026-10-02">改动记录：手机端视频修复 + 关于页（2026-10-02）
+</h2><p><strong>问题：</strong> 视频在手机和电脑上画面被截、放大（全屏）按钮被挡；手机端无法播放/放大；关于页还是模板测试文案。</p>
+<p><strong>根因：</strong></p>
+<ol>
+<li>裸 <code>&lt;video&gt;</code> 没有任何宽度约束样式，按视频原始像素宽（720~1280px）显示，超出文章卡片的部分被 <code>overflow:hidden</code> 裁掉，右下角全屏按钮正好落在被裁区域；</li>
+<li>video 标签缺 <code>playsinline</code>，iOS/微信内置浏览器不内嵌播放；</li>
+<li>文案写的&quot;双击放大&quot;是桌面浏览器行为，手机无效。</li>
+</ol>
+<p><strong>本次改动（共 5 个文件）：</strong></p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>文件</th>
+<th>改动</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>assets/scss/custom.scss</code></td>
+<td>追加 <code>.article-content video</code> 规则：<code>max-width:100%</code>、<code>max-height:75vh</code>、居中，解决画面被截/按钮被挡</td>
+</tr>
+<tr>
+<td><code>content/post/可调电源1.0_&quot;纹波&quot;展示/index.md</code></td>
+<td>4 处 video 加 <code>playsinline webkit-playsinline preload=&quot;metadata&quot;</code>（行16/22/25/28）+ 4 处提示文案（行15/21/24/27）</td>
+</tr>
+<tr>
+<td><code>content/post/可调电源模块_序言/index.md</code></td>
+<td>1 处 video 加属性（行18）+ 1 处提示文案（行17）</td>
+</tr>
+<tr>
+<td><code>content/post/大一_总结与反思/index.md</code></td>
+<td>1 处 video 加属性（行11）+ 1 处提示文案（行9）</td>
+</tr>
+<tr>
+<td><code>content/page/about/index.zh-cn.md</code></td>
+<td>正文测试句替换为关于页简介</td>
+</tr>
+</tbody>
+</table></div>
+<p><strong>video 标签标准写法（以后新文章照抄）：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-html" data-lang="html"><span class="line"><span class="cl"><span class="p">&lt;</span><span class="nt">video</span> <span class="na">controls</span> <span class="na">playsinline</span> <span class="na">webkit-playsinline</span> <span class="na">preload</span><span class="o">=</span><span class="s">&#34;metadata&#34;</span> <span class="na">src</span><span class="o">=</span><span class="s">&#34;视频文件.mp4&#34;</span> <span class="na">title</span><span class="o">=</span><span class="s">&#34;标题&#34;</span><span class="p">&gt;&lt;/</span><span class="nt">video</span><span class="p">&gt;</span>
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>提示文案标准写法：</strong></p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-markdown" data-lang="markdown"><span class="line"><span class="cl">==（点击播放，播放后点右下角全屏按钮可放大）==
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p><strong>遗留待办（2026-10-02）：</strong></p>
+<ul>
+<li><input disabled="" type="checkbox"> 用剪映把 2 个 <strong>H.265</strong> 视频重新导出为 <strong>H.264</strong> 并替换原文件（安卓手机浏览器播不了 H.265）：
+<ul>
+<li><code>25c277952c20d5992cf6f97c6268221d.mp4</code>（DC输入，纹波页 + 序言页引用）</li>
+<li><code>767967ab9b31bac1056783a6df5ea475_raw.mp4</code>（遥控测试板，大一总结引用）</li>
+</ul>
+</li>
+<li><input disabled="" type="checkbox"> git push 部署后手机实测播放</li>
+</ul>
 
 </section>
 
@@ -555,7 +623,7 @@
 
 
         <span>
-            最后更新于 2026-09-19
+            最后更新于 2026-10-02
         </span>
     </section></footer>
 
@@ -631,7 +699,7 @@
     
     <section class="powerby">
         
-            嵌入式空间 <br/>
+            电子科技空间 <br/>
         使用 <a href="https://gohugo.io/" target="_blank" rel="noopener">Hugo</a> 构建 <br />
         主题 <b><a href="https://github.com/CaiJimmy/hugo-theme-stack" target="_blank" rel="noopener" data-version="3.26.0">Stack</a></b> 由 <a href="https://jimmycai.com" target="_blank" rel="noopener">Jimmy</a> 设计
     </section>
