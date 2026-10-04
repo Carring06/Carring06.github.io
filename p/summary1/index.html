@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="点击播放，播放后点右下角全屏按钮可放大 经历了大一一年的嵌入式学习（主要是针对于软件方面进行学习，如各种通信协议 ——CAN,UART,SPI,">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="点击播放，播放后点右下角全屏按钮可放大 测试板注意事项说明 电池供电部分 首先，要让单片机以及各个电路模块发挥作用，电源是必不可少的！在遥控测试板">
 <title>大一_总结与反思(内含遥控测试板反思)</title>
 
 <link rel='canonical' href='https://Carring06.github.io/p/summary1/'>
 
 <link rel="stylesheet" href="/scss/style.min.922202eb35862f3e303162be1bcbc0eea9db1bb2d77a0a85dbae28420757c6bb.css"><meta property='og:title' content="大一_总结与反思(内含遥控测试板反思)">
-<meta property='og:description' content="点击播放，播放后点右下角全屏按钮可放大 经历了大一一年的嵌入式学习（主要是针对于软件方面进行学习，如各种通信协议 ——CAN,UART,SPI,">
+<meta property='og:description' content="点击播放，播放后点右下角全屏按钮可放大 测试板注意事项说明 电池供电部分 首先，要让单片机以及各个电路模块发挥作用，电源是必不可少的！在遥控测试板">
 <meta property='og:url' content='https://Carring06.github.io/p/summary1/'>
 <meta property='og:site_name' content='车度空间'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-08-10T11:38:36&#43;08:00'/><meta property='article:modified_time' content='2026-08-10T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="大一_总结与反思(内含遥控测试板反思)">
-<meta name="twitter:description" content="点击播放，播放后点右下角全屏按钮可放大 经历了大一一年的嵌入式学习（主要是针对于软件方面进行学习，如各种通信协议 ——CAN,UART,SPI,">
+<meta name="twitter:description" content="点击播放，播放后点右下角全屏按钮可放大 测试板注意事项说明 电池供电部分 首先，要让单片机以及各个电路模块发挥作用，电源是必不可少的！在遥控测试板">
     <link rel="shortcut icon" href="/favicon.ico" />
 
   
@@ -329,7 +329,6 @@
         <li><a href="#boot启动部分">BOOT启动部分</a></li>
       </ol>
     </li>
-    <li><a href="#回归正题">回归正题</a></li>
   </ol>
 </nav>
         </div>
@@ -390,7 +389,7 @@
         </div>
         
         <div>
-            <span class="article-time--words">📝 1759 字</span>
+            <span class="article-time--words">📝 969 字</span>
         </div>
         
         <div>
@@ -410,9 +409,11 @@
     
     <p><strong>点击播放，播放后点右下角全屏按钮可放大</strong></p>
 <p><video controls playsinline webkit-playsinline preload="metadata" src="767967ab9b31bac1056783a6df5ea475_raw.mp4" title="遥控测试板"></video></p>
-<p>  经历了大一一年的嵌入式学习（主要是针对于<strong>软件方面</strong>进行学习，如各种<mark>通信协议</mark> ——<strong>CAN,UART,SPI,I2C</strong>&hellip;, <mark>平衡车的代码撰写</mark>[<strong>基于HAL库</strong>]以及<mark>Freertos的相关学习</mark>[<strong>运用在六轴机械臂以及AGV舵轮底盘</strong>]等）。虽然期间也掺杂了对电路分析以及PCB绘制等硬件的相关学习，并制作了一个USB拓展坞，但是并未深入的学习硬件电路相关的。所以，为了提高自身的综合能力，于暑假期间，预筹划进行<strong>遥控器+四轴飞行器</strong>的电路设计，PCB绘制与焊接以及相关代码撰写。<br>
-  虽说我已经画过了好几个板子了，比如<em>51单片机系统板，拓展坞板，32单片机系统板</em>。但其中仅仅<strong>USB拓展坞板子</strong>进行了焊接并最终完成。所以，自己还是没什么把握能够将<strong>遥控器板</strong>和<strong>飞控板</strong>这两个项目“一遍过”。所以，我打算在绘制这两个板子的过程中，绘制一些额外的测试版，先把一些基本的外设电路一一测试后，再将整个板子画出来，并焊接。如上面视频所示，便其中一个测试版。    。 <br>
-  在焊接测试版的过程中，一方面是能够提升我的焊接水准，另一方面是能加深对某些元器件的作用与选型要求。当然，从中揪出一些毛病，避免在最终这两个项目出现也是我绘制与焊接测试版的原因之一！接下来先对一些注意事项进行总结一下。</p>
+<!--
+&emsp;&emsp;经历了大一一年的嵌入式学习（主要是针对于**软件方面**进行学习，如各种==通信协议== ——**CAN,UART,SPI,I2C**..., ==平衡车的代码撰写==[**基于HAL库**]以及==Freertos的相关学习==[**运用在六轴机械臂以及AGV舵轮底盘**]等）。虽然期间也掺杂了对电路分析以及PCB绘制等硬件的相关学习，并制作了一个USB拓展坞，但是并未深入的学习硬件电路相关的。所以，为了提高自身的综合能力，于暑假期间，预筹划进行**遥控器+四轴飞行器**的电路设计，PCB绘制与焊接以及相关代码撰写。  
+&emsp;&emsp;虽说我已经画过了好几个板子了，比如*51单片机系统板，拓展坞板，32单片机系统板*。但其中仅仅**USB拓展坞板子**进行了焊接并最终完成。所以，自己还是没什么把握能够将**遥控器板**和**飞控板**这两个项目“一遍过”。所以，我打算在绘制这两个板子的过程中，绘制一些额外的测试版，先把一些基本的外设电路一一测试后，再将整个板子画出来，并焊接。如上面视频所示，便其中一个测试版。    。    
+&emsp;&emsp;在焊接测试版的过程中，一方面是能够提升我的焊接水准，另一方面是能加深对某些元器件的作用与选型要求。当然，从中揪出一些毛病，避免在最终这两个项目出现也是我绘制与焊接测试版的原因之一！接下来先对一些注意事项进行总结一下。   
+-->
 <h2 id="测试板注意事项说明">测试板注意事项说明
 </h2><h3 id="电池供电部分">电池供电部分
 </h3><p>  首先，要让单片机以及各个电路模块发挥作用，电源是必不可少的！在遥控测试板中，我采用了3.7V锂电池供电。注意：<strong>3.7V并不是说明该锂电池仅为3.7V，实际上，锂电池放电区间大致：4.2V（满电） ~ 3.0V（放电截止），3.7V 只是放电过程中的典型中间电压</strong>。而后，我直接将锂电池的电压输出直接进行LDO压降至3.3V，如下图所示：<br>
@@ -479,10 +480,11 @@
 		data-flex-basis="403px"
 	
 ></p>
-<h2 id="回归正题">回归正题
-</h2><p>  好了，现在回归正题，对于AI时代的到来与我这一年的学习了解，处于AI时代，AI并不是完全取代程序员，而是辅佐有能力的程序员，放大他们的效率。对于嵌入式来说，软件方面也有一定的冲击，对我来说，AI是放大了我们学习东西的能力，学习了一年的软件，我越来越发觉，现在以及未来，对于仅是具有单方面能力的人，职业竞争能力大大消弱，所以我于大一暑假，开始了硬件的学习，如模电数电，焊接技巧，PCB绘制等。<br>
-  现在，有了AI的加持，个人觉得企业对技术栈的要求只会越来越高，所以，趁现在才大一，应扩宽视野，了解更广泛些，当然不能广而不精，应有着重的学习方向！</p>
-
+<!--
+## 回归正题   
+&emsp;&emsp;好了，现在回归正题，对于AI时代的到来与我这一年的学习了解，处于AI时代，AI并不是完全取代程序员，而是辅佐有能力的程序员，放大他们的效率。对于嵌入式来说，软件方面也有一定的冲击，对我来说，AI是放大了我们学习东西的能力，学习了一年的软件，我越来越发觉，现在以及未来，对于仅是具有单方面能力的人，职业竞争能力大大消弱，所以我于大一暑假，开始了硬件的学习，如模电数电，焊接技巧，PCB绘制等。   
+&emsp;&emsp;现在，有了AI的加持，个人觉得企业对技术栈的要求只会越来越高，所以，趁现在才大一，应扩宽视野，了解更广泛些，当然不能广而不精，应有着重的学习方向！
+-->
 </section>
 
 
