@@ -17,34 +17,7 @@
 
   
 
-<script>
-    (function () {
-        var real = false;
-        function set(pv, uv) {
-            var a = document.getElementById('busuanzi_site_pv');
-            var b = document.getElementById('busuanzi_site_uv');
-            if (a && pv != null && pv !== '') a.textContent = pv;
-            if (b && uv != null && uv !== '') b.textContent = uv;
-        }
-        function ready(fn) {
-            if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', fn);
-            else fn();
-        }
-        ready(function () { if (!real) set('19485', '38'); });
-        var cb = 'BusuanziCB_' + Math.floor(Math.random() * 1e12);
-        window[cb] = function (d) {
-            real = true;
-            set(d.site_pv, d.site_uv);
-            var s = document.getElementById('bsz-jsonp');
-            if (s && s.parentNode) s.parentNode.removeChild(s);
-        };
-        var s = document.createElement('script');
-        s.id = 'bsz-jsonp';
-        s.src = 'https://busuanzi.ibruce.info/busuanzi?jsonpCallback=' + cb;
-        s.referrerPolicy = 'no-referrer-when-downgrade';
-        document.head.appendChild(s);
-    })();
-</script>
+<script defer src="https://busuanzi.9420.ltd/js"></script>
 
     </head>
     <body class="
