@@ -20,7 +20,7 @@
   对于一些高速信号线，我们都是要&lt;strong&gt;进行阻抗控制&lt;/strong&gt;的，但这一部分我还没有渗入太深，所以这里暂时不进行讨论，等后续学成归来后另起一篇文章说明。除了阻抗控制，高速信号线大都需要满足3W和4W要求，这里可以尽可能避免信号线之间的串扰，所谓串扰，就是&lt;strong&gt;两根相邻太近的高速信号线在传播信号时，其中一根线上的信号变化在旁边另一根相邻信号线上感应出电压毛刺，干扰到它&lt;/strong&gt;。而什么是3W什么又是4W呢？其实3W以及4W都是在描述线与线之间的间隔距离为3倍线宽或4倍线宽大小。但直到现在，我还是&lt;mark&gt;没有得到一个权威的答案来确定线与线的间隔是指线中心到线中心的间隔距离，还是线边缘到线边缘之间的间距&lt;/mark&gt;。那我这里先按网上的大多数说法来进行阐述，也就是&lt;strong&gt;线中心到线中心之间的间距&lt;/strong&gt;。接下来的描述也都以“线中心到线中心之间的间距”来讲述的。&lt;br&gt;
   一般来说，&lt;strong&gt;高速信号之间&lt;/strong&gt;的间距需要&lt;strong&gt;大于或等于3W间距）），这样可以保持&lt;/strong&gt;70%的线间电场不互相干扰**。当然，间距越大干扰就越小，倘若想达到&lt;strong&gt;98%的电场不互相干扰&lt;/strong&gt;，则至少应该保持&lt;strong&gt;10W间距&lt;/strong&gt;。而&lt;mark&gt;3W规则是用来限制不同线之间的间隔，4W规则是用来限制同一差分信号的P,N两根线之间的间距&lt;/mark&gt;，当然这些也是能满足就尽可能满足，大家（包括我）慢慢也会有相关的经验来确定一些规则的。&lt;br&gt;
   差分信号线，就是数据传播的时候，不以地平面为零势能点来参考高低电平，而是用两根数据线之间的电势差来确定传播的电平信号，也就是看Vp - Vn的大小来判断的。设Vpn ＝ Vp - Vn，当Vpn大于某一个阈值时，就认为是高电平信号；当Vpn小于某个阈值时，就认为是低电平信号。这样子做的好处是什么呢？通常来讲，差分对布线应该“贴”在一起布线（这里贴在一起是指两跟线保持着安全距离），而且要两根线需要做等长处理。&lt;strong&gt;“贴”在一起布线&lt;/strong&gt;，是为了保证有噪声干扰时，噪声会同时影响两根信号线，这样两根线的电位变化几乎一致，而我们是根据两根线的电势差来判断高低电平，电位变化一直，电势差就几乎不变，这样噪声的危害就大大减小，这也是差分信号抗干扰的原因之一；&lt;strong&gt;等长处理&lt;/strong&gt;是为了保证同一信号的差分信息能同时到达目的点，这样进行解析数据的时候才能得到正确的数据。【SPI线和I2C线可以做等长的，但这好像不是硬性要求】&lt;br&gt;
-  DDR芯片（也就是内存芯片）的数据传输大都是使用&lt;mark&gt;差分信号&lt;/mark&gt;来传输的。以下是DDR布线的相关要求。对于USB等差分信号来说，差分对能包地就尽量包地 ，也就是用地线将差分对包裹起来！而且如下图所示，倘若差分对要打过孔，那么应当在其过孔旁放置地过孔！   &lt;br&gt;
+  DDR芯片（也就是内存芯片）的数据传输大都是使用&lt;mark&gt;差分信号&lt;/mark&gt;来传输的。以下是DDR布线的相关要求。对于USB等差分信号来说，差分对能包地就尽量包地 ，也就是用地线将差分对包裹起来！而且如下图所示，倘若差分对要打过孔，那么应当在其过孔旁放置地过孔！而且我们需要优先走差分线，而后才去走其他线。      &lt;br&gt;
 &lt;img src=&#34;https://Carring06.github.io/p/lc-logic/image.png&#34;
 	width=&#34;1232&#34;
 	height=&#34;498&#34;
@@ -49,7 +49,66 @@
 		data-flex-basis=&#34;656px&#34;
 	
 &gt;&lt;/p&gt;
-&lt;p&gt;  &lt;/p&gt;
+&lt;p&gt;  好了，这里再提一嘴，就是一些高速信号线再进行走线时，我们应该尽我们可能的&lt;strong&gt;避开晶振、电感&lt;/strong&gt;等干扰器件，即使你是多层板，也是应该尽可能的&lt;strong&gt;不要在其下方走线&lt;/strong&gt;。还有，高速信号线应该&lt;strong&gt;尽可能远离板边&lt;/strong&gt;，不能太贴近板边，倘若我们是在避免不了在板边附近走线，那我们至少要和板边留有一定空间可以放置地缝合过孔，并在这些缝合过孔之间至少能留有走10mile地线的空间！下文会讲到缝合地过孔的原因。&lt;br&gt;
+   那么谈到电感，我们需要注意的是&lt;strong&gt;相邻电感需要垂直放置而不是平行放置&lt;/strong&gt;。而这么做的原因是为了&lt;strong&gt;减小电感之间互感的影响，避免电感之间的磁场耦合干扰&lt;/strong&gt;。这里再加上我本人的理解，就是&lt;mark&gt;如果我们将相邻电感进行平行放置，那么电感之间的互感会加剧磁场对电流的影响（电流与磁场之间会有相互影响），当我们电流被干扰到后，我们的纹波电流就会被干扰，而电流又和电压相关联，从而间接影响纹波电压，也就影响到了我们的电源质量&lt;/mark&gt;。&amp;mdash;-这里是基于DCDC进行讲解的。&lt;br&gt;
+  上述话题就此结束，接下来的文章内容会杂碎一点。&lt;br&gt;
+  &lt;strong&gt;一是&lt;/strong&gt;&lt;mark&gt;信号跨分割问题&lt;/mark&gt;。所谓&lt;strong&gt;信号跨分割&lt;/strong&gt;，就是一个完整的平面，被不同网络的走线割裂了，就好比下图，1.5V电源平面被其他网络的线分割了，这也是我这块板子不足之处，但我确实没办法进行相关优化了😭😭😭😭😭😭。不过我觉得&lt;strong&gt;地平面无论如何都要保证完整性！！！千万别将地平面也给跨分割了&lt;/strong&gt;！！！         &lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/lc-logic/image-1.png&#34;
+	width=&#34;876&#34;
+	height=&#34;891&#34;
+	srcset=&#34;https://Carring06.github.io/p/lc-logic/image-1_hu15669617321284326530.png 480w, https://Carring06.github.io/p/lc-logic/image-1_hu16993768285996615726.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;跨分割&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;98&#34;
+		data-flex-basis=&#34;235px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;  那信号跨分割会有什么影响呢？&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;&lt;strong&gt;阻抗不连续&lt;/strong&gt;：参考平面缺失，走线阻抗突变，高速信号反射、信号完整性变差，边沿畸变。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;回流面积变大，EMI 飙升&lt;/strong&gt;：回流不能就近走正下方，绕大圈，环路面积↑，辐射干扰变强，容易过 EMC 失败。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;串扰增加&lt;/strong&gt;：回流路径变长，和旁边走线耦合变强。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;时序不稳定&lt;/strong&gt;：有效长度变长，延时不确定；差分对跨分割还会造成正负信号延时不一致，差分 skew 变大。&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;抗干扰能力下降&lt;/strong&gt;：大环路更容易拾取外界噪声，敏感信号（模拟、时钟、高速串行）信噪比变差。&lt;br&gt;
+  信号跨分割对低速信号线可能影响很小，但是，对于高速信号线影响就很大了。对于&lt;strong&gt;直流信号&lt;/strong&gt;（低速信号认为直流），电源平面负责提供供电电流，地平面作为直流电流的回流终点；而&lt;strong&gt;高速交流信号&lt;/strong&gt;（高速信号变化快，认为交流）中，信号线与参考平面（可以是地平面，也可以是电源平面）共同构成传输线，交流回流会就近走信号线正下方的参考平面，和该平面是 GND 还是 VCC 无关。因此无论信号线以电源平面或是地平面作为参考，一旦参考平面存在分割缺口，回流路径就会被打断，引发跨分割带来的各类信号问题。简言之，直流场景下电源、地分工明确，而高频场景下二者都能够作为信号的参考回流面。   &lt;br&gt;
+  &lt;strong&gt;二是&lt;/strong&gt;&lt;mark&gt;铺铜的时候要避免直角以及有碎铜的出现&lt;/mark&gt;。对于直角铜来说，&lt;strong&gt;一方面&lt;/strong&gt;是PCB在蚀刻的时候，直角的内角会形成酸池，容易造成铜皮缺口，短线，而且外角容易形成铜刺，有短路的风险；&lt;strong&gt;另一方面&lt;/strong&gt;直角铜容易辐射，使得EMI变大。关于&lt;strong&gt;碎铜&lt;/strong&gt;，他也会形成天线效应，既会造成辐射，也会汲取空中的电磁干扰。而避免碎铜的影响有&lt;strong&gt;两个方法&lt;/strong&gt;，一是在&lt;strong&gt;碎铜上铺禁止铺铜区域，直接将碎铜除去&lt;/strong&gt;；二是在&lt;strong&gt;碎铜边打上地过孔，这样也能减少碎铜带来的干扰&lt;/strong&gt;。 &lt;br&gt;
+  &lt;strong&gt;三是&lt;/strong&gt;&lt;mark&gt;在布完线以及修改好DRC后，应该板边防止缝合地过孔，并用地线连接起来&lt;/mark&gt;。这样做既可以避免板子向外辐射过强，也可以隔绝外界电磁干扰对板子的影响。&lt;br&gt;
+  &lt;strong&gt;四是&lt;/strong&gt;&lt;mark&gt;电源铺铜问题&lt;/mark&gt;。我们一般是认为只能在电源层铺电源铜。但实际上来说，倘若你的信号层（相对低速或者空间充足且远离信号线），那么我们也是能在这一层进行适当铺铜处理的。 &lt;br&gt;
+  &lt;strong&gt;五是&lt;/strong&gt;&lt;mark&gt;关于嘉立创EDA相关的话题&lt;/mark&gt;。&lt;strong&gt;一是&lt;/strong&gt;，在layout时，过孔之间尽可能对齐，尽量不要一个高一个地，这样后面布线时可能会很难受；&lt;strong&gt;二是&lt;/strong&gt;，相同网络引脚连线时，尽可能不要直接在内部连接，也就是直接一条线连起来，这样会导致焊接时候容易连锡，我们应该和图中那样进行连接；&lt;strong&gt;三是&lt;/strong&gt;，对于复杂网络且过孔多的板子，我们可以先忽略报错，直接连接网络，等后续再来一同修改报错，因为如果我们边画边修，我们在前期会耗费大量的时间，而且后面如果发现要修改某一连接，这样也会导致我们后期处理时间太久，比如又得将前期修好的线重新布线。&lt;strong&gt;四是&lt;/strong&gt;，在进行等长处理的时候，尽可能将最长的线修短点，然后从最短的线进行等长，一般以最长的线的距离作为等长的最终目标长度；&lt;strong&gt;五是&lt;/strong&gt;，如果我们过孔太多了，我们可以将铺铜的优化宽度改为0，这样孔与孔之间就有相对宽距离进行走电流；&lt;strong&gt;六是&lt;/strong&gt;，两个相同网络的铜皮如果紧挨在一起，那我们可以点击两个铜皮，然后点鼠标右键，通过布尔运算合并铜皮；&lt;strong&gt;七是&lt;/strong&gt;，我们可以在工具栏选择焊接辅助工具，这样我们在焊接的时候会方便一些，而且他可以导出离线版本；&lt;strong&gt;八是&lt;/strong&gt;，下单是，生产稿的作用时，厂方提前把Gerber文件转成生产用的图纸，然后发给我们核对，核对通过后，厂方才会正式投产。&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/lc-logic/%E6%96%B0%E5%90%8D%E8%AF%8D-%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97.png&#34;
+	width=&#34;1502&#34;
+	height=&#34;965&#34;
+	srcset=&#34;https://Carring06.github.io/p/lc-logic/%E6%96%B0%E5%90%8D%E8%AF%8D-%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97_hu3015460945216156611.png 480w, https://Carring06.github.io/p/lc-logic/%E6%96%B0%E5%90%8D%E8%AF%8D-%E5%B8%83%E5%B0%94%E8%BF%90%E7%AE%97_hu4944707488998114913.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;布尔运算&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;155&#34;
+		data-flex-basis=&#34;373px&#34;
+	
+&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/lc-logic/%E8%BF%9E%E9%94%A1.png&#34;
+	width=&#34;1512&#34;
+	height=&#34;1287&#34;
+	srcset=&#34;https://Carring06.github.io/p/lc-logic/%E8%BF%9E%E9%94%A1_hu10716982282991308436.png 480w, https://Carring06.github.io/p/lc-logic/%E8%BF%9E%E9%94%A1_hu16291195033278406550.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;相同引脚连线注意事项&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;117&#34;
+		data-flex-basis=&#34;281px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;  好了好了，今天就分享到这里~&lt;/p&gt;
 </description>
         </item>
         <item>
