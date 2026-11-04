@@ -7,7 +7,56 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>车度空间Carring</copyright>
-        <lastBuildDate>Thu, 22 Oct 2026 11:35:29 +0800</lastBuildDate><atom:link href="https://Carring06.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <lastBuildDate>Wed, 04 Nov 2026 11:35:29 +0800</lastBuildDate><atom:link href="https://Carring06.github.io/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>信号完整性、割地、电流走线</title>
+        <link>https://Carring06.github.io/p/rules-study/</link>
+        <pubDate>Wed, 04 Nov 2026 11:35:29 +0800</pubDate>
+        
+        <guid>https://Carring06.github.io/p/rules-study/</guid>
+        <description>&lt;p&gt;  又到了一季度的总结回顾环节，留做笔记？当作记印？哈哈，随心而来，这种也算作沉淀吧😀~&lt;br&gt;
+  本篇博客，主要来记录三个点，一是&lt;strong&gt;信号完整性&lt;/strong&gt;，二是&lt;strong&gt;割地问题&lt;/strong&gt;，三是&lt;strong&gt;电源走线&lt;/strong&gt;。大体规划是这样，具体内容具体展开😁。&lt;/p&gt;
+&lt;h2 id=&#34;信号完整性&#34;&gt;信号完整性
+&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/rules-study/image.png&#34;
+	width=&#34;1380&#34;
+	height=&#34;650&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/image_hu8808407166874664140.png 480w, https://Carring06.github.io/p/rules-study/image_hu14884494792228545992.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;层间电容&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;212&#34;
+		data-flex-basis=&#34;509px&#34;
+	
+&gt;  &lt;br&gt;
+  上图是取自B站-赛博门外憨的视频，这里只拿来作为笔记，并未任何其他用途，下文出现的其他图片也只拿来作为笔记，望周知！   &lt;br&gt;
+  处于宏观世界的我们，对于PCB的板层结构，我们或许只会觉得只是用板压结构，也就是单纯的板与板进行叠压，大多数进行PCB绘制学习的人并不会进行深入的了解学习。当然，对于宏观世界的我们，PCB板层之间确实感觉没啥，但对于板子上的信号线来说，板层间是存在着一些奇妙的“器件特性”的。当然，当然，对于一些&lt;strong&gt;低速信号线&lt;/strong&gt;，比如LED控制信号，按键控制信号又或是其他普通IO口信号，板层之间的器件特性是体现不出来的，在他们看来，板层之间也并不会有什么额外的“东东”。但是，当板子存在一些&lt;strong&gt;高速信号线&lt;/strong&gt;，例如，LVDS，DDR的数据线，USB3.0等，对于他们来说，板与板之间，是存在层间寄生电容的，然后又因为其频率够快，层与层之间的电容容抗就会非常小（&lt;strong&gt;Xc = 1 / 2Πf&lt;/strong&gt;），这样信号线就会沿着自身传播方向的正下方进行传输，也就是&lt;mark&gt;回流&lt;/mark&gt;。写到这里，我要来&lt;mark&gt;纠正前面的一个错误&lt;/mark&gt;，其实不管是&lt;strong&gt;低速信号&lt;/strong&gt;还是&lt;strong&gt;高速信号&lt;/strong&gt;，层间的寄生电容都是存在的，只是对于&lt;strong&gt;低速信号线&lt;/strong&gt;来说，其&lt;strong&gt;频率低&lt;/strong&gt;，则对应的&lt;strong&gt;层间电容容抗大&lt;/strong&gt;，这也就导致了低速信号线的回流路径只能&lt;strong&gt;老老实实&lt;/strong&gt;按着规定的路径走，而不是跟高速信号线那般直接从传播的路径的正下方进行回流。&lt;br&gt;
+  也就是说，对于&lt;strong&gt;直流 / 频率低&lt;/strong&gt;的信号来说， &lt;strong&gt;信号的流动&lt;/strong&gt;是会&lt;mark&gt;从起点流经整条传输路径再回到起点的&lt;/mark&gt;；但是对于&lt;strong&gt;频率高&lt;/strong&gt;的信号来说， 由容抗公式可知， &lt;strong&gt;f 高， 容抗低&lt;/strong&gt;， 而层与层之间又会有寄生电容，也叫做层间电容， 那么信号并不会说流经整个途径再回去远点的， 而是会在途经点正下方回流 （前提是正下方是个&lt;strong&gt;完整参考平面&lt;/strong&gt;）。&lt;mark&gt;也就是说，如果有一个完整的参考平面的话，高速信号的回流是紧贴着信号线正下方的！&lt;/mark&gt;&lt;br&gt;
+  这也就引出了&lt;strong&gt;信号完整性&lt;/strong&gt;这个说法了。信号完整性一说，也就是让信号线（大多指高速信号）有一个&lt;strong&gt;完整的参考平面&lt;/strong&gt;，这样就可以保证高速信号线能有一个完整的最短的回流路径。&lt;br&gt;
+  而对于&lt;strong&gt;完整的参考平面&lt;/strong&gt;一说，我们大多数是指一个&lt;strong&gt;完整的地平面&lt;/strong&gt;作为高速信号线的参考，理想的情况就是高速信号线下方是一整块完整的地平面。但其实，一个&lt;strong&gt;完整的电源平面&lt;/strong&gt;也是可以作为参考平面的【&lt;mark&gt;当然，一般来说电源会有多种，所以我们电源平面一般没办法一整块完整，所以我们要尽量将一些共同电源网络的信号放一块，然后再根据不同网络进行铺铜&lt;/mark&gt;】。&lt;br&gt;
+  现在来以我的了解解说一下这两种平面的区别。通常来说，我们能使用地平面作为参考面就用&lt;strong&gt;地平面&lt;/strong&gt;，&lt;strong&gt;万不得已&lt;/strong&gt;才会选择去使用&lt;strong&gt;电源平面作为参考面&lt;/strong&gt;。首先，&lt;strong&gt;高速信号线不会&lt;/strong&gt;在乎什么&lt;strong&gt;电位大小&lt;/strong&gt;，他只在乎往哪里走的&lt;strong&gt;寄生电感的最小&lt;/strong&gt;，所以只要信号线下方有个&lt;strong&gt;完整平面&lt;/strong&gt;，他都会紧贴其正下方传输的（&lt;mark&gt;其实如果信号层下方没参考平面，上方有也好像是可以的&lt;/mark&gt;）。而如果是而如果是&lt;strong&gt;地平面&lt;/strong&gt;作为参考平面，那么信号线也算是&lt;strong&gt;直接到达回流目的地&lt;/strong&gt;了；而如果是&lt;strong&gt;电源平面&lt;/strong&gt;作为参考平面，那么他在电源层回流后，还要要靠&lt;strong&gt;就近去耦电容&lt;/strong&gt;跨到 GND，完成闭环。&lt;br&gt;
+  而且，如果&lt;strong&gt;参考平面不会跨分割&lt;/strong&gt;，那么信号线的回流路径并&lt;strong&gt;不会扩散&lt;/strong&gt;到&lt;strong&gt;参考平面的其他地方&lt;/strong&gt;，而只会紧贴着信号线&lt;strong&gt;正下方&lt;/strong&gt;走。也就是说，如果我们能&lt;strong&gt;保证高速信号线之间的间距大于等于其要求时&lt;/strong&gt;，信号之间的&lt;strong&gt;串扰就会减小许多&lt;/strong&gt;！但如果跨分割了，那可就不好说了&amp;hellip;  &lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/rules-study/image-1.png&#34;
+	width=&#34;1758&#34;
+	height=&#34;857&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/image-1_hu16407088871283085918.png 480w, https://Carring06.github.io/p/rules-study/image-1_hu11781384353946510088.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;跨分割&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;205&#34;
+		data-flex-basis=&#34;492px&#34;
+	
+&gt;
+  那现在就来谈谈&lt;strong&gt;跨分割&lt;/strong&gt;问题。如上图所示，倘若参考平面被一些走线，或者挖槽什么的割开一小段后，就称这个平面被跨分割了。当&lt;strong&gt;回流路径&lt;/strong&gt;有&lt;strong&gt;切口&lt;/strong&gt;时 （也就是完整参考平面被&lt;strong&gt;跨分割&lt;/strong&gt;了）， 这个时候， 原本的回流路径就&lt;strong&gt;无法回流&lt;/strong&gt;， 那么信号就会&lt;strong&gt;绕着走&lt;/strong&gt;， 这一绕就导致了&lt;strong&gt;回流路径变长，进而导致路径上的寄生电感增加&lt;/strong&gt;， 而且导致了&lt;strong&gt;阻抗不连续不匹配&lt;/strong&gt;，信号传输干扰增加。 而在这个&lt;strong&gt;切囗两边&lt;/strong&gt;也会形成&lt;strong&gt;压降&lt;/strong&gt;， 这样也会导致&lt;strong&gt;瞬态电流的产生&lt;/strong&gt;， 而这电流一产生， 就会在切口间隙中激发一个&lt;strong&gt;更大的电感&lt;/strong&gt;， 这个时候就会有一个电压噪声峰值，我们的信号也就被影响了。&lt;/p&gt;
+&lt;h2 id=&#34;割地问题&#34;&gt;割地问题
+&lt;/h2&gt;&lt;h2 id=&#34;电源走线&#34;&gt;电源走线
+&lt;/h2&gt;</description>
+        </item>
+        <item>
         <title>立创逻辑派</title>
         <link>https://Carring06.github.io/p/lc-logic/</link>
         <pubDate>Thu, 22 Oct 2026 11:35:29 +0800</pubDate>
