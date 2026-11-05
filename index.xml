@@ -36,6 +36,20 @@
   这也就引出了&lt;strong&gt;信号完整性&lt;/strong&gt;这个说法了。信号完整性一说，也就是让信号线（大多指高速信号）有一个&lt;strong&gt;完整的参考平面&lt;/strong&gt;，这样就可以保证高速信号线能有一个完整的最短的回流路径。&lt;br&gt;
   而对于&lt;strong&gt;完整的参考平面&lt;/strong&gt;一说，我们大多数是指一个&lt;strong&gt;完整的地平面&lt;/strong&gt;作为高速信号线的参考，理想的情况就是高速信号线下方是一整块完整的地平面。但其实，一个&lt;strong&gt;完整的电源平面&lt;/strong&gt;也是可以作为参考平面的【&lt;mark&gt;当然，一般来说电源会有多种，所以我们电源平面一般没办法一整块完整，所以我们要尽量将一些共同电源网络的信号放一块，然后再根据不同网络进行铺铜&lt;/mark&gt;】。&lt;br&gt;
   现在来以我的了解解说一下这两种平面的区别。通常来说，我们能使用地平面作为参考面就用&lt;strong&gt;地平面&lt;/strong&gt;，&lt;strong&gt;万不得已&lt;/strong&gt;才会选择去使用&lt;strong&gt;电源平面作为参考面&lt;/strong&gt;。首先，&lt;strong&gt;高速信号线不会&lt;/strong&gt;在乎什么&lt;strong&gt;电位大小&lt;/strong&gt;，他只在乎往哪里走的&lt;strong&gt;寄生电感的最小&lt;/strong&gt;，所以只要信号线下方有个&lt;strong&gt;完整平面&lt;/strong&gt;，他都会紧贴其正下方传输的（&lt;mark&gt;其实如果信号层下方没参考平面，上方有也好像是可以的&lt;/mark&gt;）。而如果是而如果是&lt;strong&gt;地平面&lt;/strong&gt;作为参考平面，那么信号线也算是&lt;strong&gt;直接到达回流目的地&lt;/strong&gt;了；而如果是&lt;strong&gt;电源平面&lt;/strong&gt;作为参考平面，那么他在电源层回流后，还要要靠&lt;strong&gt;就近去耦电容&lt;/strong&gt;跨到 GND，完成闭环。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/rules-study/%E8%8A%9C%E6%B9%96%E5%9B%9E%E6%B5%81%EF%BC%9F.png&#34;
+	width=&#34;2559&#34;
+	height=&#34;1418&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/%E8%8A%9C%E6%B9%96%E5%9B%9E%E6%B5%81%EF%BC%9F_hu9381507263441623344.png 480w, https://Carring06.github.io/p/rules-study/%E8%8A%9C%E6%B9%96%E5%9B%9E%E6%B5%81%EF%BC%9F_hu11840976048817715625.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;180&#34;
+		data-flex-basis=&#34;433px&#34;
+	
+&gt;&lt;br&gt;
   而且，如果&lt;strong&gt;参考平面不会跨分割&lt;/strong&gt;，那么信号线的回流路径并&lt;strong&gt;不会扩散&lt;/strong&gt;到&lt;strong&gt;参考平面的其他地方&lt;/strong&gt;，而只会紧贴着信号线&lt;strong&gt;正下方&lt;/strong&gt;走。也就是说，如果我们能&lt;strong&gt;保证高速信号线之间的间距大于等于其要求时&lt;/strong&gt;，信号之间的&lt;strong&gt;串扰就会减小许多&lt;/strong&gt;！但如果跨分割了，那可就不好说了&amp;hellip;  &lt;br&gt;
 &lt;img src=&#34;https://Carring06.github.io/p/rules-study/image-1.png&#34;
 	width=&#34;1758&#34;
@@ -137,7 +151,189 @@
 	
 &gt;&lt;/p&gt;
 &lt;h2 id=&#34;电源走线&#34;&gt;电源走线
-&lt;/h2&gt;</description>
+&lt;/h2&gt;&lt;p&gt;  接下来，来说一说电源走线那些事。&lt;br&gt;
+  通常来讲，电源走线都是要宽于信号线，按经验说法，一般都是能粗就粗，能铺铜就铺铜的。如果走线太细，而电流太大，就会有如下图展示的问题。  &lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/rules-study/image-4.png&#34;
+	width=&#34;1740&#34;
+	height=&#34;528&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/image-4_hu9871175203539302154.png 480w, https://Carring06.github.io/p/rules-study/image-4_hu12141751956959956339.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;2&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;329&#34;
+		data-flex-basis=&#34;790px&#34;
+	
+&gt;&lt;br&gt;
+  下图是走线宽度的建议值。
+&lt;img src=&#34;https://Carring06.github.io/p/rules-study/%E5%BB%BA%E8%AE%AE%E5%AE%BD%E5%BA%A6.png&#34;
+	width=&#34;2468&#34;
+	height=&#34;1254&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/%E5%BB%BA%E8%AE%AE%E5%AE%BD%E5%BA%A6_hu11931776596618830843.png 480w, https://Carring06.github.io/p/rules-study/%E5%BB%BA%E8%AE%AE%E5%AE%BD%E5%BA%A6_hu305620030408177322.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;走线宽度&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;196&#34;
+		data-flex-basis=&#34;472px&#34;
+	
+&gt;&lt;br&gt;
+  而且一般来说，内层的电源走线应该更粗一些，因为内层铜厚我们通常来说是选择0.5oz的。【铜厚指的是铜线的厚度】&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/rules-study/image-5.png&#34;
+	width=&#34;569&#34;
+	height=&#34;123&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/image-5_hu6248215871217899698.png 480w, https://Carring06.github.io/p/rules-study/image-5_hu9191845718178016136.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;盎司&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;462&#34;
+		data-flex-basis=&#34;1110px&#34;
+	
+&gt; &lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/rules-study/%E5%86%85%E5%B1%82%E7%94%B5%E6%BA%90%E7%BA%BF%E8%A6%81%E9%80%82%E5%BD%93%E7%B2%97%E7%82%B9%EF%BC%8C%E8%83%BD%E9%93%BA%E9%93%9C%E5%B0%B1%E9%93%BA%EF%BC%8C%E4%B8%8D%E8%83%BD%E5%B0%B1%E5%8A%A0%E7%B2%97%EF%BC%8C%E5%9B%A0%E4%B8%BA%E9%93%9C%E5%8E%9A%E6%AF%94%E9%A1%B6%E5%B1%82%E5%BA%95%E5%B1%82%E8%96%84.png&#34;
+	width=&#34;1223&#34;
+	height=&#34;362&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/%E5%86%85%E5%B1%82%E7%94%B5%E6%BA%90%E7%BA%BF%E8%A6%81%E9%80%82%E5%BD%93%E7%B2%97%E7%82%B9%EF%BC%8C%E8%83%BD%E9%93%BA%E9%93%9C%E5%B0%B1%E9%93%BA%EF%BC%8C%E4%B8%8D%E8%83%BD%E5%B0%B1%E5%8A%A0%E7%B2%97%EF%BC%8C%E5%9B%A0%E4%B8%BA%E9%93%9C%E5%8E%9A%E6%AF%94%E9%A1%B6%E5%B1%82%E5%BA%95%E5%B1%82%E8%96%84_hu1798051544229898146.png 480w, https://Carring06.github.io/p/rules-study/%E5%86%85%E5%B1%82%E7%94%B5%E6%BA%90%E7%BA%BF%E8%A6%81%E9%80%82%E5%BD%93%E7%B2%97%E7%82%B9%EF%BC%8C%E8%83%BD%E9%93%BA%E9%93%9C%E5%B0%B1%E9%93%BA%EF%BC%8C%E4%B8%8D%E8%83%BD%E5%B0%B1%E5%8A%A0%E7%B2%97%EF%BC%8C%E5%9B%A0%E4%B8%BA%E9%93%9C%E5%8E%9A%E6%AF%94%E9%A1%B6%E5%B1%82%E5%BA%95%E5%B1%82%E8%96%84_hu1790402339214248222.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;oz&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;337&#34;
+		data-flex-basis=&#34;810px&#34;
+	
+&gt;
+  而且，当电源需要换层传输时，也是需要考虑过孔的载流能力的，一般会选择多放几个过孔提高载流能力。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/rules-study/%E8%BF%87%E5%AD%94%E8%BF%87%E7%94%B5%E6%B5%81.png&#34;
+	width=&#34;1481&#34;
+	height=&#34;666&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/%E8%BF%87%E5%AD%94%E8%BF%87%E7%94%B5%E6%B5%81_hu6334466244167489389.png 480w, https://Carring06.github.io/p/rules-study/%E8%BF%87%E5%AD%94%E8%BF%87%E7%94%B5%E6%B5%81_hu2865064701452354558.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;过孔&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;222&#34;
+		data-flex-basis=&#34;533px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;图&#34;&gt;图
+&lt;/h2&gt;&lt;p&gt;  接下来展示一些会话截图，我就不对其进行反复搬运了。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/rules-study/%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F%E6%88%91%E6%9C%89%E6%A8%A1%E6%8B%9F%E6%95%B0%E5%AD%97%E5%85%83%E4%BB%B6.png&#34;
+	width=&#34;2355&#34;
+	height=&#34;855&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F%E6%88%91%E6%9C%89%E6%A8%A1%E6%8B%9F%E6%95%B0%E5%AD%97%E5%85%83%E4%BB%B6_hu4646171781742825444.png 480w, https://Carring06.github.io/p/rules-study/%E6%80%8E%E4%B9%88%E5%8A%9E%EF%BC%9F%E6%88%91%E6%9C%89%E6%A8%A1%E6%8B%9F%E6%95%B0%E5%AD%97%E5%85%83%E4%BB%B6_hu6494984384158934226.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;275&#34;
+		data-flex-basis=&#34;661px&#34;
+	
+&gt; &lt;img src=&#34;https://Carring06.github.io/p/rules-study/%E4%BC%9A%E8%AF%9D%E7%BB%8F%E5%85%B8.png&#34;
+	width=&#34;2559&#34;
+	height=&#34;1473&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/%E4%BC%9A%E8%AF%9D%E7%BB%8F%E5%85%B8_hu13829834872114459195.png 480w, https://Carring06.github.io/p/rules-study/%E4%BC%9A%E8%AF%9D%E7%BB%8F%E5%85%B8_hu2181171706404916959.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;173&#34;
+		data-flex-basis=&#34;416px&#34;
+	
+&gt; &lt;img src=&#34;https://Carring06.github.io/p/rules-study/%E4%BC%9A%E8%AF%9D%E7%BB%8F%E5%85%B82.png&#34;
+	width=&#34;2408&#34;
+	height=&#34;992&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/%E4%BC%9A%E8%AF%9D%E7%BB%8F%E5%85%B82_hu11518439710327649250.png 480w, https://Carring06.github.io/p/rules-study/%E4%BC%9A%E8%AF%9D%E7%BB%8F%E5%85%B82_hu13573088341967779258.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;242&#34;
+		data-flex-basis=&#34;582px&#34;
+	
+&gt; &lt;img src=&#34;https://Carring06.github.io/p/rules-study/%E4%BC%9A%E8%AF%9D%E7%BB%8F%E5%85%B83.png&#34;
+	width=&#34;2519&#34;
+	height=&#34;1176&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/%E4%BC%9A%E8%AF%9D%E7%BB%8F%E5%85%B83_hu10346981914642943202.png 480w, https://Carring06.github.io/p/rules-study/%E4%BC%9A%E8%AF%9D%E7%BB%8F%E5%85%B83_hu11321019884082121115.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;214&#34;
+		data-flex-basis=&#34;514px&#34;
+	
+&gt; &lt;img src=&#34;https://Carring06.github.io/p/rules-study/%E6%8E%A5%E5%9C%B0%E9%97%AE%E9%A2%986.png&#34;
+	width=&#34;2499&#34;
+	height=&#34;1418&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/%E6%8E%A5%E5%9C%B0%E9%97%AE%E9%A2%986_hu8711413197417693689.png 480w, https://Carring06.github.io/p/rules-study/%E6%8E%A5%E5%9C%B0%E9%97%AE%E9%A2%986_hu3647331733321694758.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;176&#34;
+		data-flex-basis=&#34;422px&#34;
+	
+&gt; &lt;img src=&#34;https://Carring06.github.io/p/rules-study/%E6%8E%A5%E5%9C%B0%E9%97%AE%E9%A2%986-6.png&#34;
+	width=&#34;2436&#34;
+	height=&#34;1350&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/%E6%8E%A5%E5%9C%B0%E9%97%AE%E9%A2%986-6_hu5025213535927834027.png 480w, https://Carring06.github.io/p/rules-study/%E6%8E%A5%E5%9C%B0%E9%97%AE%E9%A2%986-6_hu7622920458455583167.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;180&#34;
+		data-flex-basis=&#34;433px&#34;
+	
+&gt; &lt;img src=&#34;https://Carring06.github.io/p/rules-study/%E6%8E%A5%E5%9C%B0%E9%97%AE%E9%A2%987%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E8%BF%99%E4%B9%88%EF%BC%9F.png&#34;
+	width=&#34;2147&#34;
+	height=&#34;1284&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/%E6%8E%A5%E5%9C%B0%E9%97%AE%E9%A2%987%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E8%BF%99%E4%B9%88%EF%BC%9F_hu10790057447753316324.png 480w, https://Carring06.github.io/p/rules-study/%E6%8E%A5%E5%9C%B0%E9%97%AE%E9%A2%987%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E2%80%94%E8%BF%99%E4%B9%88%EF%BC%9F_hu1730813247561357666.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;167&#34;
+		data-flex-basis=&#34;401px&#34;
+	
+&gt; &lt;img src=&#34;https://Carring06.github.io/p/rules-study/%E6%8E%A5%E5%9C%B0%E9%97%AE%E9%A2%988.png&#34;
+	width=&#34;2219&#34;
+	height=&#34;1146&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/%E6%8E%A5%E5%9C%B0%E9%97%AE%E9%A2%988_hu4743216650635922492.png 480w, https://Carring06.github.io/p/rules-study/%E6%8E%A5%E5%9C%B0%E9%97%AE%E9%A2%988_hu4400951154904781907.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;alt text&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;193&#34;
+		data-flex-basis=&#34;464px&#34;
+	
+&gt;&lt;/p&gt;
+</description>
         </item>
         <item>
         <title>立创逻辑派</title>
