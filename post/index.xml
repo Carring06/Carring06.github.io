@@ -51,7 +51,56 @@
 		data-flex-basis=&#34;492px&#34;
 	
 &gt;
-  那现在就来谈谈&lt;strong&gt;跨分割&lt;/strong&gt;问题。如上图所示，倘若参考平面被一些走线，或者挖槽什么的割开一小段后，就称这个平面被跨分割了。当&lt;strong&gt;回流路径&lt;/strong&gt;有&lt;strong&gt;切口&lt;/strong&gt;时 （也就是完整参考平面被&lt;strong&gt;跨分割&lt;/strong&gt;了）， 这个时候， 原本的回流路径就&lt;strong&gt;无法回流&lt;/strong&gt;， 那么信号就会&lt;strong&gt;绕着走&lt;/strong&gt;， 这一绕就导致了&lt;strong&gt;回流路径变长，进而导致路径上的寄生电感增加&lt;/strong&gt;， 而且导致了&lt;strong&gt;阻抗不连续不匹配&lt;/strong&gt;，信号传输干扰增加。 而在这个&lt;strong&gt;切囗两边&lt;/strong&gt;也会形成&lt;strong&gt;压降&lt;/strong&gt;， 这样也会导致&lt;strong&gt;瞬态电流的产生&lt;/strong&gt;， 而这电流一产生， 就会在切口间隙中激发一个&lt;strong&gt;更大的电感&lt;/strong&gt;， 这个时候就会有一个电压噪声峰值，我们的信号也就被影响了。&lt;/p&gt;
+  那现在就来谈谈&lt;strong&gt;跨分割&lt;/strong&gt;问题。如上图所示，倘若参考平面被一些走线，或者挖槽什么的割开一小段后，就称这个平面被跨分割了。当&lt;strong&gt;回流路径&lt;/strong&gt;有&lt;strong&gt;切口&lt;/strong&gt;时 （也就是完整参考平面被&lt;strong&gt;跨分割&lt;/strong&gt;了）， 这个时候， 原本的回流路径就&lt;strong&gt;无法回流&lt;/strong&gt;， 那么信号就会&lt;strong&gt;绕着走&lt;/strong&gt;， 这一绕就导致了&lt;strong&gt;回流路径变长，进而导致路径上的寄生电感增加&lt;/strong&gt;， 而且导致了&lt;strong&gt;阻抗不连续不匹配&lt;/strong&gt;，信号传输干扰增加。 而在这个&lt;strong&gt;切囗两边&lt;/strong&gt;也会形成&lt;strong&gt;压降&lt;/strong&gt;， 这样也会导致&lt;strong&gt;瞬态电流的产生&lt;/strong&gt;， 而这电流一产生， 就会在切口间隙中激发一个&lt;strong&gt;更大的电感&lt;/strong&gt;【&lt;mark&gt;所以这也是我们一直强调的，&lt;strong&gt;要保证参考平面的完整性，不要跨分割&lt;/strong&gt;！&lt;/mark&gt;】 ，这个时候就会有一个电压噪声峰值，我们的信号也就被影响了。&lt;br&gt;
+  也就是说，这个&lt;strong&gt;切口&lt;/strong&gt;会呈现&lt;strong&gt;电感特性&lt;/strong&gt;。&lt;strong&gt;一方面&lt;/strong&gt;，其激发的&lt;strong&gt;磁场&lt;/strong&gt;会向旁边的信号线&lt;strong&gt;引入串扰&lt;/strong&gt;；&lt;strong&gt;另一方面&lt;/strong&gt;，当高速信号线遇到&lt;strong&gt;分割缝&lt;/strong&gt;时，&lt;strong&gt;回流不能直接穿过缝隙&lt;/strong&gt;，而是必须绕远路，而且因为高速信号的&lt;strong&gt;电流是随时间快速变化&lt;/strong&gt;的，由公式&lt;strong&gt;U ＝ L × di/dt&lt;/strong&gt;，自然而然，任何一条承载变化电流的导体环路，都会因为&lt;strong&gt;寄生电感&lt;/strong&gt;而产生&lt;strong&gt;感应电压&lt;/strong&gt;，所以在这个寄生电感两端就会有&lt;strong&gt;压降&lt;/strong&gt;，导致了缝隙左右两块&lt;strong&gt;铜皮的电位不同&lt;/strong&gt;，就表现为了切口两侧的&lt;strong&gt;压降&lt;/strong&gt;。所以，我们一开始假定整个参考平面原本是&lt;strong&gt;等电位&lt;/strong&gt;了，但是因为&lt;strong&gt;切口存在&lt;/strong&gt;，导致了整个平面&lt;strong&gt;不再是等电位&lt;/strong&gt;，就比如拿&lt;strong&gt;地平面&lt;/strong&gt;来参考，高速信号的参考电位不再是0了，而是一个有噪声波动的电位，这也就使得高速信号引入了噪声。&lt;mark&gt;而如果是保证了完整参考平面，那么回流紧贴信号线正下方，路径很短，环路极小，整条平面近似等电位&lt;/mark&gt;。&lt;br&gt;
+  下图所展示的就是因为参考平面跨分割而导致回流绕路而行的图片，&lt;strong&gt;绿色&lt;/strong&gt;的为&lt;strong&gt;信号线&lt;/strong&gt;，&lt;strong&gt;红色&lt;/strong&gt;的为&lt;strong&gt;回流线&lt;/strong&gt;，可以看到多条信号线的&lt;strong&gt;回流一同紧贴切口&lt;/strong&gt;，这也就增加了信号线之间的&lt;strong&gt;回流串扰&lt;/strong&gt;，这也是跨分割的影响之一。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/rules-study/%E7%BA%A2%E8%89%B2%E6%98%AF%E8%BF%99%E5%87%A0%E4%B8%AA%E5%AF%BC%E7%BA%BF%E7%9A%84%E5%9B%9E%E6%B5%81~~~.png&#34;
+	width=&#34;756&#34;
+	height=&#34;756&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/%E7%BA%A2%E8%89%B2%E6%98%AF%E8%BF%99%E5%87%A0%E4%B8%AA%E5%AF%BC%E7%BA%BF%E7%9A%84%E5%9B%9E%E6%B5%81~~~_hu5434038041437534329.png 480w, https://Carring06.github.io/p/rules-study/%E7%BA%A2%E8%89%B2%E6%98%AF%E8%BF%99%E5%87%A0%E4%B8%AA%E5%AF%BC%E7%BA%BF%E7%9A%84%E5%9B%9E%E6%B5%81~~~_hu14845433149848050550.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;切口&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;100&#34;
+		data-flex-basis=&#34;240px&#34;
+	
+&gt;  &lt;br&gt;
+  由跨分割，我们又可以引入&lt;strong&gt;地弹&lt;/strong&gt;这一说法了。这里先说明，&lt;strong&gt;地弹&lt;/strong&gt;并非由&lt;strong&gt;参考平面跨分割&lt;/strong&gt;直接产生；&lt;strong&gt;跨分割&lt;/strong&gt;只会&lt;strong&gt;拉长&lt;/strong&gt;回流路径、&lt;strong&gt;增大&lt;/strong&gt;环路寄生电感，&lt;strong&gt;放大&lt;/strong&gt;地弹噪声，并与地弹噪声相互叠加。那地弹是什么呢？又是怎么来的呢？地不是&lt;strong&gt;理想 0V&lt;/strong&gt;，&lt;strong&gt;芯片地引脚、封装键合线、过孔、走线&lt;/strong&gt;都存在&lt;strong&gt;寄生电感&lt;/strong&gt;；大量 IO 同时&lt;strong&gt;翻转&lt;/strong&gt;，瞬态变化电流 di/dt 流过电感，&lt;strong&gt;感应出电压尖峰&lt;/strong&gt;，使芯片内部本地地相对 PCB 主地短暂抬高，这个地电位 “跳起来” 的现象就是地弹。而跨分割会放大地弹的原因是： &lt;mark&gt;跨分割导致回流路径被迫拉长一回流环路电感L变大同样di/dt下，V=L·di/dt噪声更大，地弹更猛&lt;/mark&gt;。&lt;br&gt;
+  减小地弹的方法：①&lt;strong&gt;不要跨分割，不要搞砸回流路径&lt;/strong&gt;；②&lt;strong&gt;不要共用回流路径&lt;/strong&gt;；③&lt;strong&gt;就近放去耦电容，电容到VCC/GND过孔越短越好&lt;/strong&gt;。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/rules-study/image-2.png&#34;
+	width=&#34;1344&#34;
+	height=&#34;668&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/image-2_hu12663962646288760089.png 480w, https://Carring06.github.io/p/rules-study/image-2_hu11034506917660110978.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;亲手设计地弹&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;201&#34;
+		data-flex-basis=&#34;482px&#34;
+	
+&gt;&lt;br&gt;
+&lt;video controls src=&#34;20261105-0243-45.5456670.mp4&#34; title=&#34;欣赏&#34;&gt;&lt;/video&gt;
+&lt;video controls src=&#34;20261105-0246-30.2775212.mp4&#34; title=&#34;欣赏&#34;&gt;&lt;/video&gt;&lt;/p&gt;
+&lt;p&gt;  这里在贴几张图：
+&lt;img src=&#34;https://Carring06.github.io/p/rules-study/%E6%9C%80%E7%9F%AD%E5%9B%9E%E6%B5%81%E8%B7%AF%E5%BE%84%E5%8E%9F%E6%9D%A5%E6%98%AF%E8%BF%99%E6%A0%B7%21.png&#34;
+	width=&#34;1590&#34;
+	height=&#34;1605&#34;
+	srcset=&#34;https://Carring06.github.io/p/rules-study/%E6%9C%80%E7%9F%AD%E5%9B%9E%E6%B5%81%E8%B7%AF%E5%BE%84%E5%8E%9F%E6%9D%A5%E6%98%AF%E8%BF%99%E6%A0%B7%21_hu8077473719249122281.png 480w, https://Carring06.github.io/p/rules-study/%E6%9C%80%E7%9F%AD%E5%9B%9E%E6%B5%81%E8%B7%AF%E5%BE%84%E5%8E%9F%E6%9D%A5%E6%98%AF%E8%BF%99%E6%A0%B7%21_hu2662998493080027006.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;1&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;99&#34;
+		data-flex-basis=&#34;237px&#34;
+	
+&gt;&lt;/p&gt;
 &lt;h2 id=&#34;割地问题&#34;&gt;割地问题
 &lt;/h2&gt;&lt;h2 id=&#34;电源走线&#34;&gt;电源走线
 &lt;/h2&gt;</description>

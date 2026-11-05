@@ -385,7 +385,7 @@
         </div>
         
         <div>
-            <span class="article-time--words">📝 1691 字</span>
+            <span class="article-time--words">📝 2489 字</span>
         </div>
         
         <div>
@@ -441,7 +441,56 @@
 		data-flex-basis="492px"
 	
 >
-  那现在就来谈谈<strong>跨分割</strong>问题。如上图所示，倘若参考平面被一些走线，或者挖槽什么的割开一小段后，就称这个平面被跨分割了。当<strong>回流路径</strong>有<strong>切口</strong>时 （也就是完整参考平面被<strong>跨分割</strong>了）， 这个时候， 原本的回流路径就<strong>无法回流</strong>， 那么信号就会<strong>绕着走</strong>， 这一绕就导致了<strong>回流路径变长，进而导致路径上的寄生电感增加</strong>， 而且导致了<strong>阻抗不连续不匹配</strong>，信号传输干扰增加。 而在这个<strong>切囗两边</strong>也会形成<strong>压降</strong>， 这样也会导致<strong>瞬态电流的产生</strong>， 而这电流一产生， 就会在切口间隙中激发一个<strong>更大的电感</strong>， 这个时候就会有一个电压噪声峰值，我们的信号也就被影响了。</p>
+  那现在就来谈谈<strong>跨分割</strong>问题。如上图所示，倘若参考平面被一些走线，或者挖槽什么的割开一小段后，就称这个平面被跨分割了。当<strong>回流路径</strong>有<strong>切口</strong>时 （也就是完整参考平面被<strong>跨分割</strong>了）， 这个时候， 原本的回流路径就<strong>无法回流</strong>， 那么信号就会<strong>绕着走</strong>， 这一绕就导致了<strong>回流路径变长，进而导致路径上的寄生电感增加</strong>， 而且导致了<strong>阻抗不连续不匹配</strong>，信号传输干扰增加。 而在这个<strong>切囗两边</strong>也会形成<strong>压降</strong>， 这样也会导致<strong>瞬态电流的产生</strong>， 而这电流一产生， 就会在切口间隙中激发一个<strong>更大的电感</strong>【<mark>所以这也是我们一直强调的，<strong>要保证参考平面的完整性，不要跨分割</strong>！</mark>】 ，这个时候就会有一个电压噪声峰值，我们的信号也就被影响了。<br>
+  也就是说，这个<strong>切口</strong>会呈现<strong>电感特性</strong>。<strong>一方面</strong>，其激发的<strong>磁场</strong>会向旁边的信号线<strong>引入串扰</strong>；<strong>另一方面</strong>，当高速信号线遇到<strong>分割缝</strong>时，<strong>回流不能直接穿过缝隙</strong>，而是必须绕远路，而且因为高速信号的<strong>电流是随时间快速变化</strong>的，由公式<strong>U ＝ L × di/dt</strong>，自然而然，任何一条承载变化电流的导体环路，都会因为<strong>寄生电感</strong>而产生<strong>感应电压</strong>，所以在这个寄生电感两端就会有<strong>压降</strong>，导致了缝隙左右两块<strong>铜皮的电位不同</strong>，就表现为了切口两侧的<strong>压降</strong>。所以，我们一开始假定整个参考平面原本是<strong>等电位</strong>了，但是因为<strong>切口存在</strong>，导致了整个平面<strong>不再是等电位</strong>，就比如拿<strong>地平面</strong>来参考，高速信号的参考电位不再是0了，而是一个有噪声波动的电位，这也就使得高速信号引入了噪声。<mark>而如果是保证了完整参考平面，那么回流紧贴信号线正下方，路径很短，环路极小，整条平面近似等电位</mark>。<br>
+  下图所展示的就是因为参考平面跨分割而导致回流绕路而行的图片，<strong>绿色</strong>的为<strong>信号线</strong>，<strong>红色</strong>的为<strong>回流线</strong>，可以看到多条信号线的<strong>回流一同紧贴切口</strong>，这也就增加了信号线之间的<strong>回流串扰</strong>，这也是跨分割的影响之一。<br>
+<img src="/p/rules-study/%E7%BA%A2%E8%89%B2%E6%98%AF%E8%BF%99%E5%87%A0%E4%B8%AA%E5%AF%BC%E7%BA%BF%E7%9A%84%E5%9B%9E%E6%B5%81~~~.png"
+	width="756"
+	height="756"
+	srcset="/p/rules-study/%E7%BA%A2%E8%89%B2%E6%98%AF%E8%BF%99%E5%87%A0%E4%B8%AA%E5%AF%BC%E7%BA%BF%E7%9A%84%E5%9B%9E%E6%B5%81~~~_hu5434038041437534329.png 480w, /p/rules-study/%E7%BA%A2%E8%89%B2%E6%98%AF%E8%BF%99%E5%87%A0%E4%B8%AA%E5%AF%BC%E7%BA%BF%E7%9A%84%E5%9B%9E%E6%B5%81~~~_hu14845433149848050550.png 1024w"
+	loading="lazy"
+	
+		alt="切口"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="100"
+		data-flex-basis="240px"
+	
+>  <br>
+  由跨分割，我们又可以引入<strong>地弹</strong>这一说法了。这里先说明，<strong>地弹</strong>并非由<strong>参考平面跨分割</strong>直接产生；<strong>跨分割</strong>只会<strong>拉长</strong>回流路径、<strong>增大</strong>环路寄生电感，<strong>放大</strong>地弹噪声，并与地弹噪声相互叠加。那地弹是什么呢？又是怎么来的呢？地不是<strong>理想 0V</strong>，<strong>芯片地引脚、封装键合线、过孔、走线</strong>都存在<strong>寄生电感</strong>；大量 IO 同时<strong>翻转</strong>，瞬态变化电流 di/dt 流过电感，<strong>感应出电压尖峰</strong>，使芯片内部本地地相对 PCB 主地短暂抬高，这个地电位 “跳起来” 的现象就是地弹。而跨分割会放大地弹的原因是： <mark>跨分割导致回流路径被迫拉长一回流环路电感L变大同样di/dt下，V=L·di/dt噪声更大，地弹更猛</mark>。<br>
+  减小地弹的方法：①<strong>不要跨分割，不要搞砸回流路径</strong>；②<strong>不要共用回流路径</strong>；③<strong>就近放去耦电容，电容到VCC/GND过孔越短越好</strong>。<br>
+<img src="/p/rules-study/image-2.png"
+	width="1344"
+	height="668"
+	srcset="/p/rules-study/image-2_hu12663962646288760089.png 480w, /p/rules-study/image-2_hu11034506917660110978.png 1024w"
+	loading="lazy"
+	
+		alt="亲手设计地弹"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="201"
+		data-flex-basis="482px"
+	
+><br>
+<video controls src="20261105-0243-45.5456670.mp4" title="欣赏"></video>
+<video controls src="20261105-0246-30.2775212.mp4" title="欣赏"></video></p>
+<p>  这里在贴几张图：
+<img src="/p/rules-study/%E6%9C%80%E7%9F%AD%E5%9B%9E%E6%B5%81%E8%B7%AF%E5%BE%84%E5%8E%9F%E6%9D%A5%E6%98%AF%E8%BF%99%E6%A0%B7%21.png"
+	width="1590"
+	height="1605"
+	srcset="/p/rules-study/%E6%9C%80%E7%9F%AD%E5%9B%9E%E6%B5%81%E8%B7%AF%E5%BE%84%E5%8E%9F%E6%9D%A5%E6%98%AF%E8%BF%99%E6%A0%B7%21_hu8077473719249122281.png 480w, /p/rules-study/%E6%9C%80%E7%9F%AD%E5%9B%9E%E6%B5%81%E8%B7%AF%E5%BE%84%E5%8E%9F%E6%9D%A5%E6%98%AF%E8%BF%99%E6%A0%B7%21_hu2662998493080027006.png 1024w"
+	loading="lazy"
+	
+		alt="1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="99"
+		data-flex-basis="237px"
+	
+></p>
 <h2 id="割地问题">割地问题
 </h2><h2 id="电源走线">电源走线
 </h2>
