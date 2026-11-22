@@ -331,6 +331,7 @@
         <li><a href="#14-键位冲突ad-里最常见的一次撞车">1.4 键位冲突：AD 里最常见的一次&quot;撞车&quot;</a></li>
         <li><a href="#15-面板与视图先把看的问题解决">1.5 面板与视图：先把&quot;看&quot;的问题解决</a></li>
         <li><a href="#16-吸附为什么你的光标不听话">1.6 吸附：为什么你的光标&quot;不听话&quot;</a></li>
+        <li><a href="#17-我的键位表从-dxprcs-里翻出来的实际配置">1.7 我的键位表：从 <code>DXP.RCS</code> 里翻出来的实际配置</a></li>
       </ol>
     </li>
     <li><a href="#二元件库与封装">二、元件库与封装</a>
@@ -519,7 +520,7 @@
         </div>
         
         <div>
-            <span class="article-time--words">📝 20954 字</span>
+            <span class="article-time--words">📝 22001 字</span>
         </div>
         
         <div>
@@ -552,7 +553,7 @@
 <tbody>
 <tr>
 <td><a class="link" href="#ch01" >一、快捷键与软件操作基础</a></td>
-<td>加速键的三段式逻辑、查看与修改键位、键位冲突怎么破、面板与吸附</td>
+<td>加速键的三段式逻辑、查看与修改键位、键位冲突怎么破、<strong>我自己的 11 条自定义键位表</strong>、面板与吸附</td>
 </tr>
 <tr>
 <td><a class="link" href="#ch02" >二、元件库与封装</a></td>
@@ -853,64 +854,8 @@
 		data-flex-basis="327px"
 	
 ></p>
-<p>  处理原则很简单：<strong>保留高频、让低频换位</strong>。下面这套是一份可参考的方案（素材原话是&quot;并不是一定要和图中快捷键完全一致，可自定义&quot;），思路值得借鉴：把常用操作从&quot;两段式&quot;降级成&quot;单键/功能键&quot;，把双字母序列留给低频但系统的命令。</p>
-<div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>操作</th>
-<th>参考键位</th>
-<th>说明</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>拉线 / 过孔 / 敷铜</td>
-<td><code>F2</code> / <code>F3</code> / <code>F4</code></td>
-<td>三个最高频的放置命令，单键直达</td>
-</tr>
-<tr>
-<td>对齐</td>
-<td>小键盘 <code>2/4/8/6</code></td>
-<td>与方向感一致，左/上/右/下</td>
-</tr>
-<tr>
-<td>水平/垂直等间距</td>
-<td>小键盘 <code>7</code> / <code>9</code></td>
-<td>排器件时几乎不停在用</td>
-</tr>
-<tr>
-<td>器件位号排列</td>
-<td>小键盘 <code>5</code></td>
-<td>一键位号对齐</td>
-</tr>
-<tr>
-<td>线选 / 框选</td>
-<td><code>2</code> / <code>3</code></td>
-<td>与数字键区不冲突</td>
-</tr>
-<tr>
-<td>差分线</td>
-<td><code>Alt+F2</code></td>
-<td>与 <code>F2</code> 拉线成对记忆</td>
-</tr>
-<tr>
-<td>删除网络</td>
-<td><code>Alt+Q</code></td>
-<td>与 <code>Q</code> 切单位区分</td>
-</tr>
-<tr>
-<td>物理选择</td>
-<td><code>Ctrl+H</code></td>
-<td>按物理连接选中整段</td>
-</tr>
-<tr>
-<td>忽略障碍物</td>
-<td><code>Shift+R</code></td>
-<td>走线时切换冲突解决模式</td>
-</tr>
-</tbody>
-</table></div>
-<p>  改完记得回 PCB 里实测一遍：<strong>键位不冲突只是必要条件，顺手才是目的</strong>。别人的键位表只能参考，<code>F2</code> 对我是拉线，对别人可能就是个误触源。</p>
+<p>  处理原则很简单：<strong>保留高频、让低频换位</strong>——把常用操作从&quot;两段式&quot;降级成&quot;单键/功能键&quot;，把双字母序列留给低频但系统的命令。上面这张图里的 <code>V</code> 就是我自己动手改的：把 <code>放置»过孔</code> 的备用键设成 <code>V</code>，让单键直达过孔；代价是 <code>视图(V)</code> 的弹出键被抢了，但主菜单永远可以用 <code>Alt+V</code> 精确进入，所以并不吃亏。</p>
+<p>  改完记得回 PCB 里实测一遍：<strong>键位不冲突只是必要条件，顺手才是目的</strong>。我这套键位最后到底改成了什么，本章最后一节（1.7）直接给完整清单。</p>
 <h3 id="15-面板与视图先把看的问题解决">1.5 面板与视图：先把&quot;看&quot;的问题解决
 </h3><p>  AD 的面板有二十来个，一个个从菜单里找太慢。<strong>所有面板都从界面右下角的 <code>Panels</code> 按钮出</strong>，点开就是勾选清单，勾上就浮出来，再点一下收起。</p>
 <p><img src="/p/ad/%E6%89%93%E5%BC%80%E4%B8%80%E4%BA%9B%E8%BE%B9%E6%A1%86%E6%A0%8F.png"
@@ -947,6 +892,175 @@
 ></p>
 <p>  <code>Shift+E</code> 在三种模式间循环：<code>Off</code>（关闭）、<code>Current Layer</code>（只捕当前层）、<code>All Layers</code>（所有层都捕，<strong>推荐</strong>）。判断是否生效只看一个地方——<strong>状态栏右下角</strong>，显示 <code>Hotspot Snap (All Layers)</code> 才是对的。</p>
 <p>  更细的开关在 <code>Ctrl+E</code> 打开的捕捉选项里：<code>Pad Centers</code>（焊盘中心，测中心距必开）、<code>Pad Edges</code>（焊盘边缘，测边到边）、<code>Via Centers</code>、<code>Intersections</code>、<code>Track/Arc Vertices</code> 等，按需勾选。<strong>没勾 <code>Pad Centers</code>，就算开了 All Layers，光标也不会跳到焊盘中心</strong>——这句话值得抄在便签上。</p>
+<h3 id="17-我的键位表从-dxprcs-里翻出来的实际配置">1.7 我的键位表：从 <code>DXP.RCS</code> 里翻出来的实际配置
+</h3><p>  AD 没有独立的&quot;快捷键文件&quot;，所有在 <code>Customize</code> 里改过的键位都记在 <strong><code>%APPDATA%\Altium\Altium Designer {GUID}\DXP.RCS</code></strong> 这个文本变更日志里，语法是：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Change _UserN TargetID=&#39;&lt;命令ID&gt;&#39; Field0=&#39;Shortcut1|Shortcut2&#39; Value0=&#39;&lt;键&gt;&#39; End
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  我把自己机器上这份文件解析了一遍，一共 <strong>19 条记录、落到 11 个命令</strong>。先说结论，日常真正常按的是这六个：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>键</th>
+<th>干什么</th>
+<th>为什么值得单独记</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>F2</code></td>
+<td>放置多边形铺铜</td>
+<td>整个布线后期按得最多的一键</td>
+</tr>
+<tr>
+<td><code>Shift+B</code></td>
+<td>重新铺设全部铺铜</td>
+<td>改完走线不用去面板点 Repour</td>
+</tr>
+<tr>
+<td><code>6</code></td>
+<td>线选（选中碰触的线）</td>
+<td>比框选精准，改单根线必用</td>
+</tr>
+<tr>
+<td><code>7</code></td>
+<td>区域框选</td>
+<td>和 <code>6</code> 成对，选&quot;一片&quot;用</td>
+</tr>
+<tr>
+<td><code>Shift+Z</code></td>
+<td>在矩形区域内排列器件</td>
+<td>刚导入 PCB 时一键码齐</td>
+</tr>
+<tr>
+<td><code>Alt+D</code></td>
+<td>快速差分对布线</td>
+<td>差分对不用再走 <code>U</code> 菜单</td>
+</tr>
+</tbody>
+</table></div>
+<p>  完整清单（按使用频率排）：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>命令 ID</th>
+<th>含义</th>
+<th>键位</th>
+<th>槽位</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>PLPCB:PlacePolygonPlane</code></td>
+<td>放置多边形铺铜</td>
+<td><code>F2</code></td>
+<td>备用</td>
+</tr>
+<tr>
+<td><code>PLPCB:RepourAllPolygonsNoContext</code></td>
+<td>重新铺设全部铺铜</td>
+<td><code>Shift+B</code></td>
+<td>备用</td>
+</tr>
+<tr>
+<td><code>PLPCB:SelectTouchingLine</code></td>
+<td>线选</td>
+<td><code>6</code></td>
+<td>备用</td>
+</tr>
+<tr>
+<td><code>PLPCB:SelectInsideArea</code></td>
+<td>区域框选</td>
+<td><code>7</code></td>
+<td>备用</td>
+</tr>
+<tr>
+<td><code>PLPCB:PlaceVia</code></td>
+<td>放置过孔</td>
+<td><code>V</code></td>
+<td>备用</td>
+</tr>
+<tr>
+<td><code>PLPCB:ArrangeComponentsWithinRectangle</code></td>
+<td>在矩形区域内排列器件</td>
+<td><code>Shift+Z</code></td>
+<td>备用</td>
+</tr>
+<tr>
+<td><code>PLPCB:SwapComponents</code></td>
+<td>交换器件</td>
+<td><code>Shift+W</code></td>
+<td>备用</td>
+</tr>
+<tr>
+<td><code>PLManRoute:AdvancedQuickRouting</code></td>
+<td>快速布线</td>
+<td><code>W</code></td>
+<td>备用</td>
+</tr>
+<tr>
+<td><code>PLManRoute:AdvancedQuickDiffPairRoute</code></td>
+<td>快速差分对布线</td>
+<td><code>Alt+D</code> / <code>F3</code></td>
+<td>主 / 备用</td>
+</tr>
+<tr>
+<td><code>PLSch:PlaceWire</code></td>
+<td>原理图放置导线</td>
+<td><code>W</code></td>
+<td>主</td>
+</tr>
+<tr>
+<td><code>MNDesignMenu_Window1_3</code></td>
+<td>设计菜单某子项的弹出键</td>
+<td><code>Q</code></td>
+<td>Popup</td>
+</tr>
+</tbody>
+</table></div>
+<p>  这份表里有四个必须知道的细节，否则你照着抄也会&quot;不生效&quot;：</p>
+<p>  <strong>① 它是变更日志，以最后一条为准。</strong> 同一个命令被改过多次时，前面的记录只是历史，实际生效的是最后一行：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>改动轨迹</th>
+<th>最终生效</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>放置铺铜</td>
+<td><code>G</code> → <code>F2</code> → <code>F1</code> → <code>F2</code></td>
+<td><code>F2</code></td>
+</tr>
+<tr>
+<td>线选</td>
+<td><code>F3</code> → <code>6</code></td>
+<td><code>6</code></td>
+</tr>
+<tr>
+<td>交换器件</td>
+<td><code>Shift+3</code> → 反引号 → <code>Shift+W</code></td>
+<td><code>Shift+W</code></td>
+</tr>
+<tr>
+<td>快速差分对布线</td>
+<td>备用 <code>Alt+D</code> → 主 <code>Alt+D</code>、备用 <code>F3</code></td>
+<td>主 <code>Alt+D</code> / 备 <code>F3</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>  <strong>② 主键与备用键是两个独立槽位。</strong> <code>Shortcut1</code> 是主键、<code>Shortcut2</code> 是备用键，对应 <code>Edit Command</code> 里的「主要的 / 可选的」。我大部分命令都是&quot;备用槽给单键、主键留给双字母序列&quot;，这样新旧两套习惯能同时生效。</p>
+<p>  <strong>③ 上下文优先于全局键位。</strong> 我把 <code>Shift+W</code> 给了&quot;交换器件&quot;，但在<strong>布线进行中</strong>按 <code>Shift+W</code> 仍然是切换线宽——走线引擎的临时热键优先级更高，只有不在布线状态时才轮到交换器件。这类&quot;看起来冲突、实际按上下文分流&quot;的情况，必须实测才能确认，别只看表格。</p>
+<p>  <strong>④ 有一条语义没定论。</strong> <code>MNDesignMenu_Window1_3</code> 是菜单弹出键（<code>Field0='Popup'</code>），从 ID 只能看出它挂在设计菜单下，具体是哪个子项建议回 <code>Customize</code> 里核对一次再用。</p>
+<p>  换电脑或重装系统时，把这个 <code>DXP.RCS</code> 复制回同样的 <code>%APPDATA%\Altium\Altium Designer {GUID}\</code> 目录，整套键位就回来了；<code>DXP.RAF</code>（服务加载配置）和 <code>UserTools.TLT</code>（工具栏布局）跟快捷键无关，不用一起拷。想核对软件里的真实状态，还是以 <code>Customize…»ALL</code> 列表里每条的 <code>Currently in use by</code> 为准。</p>
+<p>  最后提一句另外半边：嘉立创 EDA 专业版的键位是另一套模型——存在一个 JSON 的 <code>HOTKEY.hotkey</code> 节点下，格式是 <code>hotkeyCmd</code> 对 <code>hotkey</code>，还带一个 <code>range</code> 上下文范围（本机那份配置里有 1370 条）。<strong>AD 靠&quot;字符序列&quot;（<code>D»R</code>），lcEDA 靠&quot;单键 + 上下文&quot;</strong>，两套别混记，切换时按各自的逻辑去想。</p>
 <p><a id="ch02"></a></p>
 <h2 id="二元件库与封装">二、元件库与封装
 </h2><p>  画板的第一个分水岭在这里：<strong>库里没有的器件，你是选择&quot;从零画&quot;，还是&quot;想办法弄到&quot;？</strong> 我现在的答案永远是后者——AD 提供了四条&quot;抄&quot;的路径，能省掉 90% 的手工劳动。</p>
