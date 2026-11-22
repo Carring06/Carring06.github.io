@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="从焊第一块板子到现在，我在 Altium Designer 里踩过的坑大概能铺满一张 A2 图纸。这篇日志不打算写成软件说明书，而是把散落在文件夹里的 160 张截图、一段录屏，按一条">
 <title>Altium Designer学习日志</title>
 
 <link rel='canonical' href='https://Carring06.github.io/p/ad/'>
 
 <link rel="stylesheet" href="/scss/style.min.922202eb35862f3e303162be1bcbc0eea9db1bb2d77a0a85dbae28420757c6bb.css"><meta property='og:title' content="Altium Designer学习日志">
-<meta property='og:description' content="">
+<meta property='og:description' content="从焊第一块板子到现在，我在 Altium Designer 里踩过的坑大概能铺满一张 A2 图纸。这篇日志不打算写成软件说明书，而是把散落在文件夹里的 160 张截图、一段录屏，按一条">
 <meta property='og:url' content='https://Carring06.github.io/p/ad/'>
 <meta property='og:site_name' content='车度空间'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-11-17T11:38:36&#43;08:00'/><meta property='article:modified_time' content='2026-11-17T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-11-17T11:38:36&#43;08:00'/><meta property='article:modified_time' content='2026-11-22T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="Altium Designer学习日志">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="从焊第一块板子到现在，我在 Altium Designer 里踩过的坑大概能铺满一张 A2 图纸。这篇日志不打算写成软件说明书，而是把散落在文件夹里的 160 张截图、一段录屏，按一条">
     <link rel="shortcut icon" href="/favicon.ico" />
 
   
@@ -300,7 +300,174 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#全文导航">全文导航</a></li>
+    <li><a href="#一快捷键与软件操作基础">一、快捷键与软件操作基础</a>
+      <ol>
+        <li><a href="#11-三段式加速键ad-的键位是一门语言">1.1 三段式加速键：AD 的键位是一门&quot;语言&quot;</a></li>
+        <li><a href="#12-想不起快捷键时怎么办">1.2 想不起快捷键时怎么办</a></li>
+        <li><a href="#13-改键给高频操作安排一个顺手的位置">1.3 改键：给高频操作安排一个顺手的位置</a></li>
+        <li><a href="#14-键位冲突ad-里最常见的一次撞车">1.4 键位冲突：AD 里最常见的一次&quot;撞车&quot;</a></li>
+        <li><a href="#15-面板与视图先把看的问题解决">1.5 面板与视图：先把&quot;看&quot;的问题解决</a></li>
+        <li><a href="#16-吸附为什么你的光标不听话">1.6 吸附：为什么你的光标&quot;不听话&quot;</a></li>
+      </ol>
+    </li>
+    <li><a href="#二元件库与封装">二、元件库与封装</a>
+      <ol>
+        <li><a href="#21-元件库的四条来源">2.1 元件库的四条来源</a>
+          <ol>
+            <li><a href="#211-路径一从原理图反向生成符号库">2.1.1 路径一：从原理图反向生成符号库</a></li>
+            <li><a href="#212-路径二从-pcb-反向生成封装库">2.1.2 路径二：从 PCB 反向生成封装库</a></li>
+            <li><a href="#213-路径三用标准封装向导生成">2.1.3 路径三：用标准封装向导生成</a></li>
+            <li><a href="#214-路径四查尺寸图自建">2.1.4 路径四：查尺寸图自建</a></li>
+          </ol>
+        </li>
+        <li><a href="#22-封装管理器一处改完全工程">2.2 封装管理器：一处改完全工程</a></li>
+        <li><a href="#23-位号让-ad-自己数">2.3 位号：让 AD 自己数</a></li>
+        <li><a href="#24-让图面更干净comment--value">2.4 让图面更干净：<code>Comment = =Value</code></a></li>
+        <li><a href="#25-丝印阻焊与焊盘的几何关系">2.5 丝印、阻焊与焊盘的几何关系</a></li>
+        <li><a href="#26-画封装3d-时老是自动吸附怎么办">2.6 画封装/3D 时&quot;老是自动吸附&quot;怎么办</a></li>
+      </ol>
+    </li>
+    <li><a href="#三原理图模板编译与-erc">三、原理图模板、编译与 ERC</a>
+      <ol>
+        <li><a href="#31-图纸模板-schdot">3.1 图纸模板 <code>.SchDot</code></a></li>
+        <li><a href="#32-页编号与位号是两套命令">3.2 页编号与位号是两套命令</a></li>
+        <li><a href="#33-编译让-ad-先替你挑错">3.3 编译：让 AD 先替你挑错</a></li>
+        <li><a href="#34-两类最高发的-erc-报错">3.4 两类最高发的 ERC 报错</a></li>
+        <li><a href="#35-编译通过之后库才活过来">3.5 编译通过之后，库才&quot;活&quot;过来</a></li>
+      </ol>
+    </li>
+    <li><a href="#四原理图--pcb导入与交互定位">四、原理图 → PCB：导入与交互定位</a>
+      <ol>
+        <li><a href="#41-两个方向别点反">4.1 两个方向，别点反</a></li>
+        <li><a href="#42-执行两遍直到-no-differences">4.2 执行两遍，直到 <code>No Differences</code></a></li>
+        <li><a href="#43-三类导入报错对症下药">4.3 三类导入报错，对症下药</a></li>
+        <li><a href="#44-交叉选择原理图与-pcb-的连坐">4.4 交叉选择：原理图与 PCB 的&quot;连坐&quot;</a></li>
+        <li><a href="#45-网络级交叉选择顺手把网络类建了">4.5 网络级交叉选择：顺手把网络类建了</a></li>
+      </ol>
+    </li>
+    <li><a href="#五布局与编辑的高效操作">五、布局与编辑的高效操作</a>
+      <ol>
+        <li><a href="#51-t-o-l把一堆器件排成矩阵">5.1 <code>T O L</code>：把一堆器件排成矩阵</a></li>
+        <li><a href="#52-e-a特殊粘贴与阵列粘贴">5.2 <code>E A</code>：特殊粘贴与阵列粘贴</a></li>
+        <li><a href="#53-m-x按偏移量精确移动">5.3 <code>M X</code>：按偏移量精确移动</a></li>
+        <li><a href="#54-l移动中翻层">5.4 <code>L</code>：移动中翻层</a></li>
+        <li><a href="#55-n飞线太多先关掉">5.5 <code>N</code>：飞线太多？先关掉</a></li>
+        <li><a href="#56-拉长走线抓端点不是拖中间">5.6 拉长走线：抓端点，不是拖中间</a></li>
+        <li><a href="#57-选择过滤器只选你想选的东西">5.7 选择过滤器：只选你想选的东西</a></li>
+        <li><a href="#58-高亮一条网络看清它走到哪">5.8 高亮一条网络，看清它走到哪</a></li>
+        <li><a href="#59-测量先解决吸附再谈精度">5.9 测量：先解决吸附，再谈精度</a></li>
+      </ol>
+    </li>
+    <li><a href="#六off-grid讨厌但可控的警告">六、Off-grid：讨厌但可控的警告</a>
+      <ol>
+        <li><a href="#61-它到底是什么">6.1 它到底是什么</a></li>
+        <li><a href="#62-两种处理方式">6.2 两种处理方式</a></li>
+      </ol>
+    </li>
+    <li><a href="#七room多通道布局的复制粘贴">七、ROOM：多通道布局的&quot;复制粘贴&quot;</a>
+      <ol>
+        <li><a href="#71-先看一遍完整录屏">7.1 先看一遍完整录屏</a></li>
+        <li><a href="#72-它到底复用了什么">7.2 它到底复用了什么</a></li>
+        <li><a href="#73-八步流程">7.3 八步流程</a>
+          <ol>
+            <li><a href="#731-准备建-room-与批量编辑">7.3.1 准备：建 Room 与批量编辑</a></li>
+            <li><a href="#732-对齐排序基准与通道号">7.3.2 对齐：排序、基准与通道号</a></li>
+            <li><a href="#733-复用拷贝-room-格式">7.3.3 复用：拷贝 Room 格式</a></li>
+          </ol>
+        </li>
+        <li><a href="#74-channel-offset-才是真正的命门">7.4 Channel Offset 才是真正的&quot;命门&quot;</a></li>
+        <li><a href="#75-room-菜单一览">7.5 ROOM 菜单一览</a></li>
+      </ol>
+    </li>
+    <li><a href="#八层叠板框与负片">八、层叠、板框与负片</a>
+      <ol>
+        <li><a href="#81-先记层分工口诀">8.1 先记层分工口诀</a></li>
+        <li><a href="#82-层叠管理器d-k">8.2 层叠管理器：<code>D K</code></a></li>
+        <li><a href="#83-正片与负片ad-里最容易搞混的一对概念">8.3 正片与负片：AD 里最容易搞混的一对概念</a></li>
+        <li><a href="#84-板框画在-mechanical-1">8.4 板框：画在 Mechanical 1</a></li>
+        <li><a href="#85-dxf-导入结构工程师给的外形">8.5 DXF 导入：结构工程师给的外形</a></li>
+      </ol>
+    </li>
+    <li><a href="#九设计规则与-drc">九、设计规则与 DRC</a>
+      <ol>
+        <li><a href="#91-规则的入口与骨架">9.1 规则的入口与骨架</a></li>
+        <li><a href="#92-十二条规则按类型分组">9.2 十二条规则，按类型分组</a>
+          <ol>
+            <li><a href="#921-electrical先保证该连的都连上">9.2.1 Electrical：先保证&quot;该连的都连上&quot;</a></li>
+            <li><a href="#922-routing线宽与过孔">9.2.2 Routing：线宽与过孔</a></li>
+            <li><a href="#923-mask阻焊与过孔盖油">9.2.3 Mask：阻焊与过孔盖油</a></li>
+            <li><a href="#924-plane正片与负片的连接">9.2.4 Plane：正片与负片的连接</a></li>
+            <li><a href="#925-manufacturing丝印类检查">9.2.5 Manufacturing：丝印类检查</a></li>
+          </ol>
+        </li>
+        <li><a href="#93-优先级规则明明设了却不生效的真凶">9.3 优先级：规则&quot;明明设了却不生效&quot;的真凶</a></li>
+        <li><a href="#94-正片规则与负片规则分别在哪">9.4 正片规则与负片规则分别在哪</a></li>
+        <li><a href="#95-drc出图前的最后一道闸">9.5 DRC：出图前的最后一道闸</a></li>
+      </ol>
+    </li>
+    <li><a href="#十网络分类铺铜与布线">十、网络分类、铺铜与布线</a>
+      <ol>
+        <li><a href="#101-从建类到约束的完整链路">10.1 从建类到约束的完整链路</a></li>
+        <li><a href="#102-铺铜从画到修">10.2 铺铜：从画到修</a></li>
+        <li><a href="#103-铺了不显示的四步排查">10.3 &ldquo;铺了不显示&quot;的四步排查</a></li>
+        <li><a href="#104-全连接还是十字连接">10.4 全连接还是十字连接</a></li>
+        <li><a href="#105-缝合地过孔两层板的救命稻草">10.5 缝合地过孔：两层板的救命稻草</a></li>
+        <li><a href="#106-布线几个真正省时间的动作">10.6 布线：几个真正省时间的动作</a></li>
+      </ol>
+    </li>
+    <li><a href="#十一制造文件输出">十一、制造文件输出</a>
+      <ol>
+        <li><a href="#111-输出总流程">11.1 输出总流程</a></li>
+        <li><a href="#112-gerber一层一个文件">11.2 Gerber：一层一个文件</a></li>
+        <li><a href="#113-钻孔精度要和-gerber-对齐">11.3 钻孔：精度要和 Gerber 对齐</a></li>
+        <li><a href="#114-坐标文件贴片厂要的那张表">11.4 坐标文件：贴片厂要的那张表</a></li>
+        <li><a href="#115-ipc-网表容易找错门的那一个">11.5 IPC 网表：容易找错门的那一个</a></li>
+        <li><a href="#116-装配图用智能pdf-出单色线稿">11.6 装配图：用智能PDF 出单色线稿</a></li>
+        <li><a href="#117-bom-与打包">11.7 BOM 与打包</a></li>
+      </ol>
+    </li>
+    <li><a href="#十二3d-视图与模型">十二、3D 视图与模型</a>
+      <ol>
+        <li><a href="#121-切换与旋转">12.1 切换与旋转</a></li>
+        <li><a href="#122-3d-模型从哪来">12.2 3D 模型从哪来</a></li>
+        <li><a href="#123-两个必踩的坑">12.3 两个必踩的坑</a></li>
+        <li><a href="#124-3d-到底值不值">12.4 3D 到底值不值</a></li>
+      </ol>
+    </li>
+    <li><a href="#结语一份可以照着走的顺序">结语：一份可以照着走的顺序</a></li>
+    <li><a href="#参考资料">参考资料</a></li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="main-article">
@@ -347,12 +514,12 @@
 
 
             <time class="article-time--modified">
-                最后更新于 2026-11-17
+                最后更新于 2026-11-22
             </time>
         </div>
         
         <div>
-            <span class="article-time--words">📝 0 字</span>
+            <span class="article-time--words">📝 20954 字</span>
         </div>
         
         <div>
@@ -370,7 +537,3162 @@
     <section class="article-content">
     
     
-    
+    <p>  从焊第一块板子到现在，我在 Altium Designer 里踩过的坑大概能铺满一张 A2 图纸。这篇日志不打算写成软件说明书，而是把散落在文件夹里的 160 张截图、一段录屏，按<strong>一条真实的画板流水线</strong>重新串起来——从快捷键怎么按，到最后一个 Gerber 文件怎么交出去。</p>
+<p>  素材来源说明：文中截图基本是本人跟着「电赛声源智能小车」这个工程练习时的软件实拍（部分截图水印&quot;钰空间&quot;即本人），个别速查表页出自凡亿教育的公开课讲义，仅作学习笔记引用，不作他用。操作以 Altium Designer 21/26 为基准，菜单记的是中文界面，括号里保留英文原名，方便对照官方文档。凡涉及官方行为的部分，都在文末列出了<a class="link" href="#ch14" >参考资料</a>。</p>
+<p>  全文顺序是：<strong>快捷键 → 建库 → 原理图 → 导入 PCB → 布局（含 ROOM）→ 层叠与板框 → 设计规则 → 铺铜与布线 → 制造输出 → 3D 视图</strong>。一步压一步，建议顺着读；想快速定位某一章，先看下面的<strong>全文导航</strong>。</p>
+<h2 id="全文导航">全文导航
+</h2><p>  十二章可以拆成三段：<strong>第一到六章解决&quot;画得对&quot;</strong>——软件操作、建库、原理图、导入、布局、警告处理；<strong>第七到十章解决&quot;画得好&quot;</strong>——ROOM 复用、层叠板框、规则约束、铺铜布线；<strong>第十一、十二章解决&quot;交得出去&quot;</strong>——制造文件与 3D 检查。每章的一句话概述如下，点章节名可以直接跳过去。</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>章节</th>
+<th>一句话概述</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a class="link" href="#ch01" >一、快捷键与软件操作基础</a></td>
+<td>加速键的三段式逻辑、查看与修改键位、键位冲突怎么破、面板与吸附</td>
+</tr>
+<tr>
+<td><a class="link" href="#ch02" >二、元件库与封装</a></td>
+<td>四条&quot;抄库&quot;路径、封装管理器、位号自动编号、丝印与阻焊的几何红线</td>
+</tr>
+<tr>
+<td><a class="link" href="#ch03" >三、原理图模板、编译与 ERC</a></td>
+<td><code>.SchDot</code> 模板、页编号、Validate 编译、两类高发 ERC 报错</td>
+</tr>
+<tr>
+<td><a class="link" href="#ch04" >四、原理图 → PCB</a></td>
+<td>两个同步方向别点反、执行两遍到 <code>No Differences</code>、三类导入报错、交叉选择</td>
+</tr>
+<tr>
+<td><a class="link" href="#ch05" >五、布局与编辑的高效操作</a></td>
+<td><code>TOL</code> / <code>EA</code> / <code>MX</code> / <code>L</code> / <code>N</code> 五个效率键、拉长走线的正确姿势、过滤器、高亮与测量</td>
+</tr>
+<tr>
+<td><a class="link" href="#ch06" >六、Off-grid</a></td>
+<td>它到底影响什么、治本（吸回栅格）与治标（改 ERC 级别）两种处理</td>
+</tr>
+<tr>
+<td><a class="link" href="#ch07" >七、ROOM 多通道</a></td>
+<td>▶ <strong>含 70 秒完整操作录屏</strong>（在 7.1）+ 八步流程 + <code>Channel Offset</code> 这个命门 + 菜单速查</td>
+</tr>
+<tr>
+<td><a class="link" href="#ch08" >八、层叠、板框与负片</a></td>
+<td>层分工口诀、<code>DK</code> 叠层管理器、正片与负片对照、Mechanical 1 板框、DXF 导入</td>
+</tr>
+<tr>
+<td><a class="link" href="#ch09" >九、设计规则与 DRC</a></td>
+<td>十二条&quot;数字配方&quot;、优先级踩坑、正/负片规则归属、DRC 在线与批量</td>
+</tr>
+<tr>
+<td><a class="link" href="#ch10" >十、网络分类、铺铜与布线</a></td>
+<td>Net Class 到规则的链路、铺铜修整与排查、全连接、缝合地过孔、布线技巧</td>
+</tr>
+<tr>
+<td><a class="link" href="#ch11" >十一、制造文件输出</a></td>
+<td>Gerber、钻孔 2:4、坐标文件、IPC-D-356A、智能 PDF 装配图、打包</td>
+</tr>
+<tr>
+<td><a class="link" href="#ch12" >十二、3D 视图与模型</a></td>
+<td><code>2</code>/<code>3</code> 切换与 <code>V B</code> 翻面、模型从哪来、Override Color 与 3D 吸附两个坑</td>
+</tr>
+<tr>
+<td><a class="link" href="#ch13" >结语</a></td>
+<td>13 条可勾选的画板检查清单，可以直接照着走</td>
+</tr>
+<tr>
+<td><a class="link" href="#ch14" >参考资料</a></td>
+<td>10 条官方文档与 2 个外部站点，正文结论都能溯源</td>
+</tr>
+</tbody>
+</table></div>
+<p>  只想马上动手的，可以直接跳到<a class="link" href="#ch13" >结语</a>的检查清单；如果遇到&quot;规则设了不生效&quot;&ldquo;铺铜画了不显示&quot;这类怪问题，先去<a class="link" href="#ch09" >第九章</a>和<a class="link" href="#ch10" >第十章</a>找对应小节。</p>
+<p><a id="ch01"></a></p>
+<h2 id="一快捷键与软件操作基础">一、快捷键与软件操作基础
+</h2><p>  很多人用 AD 是&quot;菜单点到底&rdquo;，其实这软件的键盘设计有一套完整的逻辑。先把它想明白，后面所有操作都能加速。</p>
+<h3 id="11-三段式加速键ad-的键位是一门语言">1.1 三段式加速键：AD 的键位是一门&quot;语言&quot;
+</h3><p>  AD 的<strong>加速键（Accelerator Keys）<strong>不是同时按，而是</strong>一个字母一个字母地连按</strong>，沿着菜单层级往下走。第一段是主菜单的&quot;弹出键&quot;，第二、三段是子菜单和命令的首字母。比如 <code>T</code> <code>D</code> <code>R</code> 就是工具(Tools) → 设计规则检查(Design Rule Check)，<code>D</code> <code>R</code> 是设计(Design) → 规则(Rules)。</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>主菜单</th>
+<th>弹出键</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>File / Edit / View</td>
+<td><code>F</code> / <code>E</code> / <code>V</code></td>
+</tr>
+<tr>
+<td>Project / Place / Design</td>
+<td><code>C</code> / <code>P</code> / <code>D</code></td>
+</tr>
+<tr>
+<td>Tools / Route（仅 PCB）</td>
+<td><code>T</code> / <code>U</code></td>
+</tr>
+<tr>
+<td>Reports / Window / Help</td>
+<td><code>R</code> / <code>W</code> / <code>H</code></td>
+</tr>
+</tbody>
+</table></div>
+<p>  掌握了这层规律，常用命令就变成了&quot;条件反射&quot;：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>键序</th>
+<th>对应命令</th>
+<th>什么时候用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>D</code> <code>R</code></td>
+<td>设计 » 规则</td>
+<td>改规则、看规则树</td>
+</tr>
+<tr>
+<td><code>T</code> <code>D</code> <code>R</code></td>
+<td>工具 » 设计规则检查</td>
+<td>出图前跑批量 DRC</td>
+</tr>
+<tr>
+<td><code>D</code> <code>C</code></td>
+<td>设计 » Classes</td>
+<td>建网络类</td>
+</tr>
+<tr>
+<td><code>D</code> <code>K</code></td>
+<td>设计 » 层叠管理器</td>
+<td>改叠层</td>
+</tr>
+<tr>
+<td><code>D</code> <code>P</code></td>
+<td>设计 » 生成 PCB 库</td>
+<td>把别人板子的封装提取出来</td>
+</tr>
+<tr>
+<td><code>D</code> <code>S</code> <code>D</code></td>
+<td>板子形状 » 按照选择对象定义</td>
+<td>用线条定义板框</td>
+</tr>
+<tr>
+<td><code>T</code> <code>V</code> <code>B</code></td>
+<td>转换 » 以选中的元素创建板切割槽</td>
+<td>板上开槽</td>
+</tr>
+<tr>
+<td><code>T</code> <code>V</code> <code>T</code></td>
+<td>转换 » 从选择的元素创建非铺铜区域</td>
+<td>画禁止铺铜区</td>
+</tr>
+<tr>
+<td><code>P</code> <code>T</code></td>
+<td>放置 » 交互布线</td>
+<td>开始走线</td>
+</tr>
+<tr>
+<td><code>M</code> <code>X</code></td>
+<td>移动 » X/Y 偏移</td>
+<td>精确移动指定距离</td>
+</tr>
+<tr>
+<td><code>R</code> <code>I</code></td>
+<td>报告 » Bill of Materials</td>
+<td>出 BOM</td>
+</tr>
+<tr>
+<td><code>T</code> <code>M</code></td>
+<td>工具 » 复位错误标志</td>
+<td>清掉一屏 DRC 红叉</td>
+</tr>
+<tr>
+<td><code>V</code> <code>D</code> / <code>V</code> <code>F</code></td>
+<td>适合文件 / 适合板子</td>
+<td>视图找不到了先按这个</td>
+</tr>
+</tbody>
+</table></div>
+<p>  另一类是<strong>操作态热键</strong>——只在某个命令执行过程中才有效，这类键最容易&quot;记了但用不出来&quot;，因为它们在菜单里看不到：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>热键</th>
+<th>作用</th>
+<th>生效时机</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Shift+W</code></td>
+<td>弹出线宽列表选线宽</td>
+<td>布线过程中</td>
+</tr>
+<tr>
+<td><code>Space</code></td>
+<td>切换走线拐角/路径模式</td>
+<td>布线过程中</td>
+</tr>
+<tr>
+<td><code>Shift+R</code></td>
+<td>循环 正交 / 45° / 任意角</td>
+<td>布线、拉伸中</td>
+</tr>
+<tr>
+<td><code>Shift+E</code></td>
+<td>循环 捕捉 关 / 当前层 / 全部层</td>
+<td>任何时候</td>
+</tr>
+<tr>
+<td><code>Shift+S</code></td>
+<td>单层显示 ↔ 多层显示</td>
+<td>任何时候</td>
+</tr>
+<tr>
+<td><code>Ctrl+M</code></td>
+<td>两点测距</td>
+<td>任何时候</td>
+</tr>
+<tr>
+<td><code>Ctrl+E</code></td>
+<td>打开捕捉选项面板</td>
+<td>任何时候</td>
+</tr>
+<tr>
+<td><code>Shift+F1</code></td>
+<td>列出&quot;当前命令&quot;可用的所有快捷键</td>
+<td>命令执行中</td>
+</tr>
+<tr>
+<td><code>F1</code></td>
+<td>打开 Graphical Editing Hot Key List</td>
+<td>命令执行中</td>
+</tr>
+<tr>
+<td><code>Q</code> / <code>Ctrl+Q</code></td>
+<td>切换 mil / mm</td>
+<td>多数界面；规则对话框里只能用 <code>Ctrl+Q</code></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p>官方文档对这套键盘体系的说明见 <a class="link" href="https://www.altium.com/cn/documentation/altium-designer/shortcut-keys"  target="_blank" rel="noopener"
+    >Altium Designer 快捷方式</a>，PCB 与原理图各自的完整键表见 <a class="link" href="https://www.altium.com/cn/documentation/altium-designer/shortcut-keys/pcb-editors"  target="_blank" rel="noopener"
+    >PCB 编辑器快捷键</a> 与 <a class="link" href="https://www.altium.com/cn/documentation/altium-designer/shortcut-keys/schematic-editors"  target="_blank" rel="noopener"
+    >原理图编辑器快捷键</a>。</p>
+</blockquote>
+<h3 id="12-想不起快捷键时怎么办">1.2 想不起快捷键时怎么办
+</h3><p>  不用背。AD 留了三个&quot;现场查号台&quot;，其中最快的是<strong>在执行命令的过程中按 <code>Shift+F1</code></strong>：它会弹出一个小菜单，把这个命令当前阶段所有可用的键位全列出来，看完按 <code>Esc</code> 关掉，命令照旧继续，不会被打断。</p>
+<p>  要<strong>通览全部命令</strong>，就在菜单栏或工具栏的空白处点右键，选 <code>Customize...</code>，在弹出的命令列表里选 <code>ALL</code> 分类，一条条命令和它当前绑定的键位都会列出来。</p>
+<p><img src="/p/ad/%E5%8F%B3%E9%94%AE%E7%82%B9%E5%87%BB%E8%8F%9C%E5%8D%95%E6%A0%8F%EF%BC%8C%E9%80%89%E6%8B%A9Customize%EF%BC%8C%E5%86%8D%E9%80%89%E6%8B%A9ALL,%E5%8F%AF%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E5%BF%AB%E6%8D%B7%E9%94%AE.png"
+	width="1751"
+	height="629"
+	srcset="/p/ad/%E5%8F%B3%E9%94%AE%E7%82%B9%E5%87%BB%E8%8F%9C%E5%8D%95%E6%A0%8F%EF%BC%8C%E9%80%89%E6%8B%A9Customize%EF%BC%8C%E5%86%8D%E9%80%89%E6%8B%A9ALL,%E5%8F%AF%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E5%BF%AB%E6%8D%B7%E9%94%AE_hu6019421591655365294.png 480w, /p/ad/%E5%8F%B3%E9%94%AE%E7%82%B9%E5%87%BB%E8%8F%9C%E5%8D%95%E6%A0%8F%EF%BC%8C%E9%80%89%E6%8B%A9Customize%EF%BC%8C%E5%86%8D%E9%80%89%E6%8B%A9ALL,%E5%8F%AF%E6%9F%A5%E7%9C%8B%E6%89%80%E6%9C%89%E5%BF%AB%E6%8D%B7%E9%94%AE_hu6589447676059890278.png 1024w"
+	loading="lazy"
+	
+		alt="在菜单栏空白处右键 → Customize，可查看全部命令与快捷键"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="278"
+		data-flex-basis="668px"
+	
+></p>
+<p>  上图就是这条路径。新版还有一些更快的入口：<strong>双击主菜单 Help 右侧的空白区域</strong>可以直接进入当前编辑器的自定义模式，效果与 <code>Customize</code> 相同。</p>
+<h3 id="13-改键给高频操作安排一个顺手的位置">1.3 改键：给高频操作安排一个顺手的位置
+</h3><p>  改键有两条路，都很直接：</p>
+<p>  <strong>路径一（推荐）</strong>：在任意菜单项或工具栏按钮上按住 <code>Ctrl</code> 再单击，直接弹出 <code>Edit Command</code> 对话框。对话框里 <code>处理(E)</code> 和 <code>参数(P)</code> 是系统 ID 与执行参数，<strong>不要动</strong>；真正要填的是下半部分的&quot;快捷键&quot;区——<code>主要的</code> 填主键，<code>可选的</code> 填备用键。</p>
+<p><img src="/p/ad/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BF%AB%E6%8D%B7%E9%94%AE.png"
+	width="900"
+	height="1005"
+	srcset="/p/ad/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BF%AB%E6%8D%B7%E9%94%AE_hu14871359438046326018.png 480w, /p/ad/%E8%87%AA%E5%AE%9A%E4%B9%89%E5%BF%AB%E6%8D%B7%E9%94%AE_hu1599683789110784664.png 1024w"
+	loading="lazy"
+	
+		alt="Edit Command 对话框：快捷键区就是改键的地方"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="89"
+		data-flex-basis="214px"
+	
+></p>
+<p>  上图里 <code>主要的</code> / <code>可选的</code> 两栏是空的，下面两行 <code>当前被用于:</code> 也是空的——这表示这个命令目前没有绑定任何键，可以放心填。</p>
+<p>  <strong>路径二</strong>：先按 <code>Alt</code> 让菜单显示带下划线的加速键字母，再用鼠标点到目标命令。</p>
+<p><img src="/p/ad/%E6%8C%89ALT%E4%B8%8E%E9%BC%A0%E6%A0%87%E5%B7%A6%E9%94%AE%E5%8F%AF%E4%BB%A5%E6%9B%B4%E6%94%B9%E5%BF%AB%E6%8D%B7%E9%94%AE.png"
+	width="1781"
+	height="1052"
+	srcset="/p/ad/%E6%8C%89ALT%E4%B8%8E%E9%BC%A0%E6%A0%87%E5%B7%A6%E9%94%AE%E5%8F%AF%E4%BB%A5%E6%9B%B4%E6%94%B9%E5%BF%AB%E6%8D%B7%E9%94%AE_hu18091963611338122074.png 480w, /p/ad/%E6%8C%89ALT%E4%B8%8E%E9%BC%A0%E6%A0%87%E5%B7%A6%E9%94%AE%E5%8F%AF%E4%BB%A5%E6%9B%B4%E6%94%B9%E5%BF%AB%E6%8D%B7%E9%94%AE_hu5145338309581499516.png 1024w"
+	loading="lazy"
+	
+		alt="按 Alt 显示菜单加速键，再点命令即可进入改键"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="169"
+		data-flex-basis="406px"
+	
+></p>
+<p>  改完一定要看 <code>当前被用于:</code> 有没有冒出别的命令名——那说明这个键已经被占用，继续绑定会把原命令的键抢走。</p>
+<h3 id="14-键位冲突ad-里最常见的一次撞车">1.4 键位冲突：AD 里最常见的一次&quot;撞车&quot;
+</h3><p>  AD 的菜单项右侧会显示该项的快捷字母。素材里被红框圈出的 <code>放置(P)»过孔(V)</code>，字母就是 <strong><code>V</code></strong>；而 <code>视图(V)</code> 菜单的弹出键同样是 <strong><code>V</code></strong>——两个高频入口挤在同一个键上，这就是 AD 里最典型的一次键位撞车。</p>
+<p><img src="/p/ad/%E8%BF%87%E5%AD%94%E5%92%8C%E8%A7%86%E5%9B%BE%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%9C%89%E7%82%B9%E5%86%B2%E7%AA%81%EF%BC%8C%E5%90%8E%E7%BB%AD%E9%80%82%E5%BD%93%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%8B.png"
+	width="746"
+	height="546"
+	srcset="/p/ad/%E8%BF%87%E5%AD%94%E5%92%8C%E8%A7%86%E5%9B%BE%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%9C%89%E7%82%B9%E5%86%B2%E7%AA%81%EF%BC%8C%E5%90%8E%E7%BB%AD%E9%80%82%E5%BD%93%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%8B_hu5792854985012618778.png 480w, /p/ad/%E8%BF%87%E5%AD%94%E5%92%8C%E8%A7%86%E5%9B%BE%E7%9A%84%E5%BF%AB%E6%8D%B7%E9%94%AE%E6%9C%89%E7%82%B9%E5%86%B2%E7%AA%81%EF%BC%8C%E5%90%8E%E7%BB%AD%E9%80%82%E5%BD%93%E4%BF%AE%E6%94%B9%E4%B8%80%E4%B8%8B_hu10272534287579270580.png 1024w"
+	loading="lazy"
+	
+		alt="放置»过孔 已占用单键 V，与 视图(V) 菜单首字母相撞"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="136"
+		data-flex-basis="327px"
+	
+></p>
+<p>  处理原则很简单：<strong>保留高频、让低频换位</strong>。下面这套是一份可参考的方案（素材原话是&quot;并不是一定要和图中快捷键完全一致，可自定义&quot;），思路值得借鉴：把常用操作从&quot;两段式&quot;降级成&quot;单键/功能键&quot;，把双字母序列留给低频但系统的命令。</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>操作</th>
+<th>参考键位</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>拉线 / 过孔 / 敷铜</td>
+<td><code>F2</code> / <code>F3</code> / <code>F4</code></td>
+<td>三个最高频的放置命令，单键直达</td>
+</tr>
+<tr>
+<td>对齐</td>
+<td>小键盘 <code>2/4/8/6</code></td>
+<td>与方向感一致，左/上/右/下</td>
+</tr>
+<tr>
+<td>水平/垂直等间距</td>
+<td>小键盘 <code>7</code> / <code>9</code></td>
+<td>排器件时几乎不停在用</td>
+</tr>
+<tr>
+<td>器件位号排列</td>
+<td>小键盘 <code>5</code></td>
+<td>一键位号对齐</td>
+</tr>
+<tr>
+<td>线选 / 框选</td>
+<td><code>2</code> / <code>3</code></td>
+<td>与数字键区不冲突</td>
+</tr>
+<tr>
+<td>差分线</td>
+<td><code>Alt+F2</code></td>
+<td>与 <code>F2</code> 拉线成对记忆</td>
+</tr>
+<tr>
+<td>删除网络</td>
+<td><code>Alt+Q</code></td>
+<td>与 <code>Q</code> 切单位区分</td>
+</tr>
+<tr>
+<td>物理选择</td>
+<td><code>Ctrl+H</code></td>
+<td>按物理连接选中整段</td>
+</tr>
+<tr>
+<td>忽略障碍物</td>
+<td><code>Shift+R</code></td>
+<td>走线时切换冲突解决模式</td>
+</tr>
+</tbody>
+</table></div>
+<p>  改完记得回 PCB 里实测一遍：<strong>键位不冲突只是必要条件，顺手才是目的</strong>。别人的键位表只能参考，<code>F2</code> 对我是拉线，对别人可能就是个误触源。</p>
+<h3 id="15-面板与视图先把看的问题解决">1.5 面板与视图：先把&quot;看&quot;的问题解决
+</h3><p>  AD 的面板有二十来个，一个个从菜单里找太慢。<strong>所有面板都从界面右下角的 <code>Panels</code> 按钮出</strong>，点开就是勾选清单，勾上就浮出来，再点一下收起。</p>
+<p><img src="/p/ad/%E6%89%93%E5%BC%80%E4%B8%80%E4%BA%9B%E8%BE%B9%E6%A1%86%E6%A0%8F.png"
+	width="1380"
+	height="1071"
+	srcset="/p/ad/%E6%89%93%E5%BC%80%E4%B8%80%E4%BA%9B%E8%BE%B9%E6%A1%86%E6%A0%8F_hu9782674777983990181.png 480w, /p/ad/%E6%89%93%E5%BC%80%E4%B8%80%E4%BA%9B%E8%BE%B9%E6%A1%86%E6%A0%8F_hu18274538376367949702.png 1024w"
+	loading="lazy"
+	
+		alt="右下角 Panels 按钮是调出所有面板的统一入口"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="128"
+		data-flex-basis="309px"
+	
+></p>
+<p>  几个必备面板：<code>Projects</code>（工程树）、<code>Properties</code>（属性，选中什么就显示什么）、<code>PCB</code>（网络/器件/差分对/联合体）、<code>PCB List</code>（批量编辑，ROOM 一节的主角）、<code>Messages</code>（编译与 DRC 报告）。</p>
+<p>  视图操作的固定套路：东西找不到了，先 <code>V</code> <code>D</code>（适合文件）或 <code>V</code> <code>F</code>（适合板子）；只想盯一层，<code>Shift+S</code> 切单层；要看某层的颜色，<code>L</code> 打开 <code>View Configuration</code>，双击层标签的色块就能改色——这部分在第 8 章《层叠、板框与负片》细讲。</p>
+<h3 id="16-吸附为什么你的光标不听话">1.6 吸附：为什么你的光标&quot;不听话&quot;
+</h3><p>  这是新手最容易怀疑人生的一处。明明把光标放在焊盘正中心，测出来的距离却差一点；明明想画到 100mil 的整数位置，线就是吸不上去。原因几乎都在**捕捉（Snap）**的设置上。</p>
+<p><img src="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%88%87%E6%8D%95%E6%8D%89%E5%AF%B9%E8%B1%A1.png"
+	width="1331"
+	height="678"
+	srcset="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%88%87%E6%8D%95%E6%8D%89%E5%AF%B9%E8%B1%A1_hu11376193596392958034.png 480w, /p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AE%E5%88%87%E6%8D%95%E6%8D%89%E5%AF%B9%E8%B1%A1_hu3455808581302186759.png 1024w"
+	loading="lazy"
+	
+		alt="Shift&#43;E 循环三种捕捉模式，状态栏要显示 Hotspot Snap (All Layers)"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="196"
+		data-flex-basis="471px"
+	
+></p>
+<p>  <code>Shift+E</code> 在三种模式间循环：<code>Off</code>（关闭）、<code>Current Layer</code>（只捕当前层）、<code>All Layers</code>（所有层都捕，<strong>推荐</strong>）。判断是否生效只看一个地方——<strong>状态栏右下角</strong>，显示 <code>Hotspot Snap (All Layers)</code> 才是对的。</p>
+<p>  更细的开关在 <code>Ctrl+E</code> 打开的捕捉选项里：<code>Pad Centers</code>（焊盘中心，测中心距必开）、<code>Pad Edges</code>（焊盘边缘，测边到边）、<code>Via Centers</code>、<code>Intersections</code>、<code>Track/Arc Vertices</code> 等，按需勾选。<strong>没勾 <code>Pad Centers</code>，就算开了 All Layers，光标也不会跳到焊盘中心</strong>——这句话值得抄在便签上。</p>
+<p><a id="ch02"></a></p>
+<h2 id="二元件库与封装">二、元件库与封装
+</h2><p>  画板的第一个分水岭在这里：<strong>库里没有的器件，你是选择&quot;从零画&quot;，还是&quot;想办法弄到&quot;？</strong> 我现在的答案永远是后者——AD 提供了四条&quot;抄&quot;的路径，能省掉 90% 的手工劳动。</p>
+<h3 id="21-元件库的四条来源">2.1 元件库的四条来源
+</h3><h4 id="211-路径一从原理图反向生成符号库">2.1.1 路径一：从原理图反向生成符号库
+</h4><p>  拿到别人画好的原理图，想复用里面的器件，只要执行 <code>设计»生成原理图库(M)</code>，整个工程的器件就会被抽成一个 <code>.SchLib</code>，符号、引脚、参数一并带出。</p>
+<p><img src="/p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E5%BA%93.png"
+	width="2510"
+	height="1491"
+	srcset="/p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E5%BA%93_hu8159897019506754721.png 480w, /p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E5%BA%93_hu13527708031681340830.png 1024w"
+	loading="lazy"
+	
+		alt="设计 » 生成原理图库：把别人的原理图一键变成可编辑的符号库"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="168"
+		data-flex-basis="404px"
+	
+></p>
+<h4 id="212-路径二从-pcb-反向生成封装库">2.1.2 路径二：从 PCB 反向生成封装库
+</h4><p>  别人的板子画好了，封装你不必重画——<code>设计»生成PCB库(P)</code>，快捷键 <code>D</code> <code>P</code>，整板封装会被抽成一个 <code>.PcbLib</code>，再复制粘贴到自己库里就行。</p>
+<p><img src="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEDP%E5%8F%AF%E4%BB%A5%E5%B0%86%E5%88%AB%E4%BA%BA%E7%9A%84%E7%94%BB%E5%A5%BD%E7%9A%84PCB%E6%9D%BF%E5%AD%90%E7%94%9F%E6%88%90%E4%B8%80%E4%B8%AA%E5%B0%81%E8%A3%85%E5%BA%93%EF%BC%8C%E7%84%B6%E5%90%8E%E5%86%8D%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6.png"
+	width="1428"
+	height="1022"
+	srcset="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEDP%E5%8F%AF%E4%BB%A5%E5%B0%86%E5%88%AB%E4%BA%BA%E7%9A%84%E7%94%BB%E5%A5%BD%E7%9A%84PCB%E6%9D%BF%E5%AD%90%E7%94%9F%E6%88%90%E4%B8%80%E4%B8%AA%E5%B0%81%E8%A3%85%E5%BA%93%EF%BC%8C%E7%84%B6%E5%90%8E%E5%86%8D%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6_hu12803864108159802079.png 480w, /p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEDP%E5%8F%AF%E4%BB%A5%E5%B0%86%E5%88%AB%E4%BA%BA%E7%9A%84%E7%94%BB%E5%A5%BD%E7%9A%84PCB%E6%9D%BF%E5%AD%90%E7%94%9F%E6%88%90%E4%B8%80%E4%B8%AA%E5%B0%81%E8%A3%85%E5%BA%93%EF%BC%8C%E7%84%B6%E5%90%8E%E5%86%8D%E7%B2%98%E8%B4%B4%E5%A4%8D%E5%88%B6_hu2198484700444685873.png 1024w"
+	loading="lazy"
+	
+		alt="设计 » 生成PCB库（D P）：从成品板提取封装"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="139"
+		data-flex-basis="335px"
+	
+></p>
+<h4 id="213-路径三用标准封装向导生成">2.1.3 路径三：用标准封装向导生成
+</h4><p>  SOIC、SOP、QFP 这类标准封装，<code>工具»IPC Compliant Footprint Wizard</code> 会按 IPC 标准一步步问你尺寸，最后直接生成带焊盘、丝印、装配层的完整封装，比自己画准得多。</p>
+<p><img src="/p/ad/%E6%9C%89%E9%A2%84%E5%88%B6%E7%9A%84%E5%B0%81%E8%A3%85.png"
+	width="1583"
+	height="987"
+	srcset="/p/ad/%E6%9C%89%E9%A2%84%E5%88%B6%E7%9A%84%E5%B0%81%E8%A3%85_hu15350599785626288458.png 480w, /p/ad/%E6%9C%89%E9%A2%84%E5%88%B6%E7%9A%84%E5%B0%81%E8%A3%85_hu14012937391857082696.png 1024w"
+	loading="lazy"
+	
+		alt="工具 » IPC Compliant Footprint Wizard：按标准向导生成 SOP20 等封装"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="384px"
+	
+></p>
+<h4 id="214-路径四查尺寸图自建">2.1.4 路径四：查尺寸图自建
+</h4><p>  冷门封装只能自己来，但不必靠猜。像 IC 封装网这类站点会按型号给出封装尺寸图（例：SOP-20_300mil 的 e=0.050in、B=0.016in），<strong>但最终一定要回到厂商 datasheet 核对</strong>，第三方站点只当索引用。</p>
+<p><img src="/p/ad/%E5%8F%AF%E4%BB%A5%E5%9C%A8IC%E5%B0%81%E8%A3%85%E7%BD%91%E6%89%BE%E5%B0%81%E8%A3%85.png"
+	width="2429"
+	height="1391"
+	srcset="/p/ad/%E5%8F%AF%E4%BB%A5%E5%9C%A8IC%E5%B0%81%E8%A3%85%E7%BD%91%E6%89%BE%E5%B0%81%E8%A3%85_hu16948611635299359877.png 480w, /p/ad/%E5%8F%AF%E4%BB%A5%E5%9C%A8IC%E5%B0%81%E8%A3%85%E7%BD%91%E6%89%BE%E5%B0%81%E8%A3%85_hu13085622166763363308.png 1024w"
+	loading="lazy"
+	
+		alt="在 IC 封装网按型号查标准封装尺寸图"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="174"
+		data-flex-basis="419px"
+	
+></p>
+<p>  还有一种&quot;偷懒&quot;的极致：直接下载别人打包的<strong>超级库</strong>——2D 标准封装库 + STEP 3D 库 + 官方集成库，一次几十上百兆，覆盖大部分常用器件。代价是质量参差，用之前得抽检几个关键封装。</p>
+<p><img src="/p/ad/%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%B8%8B%E8%BD%BD%E4%B8%80%E4%BA%9B%E8%B6%85%E7%BA%A7%E5%BA%93%EF%BC%8C%E5%86%85%E9%83%A8%E6%9C%89%E5%A4%A7%E9%87%8F%E7%9A%84%E5%B0%81%E8%A3%85%E4%BB%A5%E5%8F%8A3D.png"
+	width="1073"
+	height="492"
+	srcset="/p/ad/%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%B8%8B%E8%BD%BD%E4%B8%80%E4%BA%9B%E8%B6%85%E7%BA%A7%E5%BA%93%EF%BC%8C%E5%86%85%E9%83%A8%E6%9C%89%E5%A4%A7%E9%87%8F%E7%9A%84%E5%B0%81%E8%A3%85%E4%BB%A5%E5%8F%8A3D_hu1623013189982526300.png 480w, /p/ad/%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%B8%8B%E8%BD%BD%E4%B8%80%E4%BA%9B%E8%B6%85%E7%BA%A7%E5%BA%93%EF%BC%8C%E5%86%85%E9%83%A8%E6%9C%89%E5%A4%A7%E9%87%8F%E7%9A%84%E5%B0%81%E8%A3%85%E4%BB%A5%E5%8F%8A3D_hu12263869273125270470.png 1024w"
+	loading="lazy"
+	
+		alt="现成的&#34;超级库&#34;：2D 标准库 &#43; STEP 3D 库 &#43; 集成库"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="218"
+		data-flex-basis="523px"
+	
+></p>
+<h3 id="22-封装管理器一处改完全工程">2.2 封装管理器：一处改完全工程
+</h3><p>  元件散落在十几页原理图里，一个个双击改封装会疯。<code>工具»封装管理器(G)</code> 会把<strong>整个工程所有元件及其封装</strong>列成一张表，可以批量指定、批量替换、批量检查&quot;哪个元件还没封装&quot;。</p>
+<p><img src="/p/ad/%E5%B0%81%E8%A3%85%E5%BD%92%E7%B1%BB.png"
+	width="1221"
+	height="846"
+	srcset="/p/ad/%E5%B0%81%E8%A3%85%E5%BD%92%E7%B1%BB_hu5114147231604726981.png 480w, /p/ad/%E5%B0%81%E8%A3%85%E5%BD%92%E7%B1%BB_hu14396651492808010855.png 1024w"
+	loading="lazy"
+	
+		alt="工具 » 封装管理器：集中查看与修改全工程的封装"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="144"
+		data-flex-basis="346px"
+	
+></p>
+<p>  这张表也是导入 PCB 之前必须过一遍的地方——后面 <code>Footprint Not Found</code> 的报错，十有八九就是这里没填或填错。</p>
+<h3 id="23-位号让-ad-自己数">2.3 位号：让 AD 自己数
+</h3><p>  画完图再手工给 R1、C1 编号是自找麻烦。<code>工具»标注»原理图标注(A)</code>（快捷键 <code>T</code> <code>A</code>）打开标注对话框，能设定处理顺序（先上后下、先左后右等），一键全图编号；同一菜单下还有 <code>重置原理图位号</code>、<code>静态标注</code>（锁定位号不参与重编）、<code>反向标注</code>（从 PCB 回写原理图）。</p>
+<p><img src="/p/ad/%E5%8F%AF%E4%BB%A5%E7%BB%99%E5%85%83%E4%BB%B6%E6%A0%87%E6%B3%A8%E5%BA%8F%E5%8F%B7.png"
+	width="1193"
+	height="932"
+	srcset="/p/ad/%E5%8F%AF%E4%BB%A5%E7%BB%99%E5%85%83%E4%BB%B6%E6%A0%87%E6%B3%A8%E5%BA%8F%E5%8F%B7_hu13257920297630800887.png 480w, /p/ad/%E5%8F%AF%E4%BB%A5%E7%BB%99%E5%85%83%E4%BB%B6%E6%A0%87%E6%B3%A8%E5%BA%8F%E5%8F%B7_hu16846759127281117066.png 1024w"
+	loading="lazy"
+	
+		alt="工具 » 标注 » 原理图标注：一次性完成全图位号编排"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="128"
+		data-flex-basis="307px"
+	
+></p>
+<p>  顺带一个定位技巧：<code>J</code> <code>C</code> 打开&quot;元件位号&quot;对话框，输入位号就能直接跳到那个器件——图大的时候比在工程树里翻页快。</p>
+<p><img src="/p/ad/JC-%E6%9F%A5%E6%89%BE%E5%85%83%E4%BB%B6.png"
+	width="1445"
+	height="879"
+	srcset="/p/ad/JC-%E6%9F%A5%E6%89%BE%E5%85%83%E4%BB%B6_hu18291472624758065728.png 480w, /p/ad/JC-%E6%9F%A5%E6%89%BE%E5%85%83%E4%BB%B6_hu5811351679616800713.png 1024w"
+	loading="lazy"
+	
+		alt="J C：按位号跳转元件"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="164"
+		data-flex-basis="394px"
+	
+></p>
+<h3 id="24-让图面更干净comment--value">2.4 让图面更干净：<code>Comment = =Value</code>
+</h3><p>  默认每个元件旁边会显示 Comment（注释）字段，通常是&quot;100k&quot;这种手填值。手填的问题是<strong>改值要改两处</strong>：Value 改了，Comment 忘了改。</p>
+<p>  解决办法是把 <code>Comment</code> 填成参数表达式 <strong><code>=Value</code></strong>。这样元件旁显示的就是 Value 参数本身，改 Value 自动同步，图面既简洁又不会出现&quot;标着 10k 实际 100k&quot;的事故。</p>
+<p><img src="/p/ad/666%E5%8F%AF%E4%BB%A5%E8%BF%99%E4%B9%88%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%9C%A8Comment%E5%86%99%E5%80%BC%E5%B0%B1%E4%B8%8D%E7%94%A8%E8%BF%99%E4%B9%88%E5%81%9A%E4%BA%86.png"
+	width="1662"
+	height="1020"
+	srcset="/p/ad/666%E5%8F%AF%E4%BB%A5%E8%BF%99%E4%B9%88%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%9C%A8Comment%E5%86%99%E5%80%BC%E5%B0%B1%E4%B8%8D%E7%94%A8%E8%BF%99%E4%B9%88%E5%81%9A%E4%BA%86_hu4844717415896360573.png 480w, /p/ad/666%E5%8F%AF%E4%BB%A5%E8%BF%99%E4%B9%88%E6%93%8D%E4%BD%9C%EF%BC%8C%E5%9C%A8Comment%E5%86%99%E5%80%BC%E5%B0%B1%E4%B8%8D%E7%94%A8%E8%BF%99%E4%B9%88%E5%81%9A%E4%BA%86_hu15281863165617194086.png 1024w"
+	loading="lazy"
+	
+		alt="把 Comment 写成 =Value，图面直接显示参数值"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="162"
+		data-flex-basis="391px"
+	
+></p>
+<h3 id="25-丝印阻焊与焊盘的几何关系">2.5 丝印、阻焊与焊盘的几何关系
+</h3><p>  画封装时有两条硬约束，早记住能少返工：</p>
+<p>  <strong>第一，阻焊开窗要比焊盘大一圈。</strong> 紫色那圈就是 Solder Mask，比铜盘略大，不然板厂的阻焊油会压到焊盘上导致上不了锡。</p>
+<p><img src="/p/ad/%E9%98%BB%E7%84%8A%E4%B8%80%E8%88%AC%E8%A6%81%E6%AF%94%E7%84%8A%E7%9B%98%E5%A4%A7%E4%B8%80%E7%82%B9%EF%BC%8C%E4%B8%8D%E8%BF%87%E5%8F%AF%E4%BB%A5%E7%AD%89%E5%88%B0%E7%94%BBPCB%E5%86%8D%E7%BB%9F%E4%B8%80%E5%8E%BB%E8%B0%83%E6%95%B4.png"
+	width="1139"
+	height="678"
+	srcset="/p/ad/%E9%98%BB%E7%84%8A%E4%B8%80%E8%88%AC%E8%A6%81%E6%AF%94%E7%84%8A%E7%9B%98%E5%A4%A7%E4%B8%80%E7%82%B9%EF%BC%8C%E4%B8%8D%E8%BF%87%E5%8F%AF%E4%BB%A5%E7%AD%89%E5%88%B0%E7%94%BBPCB%E5%86%8D%E7%BB%9F%E4%B8%80%E5%8E%BB%E8%B0%83%E6%95%B4_hu11010251229054136458.png 480w, /p/ad/%E9%98%BB%E7%84%8A%E4%B8%80%E8%88%AC%E8%A6%81%E6%AF%94%E7%84%8A%E7%9B%98%E5%A4%A7%E4%B8%80%E7%82%B9%EF%BC%8C%E4%B8%8D%E8%BF%87%E5%8F%AF%E4%BB%A5%E7%AD%89%E5%88%B0%E7%94%BBPCB%E5%86%8D%E7%BB%9F%E4%B8%80%E5%8E%BB%E8%B0%83%E6%95%B4_hu2944947619873293250.png 1024w"
+	loading="lazy"
+	
+		alt="阻焊开窗（紫色环）略大于焊盘；批量微调可以留到 PCB 阶段"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="167"
+		data-flex-basis="403px"
+	
+></p>
+<p>  <strong>第二，顶层丝印不能压在阻焊开窗上。</strong> 所以 Top Overlay 画的器件外形框必须比焊盘大一档；如果只是想画个等大的装配轮廓，就把它放到机械层（比如 Mechanical 2），机械层没有这个限制。</p>
+<p><img src="/p/ad/%E4%B8%9D%E5%8D%B0%E4%B8%8D%E8%83%BD%E6%94%BE%E5%9C%A8%E9%98%BB%E7%84%8A%E5%B1%82%E4%B8%8E%E7%84%8A%E7%9B%98%E4%BA%A4%E5%8F%89%EF%BC%8C%E6%89%80%E4%BB%A5%E9%A1%B6%E5%B1%82%E4%B8%9D%E5%8D%B0%E8%A6%81%E6%AF%94%E7%84%8A%E7%9B%98%E5%A4%A7%E4%B8%80%E4%BA%9B%EF%BC%8C%E8%80%8C%E6%9C%BA%E6%A2%B0%E5%B1%82%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%94%BE%E7%BD%AE%E5%A4%A7%E5%B0%8F%E4%B8%80%E8%87%B4%E7%9A%84%E4%B8%9D%E5%8D%B0.png"
+	width="1049"
+	height="1070"
+	srcset="/p/ad/%E4%B8%9D%E5%8D%B0%E4%B8%8D%E8%83%BD%E6%94%BE%E5%9C%A8%E9%98%BB%E7%84%8A%E5%B1%82%E4%B8%8E%E7%84%8A%E7%9B%98%E4%BA%A4%E5%8F%89%EF%BC%8C%E6%89%80%E4%BB%A5%E9%A1%B6%E5%B1%82%E4%B8%9D%E5%8D%B0%E8%A6%81%E6%AF%94%E7%84%8A%E7%9B%98%E5%A4%A7%E4%B8%80%E4%BA%9B%EF%BC%8C%E8%80%8C%E6%9C%BA%E6%A2%B0%E5%B1%82%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%94%BE%E7%BD%AE%E5%A4%A7%E5%B0%8F%E4%B8%80%E8%87%B4%E7%9A%84%E4%B8%9D%E5%8D%B0_hu10372701383409027704.png 480w, /p/ad/%E4%B8%9D%E5%8D%B0%E4%B8%8D%E8%83%BD%E6%94%BE%E5%9C%A8%E9%98%BB%E7%84%8A%E5%B1%82%E4%B8%8E%E7%84%8A%E7%9B%98%E4%BA%A4%E5%8F%89%EF%BC%8C%E6%89%80%E4%BB%A5%E9%A1%B6%E5%B1%82%E4%B8%9D%E5%8D%B0%E8%A6%81%E6%AF%94%E7%84%8A%E7%9B%98%E5%A4%A7%E4%B8%80%E4%BA%9B%EF%BC%8C%E8%80%8C%E6%9C%BA%E6%A2%B0%E5%B1%82%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%94%BE%E7%BD%AE%E5%A4%A7%E5%B0%8F%E4%B8%80%E8%87%B4%E7%9A%84%E4%B8%9D%E5%8D%B0_hu7515945112377279902.png 1024w"
+	loading="lazy"
+	
+		alt="Top Overlay 丝印必须外扩；机械层可以画与焊盘等大的轮廓"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="98"
+		data-flex-basis="235px"
+	
+></p>
+<p>  这两条在库阶段<strong>粗调</strong>就行，最终统一在 PCB 阶段用 <code>Solder Mask Expansion</code> 规则一刀切（见第 9 章《设计规则与 DRC》），不必在库里死抠 0.1mil。</p>
+<h3 id="26-画封装3d-时老是自动吸附怎么办">2.6 画封装/3D 时&quot;老是自动吸附&quot;怎么办
+</h3><p>  画封装边框或 3D 体时，光标总是被吸到附近的焊盘、顶点上，线条还老是被角度约束&quot;掰&quot;成 45°。<strong>按住 <code>Ctrl</code></strong> 再继续绘制，就能临时关闭吸附与角度约束，微调时特别好用。</p>
+<p><img src="/p/ad/%E5%9C%A8%E7%BB%98%E5%88%B6%E5%B0%81%E8%A3%85%E8%BF%98%E6%98%AF3D%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%8F%91%E7%8E%B0%E4%BB%96%E8%80%81%E6%98%AF%E8%87%AA%E5%8A%A8%E5%90%B8%E9%99%84%EF%BC%8C%E9%82%A3%E4%BD%A0%E5%8F%AF%E4%BB%A5%E6%8C%89%E4%BD%8FCtrl%E5%B9%B6%E7%BB%A7%E7%BB%AD%E7%BB%98%E5%88%B6%EF%BC%8C%E8%BF%99%E6%A0%B7%E5%B0%B1%E4%B8%8D%E4%BC%9A%E8%80%81%E6%98%AF%E8%87%AA%E5%8A%A8%E5%90%B8%E9%99%84%EF%BC%8C%E8%80%8C%E4%B8%94%E5%A6%82%E6%9E%9C%E5%8F%91%E7%8E%B0%E8%B5%B0%E4%B8%8D%E7%9B%B4%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E6%8C%89%E4%BD%8FCtrl%E7%BB%A7%E7%BB%AD.png"
+	width="1397"
+	height="1175"
+	srcset="/p/ad/%E5%9C%A8%E7%BB%98%E5%88%B6%E5%B0%81%E8%A3%85%E8%BF%98%E6%98%AF3D%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%8F%91%E7%8E%B0%E4%BB%96%E8%80%81%E6%98%AF%E8%87%AA%E5%8A%A8%E5%90%B8%E9%99%84%EF%BC%8C%E9%82%A3%E4%BD%A0%E5%8F%AF%E4%BB%A5%E6%8C%89%E4%BD%8FCtrl%E5%B9%B6%E7%BB%A7%E7%BB%AD%E7%BB%98%E5%88%B6%EF%BC%8C%E8%BF%99%E6%A0%B7%E5%B0%B1%E4%B8%8D%E4%BC%9A%E8%80%81%E6%98%AF%E8%87%AA%E5%8A%A8%E5%90%B8%E9%99%84%EF%BC%8C%E8%80%8C%E4%B8%94%E5%A6%82%E6%9E%9C%E5%8F%91%E7%8E%B0%E8%B5%B0%E4%B8%8D%E7%9B%B4%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E6%8C%89%E4%BD%8FCtrl%E7%BB%A7%E7%BB%AD_hu8446775316196308167.png 480w, /p/ad/%E5%9C%A8%E7%BB%98%E5%88%B6%E5%B0%81%E8%A3%85%E8%BF%98%E6%98%AF3D%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E5%A6%82%E6%9E%9C%E5%8F%91%E7%8E%B0%E4%BB%96%E8%80%81%E6%98%AF%E8%87%AA%E5%8A%A8%E5%90%B8%E9%99%84%EF%BC%8C%E9%82%A3%E4%BD%A0%E5%8F%AF%E4%BB%A5%E6%8C%89%E4%BD%8FCtrl%E5%B9%B6%E7%BB%A7%E7%BB%AD%E7%BB%98%E5%88%B6%EF%BC%8C%E8%BF%99%E6%A0%B7%E5%B0%B1%E4%B8%8D%E4%BC%9A%E8%80%81%E6%98%AF%E8%87%AA%E5%8A%A8%E5%90%B8%E9%99%84%EF%BC%8C%E8%80%8C%E4%B8%94%E5%A6%82%E6%9E%9C%E5%8F%91%E7%8E%B0%E8%B5%B0%E4%B8%8D%E7%9B%B4%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E6%8C%89%E4%BD%8FCtrl%E7%BB%A7%E7%BB%AD_hu12213976453010104027.png 1024w"
+	loading="lazy"
+	
+		alt="画封装/3D 体时按住 Ctrl 可临时抑制自动吸附与角度约束"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="118"
+		data-flex-basis="285px"
+	
+></p>
+<p><a id="ch03"></a></p>
+<h2 id="三原理图模板编译与-erc">三、原理图模板、编译与 ERC
+</h2><p>  原理图画完不等于完事。图纸规范（模板）、页序（页编号）、电气正确性（编译 + ERC）是三件必做的事。</p>
+<h3 id="31-图纸模板-schdot">3.1 图纸模板 <code>.SchDot</code>
+</h3><p>  模板决定图框、标题栏、公司名、图纸尺寸这些&quot;门面&quot;。做法很土但有效：新建一张原理图，把图框和标题栏画成想要的样子，然后<strong>另存为 <code>Advanced Schematic template (*.SchDot)</code></strong>。</p>
+<p><img src="/p/ad/%E6%96%B0%E5%BB%BA%E5%8E%9F%E7%90%86%E5%9B%BE%EF%BC%8C%E7%84%B6%E5%90%8E%E4%BF%9D%E5%AD%98%E4%B8%BASchDot.png"
+	width="2088"
+	height="1100"
+	srcset="/p/ad/%E6%96%B0%E5%BB%BA%E5%8E%9F%E7%90%86%E5%9B%BE%EF%BC%8C%E7%84%B6%E5%90%8E%E4%BF%9D%E5%AD%98%E4%B8%BASchDot_hu10634056120011740603.png 480w, /p/ad/%E6%96%B0%E5%BB%BA%E5%8E%9F%E7%90%86%E5%9B%BE%EF%BC%8C%E7%84%B6%E5%90%8E%E4%BF%9D%E5%AD%98%E4%B8%BASchDot_hu4996890178923162437.png 1024w"
+	loading="lazy"
+	
+		alt="另存为时把类型选成 Advanced Schematic template (*.SchDot)"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="189"
+		data-flex-basis="455px"
+	
+></p>
+<p>  调用：<code>设计»模板»Load from File...</code>，选中 <code>.SchDot</code> 即可。套用的范围很关键——<code>更新模板</code> 对话框里可以选 <code>仅该文档</code> / <code>当前工程的所有原理图文档</code> / <code>所有打开的原理图文档</code>，参数作用还能选 <code>不更新任何参数</code> / <code>仅添加模板中存在的新参数</code> / <code>替代全部匹配参数</code>。</p>
+<p><img src="/p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E6%A8%A1%E6%9D%BF.png"
+	width="1857"
+	height="1070"
+	srcset="/p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E6%A8%A1%E6%9D%BF_hu12024599625508030241.png 480w, /p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E6%A8%A1%E6%9D%BF_hu7637281025559605605.png 1024w"
+	loading="lazy"
+	
+		alt="设计 » 模板：调用 .SchDot，并选择模板套用范围"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="173"
+		data-flex-basis="416px"
+	
+></p>
+<p>  我的一般选法：<strong>当前工程所有文档 + 仅添加新参数</strong>。这样图框统一了，自己已经填好的参数也不会被模板里的空值覆盖。</p>
+<h3 id="32-页编号与位号是两套命令">3.2 页编号与位号是两套命令
+</h3><p>  多页原理图要在标题栏写 <code>Sheet 1 of 6</code>，靠的是 <code>工具»标注»图纸编号(I)</code>，不是元件标注那一条。同一个 <code>标注</code> 子菜单里，<code>原理图标注</code> 管元件位号，<code>图纸编号</code> 管页序，<strong>别混</strong>。</p>
+<p><img src="/p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E9%A1%B5%E7%BC%96%E5%8F%B7.png"
+	width="1292"
+	height="807"
+	srcset="/p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E9%A1%B5%E7%BC%96%E5%8F%B7_hu12179651089926204814.png 480w, /p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E9%A1%B5%E7%BC%96%E5%8F%B7_hu11042887122132488098.png 1024w"
+	loading="lazy"
+	
+		alt="工具 » 标注 » 图纸编号：多页图纸的页序设置"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="160"
+		data-flex-basis="384px"
+	
+></p>
+<h3 id="33-编译让-ad-先替你挑错">3.3 编译：让 AD 先替你挑错
+</h3><p>  编译（Validate）不会改图，它只是按 ERC 矩阵把整张图&quot;过一遍筛子&quot;，把所有可疑点写进 <code>Messages</code> 面板。入口是 <strong>Projects 面板里工程名右键 → <code>Validate PCB Project</code></strong>。</p>
+<p><img src="/p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E7%BC%96%E8%AF%91%EF%BC%8C%E6%8E%92%E6%9F%A5%E9%94%99%E8%AF%AF.png"
+	width="1124"
+	height="689"
+	srcset="/p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E7%BC%96%E8%AF%91%EF%BC%8C%E6%8E%92%E6%9F%A5%E9%94%99%E8%AF%AF_hu6984262506489376515.png 480w, /p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E7%BC%96%E8%AF%91%EF%BC%8C%E6%8E%92%E6%9F%A5%E9%94%99%E8%AF%AF_hu17166336061982875694.png 1024w"
+	loading="lazy"
+	
+		alt="工程名右键 → Validate PCB Project，编译结果进入 Messages 面板"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="163"
+		data-flex-basis="391px"
+	
+></p>
+<p>  编译完双击 <code>Messages</code> 里的条目，AD 会交叉探针跳到出错位置。<code>Shift+Ctrl+F3</code> / <code>Shift+Ctrl+F4</code> 可以在消息之间上下穿行。如果某一类告警你根本不关心，就去 <code>Project Options»Error Reporting</code> 把它的报告格式改成&quot;不报告&quot;，而不是每次编译都对着一屏红叉发愁。</p>
+<h3 id="34-两类最高发的-erc-报错">3.4 两类最高发的 ERC 报错
+</h3><p>  <strong>第一类：悬空引线当网络名用。</strong> 器件符号上引出的那条黑色短线<strong>没有电气特性</strong>，它只是个&quot;引脚图形&quot;。必须在它末端接上导线或网络标签，网络才成立。</p>
+<p><img src="/p/ad/%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9.png"
+	width="1379"
+	height="660"
+	srcset="/p/ad/%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9_hu7616294577733016291.png 480w, /p/ad/%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9_hu2249247888375762836.png 1024w"
+	loading="lazy"
+	
+		alt="引脚引出的黑线没有电气特性，不能直接当网络名使用"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="208"
+		data-flex-basis="501px"
+	
+></p>
+<p>  这类错误编译时表现为 <code>Nets with only one pin</code>、<code>Unconnected objects in net</code>，看着像&quot;我明明连了啊&quot;——其实连的是视觉，不是电气。</p>
+<p>  <strong>第二类：端口（Port）方向与层次图不配对。</strong> 端口有四种电气类型，选错了 ERC 一定报：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>端口类型</th>
+<th>含义</th>
+<th>ERC 行为</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Unspecified</code> 未指定</td>
+<td>不定义方向</td>
+<td>不校验流向；层次图里混用容易告警，适合电源/GND</td>
+</tr>
+<tr>
+<td><code>Output</code> 输出</td>
+<td>驱动端</td>
+<td>可驱动 Input/Bidirectional，不能被别人驱动</td>
+</tr>
+<tr>
+<td><code>Input</code> 输入</td>
+<td>接收端，无驱动能力</td>
+<td>该网络必须有驱动源，否则报 <code>no driving source</code></td>
+</tr>
+<tr>
+<td><code>Bidirectional</code> 双向</td>
+<td>可收可发</td>
+<td>I²C / SPI / USB / 单片机 IO 常用</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="/p/ad/%E7%AB%AF%E5%8F%A3%E7%89%B9%E6%80%A7.png"
+	width="1478"
+	height="524"
+	srcset="/p/ad/%E7%AB%AF%E5%8F%A3%E7%89%B9%E6%80%A7_hu3711436677048379705.png 480w, /p/ad/%E7%AB%AF%E5%8F%A3%E7%89%B9%E6%80%A7_hu5234782872452701988.png 1024w"
+	loading="lazy"
+	
+		alt="端口的四种电气类型与层次图配对规则"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="282"
+		data-flex-basis="676px"
+	
+></p>
+<p>  层次原理图的配对规则是&quot;<strong>方向相反</strong>&quot;：子图的 <code>Port</code> 是 Output，顶层对应的 <code>Sheet Entry</code> 就要设成 Input；Port 是 Input，Sheet Entry 就要是 Output；Bidirectional 对 Bidirectional。这一点想通了，<code>no driving source</code> 这类报错基本绝迹。</p>
+<h3 id="35-编译通过之后库才活过来">3.5 编译通过之后，库才&quot;活&quot;过来
+</h3><p>  自己建的元件，建完不等于能用。必须在工程名上右键 <code>Validate PCB Project</code> <strong>编译一次</strong>，AD 才会把库信息纳入工程索引，<code>Components</code> 面板里才搜得到。</p>
+<p><img src="/p/ad/%E5%9C%A8%E5%85%83%E5%99%A8%E4%BB%B6%E5%88%9B%E5%BB%BA%E5%A5%BD%E4%BA%86%E7%9A%84%E8%AF%9D%E5%8F%AF%E4%BB%A5%E7%82%B9%E7%BC%96%E8%AF%91%EF%BC%8C%E7%84%B6%E5%90%8E%E5%9C%A8%E5%8F%B3%E4%B8%8B%E8%A7%92%E7%82%B9Panels%EF%BC%8C%E9%80%89%E6%8B%A9Component%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E5%9C%A8%E5%8F%B3%E4%BE%A7%E9%9D%A2%E6%9D%BF%E8%B0%83%E7%94%A8%E5%85%83%E4%BB%B6%E4%BA%86.png"
+	width="1235"
+	height="891"
+	srcset="/p/ad/%E5%9C%A8%E5%85%83%E5%99%A8%E4%BB%B6%E5%88%9B%E5%BB%BA%E5%A5%BD%E4%BA%86%E7%9A%84%E8%AF%9D%E5%8F%AF%E4%BB%A5%E7%82%B9%E7%BC%96%E8%AF%91%EF%BC%8C%E7%84%B6%E5%90%8E%E5%9C%A8%E5%8F%B3%E4%B8%8B%E8%A7%92%E7%82%B9Panels%EF%BC%8C%E9%80%89%E6%8B%A9Component%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E5%9C%A8%E5%8F%B3%E4%BE%A7%E9%9D%A2%E6%9D%BF%E8%B0%83%E7%94%A8%E5%85%83%E4%BB%B6%E4%BA%86_hu10744121192207420391.png 480w, /p/ad/%E5%9C%A8%E5%85%83%E5%99%A8%E4%BB%B6%E5%88%9B%E5%BB%BA%E5%A5%BD%E4%BA%86%E7%9A%84%E8%AF%9D%E5%8F%AF%E4%BB%A5%E7%82%B9%E7%BC%96%E8%AF%91%EF%BC%8C%E7%84%B6%E5%90%8E%E5%9C%A8%E5%8F%B3%E4%B8%8B%E8%A7%92%E7%82%B9Panels%EF%BC%8C%E9%80%89%E6%8B%A9Component%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E5%9C%A8%E5%8F%B3%E4%BE%A7%E9%9D%A2%E6%9D%BF%E8%B0%83%E7%94%A8%E5%85%83%E4%BB%B6%E4%BA%86_hu7484527064997998901.png 1024w"
+	loading="lazy"
+	
+		alt="工程名右键 Validate PCB Project，编译后元件才能被检索"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="138"
+		data-flex-basis="332px"
+	
+></p>
+<p>  然后从 <code>Panels»Components</code> 打开面板，把左上角的库源下拉切到 <code>FILE-BASED LIBRARIES</code>，选中本工程的 <code>.SchLib</code>，就能像用官方库一样双击放置了。</p>
+<p><img src="/p/ad/%E7%84%B6%E5%90%8E%E5%9C%A8Component%E9%80%89%E6%8B%A9%E6%88%91%E4%BB%AC%E7%9A%84%E5%B7%A5%E7%A8%8B.png"
+	width="1068"
+	height="1062"
+	srcset="/p/ad/%E7%84%B6%E5%90%8E%E5%9C%A8Component%E9%80%89%E6%8B%A9%E6%88%91%E4%BB%AC%E7%9A%84%E5%B7%A5%E7%A8%8B_hu12980780872183709622.png 480w, /p/ad/%E7%84%B6%E5%90%8E%E5%9C%A8Component%E9%80%89%E6%8B%A9%E6%88%91%E4%BB%AC%E7%9A%84%E5%B7%A5%E7%A8%8B_hu14278760084081449954.png 1024w"
+	loading="lazy"
+	
+		alt="Components 面板切到 FILE-BASED LIBRARIES，选择本工程库"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="100"
+		data-flex-basis="241px"
+	
+></p>
+<p><a id="ch04"></a></p>
+<h2 id="四原理图--pcb导入与交互定位">四、原理图 → PCB：导入与交互定位
+</h2><p>  原理图编译干净了，接下来是把它&quot;搬&quot;到 PCB。这一步的坑不在操作难度，而在<strong>方向</strong>和<strong>耐心</strong>。</p>
+<h3 id="41-两个方向别点反">4.1 两个方向，别点反
+</h3><p>  PCB 界面的 <code>设计</code> 菜单里，最上面两条命令长得几乎一样，方向却完全相反：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>方向</th>
+<th>什么时候用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Design » Import Changes From &lt;工程&gt;</code>（导入变化）</td>
+<td>原理图 → PCB</td>
+<td><strong>99% 的情况</strong>：原理图改完，同步进 PCB</td>
+</tr>
+<tr>
+<td><code>Design » Update Schematics in &lt;工程&gt;</code>（更新原理图）</td>
+<td>PCB → 原理图</td>
+<td>在 PCB 里改了位号/网络，反向回写原理图</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="/p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E8%87%B3PCB.png"
+	width="1353"
+	height="854"
+	srcset="/p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E8%87%B3PCB_hu13161919486971758074.png 480w, /p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E8%87%B3PCB_hu15112943580844586893.png 1024w"
+	loading="lazy"
+	
+		alt="两条命令上下相邻，方向相反：Import 是原理图→PCB，Update 是 PCB→原理图"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="158"
+		data-flex-basis="380px"
+	
+></p>
+<p>  我的记法是：<strong>&ldquo;Import 从工程导进来&rdquo;</strong>——工程（原理图）是源头，&ldquo;进来&quot;的是 PCB。点反了不会报错，但会让你在错误的那一侧白改半天。官方对这套双向同步机制的说明见 <a class="link" href="https://www.altium.com/cn/documentation/altium-designer/sch-pcb"  target="_blank" rel="noopener"
+    >原理图与 PCB 之间的设计变更</a>。</p>
+<p><img src="/p/ad/%E6%9B%B4%E6%96%B0%E5%8E%9F%E7%90%86%E5%9B%BE%E5%88%B0PCB%E7%9A%84%E6%93%8D%E4%BD%9C.png"
+	width="1007"
+	height="600"
+	srcset="/p/ad/%E6%9B%B4%E6%96%B0%E5%8E%9F%E7%90%86%E5%9B%BE%E5%88%B0PCB%E7%9A%84%E6%93%8D%E4%BD%9C_hu16767556167733205936.png 480w, /p/ad/%E6%9B%B4%E6%96%B0%E5%8E%9F%E7%90%86%E5%9B%BE%E5%88%B0PCB%E7%9A%84%E6%93%8D%E4%BD%9C_hu13665641686965214391.png 1024w"
+	loading="lazy"
+	
+		alt="设计菜单里的实际入口"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="167"
+		data-flex-basis="402px"
+	
+></p>
+<h3 id="42-执行两遍直到-no-differences">4.2 执行两遍，直到 <code>No Differences</code>
+</h3><p>  点 <code>Import Changes</code> 会弹出**工程变更指令（Engineering Change Order）**窗口，列是&quot;更改 / 动作 / 受影响对象 / 受影响文档 / 状态&rdquo;。流程是固定的三步：</p>
+<ol>
+<li>点 <code>验证变更</code> —— AD 先&quot;空跑&quot;一遍，把能不能做、有没有错列出来；</li>
+<li>点 <code>执行变更</code> —— 真正把改动写进 PCB；</li>
+<li><strong>再看一遍，再执行一遍。</strong></li>
+</ol>
+<p>  第 3 步是最容易被跳过、也最关键的一步。<mark>第一遍执行会&quot;藏&quot;住部分问题</mark>：有些错误是由前一批改动派生出来的，第一遍跑完才暴露出来。所以要反复&quot;验证 → 执行&quot;，直到所有行全变绿。</p>
+<p><img src="/p/ad/%E6%89%A7%E8%A1%8C%E5%8F%98%E6%9B%B4%E4%B8%80%E8%88%AC%E8%A6%81%E6%89%A7%E8%A1%8C%E4%B8%A4%E9%81%8D%EF%BC%8C%E4%B8%A4%E9%81%8D%E6%98%AF%E4%B8%BA%E4%BA%86%E6%8A%8A%E7%AC%AC%E4%B8%80%E9%81%8D%E4%B8%8D%E6%98%BE%E7%A4%BA%E7%9A%84%E9%97%AE%E9%A2%98%E6%98%BE%E7%A4%BA%E5%87%BA%E6%9D%A5%EF%BC%8C%E5%85%B6%E5%AE%9E%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%A4%9A%E9%81%8D%E7%9A%84.png"
+	width="1787"
+	height="881"
+	srcset="/p/ad/%E6%89%A7%E8%A1%8C%E5%8F%98%E6%9B%B4%E4%B8%80%E8%88%AC%E8%A6%81%E6%89%A7%E8%A1%8C%E4%B8%A4%E9%81%8D%EF%BC%8C%E4%B8%A4%E9%81%8D%E6%98%AF%E4%B8%BA%E4%BA%86%E6%8A%8A%E7%AC%AC%E4%B8%80%E9%81%8D%E4%B8%8D%E6%98%BE%E7%A4%BA%E7%9A%84%E9%97%AE%E9%A2%98%E6%98%BE%E7%A4%BA%E5%87%BA%E6%9D%A5%EF%BC%8C%E5%85%B6%E5%AE%9E%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%A4%9A%E9%81%8D%E7%9A%84_hu15793714760413408433.png 480w, /p/ad/%E6%89%A7%E8%A1%8C%E5%8F%98%E6%9B%B4%E4%B8%80%E8%88%AC%E8%A6%81%E6%89%A7%E8%A1%8C%E4%B8%A4%E9%81%8D%EF%BC%8C%E4%B8%A4%E9%81%8D%E6%98%AF%E4%B8%BA%E4%BA%86%E6%8A%8A%E7%AC%AC%E4%B8%80%E9%81%8D%E4%B8%8D%E6%98%BE%E7%A4%BA%E7%9A%84%E9%97%AE%E9%A2%98%E6%98%BE%E7%A4%BA%E5%87%BA%E6%9D%A5%EF%BC%8C%E5%85%B6%E5%AE%9E%E4%B9%9F%E5%8F%AF%E4%BB%A5%E5%A4%9A%E9%81%8D%E7%9A%84_hu7874480167570428346.png 1024w"
+	loading="lazy"
+	
+		alt="工程变更指令：第一遍会隐藏部分问题，多跑几遍才全部暴露"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="202"
+		data-flex-basis="486px"
+	
+></p>
+<p>  什么时候算同步完成？当比较结果弹出 <strong><code>Comparator Results (No Differences)</code> / <code>No Differences Detected</code></strong> 时才算真的对齐。看到这个框，说明原理图与 PCB 的元件、网络、类成员已经完全一致。</p>
+<p><img src="/p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E5%AF%BC%E5%85%A5PCB%E8%A6%81%E5%A4%9A%E6%AC%A1%EF%BC%8C%E7%9B%B4%E5%88%B0%E6%98%BE%E7%A4%BA%E5%9B%BE%E4%B8%AD%E6%8F%90%E7%A4%BA%E6%A1%86.png"
+	width="1293"
+	height="696"
+	srcset="/p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E5%AF%BC%E5%85%A5PCB%E8%A6%81%E5%A4%9A%E6%AC%A1%EF%BC%8C%E7%9B%B4%E5%88%B0%E6%98%BE%E7%A4%BA%E5%9B%BE%E4%B8%AD%E6%8F%90%E7%A4%BA%E6%A1%86_hu12848858488489403226.png 480w, /p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E5%AF%BC%E5%85%A5PCB%E8%A6%81%E5%A4%9A%E6%AC%A1%EF%BC%8C%E7%9B%B4%E5%88%B0%E6%98%BE%E7%A4%BA%E5%9B%BE%E4%B8%AD%E6%8F%90%E7%A4%BA%E6%A1%86_hu8056480387033029358.png 1024w"
+	loading="lazy"
+	
+		alt="比较结果显示 No Differences Detected，才算同步完成"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="185"
+		data-flex-basis="445px"
+	
+></p>
+<h3 id="43-三类导入报错对症下药">4.3 三类导入报错，对症下药
+</h3><p>  导入报错看起来五花八门，其实只有三类根因：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>报错信息</th>
+<th>根因</th>
+<th>怎么改</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Footprint Not Found SOP-8</code></td>
+<td>元件没填封装 / 封装名不匹配 / 库路径没匹配</td>
+<td>用封装管理器统一指定，或把库加入工程</td>
+</tr>
+<tr>
+<td><code>Unknown Pin: Pin P1-1</code></td>
+<td>封装焊盘号与符号管脚号对不上</td>
+<td>改封装焊盘编号，或改符号 Pin Designator</td>
+</tr>
+<tr>
+<td><code>Failed to add class member</code></td>
+<td>类成员添加失败（多数是该器件本身有错）</td>
+<td>先解决这个器件的封装/Pin 问题再重跑</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="/p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E5%AF%BC%E5%85%A5PCB%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90.png"
+	width="1871"
+	height="962"
+	srcset="/p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E5%AF%BC%E5%85%A5PCB%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90_hu4814849593478867907.png 480w, /p/ad/%E5%8E%9F%E7%90%86%E5%9B%BE%E5%AF%BC%E5%85%A5PCB%E5%B8%B8%E8%A7%81%E9%94%99%E8%AF%AF%E5%88%86%E6%9E%90_hu17296819118249959965.png 1024w"
+	loading="lazy"
+	
+		alt="导入错误的两个大头：Footprint Not Found 与 Unknown Pin"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="194"
+		data-flex-basis="466px"
+	
+></p>
+<p>  上图里的 <code>Footprint Not Found SOP-8</code> 与成片的 <code>Unknown Pin</code> 就是典型：前者是&quot;封装还没安排&quot;，后者是&quot;封装有了，但焊盘号和符号对不上&quot;。<strong>先看&quot;消息&quot;列，不要盲目重导</strong>——重导一百遍也不会自己变对。</p>
+<h3 id="44-交叉选择原理图与-pcb-的连坐">4.4 交叉选择：原理图与 PCB 的&quot;连坐&quot;
+</h3><p>  布局时最常用的动作是&quot;原理图上点一个器件，PCB 上立刻高亮它&quot;。这叫<strong>交叉选择（Cross Select）</strong>，要三个条件同时满足：</p>
+<p>  <strong>① 两边都打开开关。</strong> 在原理图和 PCB 里分别执行 <code>交叉选择模式</code>（右键菜单里，快捷键 <code>Shift+Ctrl+X</code>）。只开一边，另一边不会有反应。</p>
+<p><img src="/p/ad/%E4%BA%A4%E5%8F%89%E6%A8%A1%E5%BC%8F%E9%80%89%E6%8B%A9%EF%BC%8C%E5%9C%A8%E5%8E%9F%E7%90%86%E5%9B%BE%E9%A1%B5%E9%9D%A2%E4%BB%A5%E5%8F%8APCB%E9%A1%B5%E9%9D%A2%E9%83%BD%E6%89%93%E5%BC%80%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E4%BA%A4%E5%8F%89%E6%95%88%E6%9E%9C.png"
+	width="759"
+	height="390"
+	srcset="/p/ad/%E4%BA%A4%E5%8F%89%E6%A8%A1%E5%BC%8F%E9%80%89%E6%8B%A9%EF%BC%8C%E5%9C%A8%E5%8E%9F%E7%90%86%E5%9B%BE%E9%A1%B5%E9%9D%A2%E4%BB%A5%E5%8F%8APCB%E9%A1%B5%E9%9D%A2%E9%83%BD%E6%89%93%E5%BC%80%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E4%BA%A4%E5%8F%89%E6%95%88%E6%9E%9C_hu6610151164400843541.png 480w, /p/ad/%E4%BA%A4%E5%8F%89%E6%A8%A1%E5%BC%8F%E9%80%89%E6%8B%A9%EF%BC%8C%E5%9C%A8%E5%8E%9F%E7%90%86%E5%9B%BE%E9%A1%B5%E9%9D%A2%E4%BB%A5%E5%8F%8APCB%E9%A1%B5%E9%9D%A2%E9%83%BD%E6%89%93%E5%BC%80%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E5%AE%9E%E7%8E%B0%E4%BA%A4%E5%8F%89%E6%95%88%E6%9E%9C_hu11424924694874907912.png 1024w"
+	loading="lazy"
+	
+		alt="交叉选择模式：原理图与 PCB 两个窗口都要开启"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="194"
+		data-flex-basis="467px"
+	
+></p>
+<p>  <strong>② 选对&quot;交叉的对象类型&quot;。</strong> 在 <code>优选项»System»Navigation»交叉选择的对象</code> 里勾选 <code>元件</code> / <code>网络</code> / <code>Pin脚</code>。默认通常只勾了元件，所以&quot;我在原理图点了网络，PCB 没反应&quot;。</p>
+<p><img src="/p/ad/%E8%AE%BE%E7%BD%AE%E9%87%8C%E9%9D%A2%E5%8F%AF%E4%BB%A5%E9%80%89%E6%8B%A9%E4%BA%A4%E5%8F%89%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%99%A8%E4%BB%B6%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E6%98%AF%E7%BD%91%E7%BB%9C.png"
+	width="1380"
+	height="1358"
+	srcset="/p/ad/%E8%AE%BE%E7%BD%AE%E9%87%8C%E9%9D%A2%E5%8F%AF%E4%BB%A5%E9%80%89%E6%8B%A9%E4%BA%A4%E5%8F%89%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%99%A8%E4%BB%B6%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E6%98%AF%E7%BD%91%E7%BB%9C_hu7832204366934444009.png 480w, /p/ad/%E8%AE%BE%E7%BD%AE%E9%87%8C%E9%9D%A2%E5%8F%AF%E4%BB%A5%E9%80%89%E6%8B%A9%E4%BA%A4%E5%8F%89%E5%AF%B9%E8%B1%A1%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%98%AF%E5%99%A8%E4%BB%B6%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E6%98%AF%E7%BD%91%E7%BB%9C_hu2538185912091257871.png 1024w"
+	loading="lazy"
+	
+		alt="优选项 » System » Navigation：勾选交叉选择的对象类型"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="101"
+		data-flex-basis="243px"
+	
+></p>
+<p>  <strong>③ 找不到就用交叉探针。</strong> 快捷键 <code>T</code> <code>C</code>（交叉探针）是&quot;强制跳转&quot;：在 PCB 里对着某个器件按 <code>T</code> <code>C</code>，会跳到原理图里对应的符号；反过来也行。</p>
+<p><img src="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AETC%E5%8F%AF%E4%BB%A5%E4%BB%8EPCB%E7%9A%84%E5%85%83%E5%99%A8%E4%BB%B6%E8%B7%B3%E8%BD%AC%E5%88%B0%E5%8E%9F%E7%90%86%E5%9B%BE%E5%AF%B9%E5%BA%94%E5%85%83%E5%99%A8%E4%BB%B6%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BB%8E%E5%8E%9F%E7%90%86%E5%9B%BE%E8%B7%B3%E8%BD%AC%E5%88%B0PCB.png"
+	width="1374"
+	height="794"
+	srcset="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AETC%E5%8F%AF%E4%BB%A5%E4%BB%8EPCB%E7%9A%84%E5%85%83%E5%99%A8%E4%BB%B6%E8%B7%B3%E8%BD%AC%E5%88%B0%E5%8E%9F%E7%90%86%E5%9B%BE%E5%AF%B9%E5%BA%94%E5%85%83%E5%99%A8%E4%BB%B6%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BB%8E%E5%8E%9F%E7%90%86%E5%9B%BE%E8%B7%B3%E8%BD%AC%E5%88%B0PCB_hu12415469349479928136.png 480w, /p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AETC%E5%8F%AF%E4%BB%A5%E4%BB%8EPCB%E7%9A%84%E5%85%83%E5%99%A8%E4%BB%B6%E8%B7%B3%E8%BD%AC%E5%88%B0%E5%8E%9F%E7%90%86%E5%9B%BE%E5%AF%B9%E5%BA%94%E5%85%83%E5%99%A8%E4%BB%B6%EF%BC%8C%E4%B9%9F%E5%8F%AF%E4%BB%A5%E4%BB%8E%E5%8E%9F%E7%90%86%E5%9B%BE%E8%B7%B3%E8%BD%AC%E5%88%B0PCB_hu11843092835222050812.png 1024w"
+	loading="lazy"
+	
+		alt="T C 交叉探针：原理图与 PCB 之间双向定位"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="173"
+		data-flex-basis="415px"
+	
+></p>
+<h3 id="45-网络级交叉选择顺手把网络类建了">4.5 网络级交叉选择：顺手把网络类建了
+</h3><p>  把交叉对象设成&quot;网络&quot;之后，用法会多一步：在原理图里点中某条网络 → 切到 PCB，在空白处右键 → <code>网络操作</code>：</p>
+<ul>
+<li><strong>第一次</strong>：选 <code>根据选择的网络创建网络类</code>，AD 会新建一个类并把这条网络放进去；</li>
+<li><strong>以后</strong>：选 <code>Add Selected Nets to NetClass</code>，把网络追加到已有类里。</li>
+</ul>
+<p><img src="/p/ad/%E4%BA%A4%E5%8F%89%E5%AF%B9%E8%B1%A1%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C%E5%90%8E%EF%BC%8C%E6%89%93%E5%BC%80%E5%8E%9F%E7%90%86%E5%9B%BE%E9%80%89%E6%8B%A9%E5%AF%B9%E5%BA%94%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%9C%A8PCB%E7%95%8C%E9%9D%A2%E5%85%88%E7%82%B9%E5%87%BB%E9%BC%A0%E6%A0%87%E5%8F%B3%E9%94%AE%EF%BC%8C%E5%86%8D%E7%82%B9%E5%87%BB%E7%BD%91%E7%BB%9C%EF%BC%8C%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%97%B6%E5%85%88%E7%82%B9%E5%87%BB%E5%88%9B%E5%BB%BA%E7%BD%91%E7%BB%9C%E3%80%82%E4%B8%8B%E6%AC%A1%E7%9A%84%E6%97%B6%E5%80%99%E9%80%89%E6%8B%A9%E6%B7%BB%E5%8A%A0%E7%BD%91%E7%BB%9C%E5%B0%B1%E8%A1%8C.png"
+	width="2546"
+	height="1470"
+	srcset="/p/ad/%E4%BA%A4%E5%8F%89%E5%AF%B9%E8%B1%A1%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C%E5%90%8E%EF%BC%8C%E6%89%93%E5%BC%80%E5%8E%9F%E7%90%86%E5%9B%BE%E9%80%89%E6%8B%A9%E5%AF%B9%E5%BA%94%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%9C%A8PCB%E7%95%8C%E9%9D%A2%E5%85%88%E7%82%B9%E5%87%BB%E9%BC%A0%E6%A0%87%E5%8F%B3%E9%94%AE%EF%BC%8C%E5%86%8D%E7%82%B9%E5%87%BB%E7%BD%91%E7%BB%9C%EF%BC%8C%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%97%B6%E5%85%88%E7%82%B9%E5%87%BB%E5%88%9B%E5%BB%BA%E7%BD%91%E7%BB%9C%E3%80%82%E4%B8%8B%E6%AC%A1%E7%9A%84%E6%97%B6%E5%80%99%E9%80%89%E6%8B%A9%E6%B7%BB%E5%8A%A0%E7%BD%91%E7%BB%9C%E5%B0%B1%E8%A1%8C_hu16587482203278288253.png 480w, /p/ad/%E4%BA%A4%E5%8F%89%E5%AF%B9%E8%B1%A1%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C%E5%90%8E%EF%BC%8C%E6%89%93%E5%BC%80%E5%8E%9F%E7%90%86%E5%9B%BE%E9%80%89%E6%8B%A9%E5%AF%B9%E5%BA%94%E7%BD%91%E7%BB%9C%EF%BC%8C%E5%9C%A8PCB%E7%95%8C%E9%9D%A2%E5%85%88%E7%82%B9%E5%87%BB%E9%BC%A0%E6%A0%87%E5%8F%B3%E9%94%AE%EF%BC%8C%E5%86%8D%E7%82%B9%E5%87%BB%E7%BD%91%E7%BB%9C%EF%BC%8C%E7%AC%AC%E4%B8%80%E6%AC%A1%E6%97%B6%E5%85%88%E7%82%B9%E5%87%BB%E5%88%9B%E5%BB%BA%E7%BD%91%E7%BB%9C%E3%80%82%E4%B8%8B%E6%AC%A1%E7%9A%84%E6%97%B6%E5%80%99%E9%80%89%E6%8B%A9%E6%B7%BB%E5%8A%A0%E7%BD%91%E7%BB%9C%E5%B0%B1%E8%A1%8C_hu15368346102404630492.png 1024w"
+	loading="lazy"
+	
+		alt="交叉选网络后，在 PCB 右键 → 网络操作 → 创建/加入网络类"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="173"
+		data-flex-basis="415px"
+	
+></p>
+<p>  这条链路的价值在于：<strong>网络类一建好，就能立刻用规则去约束它</strong>（加大线宽、单独间距），后面第九章《设计规则与 DRC》和第十章《网络分类、铺铜与布线》会反复用到。</p>
+<p><a id="ch05"></a></p>
+<h2 id="五布局与编辑的高效操作">五、布局与编辑的高效操作
+</h2><p>  PCB 里 80% 的时间花在&quot;摆&quot;和&quot;改&quot;上。这几个键位能让这段时间缩一半。</p>
+<h3 id="51-t-o-l把一堆器件排成矩阵">5.1 <code>T O L</code>：把一堆器件排成矩阵
+</h3><p>  框选一堆器件，按 <code>T</code> <code>O</code> <code>L</code>（工具 » 器件摆放 » 在矩形区域排列），AD 会让你画一个矩形，然后把选中器件<strong>按行列均匀排进这个矩形</strong>。刚导入 PCB 时所有器件堆在一起，用它先&quot;码齐&quot;，再逐个摆位，效率极高。</p>
+<p><img src="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AETOL%E6%98%AF%E5%B0%86%E6%89%80%E9%80%89%E4%B8%AD%E5%85%83%E4%BB%B6%E8%BF%9B%E8%A1%8C%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%88%86%E5%B8%83%E6%8E%92%E5%88%97.png"
+	width="609"
+	height="587"
+	srcset="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AETOL%E6%98%AF%E5%B0%86%E6%89%80%E9%80%89%E4%B8%AD%E5%85%83%E4%BB%B6%E8%BF%9B%E8%A1%8C%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%88%86%E5%B8%83%E6%8E%92%E5%88%97_hu11277825145202863093.png 480w, /p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AETOL%E6%98%AF%E5%B0%86%E6%89%80%E9%80%89%E4%B8%AD%E5%85%83%E4%BB%B6%E8%BF%9B%E8%A1%8C%E7%9F%A9%E5%BD%A2%E5%8C%BA%E5%9F%9F%E5%88%86%E5%B8%83%E6%8E%92%E5%88%97_hu819294456579722515.png 1024w"
+	loading="lazy"
+	
+		alt="T O L：把选中元件按矩形区域排列分布"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="103"
+		data-flex-basis="248px"
+	
+></p>
+<h3 id="52-e-a特殊粘贴与阵列粘贴">5.2 <code>E A</code>：特殊粘贴与阵列粘贴
+</h3><p>  要复制一排一模一样的焊盘/元件（比如排针、测试点阵列），用 <code>Ctrl+C</code> / <code>Ctrl+V</code> 一个个贴太慢。正确姿势是 <code>E</code> <code>A</code>（编辑 » 特殊粘贴）：</p>
+<ul>
+<li>在 <code>特殊粘贴</code> 对话框里可以勾 <code>粘贴到当前层</code>、<code>保持网络名称</code>、<code>重复位号</code>、<code>添加到元器件类</code>；</li>
+<li>点 <code>阵列式粘贴…</code>，在 <code>设置粘贴阵列</code> 里填<strong>对象数量</strong>与 <strong>X/Y 轴间距</strong>，一次生成一整行。</li>
+</ul>
+<p><img src="/p/ad/%E6%80%8E%E4%B9%88%E4%B8%80%E6%AC%A1%E6%80%A7%E5%A4%9A%E5%A4%8D%E5%88%B6.png"
+	width="2369"
+	height="1310"
+	srcset="/p/ad/%E6%80%8E%E4%B9%88%E4%B8%80%E6%AC%A1%E6%80%A7%E5%A4%9A%E5%A4%8D%E5%88%B6_hu8348294508990075820.png 480w, /p/ad/%E6%80%8E%E4%B9%88%E4%B8%80%E6%AC%A1%E6%80%A7%E5%A4%9A%E5%A4%8D%E5%88%B6_hu17469605408360250028.png 1024w"
+	loading="lazy"
+	
+		alt="E A 特殊粘贴 → 阵列式粘贴：设数量与间距，一次复制一排"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="180"
+		data-flex-basis="434px"
+	
+></p>
+<h3 id="53-m-x按偏移量精确移动">5.3 <code>M X</code>：按偏移量精确移动
+</h3><p>  <code>M</code> <code>X</code>（移动 » X/Y 偏移）弹出&quot;获得 X/Y 偏移量&quot;对话框，填 X、Y 后确定，选中对象就精确平移这个距离。做等距排列、把器件对到某个坐标上时，比鼠标拖准得多。</p>
+<p><img src="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEMX-%E4%BD%8D%E7%BD%AE%E5%81%8F%E7%A7%BB.png"
+	width="996"
+	height="657"
+	srcset="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEMX-%E4%BD%8D%E7%BD%AE%E5%81%8F%E7%A7%BB_hu12819030863215296313.png 480w, /p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEMX-%E4%BD%8D%E7%BD%AE%E5%81%8F%E7%A7%BB_hu5642122157783787705.png 1024w"
+	loading="lazy"
+	
+		alt="M X：按输入的 X/Y 偏移量精确移动对象"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="151"
+		data-flex-basis="363px"
+	
+></p>
+<h3 id="54-l移动中翻层">5.4 <code>L</code>：移动中翻层
+</h3><p>  把器件从顶层放到顶层……不对，放到<strong>底层</strong>，不需要删了重放。拖动元件的过程中按 <code>L</code>，它就翻到另一面，丝印自动镜像。</p>
+<p><img src="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEL%E6%98%AF%E5%B0%86%E5%85%83%E5%99%A8%E4%BB%B6%E5%88%87%E6%8D%A2%E9%A1%B6%E5%B1%82%E5%BA%95%E5%B1%82.png"
+	width="809"
+	height="869"
+	srcset="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEL%E6%98%AF%E5%B0%86%E5%85%83%E5%99%A8%E4%BB%B6%E5%88%87%E6%8D%A2%E9%A1%B6%E5%B1%82%E5%BA%95%E5%B1%82_hu13411143261491648765.png 480w, /p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEL%E6%98%AF%E5%B0%86%E5%85%83%E5%99%A8%E4%BB%B6%E5%88%87%E6%8D%A2%E9%A1%B6%E5%B1%82%E5%BA%95%E5%B1%82_hu518353550205616002.png 1024w"
+	loading="lazy"
+	
+		alt="拖动元件时按 L，可直接切换顶层/底层"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="93"
+		data-flex-basis="223px"
+	
+></p>
+<h3 id="55-n飞线太多先关掉">5.5 <code>N</code>：飞线太多？先关掉
+</h3><p>  布线时满屏飞线，眼睛根本分不清。<code>N</code> 打开飞线菜单：<code>显示连接</code>、<code>隐藏连接</code>、<code>显示跳线</code>、<code>隐藏跳线</code>，每项还有&quot;全部 / 网络 / 器件&quot;的范围子菜单。布一块区域时先把它周围的飞线藏掉，视觉立刻清爽。</p>
+<p><img src="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEN-%E9%9A%90%E8%97%8F%E4%B8%8E%E6%98%BE%E7%A4%BA%E9%A3%9E%E7%BA%BF.png"
+	width="572"
+	height="515"
+	srcset="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEN-%E9%9A%90%E8%97%8F%E4%B8%8E%E6%98%BE%E7%A4%BA%E9%A3%9E%E7%BA%BF_hu11094771993322736305.png 480w, /p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEN-%E9%9A%90%E8%97%8F%E4%B8%8E%E6%98%BE%E7%A4%BA%E9%A3%9E%E7%BA%BF_hu3927120503632189882.png 1024w"
+	loading="lazy"
+	
+		alt="N 菜单：按范围显示/隐藏飞线与跳线"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="111"
+		data-flex-basis="266px"
+	
+></p>
+<h3 id="56-拉长走线抓端点不是拖中间">5.6 拉长走线：抓端点，不是拖中间
+</h3><p>  这是被问得最多的一个&quot;小问题&quot;：为什么我拖线只能整体平移，不能拉长？</p>
+<p>  因为<strong>你拖的是线段中间</strong>。正确做法是：先单击选中走线，线的<strong>两端会出现白色小方块控制点</strong>，按住左键拖这两个端点，才是拉伸/缩短；拖线段中间永远是平移整条线。如果看不到控制点，多半是视图太小，或者这条线被锁定了（双击打开属性，取消 <code>Locked</code>）。</p>
+<p>  觉得鼠标不稳，就用命令：<code>E</code> <code>M</code> <code>A</code>（编辑 » 移动 » 拉伸走线），稳定且可重复。</p>
+<p><img src="/p/ad/%E6%8B%89%E9%95%BF%E6%8A%80%E5%B7%A7.png"
+	width="1286"
+	height="918"
+	srcset="/p/ad/%E6%8B%89%E9%95%BF%E6%8A%80%E5%B7%A7_hu71223024715646467.png 480w, /p/ad/%E6%8B%89%E9%95%BF%E6%8A%80%E5%B7%A7_hu10606979285556436711.png 1024w"
+	loading="lazy"
+	
+		alt="拉长走线的正确姿势：抓两端控制点，或 E M A"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="140"
+		data-flex-basis="336px"
+	
+></p>
+<h3 id="57-选择过滤器只选你想选的东西">5.7 选择过滤器：只选你想选的东西
+</h3><p>  改丝印时最烦的是&quot;框选一下，走线焊盘全被选中了&quot;。<strong>先在 <code>Selection Filter</code> 面板里只勾 <code>Texts</code></strong>，再框选，就只会选中文字。</p>
+<p><img src="/p/ad/%E8%BF%99%E4%B8%AA%E9%80%89%E6%8B%A9%E4%BD%A0%E6%83%B3%E8%A6%81%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AF%B9%E8%B1%A1,%E7%84%B6%E5%90%8E%E5%8F%AF%E4%BB%A5%E6%8C%89%E4%BD%8FCtrl&#43;%E9%BC%A0%E6%A0%87%E6%A1%86%E9%80%89%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%89%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E4%B8%9C%E8%A5%BF%EF%BC%88%E6%94%B9%E4%B8%9D%E5%8D%B0%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%AF%E4%BB%A5%E9%87%87%E7%94%A8%EF%BC%89.png"
+	width="417"
+	height="269"
+	srcset="/p/ad/%E8%BF%99%E4%B8%AA%E9%80%89%E6%8B%A9%E4%BD%A0%E6%83%B3%E8%A6%81%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AF%B9%E8%B1%A1,%E7%84%B6%E5%90%8E%E5%8F%AF%E4%BB%A5%E6%8C%89%E4%BD%8FCtrl&#43;%E9%BC%A0%E6%A0%87%E6%A1%86%E9%80%89%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%89%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E4%B8%9C%E8%A5%BF%EF%BC%88%E6%94%B9%E4%B8%9D%E5%8D%B0%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%AF%E4%BB%A5%E9%87%87%E7%94%A8%EF%BC%89_hu1290704318722460819.png 480w, /p/ad/%E8%BF%99%E4%B8%AA%E9%80%89%E6%8B%A9%E4%BD%A0%E6%83%B3%E8%A6%81%E6%93%8D%E4%BD%9C%E7%9A%84%E5%AF%B9%E8%B1%A1,%E7%84%B6%E5%90%8E%E5%8F%AF%E4%BB%A5%E6%8C%89%E4%BD%8FCtrl&#43;%E9%BC%A0%E6%A0%87%E6%A1%86%E9%80%89%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%89%E4%BD%A0%E6%83%B3%E8%A6%81%E7%9A%84%E4%B8%9C%E8%A5%BF%EF%BC%88%E6%94%B9%E4%B8%9D%E5%8D%B0%E7%9A%84%E6%97%B6%E5%80%99%E5%8F%AF%E4%BB%A5%E9%87%87%E7%94%A8%EF%BC%89_hu524886422635039103.png 1024w"
+	loading="lazy"
+	
+		alt="Selection Filter：只勾 Texts 再框选，改丝印不再误选"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="155"
+		data-flex-basis="372px"
+	
+></p>
+<h3 id="58-高亮一条网络看清它走到哪">5.8 高亮一条网络，看清它走到哪
+</h3><p>  <code>Ctrl+左键</code> 点击某个焊盘/走线，整条网络会亮起来，其余对象变暗；此时按住 <code>Shift</code> 移动鼠标，同一网络在其他区域的分段也会跟着亮。看完按 <code>Shift+C</code> 清除高亮——这个键同时也清过滤器，非常好用。</p>
+<p><img src="/p/ad/Ctrl&#43;%E5%B7%A6%E9%94%AE%E9%AB%98%E4%BA%AE%E7%BD%91%E7%BB%9C%EF%BC%9BShift&#43;%E9%BC%A0%E6%A0%87%E7%A7%BB%E5%8A%A8%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9B%B8%E5%90%8C%E7%BD%91%E7%BB%9C.png"
+	width="917"
+	height="554"
+	srcset="/p/ad/Ctrl&#43;%E5%B7%A6%E9%94%AE%E9%AB%98%E4%BA%AE%E7%BD%91%E7%BB%9C%EF%BC%9BShift&#43;%E9%BC%A0%E6%A0%87%E7%A7%BB%E5%8A%A8%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9B%B8%E5%90%8C%E7%BD%91%E7%BB%9C_hu17023025618255617558.png 480w, /p/ad/Ctrl&#43;%E5%B7%A6%E9%94%AE%E9%AB%98%E4%BA%AE%E7%BD%91%E7%BB%9C%EF%BC%9BShift&#43;%E9%BC%A0%E6%A0%87%E7%A7%BB%E5%8A%A8%E5%8F%AF%E6%98%BE%E7%A4%BA%E7%9B%B8%E5%90%8C%E7%BD%91%E7%BB%9C_hu21022989299965481.png 1024w"
+	loading="lazy"
+	
+		alt="Ctrl&#43;左键高亮网络，Shift&#43;移动鼠标可显示同网络的其他段"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="165"
+		data-flex-basis="397px"
+	
+></p>
+<p><img src="/p/ad/Ctrl&#43;%E5%B7%A6%E9%94%AE%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%AB%98%E4%BA%AE%E7%BD%91%E7%BB%9C%E3%80%82Shift&#43;C%E5%8F%AF%E4%BB%A5%E9%80%80%E5%87%BA%E9%AB%98%E4%BA%AE.png"
+	width="873"
+	height="566"
+	srcset="/p/ad/Ctrl&#43;%E5%B7%A6%E9%94%AE%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%AB%98%E4%BA%AE%E7%BD%91%E7%BB%9C%E3%80%82Shift&#43;C%E5%8F%AF%E4%BB%A5%E9%80%80%E5%87%BA%E9%AB%98%E4%BA%AE_hu16981100344605465884.png 480w, /p/ad/Ctrl&#43;%E5%B7%A6%E9%94%AE%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%AB%98%E4%BA%AE%E7%BD%91%E7%BB%9C%E3%80%82Shift&#43;C%E5%8F%AF%E4%BB%A5%E9%80%80%E5%87%BA%E9%AB%98%E4%BA%AE_hu11546984081780731068.png 1024w"
+	loading="lazy"
+	
+		alt="高亮后其余对象变暗，Shift&#43;C 退出高亮"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="154"
+		data-flex-basis="370px"
+	
+></p>
+<h3 id="59-测量先解决吸附再谈精度">5.9 测量：先解决吸附，再谈精度
+</h3><p>  <code>Ctrl+M</code> 是两点测距，但它准不准，取决于上一节说的<strong>捕捉设置</strong>。测焊盘中心距之前，先 <code>Ctrl+E</code> 打开捕捉选项，勾上 <code>Pad Centers</code>，否则光标根本不会吸附到中心点，量出来的数永远是&quot;差一点&quot;。</p>
+<p><img src="/p/ad/Ctrl&#43;E.png"
+	width="1023"
+	height="308"
+	srcset="/p/ad/Ctrl&#43;E_hu11167903694848071576.png 480w, /p/ad/Ctrl&#43;E_hu2508528988286754156.png 1024w"
+	loading="lazy"
+	
+		alt="Ctrl&#43;E 捕捉选项：测中心距必须勾 Pad Centers"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="332"
+		data-flex-basis="797px"
+	
+></p>
+<p>  状态栏会实时显示坐标与当前尺寸标注，量完随手记下，比事后猜靠谱。</p>
+<p><a id="ch06"></a></p>
+<h2 id="六off-grid讨厌但可控的警告">六、Off-grid：讨厌但可控的警告
+</h2><p>  编译原理图时经常刷出一屏 <code>Off grid R44 at 8270mil,5163mil</code>。这类警告最容易两极分化：有人完全无视，有人被它逼到重画。</p>
+<h3 id="61-它到底是什么">6.1 它到底是什么
+</h3><p>  <code>off-grid object</code> 指的是<strong>电气对象（端口、引脚、电气端点）的热点不在捕捉栅格上</strong>。注意关键词是&quot;电气对象&quot;——装饰性的线条、注释文字不在栅格上完全无所谓。</p>
+<p><img src="/p/ad/Off%20Grid%E6%98%AF%E4%BB%80%E4%B9%88.png"
+	width="1355"
+	height="1004"
+	srcset="/p/ad/Off%20Grid%E6%98%AF%E4%BB%80%E4%B9%88_hu15786332658981487925.png 480w, /p/ad/Off%20Grid%E6%98%AF%E4%BB%80%E4%B9%88_hu12556271195734003984.png 1024w"
+	loading="lazy"
+	
+		alt="Off-grid 的本质：电气对象的热点没落在栅格上"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="134"
+		data-flex-basis="323px"
+	
+></p>
+<p>  它的性质是：<strong>不会导致出不了网表、不会影响布线</strong>，网表通常是正确的。但它会埋雷：</p>
+<ol>
+<li>肉眼看着&quot;连上了&quot;，实际没连上，走到 PCB 才发现丢网络；</li>
+<li>层次原理图里 <code>Sheet Entry</code> 与子图 <code>Port</code> 对位时更容易识别异常；</li>
+<li>后续批量修改、阵列复制端口时，偏移栅格的对象容易出现诡异的连通性问题。</li>
+</ol>
+<h3 id="62-两种处理方式">6.2 两种处理方式
+</h3><p>  <strong>方式一：把对象吸附回栅格（治本）。</strong> 在 <code>Messages</code> 里选中一条警告，AD 会跳到对应器件；右键 → <code>对齐»对齐到栅格上</code>，器件就自动归位。</p>
+<p><img src="/p/ad/Off%20Grid.png"
+	width="1119"
+	height="777"
+	srcset="/p/ad/Off%20Grid_hu14278885518940981975.png 480w, /p/ad/Off%20Grid_hu3748489854257161357.png 1024w"
+	loading="lazy"
+	
+		alt="选中警告跳转到器件，右键对齐到栅格"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="144"
+		data-flex-basis="345px"
+	
+></p>
+<p>  但这个方法有个副作用：<strong>如果原理图已经画完了，归位会把导线拉开，出现一堆断点，得重新连线</strong>。所以它只适合&quot;图还没画完&quot;的阶段。</p>
+<p>  <strong>方式二：改 ERC 报告级别（治标）。</strong> 原理图界面右键 → <code>工程选项</code> → <code>Error Reporting</code>，把 <code>Off-grid object</code> 的报告格式改成&quot;不报告&quot;，下次编译就不再刷屏。</p>
+<p><img src="/p/ad/Off%20Grid2.png"
+	width="1455"
+	height="812"
+	srcset="/p/ad/Off%20Grid2_hu16866994461109690256.png 480w, /p/ad/Off%20Grid2_hu10844784716874546667.png 1024w"
+	loading="lazy"
+	
+		alt="工程选项 » Error Reporting：把 Off-grid object 改为不报告"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="179"
+		data-flex-basis="430px"
+	
+></p>
+<p>  我的实际做法是：<strong>画图阶段规范栅格（放器件 100mil、连线 10mil），从源头少产生；图已完成后如果警告不多就直接忽略，多了才考虑改报告级别</strong>。不要为了消灭警告去重画一张已经验算过的图。</p>
+<p><a id="ch07"></a></p>
+<h2 id="七room多通道布局的复制粘贴">七、ROOM：多通道布局的&quot;复制粘贴&quot;
+</h2><p>  前面都是&quot;画一块板&quot;，这一章是&quot;画很多块一样的板&quot;。当一张板上有 N 路完全相同的电路（多路传感器、多路功放、多路 LED 驱动），手排第二、第三路纯属浪费生命——<strong>ROOM 就是 AD 给多通道设计准备的复用机制</strong>。</p>
+<h3 id="71-先看一遍完整录屏">7.1 先看一遍完整录屏
+</h3><p>  文字再详细也不如看一遍手速。下面这段是完整的 ROOM 操作过程（建 Room → 排一路 → 对通道号 → 拷格式），建议先看完再读后面的八步。</p>
+<p><video controls playsinline webkit-playsinline preload="metadata" poster="ROOM操作-封面.jpg" src="ROOM操作.mp4" title="ROOM 多通道布局完整操作"></video></p>
+<p><mark>（点击画面开播，播放后点右下角全屏按钮可放大；原片 4K、77MB，首次可能要缓冲几秒）</mark></p>
+<p>  如果上面的播放器一直转圈或加载不出来，<a class="link" href="ROOM%e6%93%8d%e4%bd%9c.mp4" >点这里直接打开视频</a>，也可以用浏览器另存到本地再看。</p>
+<h3 id="72-它到底复用了什么">7.2 它到底复用了什么
+</h3><p>  一个 ROOM 圈住的是&quot;一路通道的全部器件&quot;。AD 复用的对象不只是位置，而是<strong>整组器件相对布局 + 朝向 + 位号注释格式 + Room 外形尺寸 + 网络连接</strong>。也就是说，第二路你只需要&quot;确认一下&quot;，不需要&quot;再排一遍&quot;。</p>
+<p><img src="/p/ad/ROOM%E6%93%8D%E4%BD%9C%E5%8F%AF%E4%BB%A5%E5%A4%8D%E7%94%A8%E5%85%83%E5%99%A8%E4%BB%B6%E7%BB%84%E5%90%88.png"
+	width="1014"
+	height="981"
+	srcset="/p/ad/ROOM%E6%93%8D%E4%BD%9C%E5%8F%AF%E4%BB%A5%E5%A4%8D%E7%94%A8%E5%85%83%E5%99%A8%E4%BB%B6%E7%BB%84%E5%90%88_hu6744474675445035797.png 480w, /p/ad/ROOM%E6%93%8D%E4%BD%9C%E5%8F%AF%E4%BB%A5%E5%A4%8D%E7%94%A8%E5%85%83%E5%99%A8%E4%BB%B6%E7%BB%84%E5%90%88_hu2726647527039054519.png 1024w"
+	loading="lazy"
+	
+		alt="一个 Room 内的元器件组合可以被整体复用"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="103"
+		data-flex-basis="248px"
+	
+></p>
+<h3 id="73-八步流程">7.3 八步流程
+</h3><h4 id="731-准备建-room-与批量编辑">7.3.1 准备：建 Room 与批量编辑
+</h4><p>  <strong>第一步：确认多通道结构。</strong> 原理图里通道通常以 <code>MIC-信号采集1[3B]</code>、<code>MIC-信号采集2[2D]</code> 这种带通道编号的 Room 名重复出现，PCB 侧对应 <code>ROOM1</code>、<code>ROOM2</code>。</p>
+<p>  <strong>第二步：给一路通道建 Room。</strong> 框选一路通道的全部器件 → <code>设计»Room(M)»从选择的器件产生矩形的Room(I)</code>。</p>
+<p><img src="/p/ad/ROOM0.png"
+	width="1410"
+	height="941"
+	srcset="/p/ad/ROOM0_hu13150358459415176019.png 480w, /p/ad/ROOM0_hu14759234408944448960.png 1024w"
+	loading="lazy"
+	
+		alt="设计 » Room 子菜单：从选择的器件产生矩形的 Room"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="149"
+		data-flex-basis="359px"
+	
+></p>
+<p>  执行后画面上出现带名字的 Room 框（<code>RoomDefinition</code>、<code>RoomDefinition_1</code>），框内是这一路的器件阵列。</p>
+<p><img src="/p/ad/ROOM1.png"
+	width="1643"
+	height="1287"
+	srcset="/p/ad/ROOM1_hu14402357983704320083.png 480w, /p/ad/ROOM1_hu18210582992039457962.png 1024w"
+	loading="lazy"
+	
+		alt="生成 Room 后，两个通道各有一个 Room 框"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="127"
+		data-flex-basis="306px"
+	
+></p>
+<p>  <strong>第三步：调出 <code>PCB List</code> 面板。</strong> 在面板停靠区右键，从长长的面板清单里选 <code>PCB List</code>——它是&quot;表格化的 PCB&quot;，能批量看、批量改属性。</p>
+<p><img src="/p/ad/ROOM2.png"
+	width="812"
+	height="905"
+	srcset="/p/ad/ROOM2_hu9949188782888538777.png 480w, /p/ad/ROOM2_hu19322943287440844.png 1024w"
+	loading="lazy"
+	
+		alt="面板清单里调出 PCB List"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="89"
+		data-flex-basis="215px"
+	
+></p>
+<p>  <strong>第四步：让表格可编辑。</strong> <code>PCB List</code> 默认只读，点一下 <code>Edit</code> 列头，出现勾选框后才允许直接改单元格。</p>
+<p><img src="/p/ad/ROOM3.png"
+	width="662"
+	height="384"
+	srcset="/p/ad/ROOM3_hu1491715721175513970.png 480w, /p/ad/ROOM3_hu18374659677253060605.png 1024w"
+	loading="lazy"
+	
+		alt="点 Edit 列头，PCB List 进入可编辑状态"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="172"
+		data-flex-basis="413px"
+	
+></p>
+<p>  同时把过滤范围设成 <code>selected objects</code>，保证后面的批量修改<strong>只作用于选中的这个 Room</strong>，不会误伤另一路。</p>
+<p><img src="/p/ad/ROOM4.png"
+	width="696"
+	height="464"
+	srcset="/p/ad/ROOM4_hu4505613191743764741.png 480w, /p/ad/ROOM4_hu13068928309238561435.png 1024w"
+	loading="lazy"
+	
+		alt="过滤范围选 selected objects，只作用于目标 Room"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="150"
+		data-flex-basis="360px"
+	
+></p>
+<p>  <strong>第五步：把视图&quot;瘦身&quot;。</strong> <code>View Configuration»Objects»仅显示</code>，只勾 <code>Component</code>，把走线、焊盘、文本全藏掉。这样 <code>PCB List</code> 里只剩器件行，排得下、看得清。</p>
+<p><img src="/p/ad/ROOM5.png"
+	width="798"
+	height="1149"
+	srcset="/p/ad/ROOM5_hu1435572364023005206.png 480w, /p/ad/ROOM5_hu8765860908673933831.png 1024w"
+	loading="lazy"
+	
+		alt="只显示 Component，PCB List 里只剩器件"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="69"
+		data-flex-basis="166px"
+	
+></p>
+<h4 id="732-对齐排序基准与通道号">7.3.2 对齐：排序、基准与通道号
+</h4><p>  <strong>第六步：按位号排序，建立对齐基准。</strong> 点 <code>Designator</code> 列头升序，两路通道的器件就按 C → D → Q 的顺序一一对位。</p>
+<p><img src="/p/ad/ROOM6-%E6%8E%92%E5%BA%8F%E5%85%83%E5%99%A8%E4%BB%B6.png"
+	width="612"
+	height="480"
+	srcset="/p/ad/ROOM6-%E6%8E%92%E5%BA%8F%E5%85%83%E5%99%A8%E4%BB%B6_hu15465481368186574706.png 480w, /p/ad/ROOM6-%E6%8E%92%E5%BA%8F%E5%85%83%E5%99%A8%E4%BB%B6_hu16893067537751341419.png 1024w"
+	loading="lazy"
+	
+		alt="按 Designator 排序，两路器件按位号对齐"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="127"
+		data-flex-basis="306px"
+	
+></p>
+<p>  排布时有个小技巧：<strong>把成组的电容排在最前面当&quot;参考尺&quot;</strong>。同封装、同数量、成片出现的电容，是两路之间最容易对齐的基准，基准对上了，其余器件的相对位置就有参照。</p>
+<p><img src="/p/ad/ROOM8-%E6%8E%92%E5%88%97%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%8A%8A%E7%94%B5%E5%AE%B9%E6%8E%92%E5%9C%A8%E5%89%8D%E9%9D%A2%E4%BD%9C%E4%B8%BA%E5%8F%82%E8%80%83.png"
+	width="2019"
+	height="596"
+	srcset="/p/ad/ROOM8-%E6%8E%92%E5%88%97%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%8A%8A%E7%94%B5%E5%AE%B9%E6%8E%92%E5%9C%A8%E5%89%8D%E9%9D%A2%E4%BD%9C%E4%B8%BA%E5%8F%82%E8%80%83_hu3063410135417556667.png 480w, /p/ad/ROOM8-%E6%8E%92%E5%88%97%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%8A%8A%E7%94%B5%E5%AE%B9%E6%8E%92%E5%9C%A8%E5%89%8D%E9%9D%A2%E4%BD%9C%E4%B8%BA%E5%8F%82%E8%80%83_hu11604121502693788721.png 1024w"
+	loading="lazy"
+	
+		alt="把成组电容排在最前，作为对齐的坐标参考"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="338"
+		data-flex-basis="813px"
+	
+></p>
+<p>  <strong>第七步：核对/复制 Channel Offset（通道号）。</strong> 这是全流程的命门，下一小节单独讲。</p>
+<p><img src="/p/ad/ROOM7-%E5%A4%8D%E5%88%B6%E9%80%9A%E9%81%93%E5%8F%B7.png"
+	width="1778"
+	height="948"
+	srcset="/p/ad/ROOM7-%E5%A4%8D%E5%88%B6%E9%80%9A%E9%81%93%E5%8F%B7_hu7561437579491389436.png 480w, /p/ad/ROOM7-%E5%A4%8D%E5%88%B6%E9%80%9A%E9%81%93%E5%8F%B7_hu7771575672029002720.png 1024w"
+	loading="lazy"
+	
+		alt="红框圈出的 Channel Offset 列，就是复用的匹配依据"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="187"
+		data-flex-basis="450px"
+	
+></p>
+<h4 id="733-复用拷贝-room-格式">7.3.3 复用：拷贝 Room 格式
+</h4><p>  <strong>第八步：执行拷贝。</strong> <code>设计»Room(M)»拷贝Room格式(C)</code>，先点<strong>源 Room</strong>，再点<strong>目标 Room</strong>。</p>
+<p><img src="/p/ad/ROOM10.png"
+	width="1296"
+	height="1284"
+	srcset="/p/ad/ROOM10_hu16528265930084838303.png 480w, /p/ad/ROOM10_hu5993875476067506173.png 1024w"
+	loading="lazy"
+	
+		alt="设计 » Room » 拷贝Room格式(C)"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="100"
+		data-flex-basis="242px"
+	
+></p>
+<p>  最后在 <code>确认通道格式复制</code> 对话框里定稿：</p>
+<ul>
+<li><code>源Room</code> / <code>目标Room</code> 确认无误；</li>
+<li>勾 <code>复制元器件布局</code>、<code>复制位号&amp;注释格式</code>、<code>复制布线的网络</code>、<code>复制Room尺寸/外形</code>、<code>Copy Room Orientation</code>；</li>
+<li><code>通道到通道元器件匹配</code> 选 <strong><code>Match Components By Channel Offsets</code></strong>；</li>
+<li><code>移除受影响的连接</code> 选 <code>Contained parts of connections only</code>；</li>
+<li><code>仅完全被包含的对象</code> 保持默认。</li>
+</ul>
+<p><img src="/p/ad/ROOM11-%E6%8B%B7%E8%B4%9DROOM.png"
+	width="1238"
+	height="1127"
+	srcset="/p/ad/ROOM11-%E6%8B%B7%E8%B4%9DROOM_hu12316859424224275392.png 480w, /p/ad/ROOM11-%E6%8B%B7%E8%B4%9DROOM_hu12959681200601672339.png 1024w"
+	loading="lazy"
+	
+		alt="确认通道格式复制对话框：勾选要复用的内容与匹配方式"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="109"
+		data-flex-basis="263px"
+	
+></p>
+<h3 id="74-channel-offset-才是真正的命门">7.4 Channel Offset 才是真正的&quot;命门&quot;
+</h3><p>  为什么 ROOM 拷贝有时&quot;搬错器件&quot;？因为 AD 靠 <mark>Channel Offset（通道号）</mark> 来判断&quot;源 Room 的 R1&quot;该对应&quot;目标 Room 的哪个电阻&quot;。通道号对不上，布局就会搬到错误的位置上，越看越像&quot;随机乱排&quot;。</p>
+<p>  所以流程里有一道验收：<mark>当两个 Room 的器件位号一一对应、Channel Offset 连续对齐时，才可以执行拷贝</mark>。</p>
+<p><img src="/p/ad/ROOM9-%E5%BD%93%E4%B8%A4%E4%B8%AAROOM%E5%85%83%E5%99%A8%E4%BB%B6%E4%BD%8D%E5%8F%B7%E4%B8%80%E6%A0%B7%E6%97%B6%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%89%A7%E8%A1%8C%E4%B8%8B%E4%B8%80%E6%AD%A5%E4%BA%86.png"
+	width="1251"
+	height="632"
+	srcset="/p/ad/ROOM9-%E5%BD%93%E4%B8%A4%E4%B8%AAROOM%E5%85%83%E5%99%A8%E4%BB%B6%E4%BD%8D%E5%8F%B7%E4%B8%80%E6%A0%B7%E6%97%B6%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%89%A7%E8%A1%8C%E4%B8%8B%E4%B8%80%E6%AD%A5%E4%BA%86_hu9764147780135067146.png 480w, /p/ad/ROOM9-%E5%BD%93%E4%B8%A4%E4%B8%AAROOM%E5%85%83%E5%99%A8%E4%BB%B6%E4%BD%8D%E5%8F%B7%E4%B8%80%E6%A0%B7%E6%97%B6%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%89%A7%E8%A1%8C%E4%B8%8B%E4%B8%80%E6%AD%A5%E4%BA%86_hu15337257697139864943.png 1024w"
+	loading="lazy"
+	
+		alt="两个 Room 的位号一一对应，才说明配对成功，可以进下一步"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="197"
+		data-flex-basis="475px"
+	
+></p>
+<p>  这一步的实操就是在 <code>PCB List</code> 里盯住 <code>Channel Offset</code> 列，把源 Room 每个器件的通道号按功能复制到目标 Room 的对应行。看着枯燥，但它是&quot;一劳永逸&quot;与&quot;返工一晚上&quot;的分界线。</p>
+<h3 id="75-room-菜单一览">7.5 ROOM 菜单一览
+</h3><div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>命令</th>
+<th>用途</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>放置矩形Room(R)</code> / <code>放置多边形Room(M)</code></td>
+<td>手动画一个 Room 框</td>
+</tr>
+<tr>
+<td><code>包围器件的矩形Room(W)</code></td>
+<td>按选中器件自动套框</td>
+</tr>
+<tr>
+<td><code>从选择的器件产生矩形的Room(I)</code></td>
+<td><strong>最常用</strong>：选中器件直接生成 Room</td>
+</tr>
+<tr>
+<td><code>拷贝Room格式(C)</code></td>
+<td><strong>核心</strong>：把源 Room 的布局整体搬到目标 Room</td>
+</tr>
+<tr>
+<td><code>排列Room(A)</code> / <code>移动Room到栅格上(D)</code></td>
+<td>整理多个 Room 的位置</td>
+</tr>
+<tr>
+<td><code>切割Room(S)</code></td>
+<td>从大 Room 里切出一块</td>
+</tr>
+</tbody>
+</table></div>
+<p><a id="ch08"></a></p>
+<h2 id="八层叠板框与负片">八、层叠、板框与负片
+</h2><p>  进入 PCB 的第一件事不是布线，是&quot;把地基定下来&quot;：板子几层、每层干什么、外形多大。</p>
+<h3 id="81-先记层分工口诀">8.1 先记层分工口诀
+</h3><p>  AD 的层名又多又像，但日常真正要手动画的只有三类，其余都自动生成：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>要画的东西</th>
+<th>放哪一层</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>板框、外形</td>
+<td><strong>Mechanical 1</strong></td>
+</tr>
+<tr>
+<td>尺寸标注、装配说明</td>
+<td>Mechanical 2（或更高机械层）</td>
+</tr>
+<tr>
+<td>位号、器件轮廓、标记（板上看得见的白字）</td>
+<td><strong>Top / Bottom Overlay</strong>（丝印）</td>
+</tr>
+<tr>
+<td>通孔焊盘、过孔</td>
+<td><strong>Multi-Layer</strong></td>
+</tr>
+<tr>
+<td>钢网锡膏 / 绿油开窗</td>
+<td>Top/Bottom Paste、Top/Bottom Solder（封装自动生成）</td>
+</tr>
+<tr>
+<td>钻孔</td>
+<td>Drill Guide / Drill Drawing（自动产生）</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="/p/ad/%E5%A4%9A%E5%B1%82%E4%BB%8B%E7%BB%8D.png"
+	width="677"
+	height="1193"
+	srcset="/p/ad/%E5%A4%9A%E5%B1%82%E4%BB%8B%E7%BB%8D_hu11212693749080452.png 480w, /p/ad/%E5%A4%9A%E5%B1%82%E4%BB%8B%E7%BB%8D_hu7916469049213183342.png 1024w"
+	loading="lazy"
+	
+		alt="各层分工与&#34;快速挑选口诀&#34;"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="56"
+		data-flex-basis="136px"
+	
+></p>
+<p>  口诀：<strong>写字画轮廓走 Overlay，画板框标尺寸走 Mechanical 1，通孔走过孔走 Multi-Layer，锡膏阻焊钻孔都交给封装自动生成。</strong></p>
+<h3 id="82-层叠管理器d-k">8.2 层叠管理器：<code>D K</code>
+</h3><p>  <code>设计»层叠管理器(K)…</code>，快捷键 <code>D</code> <code>K</code>，是&quot;板子几层、多厚、什么材料&quot;的总控台。</p>
+<p><img src="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEDK%E8%AE%BE%E8%AE%A1%E5%8F%A0%E5%B1%82.png"
+	width="957"
+	height="638"
+	srcset="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEDK%E8%AE%BE%E8%AE%A1%E5%8F%A0%E5%B1%82_hu17000461824328519776.png 480w, /p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEDK%E8%AE%BE%E8%AE%A1%E5%8F%A0%E5%B1%82_hu3530110173691030543.png 1024w"
+	loading="lazy"
+	
+		alt="设计 » 层叠管理器(K)：D K 打开叠层总控"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="150"
+		data-flex-basis="360px"
+	
+></p>
+<p>  表头是 <code>#</code> / <code>Name</code> / <code>Material</code> / <code>Type</code> / <code>Weight</code>（铜厚 oz）/ <code>Thickness</code> / <code>Dk</code>（介电常数）。四层板的典型结构：</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Top Overlay → Top Solder(0.4mil) → Top Layer(1oz, 1.4mil)
+</span></span><span class="line"><span class="cl">→ Dielectric(12.6mil, Dk≈4.8) → Bottom Layer(1.4mil)
+</span></span><span class="line"><span class="cl">→ Bottom Solder(0.4mil) → Bottom Overlay
+</span></span></code></pre></td></tr></table>
+</div>
+</div><p>  加层很方便：在表内右键 → <code>Insert layer above</code> / <code>Insert layer below</code>，然后在类型子菜单里选 <code>Signal</code> / <code>Plane</code> / <code>Core</code> / <code>Prepreg</code>。介质层选 <code>Core</code> 或 <code>Prepreg</code> 并填 <code>Dk</code>，铜层填 <code>1oz</code>。</p>
+<p><img src="/p/ad/%E5%8F%A0%E5%B1%82%E7%AE%A1%E7%90%86%E5%99%A8---%E6%B7%BB%E5%8A%A0%E5%8F%A0%E5%B1%82.png"
+	width="944"
+	height="611"
+	srcset="/p/ad/%E5%8F%A0%E5%B1%82%E7%AE%A1%E7%90%86%E5%99%A8---%E6%B7%BB%E5%8A%A0%E5%8F%A0%E5%B1%82_hu15528134473914910648.png 480w, /p/ad/%E5%8F%A0%E5%B1%82%E7%AE%A1%E7%90%86%E5%99%A8---%E6%B7%BB%E5%8A%A0%E5%8F%A0%E5%B1%82_hu9652833149054609960.png 1024w"
+	loading="lazy"
+	
+		alt="右键 Insert layer below 新增层，并选择 Signal / Plane / Core / Prepreg 类型"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="154"
+		data-flex-basis="370px"
+	
+></p>
+<p>  叠层改完，<code>L</code> 打开 <code>View Configuration</code> 的 <code>Layers &amp; Colors</code> 页，就能看到所有层的显示开关与颜色。</p>
+<p><img src="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEL%20%E5%8F%AF%E4%BB%A5%E5%AF%B9%E5%B1%82%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C.png"
+	width="1976"
+	height="1094"
+	srcset="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEL%20%E5%8F%AF%E4%BB%A5%E5%AF%B9%E5%B1%82%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C_hu15358325665873747677.png 480w, /p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEL%20%E5%8F%AF%E4%BB%A5%E5%AF%B9%E5%B1%82%E8%BF%9B%E8%A1%8C%E6%93%8D%E4%BD%9C_hu5403011859930362042.png 1024w"
+	loading="lazy"
+	
+		alt="L 打开 Layers & Colors：逐层勾选显示、查看颜色"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="180"
+		data-flex-basis="433px"
+	
+></p>
+<p>  配色不满意？<strong>双击底部层标签的颜色块</strong>，弹出&quot;选择颜色&quot;对话框，按需改。给 Mechanical 3 单独配个绿，装配线一眼就能找到。</p>
+<p><img src="/p/ad/%E5%8F%8C%E5%87%BB%E7%82%B9%E5%B1%82%E9%A2%9C%E8%89%B2%E5%8F%AF%E4%BB%A5%E7%BB%99%E5%B1%82%E6%8D%A2%E9%A2%9C%E8%89%B2.png"
+	width="1367"
+	height="1263"
+	srcset="/p/ad/%E5%8F%8C%E5%87%BB%E7%82%B9%E5%B1%82%E9%A2%9C%E8%89%B2%E5%8F%AF%E4%BB%A5%E7%BB%99%E5%B1%82%E6%8D%A2%E9%A2%9C%E8%89%B2_hu1657957502151829867.png 480w, /p/ad/%E5%8F%8C%E5%87%BB%E7%82%B9%E5%B1%82%E9%A2%9C%E8%89%B2%E5%8F%AF%E4%BB%A5%E7%BB%99%E5%B1%82%E6%8D%A2%E9%A2%9C%E8%89%B2_hu4353459734334322961.png 1024w"
+	loading="lazy"
+	
+		alt="双击层标签色块，可给该层单独换颜色"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="108"
+		data-flex-basis="259px"
+	
+></p>
+<h3 id="83-正片与负片ad-里最容易搞混的一对概念">8.3 正片与负片：AD 里最容易搞混的一对概念
+</h3><p>  在叠层表里插入层时，<code>Signal</code> 和 <code>Plane</code> 这两个类型决定了这一层的&quot;成像逻辑&quot;：</p>
+<ul>
+<li><strong><code>Signal</code> = 正片</strong>：画什么就有什么铜，走线和铺铜的地方保留铜。</li>
+<li><strong><code>Plane</code> = 负片（内电层）</strong>：默认整层满铜，<strong>画线等于挖掉铜</strong>（做隔离）。</li>
+</ul>
+<p><img src="/p/ad/Signal%E4%B8%BA%E6%AD%A3%E7%89%87%EF%BC%8CPlane%E4%B8%BA%E8%B4%9F%E7%89%87.png"
+	width="642"
+	height="474"
+	srcset="/p/ad/Signal%E4%B8%BA%E6%AD%A3%E7%89%87%EF%BC%8CPlane%E4%B8%BA%E8%B4%9F%E7%89%87_hu3485061991318904952.png 480w, /p/ad/Signal%E4%B8%BA%E6%AD%A3%E7%89%87%EF%BC%8CPlane%E4%B8%BA%E8%B4%9F%E7%89%87_hu7800549092111583655.png 1024w"
+	loading="lazy"
+	
+		alt="右键插入层时，Signal 是正片，Plane 是负片"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="135"
+		data-flex-basis="325px"
+	
+></p>
+<p>  把两者的差别列清楚：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>对比项</th>
+<th>正片层 Signal</th>
+<th>负片层 Plane（内电层）</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>本质</td>
+<td>画什么有什么铜</td>
+<td>默认满铜，画图形＝挖铜</td>
+</tr>
+<tr>
+<td>能否走线</td>
+<td>可以（Top/Bottom 都是正片）</td>
+<td>一般不走线，只做电源/地平面</td>
+</tr>
+<tr>
+<td>大面积铜</td>
+<td>需要 <code>Polygon Pour</code> 铺铜才生成</td>
+<td>天生整片铜</td>
+</tr>
+<tr>
+<td>连接方式</td>
+<td>由 <code>Polygon Connect Style</code> 控制</td>
+<td>由 <code>Power Plane Connect Style</code> / <code>Power Plane Clearance</code> 控制</td>
+</tr>
+<tr>
+<td>典型用途</td>
+<td>顶层/底层信号层</td>
+<td>多层板内层 GND / POWER</td>
+</tr>
+<tr>
+<td>Gerber</td>
+<td>输出<strong>有铜</strong>区域</td>
+<td>输出<strong>无铜</strong>区域</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="/p/ad/%E5%8F%A0%E5%B1%82%E8%AE%BE%E8%AE%A1-%E6%AD%A3%E7%89%87%E5%B1%82%EF%BC%8C%E8%B4%9F%E7%89%87%E5%B1%82.png"
+	width="1322"
+	height="870"
+	srcset="/p/ad/%E5%8F%A0%E5%B1%82%E8%AE%BE%E8%AE%A1-%E6%AD%A3%E7%89%87%E5%B1%82%EF%BC%8C%E8%B4%9F%E7%89%87%E5%B1%82_hu12125998617527652016.png 480w, /p/ad/%E5%8F%A0%E5%B1%82%E8%AE%BE%E8%AE%A1-%E6%AD%A3%E7%89%87%E5%B1%82%EF%BC%8C%E8%B4%9F%E7%89%87%E5%B1%82_hu16433861288212122650.png 1024w"
+	loading="lazy"
+	
+		alt="正片层与负片层的对比表"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="151"
+		data-flex-basis="364px"
+	
+></p>
+<p>  一句话记住：<mark>正片&quot;画线才有铜&quot;，负片&quot;画线就挖铜&quot;</mark>。四层板最经典的配置就是 <code>Top</code>/<code>Bottom</code> 用正片走信号、中间两层用负片做 <code>GND02</code> / <code>PWR03</code>。</p>
+<h3 id="84-板框画在-mechanical-1">8.4 板框：画在 Mechanical 1
+</h3><p>  板框画错层是新手常见事故。标准做法只有一个：<strong>画在 Mechanical 1</strong>。板厂就是拿这一层的外形线去铣边、开料的。</p>
+<p><img src="/p/ad/%E6%9D%BF%E6%A1%86%E6%89%80%E5%B1%9E%E5%B1%82.png"
+	width="1158"
+	height="398"
+	srcset="/p/ad/%E6%9D%BF%E6%A1%86%E6%89%80%E5%B1%9E%E5%B1%82_hu13462797538407321886.png 480w, /p/ad/%E6%9D%BF%E6%A1%86%E6%89%80%E5%B1%9E%E5%B1%82_hu3590639661587162887.png 1024w"
+	loading="lazy"
+	
+		alt="板框应画在 Mechanical 1，丝印层不能做板框"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="290"
+		data-flex-basis="698px"
+	
+></p>
+<p>  画完闭合线条后，框选它，执行 <code>设计»板子形状(S)»按照选择对象定义(D)</code>（<code>D</code> <code>S</code> <code>D</code>），线条就变成了真正的 Board Shape——之后铺铜、3D 渲染、导出 STEP 都依赖它。</p>
+<p><img src="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEDSD%E7%A1%AE%E5%AE%9A%E6%9D%BF%E6%A1%86%E5%BD%A2%E7%8A%B6.png"
+	width="1970"
+	height="891"
+	srcset="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEDSD%E7%A1%AE%E5%AE%9A%E6%9D%BF%E6%A1%86%E5%BD%A2%E7%8A%B6_hu3593120319101417103.png 480w, /p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEDSD%E7%A1%AE%E5%AE%9A%E6%9D%BF%E6%A1%86%E5%BD%A2%E7%8A%B6_hu13909620471668164867.png 1024w"
+	loading="lazy"
+	
+		alt="D S D：用选中的闭合线条定义板子形状"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="221"
+		data-flex-basis="530px"
+	
+></p>
+<p>  反过来也支持：<code>板子形状»根据板子外形生成线条(P)</code> 把已有板形反向画成线条，方便修改后重新定义；板内开槽用 <code>板子形状»定义板切割(C)</code>，或画好形状后用 <code>T</code> <code>V</code> <code>B</code> 转成切割槽。</p>
+<h3 id="85-dxf-导入结构工程师给的外形">8.5 DXF 导入：结构工程师给的外形
+</h3><p>  外壳是结构画的，板框从 DXF/DWG 导入。入口：<code>文件»导入»DXF/DWG</code>，弹出 <code>Import from AutoCAD</code>。这个对话框有四个必看项：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>选项</th>
+<th>取值</th>
+<th>原因</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Scale</code></td>
+<td><strong>mm</strong></td>
+<td>图纸单位是 mm，选错整体缩放；右侧红字尺寸要和图纸标注对得上</td>
+</tr>
+<tr>
+<td><code>Drawing Space</code></td>
+<td><code>Model</code></td>
+<td>取模型空间，不是图框</td>
+</tr>
+<tr>
+<td><code>Blocks</code></td>
+<td><code>Import as primitives</code></td>
+<td>导成图元，便于后续编辑/转板框</td>
+</tr>
+<tr>
+<td><code>Layer Mappings</code></td>
+<td>统一映射到<strong>同一机械层</strong></td>
+<td>同一张图的线必须在同一层，否则选不中、转不了板框</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="/p/ad/%E5%AF%BC%E5%85%A5DXF%E5%BA%94%E8%AF%A5%E9%80%89mm.png"
+	width="1127"
+	height="1029"
+	srcset="/p/ad/%E5%AF%BC%E5%85%A5DXF%E5%BA%94%E8%AF%A5%E9%80%89mm_hu15996276162017672651.png 480w, /p/ad/%E5%AF%BC%E5%85%A5DXF%E5%BA%94%E8%AF%A5%E9%80%89mm_hu7075858703776598929.png 1024w"
+	loading="lazy"
+	
+		alt="Import from AutoCAD：Scale 必须选 mm，并核对右侧尺寸"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="109"
+		data-flex-basis="262px"
+	
+></p>
+<p>  最容易踩的一脚在 <code>Layer Mappings</code>：源 DXF 的层名（TOPLAYER、MECHANICAL1、BOTTOMSOLDER…）要统一映射到某<strong>一个</strong>机械层（Mechanical 2/3/10 都行），<strong>但不要占用 Mechanical 1</strong>——那一层要留给板框。</p>
+<p><img src="/p/ad/%E5%AF%BC%E5%85%A5DXF%E6%96%87%E4%BB%B6%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E4%B8%80%E8%88%AC%E6%8A%8A%E5%9B%BE%E4%B8%ADPCB%20Layer%E9%80%89%E6%8B%A9%E5%9C%A8%E6%9C%BA%E6%A2%B02%E5%B1%82%E6%88%963%E5%B1%82%E7%AD%89%EF%BC%8C%E5%8F%AA%E8%A6%81%E4%BF%9D%E8%AF%81%E5%9C%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E5%B1%82%E5%B0%B1%E5%A5%BD%E3%80%82%E4%BD%86%E6%98%AF%E4%B8%80%E8%88%AC%E4%B8%8D%E6%94%BE%E5%9C%A8%E6%9C%BA%E6%A2%B0%E4%B8%80%E5%B1%82%EF%BC%8C%E5%9B%A0%E4%B8%BA%E6%9C%BA%E6%A2%B0%E4%B8%80%E5%B1%82%E6%98%AF%E5%87%86%E5%A4%87%E6%94%BE%E7%BD%AE%E6%9D%BF%E6%A1%86%E7%9A%84.png"
+	width="1581"
+	height="1386"
+	srcset="/p/ad/%E5%AF%BC%E5%85%A5DXF%E6%96%87%E4%BB%B6%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E4%B8%80%E8%88%AC%E6%8A%8A%E5%9B%BE%E4%B8%ADPCB%20Layer%E9%80%89%E6%8B%A9%E5%9C%A8%E6%9C%BA%E6%A2%B02%E5%B1%82%E6%88%963%E5%B1%82%E7%AD%89%EF%BC%8C%E5%8F%AA%E8%A6%81%E4%BF%9D%E8%AF%81%E5%9C%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E5%B1%82%E5%B0%B1%E5%A5%BD%E3%80%82%E4%BD%86%E6%98%AF%E4%B8%80%E8%88%AC%E4%B8%8D%E6%94%BE%E5%9C%A8%E6%9C%BA%E6%A2%B0%E4%B8%80%E5%B1%82%EF%BC%8C%E5%9B%A0%E4%B8%BA%E6%9C%BA%E6%A2%B0%E4%B8%80%E5%B1%82%E6%98%AF%E5%87%86%E5%A4%87%E6%94%BE%E7%BD%AE%E6%9D%BF%E6%A1%86%E7%9A%84_hu10697325594026435056.png 480w, /p/ad/%E5%AF%BC%E5%85%A5DXF%E6%96%87%E4%BB%B6%E7%9A%84%E6%97%B6%E5%80%99%EF%BC%8C%E4%B8%80%E8%88%AC%E6%8A%8A%E5%9B%BE%E4%B8%ADPCB%20Layer%E9%80%89%E6%8B%A9%E5%9C%A8%E6%9C%BA%E6%A2%B02%E5%B1%82%E6%88%963%E5%B1%82%E7%AD%89%EF%BC%8C%E5%8F%AA%E8%A6%81%E4%BF%9D%E8%AF%81%E5%9C%A8%E5%90%8C%E4%B8%80%E4%B8%AA%E5%B1%82%E5%B0%B1%E5%A5%BD%E3%80%82%E4%BD%86%E6%98%AF%E4%B8%80%E8%88%AC%E4%B8%8D%E6%94%BE%E5%9C%A8%E6%9C%BA%E6%A2%B0%E4%B8%80%E5%B1%82%EF%BC%8C%E5%9B%A0%E4%B8%BA%E6%9C%BA%E6%A2%B0%E4%B8%80%E5%B1%82%E6%98%AF%E5%87%86%E5%A4%87%E6%94%BE%E7%BD%AE%E6%9D%BF%E6%A1%86%E7%9A%84_hu5783893667339273800.png 1024w"
+	loading="lazy"
+	
+		alt="Layer Mappings 统一映射到同一机械层，避开 Mechanical 1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="114"
+		data-flex-basis="273px"
+	
+></p>
+<p>  映射配好可以 <code>Save Settings</code> 存起来，下次同类型结构图直接 <code>Load Settings</code>，省掉一遍配置。</p>
+<p><a id="ch09"></a></p>
+<h2 id="九设计规则与-drc">九、设计规则与 DRC
+</h2><p>  规则是 PCB 的&quot;法律&quot;。前期不立规矩，后期 DRC 会一次性把你打回原形。</p>
+<h3 id="91-规则的入口与骨架">9.1 规则的入口与骨架
+</h3><p>  <code>设计»规则(R)…</code>（<code>D</code> <code>R</code>）打开 <strong>PCB 规则及约束编辑器</strong>。左边是一棵树，按 <code>Electrical</code> / <code>Routing</code> / <code>SMT</code> / <code>Mask</code> / <code>Plane</code> / <code>Testpoint</code> / <code>Manufacturing</code> / <code>High Speed</code> / <code>Placement</code> / <code>Signal Integrity</code> 分类；右边是具体规则，每条规则有两个作用域 <code>Where The First Object Matches</code> / <code>Where The Second Object Matches</code>。</p>
+<p>  常规板子其实只用得上六类：<strong>间距、线宽、过孔、阻焊、铺铜、差分</strong>。其余是高速与特殊工艺场景再补。</p>
+<p><img src="/p/ad/%E5%B8%B8%E8%A7%81%E8%A7%84%E5%88%99.png"
+	width="1970"
+	height="921"
+	srcset="/p/ad/%E5%B8%B8%E8%A7%81%E8%A7%84%E5%88%99_hu9647637074646762028.png 480w, /p/ad/%E5%B8%B8%E8%A7%81%E8%A7%84%E5%88%99_hu11897066566013881631.png 1024w"
+	loading="lazy"
+	
+		alt="常用规则一览：间距 / 线宽 / 过孔 / 阻焊 / 铺铜 / 差分"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="213"
+		data-flex-basis="513px"
+	
+></p>
+<p>  这六类对应的&quot;数字配方&quot;，我整理成一张表（单位全部是 <strong>mil</strong>，1mil ≈ 0.0254mm）：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>项目</th>
+<th>建议值</th>
+<th>说明</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>安全间距 Clearance</td>
+<td>6mil</td>
+<td>走线/焊盘/过孔交叉全 6</td>
+</tr>
+<tr>
+<td>铜皮与走线间距</td>
+<td>10mil</td>
+<td>Clearance 矩阵里 Copper 行/列单独设 10</td>
+</tr>
+<tr>
+<td>铺铜到板框</td>
+<td>20mil</td>
+<td>Board Outline Clearance 统一 20</td>
+</tr>
+<tr>
+<td>过孔</td>
+<td>孔径 12 / 外径 24</td>
+<td>min = max = preferred</td>
+</tr>
+<tr>
+<td>阻焊外扩</td>
+<td>2.5mil</td>
+<td>阻焊桥要求 4mil</td>
+</tr>
+<tr>
+<td>负片反焊盘</td>
+<td>6mil</td>
+<td>常用 5~9mil</td>
+</tr>
+<tr>
+<td>差分对（USB 90Ω）</td>
+<td>宽 5 / 距 9</td>
+<td>最大未耦合长度 500mil</td>
+</tr>
+<tr>
+<td>丝印到阻焊/焊盘</td>
+<td>2mil</td>
+<td>Silk To Solder Mask Clearance</td>
+</tr>
+<tr>
+<td>丝印到丝印</td>
+<td>2mil</td>
+<td>Silk To Silk Clearance</td>
+</tr>
+</tbody>
+</table></div>
+<p>  这些数值全以 <strong>mil</strong> 为单位。规则对话框的标题栏会标注当前单位（<code>[mil]</code> 或 <code>[mm]</code>），改单位按 <code>Ctrl+Q</code>——注意在多处界面里 <code>Q</code> 是无效的，只能用 <code>Ctrl+Q</code>。换算记住两个数：<strong>1mil ≈ 0.0254mm，0.254mm = 10mil</strong>。</p>
+<p><img src="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AECtrl&#43;Q%E5%8F%AF%E4%BB%A5%E5%9C%A8%E5%88%87%E6%8D%A2%E5%8D%95%E4%BD%8D%EF%BC%88%E5%BF%AB%E6%8D%B7%E9%94%AEQ%E4%B9%9F%E5%8F%AF%E4%BB%A5%EF%BC%8C%E5%8F%AA%E4%B8%8D%E8%BF%87%E6%9C%89%E7%9A%84%E5%9C%BA%E6%99%AF%E5%8F%AA%E8%83%BD%E4%BD%BF%E7%94%A8Ctrl&#43;Q%E5%88%87%E6%8D%A2%EF%BC%89.png"
+	width="1457"
+	height="1022"
+	srcset="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AECtrl&#43;Q%E5%8F%AF%E4%BB%A5%E5%9C%A8%E5%88%87%E6%8D%A2%E5%8D%95%E4%BD%8D%EF%BC%88%E5%BF%AB%E6%8D%B7%E9%94%AEQ%E4%B9%9F%E5%8F%AF%E4%BB%A5%EF%BC%8C%E5%8F%AA%E4%B8%8D%E8%BF%87%E6%9C%89%E7%9A%84%E5%9C%BA%E6%99%AF%E5%8F%AA%E8%83%BD%E4%BD%BF%E7%94%A8Ctrl&#43;Q%E5%88%87%E6%8D%A2%EF%BC%89_hu11951085829975490269.png 480w, /p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AECtrl&#43;Q%E5%8F%AF%E4%BB%A5%E5%9C%A8%E5%88%87%E6%8D%A2%E5%8D%95%E4%BD%8D%EF%BC%88%E5%BF%AB%E6%8D%B7%E9%94%AEQ%E4%B9%9F%E5%8F%AF%E4%BB%A5%EF%BC%8C%E5%8F%AA%E4%B8%8D%E8%BF%87%E6%9C%89%E7%9A%84%E5%9C%BA%E6%99%AF%E5%8F%AA%E8%83%BD%E4%BD%BF%E7%94%A8Ctrl&#43;Q%E5%88%87%E6%8D%A2%EF%BC%89_hu12667803100456946573.png 1024w"
+	loading="lazy"
+	
+		alt="规则对话框标题显示单位 mm，按 Ctrl&#43;Q 可切回 mil"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="142"
+		data-flex-basis="342px"
+	
+></p>
+<h3 id="92-十二条规则按类型分组">9.2 十二条规则，按类型分组
+</h3><p>  素材里那 12 张&quot;规则设置建议&quot;，如果按 1~12 的顺序看会很乱（Electrical → Routing → Mask → Plane → Manufacturing 来回跳）。我按规则类型重新组织，一条条过。</p>
+<h4 id="921-electrical先保证该连的都连上">9.2.1 Electrical：先保证&quot;该连的都连上&quot;
+</h4><p>  <code>Un-Routed Net</code>（未布线网络）规则是性价比最高的一条：勾上&quot;检查不完整连接&quot;，AD 会把所有&quot;该连但没连&quot;的网络标出来，比肉眼找断线可靠一百倍。</p>
+<p><img src="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE1.png"
+	width="1338"
+	height="1160"
+	srcset="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE1_hu17940898572212259561.png 480w, /p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE1_hu3968500933599359680.png 1024w"
+	loading="lazy"
+	
+		alt="Electrical » Un-Routed Net：自动标出未布通的网络"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="115"
+		data-flex-basis="276px"
+	
+></p>
+<p>  <code>Clearance</code>（安全间距）是核心。它分&quot;简单/高级&quot;两种填法，高级模式是一张<strong>对象类型交叉矩阵</strong>：Track × SMD Pad × TH Pad × Via × Copper × Text × Hole。图中做法是其他全 6mil，<strong>只把 Copper 行/列单独提到 15mil</strong>——这就是&quot;铜皮的间距可以更宽松&quot;的落地方式。</p>
+<p><img src="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE2.png"
+	width="1340"
+	height="1164"
+	srcset="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE2_hu1452812839113983266.png 480w, /p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE2_hu3569763119468956304.png 1024w"
+	loading="lazy"
+	
+		alt="Clearance 矩阵：普通对象 6mil，Copper 单独放大"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="115"
+		data-flex-basis="276px"
+	
+></p>
+<p>  &ldquo;铜皮与走线统一 10mil&quot;就是同一张表里把 Copper 行/列改成 10，其余保持 6。<strong>用矩阵而不是另建一堆规则</strong>，维护起来清爽得多。</p>
+<p><img src="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE10---%E9%93%9C%E7%9A%AE%E8%B5%B0%E7%BA%BF%E9%97%B4%E8%B7%9D%E7%BB%9F%E4%B8%80%E8%AE%BE%E7%BD%AE10mile%E9%97%B4%E8%B7%9D.png"
+	width="1499"
+	height="1131"
+	srcset="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE10---%E9%93%9C%E7%9A%AE%E8%B5%B0%E7%BA%BF%E9%97%B4%E8%B7%9D%E7%BB%9F%E4%B8%80%E8%AE%BE%E7%BD%AE10mile%E9%97%B4%E8%B7%9D_hu5619446800676873773.png 480w, /p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE10---%E9%93%9C%E7%9A%AE%E8%B5%B0%E7%BA%BF%E9%97%B4%E8%B7%9D%E7%BB%9F%E4%B8%80%E8%AE%BE%E7%BD%AE10mile%E9%97%B4%E8%B7%9D_hu7177449845658699578.png 1024w"
+	loading="lazy"
+	
+		alt="把 Copper 行/列改成 10mil，一刀切解决铜皮间距"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="132"
+		data-flex-basis="318px"
+	
+></p>
+<p>  板边间距单独有一条 <code>Board Outline Clearance</code>：它管&quot;对象到板框外缘 / 开槽边缘 / 分割屏障&quot;的距离，建议 <strong>20mil</strong>。铺铜离板边太近，铣边时容易露铜、毛刺。</p>
+<p><img src="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE9-%E9%93%BA%E9%93%9C%E4%B8%8E%E6%9D%BF%E6%A1%86%E5%BB%BA%E8%AE%AE%E4%BF%9D%E6%8C%8120mile%E9%97%B4%E8%B7%9D.png"
+	width="1499"
+	height="977"
+	srcset="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE9-%E9%93%BA%E9%93%9C%E4%B8%8E%E6%9D%BF%E6%A1%86%E5%BB%BA%E8%AE%AE%E4%BF%9D%E6%8C%8120mile%E9%97%B4%E8%B7%9D_hu2847185590686063891.png 480w, /p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE9-%E9%93%BA%E9%93%9C%E4%B8%8E%E6%9D%BF%E6%A1%86%E5%BB%BA%E8%AE%AE%E4%BF%9D%E6%8C%8120mile%E9%97%B4%E8%B7%9D_hu13803663373855876144.png 1024w"
+	loading="lazy"
+	
+		alt="Manufacturing » Board Outline Clearance：铺铜/走线到板框保持 20mil"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="153"
+		data-flex-basis="368px"
+	
+></p>
+<h4 id="922-routing线宽与过孔">9.2.2 Routing：线宽与过孔
+</h4><p>  <code>Routing Via Style</code> 控制过孔的外径与孔径，用&quot;最小 / 最大 / 优先&quot;三组值。图上是最保守也最省事的填法：<strong>外径 24mil、孔径 12mil，三组全部一致</strong>——没有&quot;优先值&quot;的弹性空间，成本与钻孔就固定下来，不会出现一堆奇怪的孔径。</p>
+<p><img src="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE3-%E8%BF%87%E5%AD%94.png"
+	width="1340"
+	height="1164"
+	srcset="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE3-%E8%BF%87%E5%AD%94_hu7614631143711589276.png 480w, /p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE3-%E8%BF%87%E5%AD%94_hu7774635170097317253.png 1024w"
+	loading="lazy"
+	
+		alt="Routing » Routing Via Style：24/12mil 的标准过孔"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="115"
+		data-flex-basis="276px"
+	
+></p>
+<p>  线宽规则可以按 <code>Net Class</code> 作用域批量设。做法：在 <code>Width</code> 上右键 <code>新规则…</code>（或 <code>重复的规则</code>），把 <code>Where The Object Matches</code> 改成 <code>Net Class</code>，选中 <code>Analog Signal</code> / <code>PWR</code> 之类，再填宽度。</p>
+<p><img src="/p/ad/%E7%BD%91%E7%BB%9C%E7%BB%84%E7%9A%84%E8%B5%B0%E7%BA%BF%E7%BA%BF%E5%AE%BD%E8%A7%84%E5%88%99.png"
+	width="2148"
+	height="828"
+	srcset="/p/ad/%E7%BD%91%E7%BB%9C%E7%BB%84%E7%9A%84%E8%B5%B0%E7%BA%BF%E7%BA%BF%E5%AE%BD%E8%A7%84%E5%88%99_hu15632477133507906064.png 480w, /p/ad/%E7%BD%91%E7%BB%9C%E7%BB%84%E7%9A%84%E8%B5%B0%E7%BA%BF%E7%BA%BF%E5%AE%BD%E8%A7%84%E5%88%99_hu14563653776320313977.png 1024w"
+	loading="lazy"
+	
+		alt="按 Net Class 建线宽规则：作用域选 Net Class，填宽度"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="259"
+		data-flex-basis="622px"
+	
+></p>
+<p>  差分对另有一条 <code>Differential Pairs Routing</code>：作用域选差分对类，宽度/间距成对填（USB 90Ω 场景下是宽 5mil、距 9mil），再给一个&quot;最大未耦合长度&quot;限制（500mil）。</p>
+<p><img src="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE8-%E5%B7%AE%E5%88%86%E5%AF%B9%E8%A7%84%E5%88%99%EF%BC%88USB90%E6%AC%A7%E5%A7%86%E9%98%BB%E6%8A%97%EF%BC%89.png"
+	width="1499"
+	height="977"
+	srcset="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE8-%E5%B7%AE%E5%88%86%E5%AF%B9%E8%A7%84%E5%88%99%EF%BC%88USB90%E6%AC%A7%E5%A7%86%E9%98%BB%E6%8A%97%EF%BC%89_hu15496261441065975395.png 480w, /p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE8-%E5%B7%AE%E5%88%86%E5%AF%B9%E8%A7%84%E5%88%99%EF%BC%88USB90%E6%AC%A7%E5%A7%86%E9%98%BB%E6%8A%97%EF%BC%89_hu3723851098655616348.png 1024w"
+	loading="lazy"
+	
+		alt="High Speed » Differential Pairs Routing：5/9mil 与最大未耦合长度"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="153"
+		data-flex-basis="368px"
+	
+></p>
+<h4 id="923-mask阻焊与过孔盖油">9.2.3 Mask：阻焊与过孔盖油
+</h4><p>  <code>Solder Mask Expansion</code> 控制阻焊开窗比焊盘大多少。图上顶层/底层各 2.5mil，两层可以&quot;链&quot;起来同值。要注意板厂的<strong>阻焊桥最小宽度</strong>（通常要求 4mil 级别），外扩太大反而会把相邻焊盘的阻焊桥吃掉。</p>
+<p><img src="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE4-%E9%98%BB%E7%84%8A%E8%A7%84%E6%A0%BC.png"
+	width="1340"
+	height="1164"
+	srcset="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE4-%E9%98%BB%E7%84%8A%E8%A7%84%E6%A0%BC_hu12179888278626472172.png 480w, /p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE4-%E9%98%BB%E7%84%8A%E8%A7%84%E6%A0%BC_hu6527613483127511098.png 1024w"
+	loading="lazy"
+	
+		alt="Mask » Solder Mask Expansion：顶层/底层各 2.5mil，可链动"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="115"
+		data-flex-basis="276px"
+	
+></p>
+<p>  &ldquo;过孔盖油&quot;是个高频需求，做法是<strong>再加一条 Solder Mask Expansion 规则，用 Custom Query 把作用域锁到 Via</strong>：<code>Where The Object Matches</code> 选 <code>Custom Query</code> → 点 <code>查询构建器</code> → <code>Object Kind is</code> → <code>Via</code>。</p>
+<p><img src="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE5-VIA%E7%9B%96%E6%B2%B9.png"
+	width="2463"
+	height="1343"
+	srcset="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE5-VIA%E7%9B%96%E6%B2%B9_hu17150402476964757517.png 480w, /p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE5-VIA%E7%9B%96%E6%B2%B9_hu14376970245914757751.png 1024w"
+	loading="lazy"
+	
+		alt="用 Custom Query &#43; 查询构建器，把盖油规则限定到 Via"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="440px"
+	
+></p>
+<h4 id="924-plane正片与负片的连接">9.2.4 Plane：正片与负片的连接
+</h4><p>  负片层的&quot;反焊盘&rdquo;（Anti-pad）由 <code>Power Plane Clearance</code> 控制。常用 5~9mil，取 <strong>6mil</strong> 是个均衡值：太小容易击穿/加工困难，太大浪费铜、影响载流。</p>
+<p><img src="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE6-%E5%8F%8D%E7%84%8A%E7%9B%98%E8%AE%BE%E7%BD%AE%E5%9C%A85~9mile,%E9%80%89%E5%8F%966mile%E5%B0%B1%E8%A1%8C.png"
+	width="1340"
+	height="977"
+	srcset="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE6-%E5%8F%8D%E7%84%8A%E7%9B%98%E8%AE%BE%E7%BD%AE%E5%9C%A85~9mile,%E9%80%89%E5%8F%966mile%E5%B0%B1%E8%A1%8C_hu6611378149086342116.png 480w, /p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE6-%E5%8F%8D%E7%84%8A%E7%9B%98%E8%AE%BE%E7%BD%AE%E5%9C%A85~9mile,%E9%80%89%E5%8F%966mile%E5%B0%B1%E8%A1%8C_hu11621474186717886371.png 1024w"
+	loading="lazy"
+	
+		alt="Plane » Power Plane Clearance：负片反焊盘 6mil"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="137"
+		data-flex-basis="329px"
+	
+></p>
+<p>  正片层的铺铜连接方式在 <code>Polygon Connect Style</code> 里设：<code>Direct Connect</code>（实心全连）、<code>Relief Connect</code>（十字辐条）、<code>No Connect</code>（不连）。图中选的是 <code>Direct Connect</code>。</p>
+<p><img src="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE7-%E6%AD%A3%E7%89%87%E5%B1%82%E9%93%BA%E9%93%9C%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F.png"
+	width="1340"
+	height="977"
+	srcset="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE7-%E6%AD%A3%E7%89%87%E5%B1%82%E9%93%BA%E9%93%9C%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F_hu16766866802469855745.png 480w, /p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE7-%E6%AD%A3%E7%89%87%E5%B1%82%E9%93%BA%E9%93%9C%E8%BF%9E%E6%8E%A5%E6%96%B9%E5%BC%8F_hu4426375389164328874.png 1024w"
+	loading="lazy"
+	
+		alt="Plane » Polygon Connect Style：正片铺铜的焊盘连接方式"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="137"
+		data-flex-basis="329px"
+	
+></p>
+<h4 id="925-manufacturing丝印类检查">9.2.5 Manufacturing：丝印类检查
+</h4><p>  丝印最容易在装配时&quot;糊掉&rdquo;，所以有两条专门规则：<code>Silk To Solder Mask Clearance</code>（丝印到阻焊开窗/露铜，图中 2mil）和 <code>Silk To Silk Clearance</code>（丝印到丝印，图中 2mil）。前者可以用 <code>IsPad</code> 之类的查询把作用对象限定到焊盘。</p>
+<p><img src="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE11-%E5%AF%B9%E8%B1%A1%E4%B8%8E%E4%B8%9D%E5%8D%B0%E6%9C%80%E5%B0%8F%E9%97%B4%E8%B7%9D.png"
+	width="1499"
+	height="1131"
+	srcset="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE11-%E5%AF%B9%E8%B1%A1%E4%B8%8E%E4%B8%9D%E5%8D%B0%E6%9C%80%E5%B0%8F%E9%97%B4%E8%B7%9D_hu6937563118467005650.png 480w, /p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE11-%E5%AF%B9%E8%B1%A1%E4%B8%8E%E4%B8%9D%E5%8D%B0%E6%9C%80%E5%B0%8F%E9%97%B4%E8%B7%9D_hu13380441846636922006.png 1024w"
+	loading="lazy"
+	
+		alt="Manufacturing » Silk To Solder Mask Clearance：丝印到焊盘/开窗 2mil"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="132"
+		data-flex-basis="318px"
+	
+></p>
+<p><img src="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE12-%E4%B8%9D%E5%8D%B0%E5%88%B0%E4%B8%9D%E5%8D%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E9%97%B4%E8%B7%9D.png"
+	width="1499"
+	height="1131"
+	srcset="/p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE12-%E4%B8%9D%E5%8D%B0%E5%88%B0%E4%B8%9D%E5%8D%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E9%97%B4%E8%B7%9D_hu7827280403579980677.png 480w, /p/ad/%E8%A7%84%E5%88%99%E8%AE%BE%E7%BD%AE%E5%BB%BA%E8%AE%AE12-%E4%B8%9D%E5%8D%B0%E5%88%B0%E4%B8%9D%E5%8D%B0%E7%9A%84%E6%9C%80%E5%B0%8F%E9%97%B4%E8%B7%9D_hu10271458163673078158.png 1024w"
+	loading="lazy"
+	
+		alt="Manufacturing » Silk To Silk Clearance：丝印到丝印 2mil"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="132"
+		data-flex-basis="318px"
+	
+></p>
+<h3 id="93-优先级规则明明设了却不生效的真凶">9.3 优先级：规则&quot;明明设了却不生效&quot;的真凶
+</h3><p>  这是我在规则上踩得最深的一个坑：<strong>勾了过孔盖油，出图还是开窗</strong>。不是查询写错，是<strong>优先级</strong>。</p>
+<p>  AD 匹配规则的逻辑是：<mark>同一规则类型内部，按优先级从上往下比，第一条命中的就停止</mark>。软件自带的 <code>All</code> 作用域默认规则覆盖面最大，如果新加的 <code>IsVia</code> 规则排在它下面，就永远轮不到。</p>
+<p><img src="/p/ad/%E8%B5%B0%E7%BA%BF%E8%A7%84%E5%88%99%E8%BF%98%E6%9C%89%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%8C%E5%BE%97%E6%B3%A8%E6%84%8F%E4%B8%80%E4%B8%8B%E5%95%8A.png"
+	width="1340"
+	height="1164"
+	srcset="/p/ad/%E8%B5%B0%E7%BA%BF%E8%A7%84%E5%88%99%E8%BF%98%E6%9C%89%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%8C%E5%BE%97%E6%B3%A8%E6%84%8F%E4%B8%80%E4%B8%8B%E5%95%8A_hu16742775796613616661.png 480w, /p/ad/%E8%B5%B0%E7%BA%BF%E8%A7%84%E5%88%99%E8%BF%98%E6%9C%89%E4%BC%98%E5%85%88%E7%BA%A7%EF%BC%8C%E5%BE%97%E6%B3%A8%E6%84%8F%E4%B8%80%E4%B8%8B%E5%95%8A_hu4331581674484122208.png 1024w"
+	loading="lazy"
+	
+		alt="优先级没改的典型后果：具体规则被默认全局规则压住"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="115"
+		data-flex-basis="276px"
+	
+></p>
+<p>  上图里的排序是正确示范：<code>Analog</code>（12mil，作用域 <code>InNetClass('Analog Signal')</code>）→ <code>PWR</code>（15mil，<code>InNetClass('PWR')</code>）→ <code>Width</code>（6mil，<code>All</code>）。<strong>越具体越靠前，最笼统的默认规则永远垫底。</strong></p>
+<p>  几个要点：</p>
+<ol>
+<li>优先级是<strong>按规则类型分表</strong>的。改好 Width 的排序，不影响 Solder Mask 的排序，每类都要单独确认。</li>
+<li>对话框底部有 <code>优先级(P)…</code> 按钮，列表里用 <code>增加优先级(I)</code> / <code>降低优先级(D)</code> 调整。</li>
+<li>排查顺序：<strong>作用域是否命中 → 是否勾了启用/在线 → 优先级是否压过默认规则</strong>。三者依次排除，不要一上来就怀疑软件。</li>
+</ol>
+<h3 id="94-正片规则与负片规则分别在哪">9.4 正片规则与负片规则分别在哪
+</h3><p>  规则树 <code>Plane</code> 下面三条要分清归属：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>层类型</th>
+<th>管连接</th>
+<th>管间距</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>正片 Signal</td>
+<td><code>Polygon Connect Style</code></td>
+<td><code>Electrical»Clearance</code></td>
+</tr>
+<tr>
+<td>负片 Plane</td>
+<td><code>Power Plane Connect Style</code></td>
+<td><code>Power Plane Clearance</code>（反焊盘）</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="/p/ad/%E6%AD%A3%E7%89%87%E8%A7%84%E5%88%99%EF%BC%8C%E8%B4%9F%E7%89%87%E8%A7%84%E5%88%99.png"
+	width="569"
+	height="258"
+	srcset="/p/ad/%E6%AD%A3%E7%89%87%E8%A7%84%E5%88%99%EF%BC%8C%E8%B4%9F%E7%89%87%E8%A7%84%E5%88%99_hu16185377654207367181.png 480w, /p/ad/%E6%AD%A3%E7%89%87%E8%A7%84%E5%88%99%EF%BC%8C%E8%B4%9F%E7%89%87%E8%A7%84%E5%88%99_hu2496872165262265399.png 1024w"
+	loading="lazy"
+	
+		alt="Plane 分支：正片用 Polygon Connect Style，负片用 Power Plane Connect/Clearance"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="220"
+		data-flex-basis="529px"
+	
+></p>
+<p>  <code>Power Plane Connect Style</code> 的 <code>Relief Connect</code> 可以细调外扩、空气间隙、导体宽度、导体数量——图上常见的一组是外扩 20mil、空气间隙 10mil、导体宽度 10mil、4 根导体。</p>
+<h3 id="95-drc出图前的最后一道闸">9.5 DRC：出图前的最后一道闸
+</h3><p>  入口：<code>工具»设计规则检查(D)…</code>（<code>T</code> <code>D</code> <code>R</code>）。</p>
+<p><img src="/p/ad/%E5%9C%A8%E8%BF%99%E9%87%8C%E8%BF%9B%E8%A1%8CDRC%E6%A3%80%E6%9F%A5%E8%AE%BE%E7%BD%AE%EF%BC%88%E4%BD%A0%E7%9B%B4%E6%8E%A5%E8%B4%B4%E5%9B%BE%E7%89%87%E8%BF%9B%E6%96%87%E7%AB%A0%E5%86%85%EF%BC%89.png"
+	width="1326"
+	height="1178"
+	srcset="/p/ad/%E5%9C%A8%E8%BF%99%E9%87%8C%E8%BF%9B%E8%A1%8CDRC%E6%A3%80%E6%9F%A5%E8%AE%BE%E7%BD%AE%EF%BC%88%E4%BD%A0%E7%9B%B4%E6%8E%A5%E8%B4%B4%E5%9B%BE%E7%89%87%E8%BF%9B%E6%96%87%E7%AB%A0%E5%86%85%EF%BC%89_hu14579156116337766644.png 480w, /p/ad/%E5%9C%A8%E8%BF%99%E9%87%8C%E8%BF%9B%E8%A1%8CDRC%E6%A3%80%E6%9F%A5%E8%AE%BE%E7%BD%AE%EF%BC%88%E4%BD%A0%E7%9B%B4%E6%8E%A5%E8%B4%B4%E5%9B%BE%E7%89%87%E8%BF%9B%E6%96%87%E7%AB%A0%E5%86%85%EF%BC%89_hu17956695259327255390.png 1024w"
+	loading="lazy"
+	
+		alt="工具 » 设计规则检查(D)：DRC 的统一入口"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="112"
+		data-flex-basis="270px"
+	
+></p>
+<p>  打开的是<strong>设计规则检查器</strong>。左侧是规则分类，右侧每个规则有**&ldquo;在线&quot;和&quot;批量&quot;两列**：</p>
+<ul>
+<li><strong>在线（Online DRC）</strong>：布线时实时检查，错了立刻出现绿色/红色标记；</li>
+<li><strong>批量（Batch DRC）</strong>：出图前一次性全板跑一遍，生成报告。</li>
+</ul>
+<p><img src="/p/ad/DRC%E8%A7%84%E5%88%99%E6%A3%80%E6%9F%A5---%E4%B8%9D%E5%8D%B0.png"
+	width="1156"
+	height="1050"
+	srcset="/p/ad/DRC%E8%A7%84%E5%88%99%E6%A3%80%E6%9F%A5---%E4%B8%9D%E5%8D%B0_hu13027959926810370571.png 480w, /p/ad/DRC%E8%A7%84%E5%88%99%E6%A3%80%E6%9F%A5---%E4%B8%9D%E5%8D%B0_hu17846660203399129101.png 1024w"
+	loading="lazy"
+	
+		alt="设计规则检查器：每项规则都有&#34;在线&#34;和&#34;批量&#34;两列"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="110"
+		data-flex-basis="264px"
+	
+></p>
+<p>  只勾你真正在乎的项，能大幅减少噪声。丝印类我一般只勾 <code>Silk To Silk Clearance</code>、<code>Silk To Solder Mask Clearance</code>、<code>Minimum Solder Mask Sliver</code>、<code>Board Outline Clearance</code> 这四条。</p>
+<p><img src="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AETDR%E6%A3%80%E6%9F%A5DRC.png"
+	width="666"
+	height="1017"
+	srcset="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AETDR%E6%A3%80%E6%9F%A5DRC_hu17876899298254388382.png 480w, /p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AETDR%E6%A3%80%E6%9F%A5DRC_hu12133839679365610147.png 1024w"
+	loading="lazy"
+	
+		alt="T D R 直达设计规则检查"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="65"
+		data-flex-basis="157px"
+	
+></p>
+<p>  跑完点 <code>运行DRC (R)…</code>，结果进 <code>Messages</code> 面板，逐条按&quot;规则名 / 类别 / 位置&quot;定位修改。已知可接受的（比如测试点开窗）用 <code>T</code> <code>M</code> 复位错误标志清掉，而不是长期无视红叉——<strong>无视久了就再也分不清哪个是真错</strong>。</p>
+<blockquote>
+<p>官方对规则作用域与优先级的说明见 <a class="link" href="https://www.altium.com/cn/documentation/altium-designer/pcb/defining-scoping-managing-design-rules"  target="_blank" rel="noopener"
+    >定义、作用域与管理设计规则</a>，Plane 类规则的细节见 <a class="link" href="https://www.altium.com/cn/documentation/altium-designer/pcb/design-rule-types/plane"  target="_blank" rel="noopener"
+    >Plane 规则类型</a>。</p>
+</blockquote>
+<p><a id="ch10"></a></p>
+<h2 id="十网络分类铺铜与布线">十、网络分类、铺铜与布线
+</h2><p>  规则是&quot;法律&rdquo;，网络类是&quot;户籍&quot;。<strong>先给网络分好类，规则才能精准打击</strong>，这是效率、也是可维护性的关键。</p>
+<h3 id="101-从建类到约束的完整链路">10.1 从建类到约束的完整链路
+</h3><p>  <strong>① 建类。</strong> PCB 界面 <code>设计»Classes…</code>（<code>D</code> <code>C</code>）打开<strong>对象类浏览器</strong>，在 <code>Net Classes</code> 下新建一个类（比如 <code>PWR</code>），把电源网络从左侧&quot;非成员&quot;移到右侧&quot;成员&quot;。</p>
+<p><img src="/p/ad/PCB%E7%BD%91%E7%BB%9C%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB.png"
+	width="2559"
+	height="1527"
+	srcset="/p/ad/PCB%E7%BD%91%E7%BB%9C%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB_hu8479301451436096320.png 480w, /p/ad/PCB%E7%BD%91%E7%BB%9C%E8%BF%9B%E8%A1%8C%E5%88%86%E7%B1%BB_hu5798562263508589831.png 1024w"
+	loading="lazy"
+	
+		alt="对象类浏览器：新建 PWR 类，把电源网络移入成员"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="167"
+		data-flex-basis="402px"
+	
+></p>
+<p>  类不只有网络类。同一个浏览器里还有 <code>Component Classes</code>、<code>Layer Classes</code>、<code>Pad Classes</code>、<code>Polygon Classes</code>、<code>Differential Pair Classes</code>，分门别类，互不干扰。</p>
+<p>  <strong>② 看清类成员。</strong> 打开 <code>PCB</code> 面板，对象选择器选 <code>Nets</code>，把左上角模式从 <code>Normal</code> 改成 <code>Mask</code>——之后点类名，只有该类成员会高亮，其余全部变灰，肉眼就能核对&quot;我到底把哪些网络归进来了&quot;。</p>
+<p><img src="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEDC%E5%B9%B6%E4%B8%94%E7%BD%91%E7%BB%9C%E5%88%86%E7%B1%BB%E8%AE%BE%E7%BD%AE%E5%A5%BD%E4%BA%86%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%89%93%E5%BC%80PCB%E9%9D%A2%E6%9D%BF%EF%BC%8C%E5%B0%86%E5%B7%A6%E4%B8%8A%E8%A7%92Normal%E6%94%B9%E4%B8%BAMask.png"
+	width="2546"
+	height="1515"
+	srcset="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEDC%E5%B9%B6%E4%B8%94%E7%BD%91%E7%BB%9C%E5%88%86%E7%B1%BB%E8%AE%BE%E7%BD%AE%E5%A5%BD%E4%BA%86%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%89%93%E5%BC%80PCB%E9%9D%A2%E6%9D%BF%EF%BC%8C%E5%B0%86%E5%B7%A6%E4%B8%8A%E8%A7%92Normal%E6%94%B9%E4%B8%BAMask_hu2389267465415437868.png 480w, /p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEDC%E5%B9%B6%E4%B8%94%E7%BD%91%E7%BB%9C%E5%88%86%E7%B1%BB%E8%AE%BE%E7%BD%AE%E5%A5%BD%E4%BA%86%EF%BC%8C%E5%8F%AF%E4%BB%A5%E6%89%93%E5%BC%80PCB%E9%9D%A2%E6%9D%BF%EF%BC%8C%E5%B0%86%E5%B7%A6%E4%B8%8A%E8%A7%92Normal%E6%94%B9%E4%B8%BAMask_hu9455764117813169638.png 1024w"
+	loading="lazy"
+	
+		alt="PCB 面板左上角 Normal → Mask，点类即只看该类"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="168"
+		data-flex-basis="403px"
+	
+></p>
+<p>  <strong>③ 上色。</strong> 给关键网络（电源、模拟、差分）分别设颜色，然后 <code>F5</code> 开关&quot;颜色显示&quot;。上过色之后，布线时一眼就能看出&quot;这条是不是电源&quot;。</p>
+<p><img src="/p/ad/%E7%BB%99%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE%E5%A5%BD%E9%A2%9C%E8%89%B2%E5%90%8E%EF%BC%8C%E7%82%B9%E5%87%BB%E5%AF%B9%E5%BA%94Nets%EF%BC%8C%E7%84%B6%E5%90%8E%E5%B0%86%E5%B7%A6%E8%BE%B9%E6%96%B9%E6%A1%86%E5%86%85%E7%9A%84%E7%BD%91%E7%BB%9C%E6%89%93%E4%B8%8A%E9%92%A9%EF%BC%8C%E7%84%B6%E5%90%8E%E6%8C%89%E5%BF%AB%E6%8D%B7%E9%94%AEF5%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%98%BE%E7%A4%BA%E9%A2%9C%E8%89%B2%E4%B8%8E%E9%9A%90%E8%97%8F%E9%A2%9C%E8%89%B2.png"
+	width="1914"
+	height="1389"
+	srcset="/p/ad/%E7%BB%99%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE%E5%A5%BD%E9%A2%9C%E8%89%B2%E5%90%8E%EF%BC%8C%E7%82%B9%E5%87%BB%E5%AF%B9%E5%BA%94Nets%EF%BC%8C%E7%84%B6%E5%90%8E%E5%B0%86%E5%B7%A6%E8%BE%B9%E6%96%B9%E6%A1%86%E5%86%85%E7%9A%84%E7%BD%91%E7%BB%9C%E6%89%93%E4%B8%8A%E9%92%A9%EF%BC%8C%E7%84%B6%E5%90%8E%E6%8C%89%E5%BF%AB%E6%8D%B7%E9%94%AEF5%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%98%BE%E7%A4%BA%E9%A2%9C%E8%89%B2%E4%B8%8E%E9%9A%90%E8%97%8F%E9%A2%9C%E8%89%B2_hu14666869031097765708.png 480w, /p/ad/%E7%BB%99%E7%BD%91%E7%BB%9C%E8%AE%BE%E7%BD%AE%E5%A5%BD%E9%A2%9C%E8%89%B2%E5%90%8E%EF%BC%8C%E7%82%B9%E5%87%BB%E5%AF%B9%E5%BA%94Nets%EF%BC%8C%E7%84%B6%E5%90%8E%E5%B0%86%E5%B7%A6%E8%BE%B9%E6%96%B9%E6%A1%86%E5%86%85%E7%9A%84%E7%BD%91%E7%BB%9C%E6%89%93%E4%B8%8A%E9%92%A9%EF%BC%8C%E7%84%B6%E5%90%8E%E6%8C%89%E5%BF%AB%E6%8D%B7%E9%94%AEF5%EF%BC%8C%E5%B0%B1%E5%8F%AF%E4%BB%A5%E6%98%BE%E7%A4%BA%E9%A2%9C%E8%89%B2%E4%B8%8E%E9%9A%90%E8%97%8F%E9%A2%9C%E8%89%B2_hu263771650661564565.png 1024w"
+	loading="lazy"
+	
+		alt="设好网络颜色后勾选网络，按 F5 显示/隐藏颜色"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="137"
+		data-flex-basis="330px"
+	
+></p>
+<p>  <strong>④ 约束。</strong> 类建好之后立刻回到 <code>设计»规则</code>，为这个类建 Width / Clearance 规则——这就是上一章&quot;优先级&quot;要处理的对象。</p>
+<p><img src="/p/ad/%E7%BD%91%E7%BB%9C%E5%88%86%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%A5%BD%E4%BA%86%E4%BB%A5%E5%90%8E%EF%BC%8C%E5%B0%B1%E7%82%B9%E5%87%BB%E8%AE%BE%E8%AE%A1%E9%87%8C%E9%9D%A2%E7%9A%84%E8%A7%84%E5%88%99%E8%BF%9B%E8%A1%8C%E8%A7%84%E5%88%99%E7%BA%A6%E6%9D%9F.png"
+	width="2459"
+	height="1338"
+	srcset="/p/ad/%E7%BD%91%E7%BB%9C%E5%88%86%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%A5%BD%E4%BA%86%E4%BB%A5%E5%90%8E%EF%BC%8C%E5%B0%B1%E7%82%B9%E5%87%BB%E8%AE%BE%E8%AE%A1%E9%87%8C%E9%9D%A2%E7%9A%84%E8%A7%84%E5%88%99%E8%BF%9B%E8%A1%8C%E8%A7%84%E5%88%99%E7%BA%A6%E6%9D%9F_hu15915499230074894997.png 480w, /p/ad/%E7%BD%91%E7%BB%9C%E5%88%86%E7%B1%BB%E5%88%9B%E5%BB%BA%E5%A5%BD%E4%BA%86%E4%BB%A5%E5%90%8E%EF%BC%8C%E5%B0%B1%E7%82%B9%E5%87%BB%E8%AE%BE%E8%AE%A1%E9%87%8C%E9%9D%A2%E7%9A%84%E8%A7%84%E5%88%99%E8%BF%9B%E8%A1%8C%E8%A7%84%E5%88%99%E7%BA%A6%E6%9D%9F_hu913041457580996129.png 1024w"
+	loading="lazy"
+	
+		alt="类建好后，从设计 » 规则进去做针对性约束"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="183"
+		data-flex-basis="441px"
+	
+></p>
+<p>  <strong>⑤ 差分对要单建。</strong> 差分对不走网络类，而是在 <code>PCB</code> 面板切到 <code>Differential Pairs Editor</code>，用 <code>从网络创建</code> 生成，之后才能被 <code>Differential Pairs Routing</code> 规则引用。</p>
+<p><img src="/p/ad/PCB%E5%B7%AE%E5%88%86%E9%98%9F%E8%AE%BE%E7%BD%AE.png"
+	width="1779"
+	height="1563"
+	srcset="/p/ad/PCB%E5%B7%AE%E5%88%86%E9%98%9F%E8%AE%BE%E7%BD%AE_hu10917610450868449992.png 480w, /p/ad/PCB%E5%B7%AE%E5%88%86%E9%98%9F%E8%AE%BE%E7%BD%AE_hu6985132253193463946.png 1024w"
+	loading="lazy"
+	
+		alt="PCB 面板切到 Differential Pairs Editor，从网络创建差分对"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="113"
+		data-flex-basis="273px"
+	
+></p>
+<h3 id="102-铺铜从画到修">10.2 铺铜：从画到修
+</h3><p>  铺铜不是&quot;画个框按一下就完事&quot;，画完之后 80% 的工作在修。</p>
+<p>  <strong>改属性。</strong> 选中铜皮，右侧 <code>Properties</code> 面板就是它的全部：网络、层、<code>Solid/Hatched</code>、孤岛过滤、颈宽过滤、<code>Arc Approximation</code>……点 <code>Modify</code> 可以改轮廓，点 <code>Repour</code> 重铺。</p>
+<p><img src="/p/ad/%E5%8F%AF%E4%BB%A5%E5%9C%A8%E8%BF%99%E9%87%8C%E4%BF%AE%E6%94%B9%E9%93%9C%E7%9A%AE.png"
+	width="1563"
+	height="1272"
+	srcset="/p/ad/%E5%8F%AF%E4%BB%A5%E5%9C%A8%E8%BF%99%E9%87%8C%E4%BF%AE%E6%94%B9%E9%93%9C%E7%9A%AE_hu4461350323868504654.png 480w, /p/ad/%E5%8F%AF%E4%BB%A5%E5%9C%A8%E8%BF%99%E9%87%8C%E4%BF%AE%E6%94%B9%E9%93%9C%E7%9A%AE_hu12919163141187576750.png 1024w"
+	loading="lazy"
+	
+		alt="铜皮的 Properties：Repour / Modify / 网络 / 层 / 孤岛与颈宽过滤"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="122"
+		data-flex-basis="294px"
+	
+></p>
+<p>  <strong>修形状。</strong> 铜皮的边角最好是钝角。直角、锐角在蚀刻时容易残留，载流也不均匀，选中后 <code>Modify</code> 把尖角改成钝角是常规操作。面板顶部如果提示 <code>Polygon not poured</code>，必须先 <code>Repour</code>，否则看到的是旧铜。</p>
+<p><img src="/p/ad/%E5%8F%B3%E8%BE%B9%E6%A1%86%E5%8F%AF%E4%BB%A5%E5%AF%B9%E9%93%9C%E7%9A%AE%E8%BF%9B%E8%A1%8C%E6%95%B4%E6%94%B9.png"
+	width="1611"
+	height="1269"
+	srcset="/p/ad/%E5%8F%B3%E8%BE%B9%E6%A1%86%E5%8F%AF%E4%BB%A5%E5%AF%B9%E9%93%9C%E7%9A%AE%E8%BF%9B%E8%A1%8C%E6%95%B4%E6%94%B9_hu8031543515001800777.png 480w, /p/ad/%E5%8F%B3%E8%BE%B9%E6%A1%86%E5%8F%AF%E4%BB%A5%E5%AF%B9%E9%93%9C%E7%9A%AE%E8%BF%9B%E8%A1%8C%E6%95%B4%E6%94%B9_hu15180214248595343734.png 1024w"
+	loading="lazy"
+	
+		alt="Polygon not poured 要先 Repour；尖角改成钝角"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="126"
+		data-flex-basis="304px"
+	
+></p>
+<p>  <strong>挖掉不要的铜。</strong> 有两种办法：<code>放置»多边形铺铜挖空</code> 直接在铜皮上挖，或者先画个圆/矩形，再用 <code>T</code> <code>V</code> <code>T</code>（转换 » 从选择的元素创建非铺铜区域）把它变成禁止铺铜区。</p>
+<p><img src="/p/ad/%E5%8F%AF%E4%BB%A5%E7%94%BB%E4%B8%AA%E5%9C%86%E5%BD%A2%E6%88%96%E8%80%85%E5%85%B6%E4%BB%96%E5%BD%A2%E7%8A%B6%EF%BC%8C%E7%84%B6%E5%90%8E%E6%8C%89%E5%BF%AB%E6%8D%B7%E9%94%AETVT%E8%BD%AC%E6%8D%A2%E6%88%90%E7%A6%81%E6%AD%A2%E9%93%BA%E9%93%9C.png"
+	width="1428"
+	height="1052"
+	srcset="/p/ad/%E5%8F%AF%E4%BB%A5%E7%94%BB%E4%B8%AA%E5%9C%86%E5%BD%A2%E6%88%96%E8%80%85%E5%85%B6%E4%BB%96%E5%BD%A2%E7%8A%B6%EF%BC%8C%E7%84%B6%E5%90%8E%E6%8C%89%E5%BF%AB%E6%8D%B7%E9%94%AETVT%E8%BD%AC%E6%8D%A2%E6%88%90%E7%A6%81%E6%AD%A2%E9%93%BA%E9%93%9C_hu2973156303962916345.png 480w, /p/ad/%E5%8F%AF%E4%BB%A5%E7%94%BB%E4%B8%AA%E5%9C%86%E5%BD%A2%E6%88%96%E8%80%85%E5%85%B6%E4%BB%96%E5%BD%A2%E7%8A%B6%EF%BC%8C%E7%84%B6%E5%90%8E%E6%8C%89%E5%BF%AB%E6%8D%B7%E9%94%AETVT%E8%BD%AC%E6%8D%A2%E6%88%90%E7%A6%81%E6%AD%A2%E9%93%BA%E9%93%9C_hu17030649995752114124.png 1024w"
+	loading="lazy"
+	
+		alt="先画形状，再 T V T 转成禁止铺铜区"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="135"
+		data-flex-basis="325px"
+	
+></p>
+<p><img src="/p/ad/%E5%8F%AF%E4%BB%A5%E5%8E%BB%E9%99%A4%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E9%93%9C%E7%9A%AE.png"
+	width="1082"
+	height="1014"
+	srcset="/p/ad/%E5%8F%AF%E4%BB%A5%E5%8E%BB%E9%99%A4%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E9%93%9C%E7%9A%AE_hu8244690162041154830.png 480w, /p/ad/%E5%8F%AF%E4%BB%A5%E5%8E%BB%E9%99%A4%E4%B8%8D%E6%83%B3%E8%A6%81%E7%9A%84%E9%93%9C%E7%9A%AE_hu15572319659887523083.png 1024w"
+	loading="lazy"
+	
+		alt="放置 » 多边形铺铜挖空：挖掉多余的铜"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="106"
+		data-flex-basis="256px"
+	
+></p>
+<p>  <strong>由板框生成铜皮。</strong> 想让铜皮贴着板框走，先在 Mechanical 1 选中板框轮廓，再 <code>工具»转换»从选择的元素创建铺铜</code>，铜皮外形就直接沿用板框。</p>
+<p><img src="/p/ad/%E5%8E%BB%E6%9C%BA%E6%A2%B0%E4%B8%80%E5%B1%82%E9%80%89%E6%8B%A9%E6%9D%BF%E6%A1%86%EF%BC%8C%E7%84%B6%E5%90%8E%E5%86%8D%E5%B0%86%E4%BB%96%E8%BD%AC%E4%B8%BA%E9%93%9C%E7%9A%AE.png"
+	width="1796"
+	height="1410"
+	srcset="/p/ad/%E5%8E%BB%E6%9C%BA%E6%A2%B0%E4%B8%80%E5%B1%82%E9%80%89%E6%8B%A9%E6%9D%BF%E6%A1%86%EF%BC%8C%E7%84%B6%E5%90%8E%E5%86%8D%E5%B0%86%E4%BB%96%E8%BD%AC%E4%B8%BA%E9%93%9C%E7%9A%AE_hu7189912806282084373.png 480w, /p/ad/%E5%8E%BB%E6%9C%BA%E6%A2%B0%E4%B8%80%E5%B1%82%E9%80%89%E6%8B%A9%E6%9D%BF%E6%A1%86%EF%BC%8C%E7%84%B6%E5%90%8E%E5%86%8D%E5%B0%86%E4%BB%96%E8%BD%AC%E4%B8%BA%E9%93%9C%E7%9A%AE_hu2857372335471575924.png 1024w"
+	loading="lazy"
+	
+		alt="选机械层的板框，用 工具 » 转换 » 从选择的元素创建铺铜"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="127"
+		data-flex-basis="305px"
+	
+></p>
+<h3 id="103-铺了不显示的四步排查">10.3 &ldquo;铺了不显示&quot;的四步排查
+</h3><p>  这是铺铜里最经典的问题：明明画了框，就是没铜。按顺序排查：</p>
+<ol>
+<li>取消勾选 <code>Remove Islands Less Than</code>（默认 2500 sq.mil）——小铜块被当孤岛删了；</li>
+<li>取消勾选 <code>Remove Necks Less Than</code>（默认 6/10mil）——窄颈被当&quot;死铜&quot;删了；</li>
+<li>点 <code>Repour</code>（或选中网络按 <code>Shift+B</code>）重铺；</li>
+<li>检查框内有没有 Keep-out / 挖空阻挡。</li>
+</ol>
+<p><img src="/p/ad/%E9%93%BA%E9%93%9C%E5%90%8E%E9%93%9C%E7%9A%AE%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89%E6%98%BE%E7%A4%BA%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%B0%B1%E5%BA%94%E8%AF%A5%E8%BF%99%E4%B9%88%E5%81%9A%28%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C%E5%90%8E%E6%8C%89%E5%BF%AB%E6%8D%B7%E9%94%AEShift&#43;B%E4%B9%9F%E5%8F%AF%E4%BB%A5%29.png"
+	width="1190"
+	height="365"
+	srcset="/p/ad/%E9%93%BA%E9%93%9C%E5%90%8E%E9%93%9C%E7%9A%AE%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89%E6%98%BE%E7%A4%BA%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%B0%B1%E5%BA%94%E8%AF%A5%E8%BF%99%E4%B9%88%E5%81%9A%28%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C%E5%90%8E%E6%8C%89%E5%BF%AB%E6%8D%B7%E9%94%AEShift&#43;B%E4%B9%9F%E5%8F%AF%E4%BB%A5%29_hu12087719176092940839.png 480w, /p/ad/%E9%93%BA%E9%93%9C%E5%90%8E%E9%93%9C%E7%9A%AE%E5%A6%82%E6%9E%9C%E6%B2%A1%E6%9C%89%E6%98%BE%E7%A4%BA%E7%9A%84%E8%AF%9D%EF%BC%8C%E5%B0%B1%E5%BA%94%E8%AF%A5%E8%BF%99%E4%B9%88%E5%81%9A%28%E9%80%89%E6%8B%A9%E7%BD%91%E7%BB%9C%E5%90%8E%E6%8C%89%E5%BF%AB%E6%8D%B7%E9%94%AEShift&#43;B%E4%B9%9F%E5%8F%AF%E4%BB%A5%29_hu4247379441972936080.png 1024w"
+	loading="lazy"
+	
+		alt="铺铜不显示先关掉两个过滤项，再 Repour"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="326"
+		data-flex-basis="782px"
+	
+></p>
+<p>  还有个更隐蔽的原因：改完铜皮 AD 不自动重铺，你看到的永远是旧图。去 <code>优选项»PCB Editor»General</code> 把下面两个勾上：</p>
+<p><img src="/p/ad/%E8%BF%99%E4%B8%A4%E4%B8%AA%E5%8F%AF%E4%BB%A5%E9%92%A9%E4%B8%8A%E7%9A%84.png"
+	width="1380"
+	height="1358"
+	srcset="/p/ad/%E8%BF%99%E4%B8%A4%E4%B8%AA%E5%8F%AF%E4%BB%A5%E9%92%A9%E4%B8%8A%E7%9A%84_hu151069804470610050.png 480w, /p/ad/%E8%BF%99%E4%B8%A4%E4%B8%AA%E5%8F%AF%E4%BB%A5%E9%92%A9%E4%B8%8A%E7%9A%84_hu10987481884195868554.png 1024w"
+	loading="lazy"
+	
+		alt="优选项里勾选&#34;铺铜修改后自动重铺&#34;&ldquo;在编辑过后重新铺铜&rdquo;"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="101"
+		data-flex-basis="243px"
+	
+></p>
+<h3 id="104-全连接还是十字连接">10.4 全连接还是十字连接
+</h3><p>  焊盘/过孔与铜皮的连接方式只有三种，选错了要么焊不上、要么载流不够：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>方式</th>
+<th>表现</th>
+<th>适用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>Relief Connect</code>（十字/热风焊盘）</td>
+<td>4 根辐条</td>
+<td>插件焊盘、需要手工焊接的孔，散热好焊</td>
+</tr>
+<tr>
+<td><code>Direct Connect</code>（全连接）</td>
+<td>实心直连</td>
+<td>大电流、低阻抗需求的过孔/焊盘</td>
+</tr>
+<tr>
+<td><code>No Connect</code></td>
+<td>不连</td>
+<td>特殊隔离</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="/p/ad/%E5%85%A8%E8%BF%9E%E6%8E%A5%E4%B8%8E%E4%B8%8D%E5%85%A8%E8%BF%9E%E6%8E%A5.png"
+	width="1497"
+	height="1451"
+	srcset="/p/ad/%E5%85%A8%E8%BF%9E%E6%8E%A5%E4%B8%8E%E4%B8%8D%E5%85%A8%E8%BF%9E%E6%8E%A5_hu9688449476335067997.png 480w, /p/ad/%E5%85%A8%E8%BF%9E%E6%8E%A5%E4%B8%8E%E4%B8%8D%E5%85%A8%E8%BF%9E%E6%8E%A5_hu9424478484805081286.png 1024w"
+	loading="lazy"
+	
+		alt="同一规则下 Relief Connect 与 Direct Connect 的效果差异"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="103"
+		data-flex-basis="247px"
+	
+></p>
+<p>  判断标准其实很朴素：<mark>要人焊的孔用十字，要过大电流的用过孔全连</mark>。图上这组对比里，十字连接有明显辐条，全连接则是实心一片。</p>
+<h3 id="105-缝合地过孔两层板的救命稻草">10.5 缝合地过孔：两层板的救命稻草
+</h3><p>  地平面的完整性，在两层板上是最脆弱的。走线横穿过去，GND 铜皮就被切成一条窄通道，两边的地&quot;通而不畅&rdquo;，回流只能绕远路。</p>
+<p><img src="/p/ad/%E5%A6%82%E6%9E%9C%E6%98%AF%E4%B8%A4%E5%B1%82%E6%9D%BF%E7%9A%84%E8%AF%9D%EF%BC%8C%E8%BF%99%E4%B8%AA%E5%9C%B0%E5%B9%B3%E9%9D%A2%E5%B0%B1%E4%BC%9A%E6%9C%89%E7%82%B9%E7%8B%97%E5%B1%8E%E4%BA%86.png"
+	width="1085"
+	height="1158"
+	srcset="/p/ad/%E5%A6%82%E6%9E%9C%E6%98%AF%E4%B8%A4%E5%B1%82%E6%9D%BF%E7%9A%84%E8%AF%9D%EF%BC%8C%E8%BF%99%E4%B8%AA%E5%9C%B0%E5%B9%B3%E9%9D%A2%E5%B0%B1%E4%BC%9A%E6%9C%89%E7%82%B9%E7%8B%97%E5%B1%8E%E4%BA%86_hu17126848202027571439.png 480w, /p/ad/%E5%A6%82%E6%9E%9C%E6%98%AF%E4%B8%A4%E5%B1%82%E6%9D%BF%E7%9A%84%E8%AF%9D%EF%BC%8C%E8%BF%99%E4%B8%AA%E5%9C%B0%E5%B9%B3%E9%9D%A2%E5%B0%B1%E4%BC%9A%E6%9C%89%E7%82%B9%E7%8B%97%E5%B1%8E%E4%BA%86_hu16090064073659522936.png 1024w"
+	loading="lazy"
+	
+		alt="两层板没有独立地平面，走线会把地铜切成碎片"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="93"
+		data-flex-basis="224px"
+	
+></p>
+<p>  解决办法就是<strong>缝合地过孔（Stitching Via）</strong>：在两个地岛之间打一排过孔，让回流从另一层就近穿过去，把回流环路缩短。</p>
+<p><img src="/p/ad/%E5%A6%82%E6%9E%9C%E6%98%AF%E4%B8%A4%E5%B1%82%E6%9D%BF%EF%BC%8CGND%E5%87%BA%E7%8E%B0%E4%BA%86%E5%9B%BE%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7%E5%89%B2%E8%A3%82%EF%BC%8C%E5%88%99%E5%BA%94%E8%AF%A5%E5%8A%A0%E7%BC%9D%E5%90%88%E5%9C%B0%E8%BF%87%E5%AD%94%EF%BC%8C%E8%AE%A9%E4%BB%96%E4%BB%8E%E5%8F%A6%E4%B8%80%E5%B1%82%E7%A9%BF%E8%BF%87%E5%8E%BB%EF%BC%8C%E5%AE%9E%E7%8E%B0%E5%9B%9E%E8%B7%AF%E7%9F%AD.png"
+	width="1331"
+	height="887"
+	srcset="/p/ad/%E5%A6%82%E6%9E%9C%E6%98%AF%E4%B8%A4%E5%B1%82%E6%9D%BF%EF%BC%8CGND%E5%87%BA%E7%8E%B0%E4%BA%86%E5%9B%BE%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7%E5%89%B2%E8%A3%82%EF%BC%8C%E5%88%99%E5%BA%94%E8%AF%A5%E5%8A%A0%E7%BC%9D%E5%90%88%E5%9C%B0%E8%BF%87%E5%AD%94%EF%BC%8C%E8%AE%A9%E4%BB%96%E4%BB%8E%E5%8F%A6%E4%B8%80%E5%B1%82%E7%A9%BF%E8%BF%87%E5%8E%BB%EF%BC%8C%E5%AE%9E%E7%8E%B0%E5%9B%9E%E8%B7%AF%E7%9F%AD_hu5417928628338579160.png 480w, /p/ad/%E5%A6%82%E6%9E%9C%E6%98%AF%E4%B8%A4%E5%B1%82%E6%9D%BF%EF%BC%8CGND%E5%87%BA%E7%8E%B0%E4%BA%86%E5%9B%BE%E4%B8%AD%E7%9A%84%E4%BF%A1%E5%8F%B7%E5%89%B2%E8%A3%82%EF%BC%8C%E5%88%99%E5%BA%94%E8%AF%A5%E5%8A%A0%E7%BC%9D%E5%90%88%E5%9C%B0%E8%BF%87%E5%AD%94%EF%BC%8C%E8%AE%A9%E4%BB%96%E4%BB%8E%E5%8F%A6%E4%B8%80%E5%B1%82%E7%A9%BF%E8%BF%87%E5%8E%BB%EF%BC%8C%E5%AE%9E%E7%8E%B0%E5%9B%9E%E8%B7%AF%E7%9F%AD_hu14188880750048639452.png 1024w"
+	loading="lazy"
+	
+		alt="地平面被割裂处加缝合过孔，让回流从另一层就近通过"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="150"
+		data-flex-basis="360px"
+	
+></p>
+<p>  别一个个手点，AD 有专门工具：<code>工具»缝合孔/屏蔽»给网络添加缝合孔(A)…</code>。</p>
+<p><img src="/p/ad/%E6%9C%89%E5%B7%A5%E5%85%B7%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E5%8A%A0%E7%BC%9D%E5%90%88%E5%9C%B0%E8%BF%87%E5%AD%94.png"
+	width="806"
+	height="1013"
+	srcset="/p/ad/%E6%9C%89%E5%B7%A5%E5%85%B7%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E5%8A%A0%E7%BC%9D%E5%90%88%E5%9C%B0%E8%BF%87%E5%AD%94_hu16855414875135829954.png 480w, /p/ad/%E6%9C%89%E5%B7%A5%E5%85%B7%E5%8F%AF%E4%BB%A5%E7%9B%B4%E6%8E%A5%E5%8A%A0%E7%BC%9D%E5%90%88%E5%9C%B0%E8%BF%87%E5%AD%94_hu9426178298783226991.png 1024w"
+	loading="lazy"
+	
+		alt="工具 » 缝合孔/屏蔽 » 给网络添加缝合孔"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="79"
+		data-flex-basis="190px"
+	
+></p>
+<p>  弹出的 <code>添加过孔阵列到网络</code> 对话框，推荐这样填：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>参数</th>
+<th>推荐值</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>网络</td>
+<td><code>GND</code></td>
+</tr>
+<tr>
+<td>钻孔对</td>
+<td><code>Top - Bottom</code>（通孔）</td>
+</tr>
+<tr>
+<td>过孔样式</td>
+<td>简易的（Simple）</td>
+</tr>
+<tr>
+<td>孔径 / 盘径</td>
+<td>12mil / 24mil（≈0.3 / 0.6mm）</td>
+</tr>
+<tr>
+<td>栅格</td>
+<td>50mil，并勾 <code>错开交替的过孔阵列</code></td>
+</tr>
+<tr>
+<td>默认过孔/焊盘间距</td>
+<td>5mil</td>
+</tr>
+<tr>
+<td>阻焊</td>
+<td>来自规则的扩展值 + 强制顶层/底层全部盖油</td>
+</tr>
+<tr>
+<td>约束区域</td>
+<td>需要限定时勾选，再画区域</td>
+</tr>
+</tbody>
+</table></div>
+<p><img src="/p/ad/%E7%BC%9D%E5%90%88%E5%9C%B0%E8%BF%87%E5%AD%94%E6%8E%A8%E8%8D%90%E8%AE%BE%E7%BD%AE.png"
+	width="1155"
+	height="895"
+	srcset="/p/ad/%E7%BC%9D%E5%90%88%E5%9C%B0%E8%BF%87%E5%AD%94%E6%8E%A8%E8%8D%90%E8%AE%BE%E7%BD%AE_hu11690521860126523939.png 480w, /p/ad/%E7%BC%9D%E5%90%88%E5%9C%B0%E8%BF%87%E5%AD%94%E6%8E%A8%E8%8D%90%E8%AE%BE%E7%BD%AE_hu4259446864218913289.png 1024w"
+	loading="lazy"
+	
+		alt="添加过孔阵列到网络：12/24mil、50mil 栅格、交错排列、GND、盖油"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="129"
+		data-flex-basis="309px"
+	
+></p>
+<p>  这里补一个官方视角的约束：缝合孔的间距不是随便定的，工程上通常要求<strong>不超过最高有效频率对应波长的 1/20（λ/20）</strong>，短截线长度同理；过孔围栏（shielding）则常用 λ/10~λ/20。50mil 这个经验值在多数中低速板上是安全的。相关说明见 <a class="link" href="https://www.altium.com/cn/documentation/altium-designer/pcb/via-stitching-via-shielding"  target="_blank" rel="noopener"
+    >过孔缝合与过孔屏蔽</a>。</p>
+<p>  如果只想在板子某个区域打孔（比如只在连接器附近），勾上 <strong><code>约束区域</code></strong>，AD 会让你先画一个区域，缝合孔只会落在区域里；配合 <code>Via Template</code> 还能复用固定的过孔样式，避免每次重填孔径盘径。</p>
+<p><img src="/p/ad/%E7%BC%9D%E5%90%88%E5%9C%B0%E8%BF%87%E5%AD%94%E8%AE%BE%E7%BD%AE%EF%BC%88%E4%BD%A0%E7%9B%B4%E6%8E%A5%E7%B2%98%E8%B4%B4%E5%9B%BE%E7%89%87%EF%BC%89.png"
+	width="1155"
+	height="895"
+	srcset="/p/ad/%E7%BC%9D%E5%90%88%E5%9C%B0%E8%BF%87%E5%AD%94%E8%AE%BE%E7%BD%AE%EF%BC%88%E4%BD%A0%E7%9B%B4%E6%8E%A5%E7%B2%98%E8%B4%B4%E5%9B%BE%E7%89%87%EF%BC%89_hu9442717674468850254.png 480w, /p/ad/%E7%BC%9D%E5%90%88%E5%9C%B0%E8%BF%87%E5%AD%94%E8%AE%BE%E7%BD%AE%EF%BC%88%E4%BD%A0%E7%9B%B4%E6%8E%A5%E7%B2%98%E8%B4%B4%E5%9B%BE%E7%89%87%EF%BC%89_hu7657514057586961070.png 1024w"
+	loading="lazy"
+	
+		alt="勾选约束区域，缝合孔只落在指定范围内"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="129"
+		data-flex-basis="309px"
+	
+></p>
+<p>  另外要注意：<strong>4 层板有完整参考平面时，同样的&quot;割裂&quot;可以暂时容忍</strong>，但仍然是隐患；两层板就必须老老实实处理。</p>
+<p><img src="/p/ad/%E8%BF%99%E4%B8%AA%E9%BB%84%E8%89%B2%E7%9A%84%E9%93%9C%E7%9A%AE%E5%B7%B2%E7%BB%8F%E5%B0%86%E4%B8%8A%E4%B8%8B%E9%83%A8%E5%88%86%E5%89%B2%E8%A3%82%E5%BC%80%E6%9D%A5%E4%BA%86%EF%BC%8C%E6%98%AF%E5%BE%88%E4%B8%8D%E5%A5%BD%E7%9A%84%EF%BC%8C%E4%B8%8D%E8%BF%87%E5%9B%A0%E4%B8%BA%E8%BF%99%E4%B8%AA%E6%9D%BF%E5%AD%90%E6%98%AF4%E5%B1%82%E6%9D%BF%EF%BC%8C%E6%9C%89%E4%B8%80%E4%B8%AA%E5%AE%8C%E6%95%B4%E5%8F%82%E8%80%83%E5%B9%B3%E9%9D%A2%EF%BC%8C%E6%89%80%E4%BB%A5%E6%9A%82%E6%97%B6%E6%B2%A1%E9%97%AE%E9%A2%98%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%98%AF2%E5%B1%82%E6%9D%BF%EF%BC%8C%E9%82%A3%E5%B0%B1%E5%BA%94%E8%AF%A5%E9%87%8D%E7%82%B9%E8%80%83%E8%99%91%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98%E4%BA%86.png"
+	width="1140"
+	height="810"
+	srcset="/p/ad/%E8%BF%99%E4%B8%AA%E9%BB%84%E8%89%B2%E7%9A%84%E9%93%9C%E7%9A%AE%E5%B7%B2%E7%BB%8F%E5%B0%86%E4%B8%8A%E4%B8%8B%E9%83%A8%E5%88%86%E5%89%B2%E8%A3%82%E5%BC%80%E6%9D%A5%E4%BA%86%EF%BC%8C%E6%98%AF%E5%BE%88%E4%B8%8D%E5%A5%BD%E7%9A%84%EF%BC%8C%E4%B8%8D%E8%BF%87%E5%9B%A0%E4%B8%BA%E8%BF%99%E4%B8%AA%E6%9D%BF%E5%AD%90%E6%98%AF4%E5%B1%82%E6%9D%BF%EF%BC%8C%E6%9C%89%E4%B8%80%E4%B8%AA%E5%AE%8C%E6%95%B4%E5%8F%82%E8%80%83%E5%B9%B3%E9%9D%A2%EF%BC%8C%E6%89%80%E4%BB%A5%E6%9A%82%E6%97%B6%E6%B2%A1%E9%97%AE%E9%A2%98%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%98%AF2%E5%B1%82%E6%9D%BF%EF%BC%8C%E9%82%A3%E5%B0%B1%E5%BA%94%E8%AF%A5%E9%87%8D%E7%82%B9%E8%80%83%E8%99%91%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98%E4%BA%86_hu14451961835104526823.png 480w, /p/ad/%E8%BF%99%E4%B8%AA%E9%BB%84%E8%89%B2%E7%9A%84%E9%93%9C%E7%9A%AE%E5%B7%B2%E7%BB%8F%E5%B0%86%E4%B8%8A%E4%B8%8B%E9%83%A8%E5%88%86%E5%89%B2%E8%A3%82%E5%BC%80%E6%9D%A5%E4%BA%86%EF%BC%8C%E6%98%AF%E5%BE%88%E4%B8%8D%E5%A5%BD%E7%9A%84%EF%BC%8C%E4%B8%8D%E8%BF%87%E5%9B%A0%E4%B8%BA%E8%BF%99%E4%B8%AA%E6%9D%BF%E5%AD%90%E6%98%AF4%E5%B1%82%E6%9D%BF%EF%BC%8C%E6%9C%89%E4%B8%80%E4%B8%AA%E5%AE%8C%E6%95%B4%E5%8F%82%E8%80%83%E5%B9%B3%E9%9D%A2%EF%BC%8C%E6%89%80%E4%BB%A5%E6%9A%82%E6%97%B6%E6%B2%A1%E9%97%AE%E9%A2%98%EF%BC%8C%E5%A6%82%E6%9E%9C%E6%98%AF2%E5%B1%82%E6%9D%BF%EF%BC%8C%E9%82%A3%E5%B0%B1%E5%BA%94%E8%AF%A5%E9%87%8D%E7%82%B9%E8%80%83%E8%99%91%E8%BF%99%E4%B8%AA%E9%97%AE%E9%A2%98%E4%BA%86_hu13452725275307858911.png 1024w"
+	loading="lazy"
+	
+		alt="4 层板有完整地平面时可以容忍，2 层板必须重点处理"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="140"
+		data-flex-basis="337px"
+	
+></p>
+<p>  最后别忘了清掉<strong>长条形的残留铜皮</strong>——它等效于一根天线，既辐射又容易在蚀刻时翘起，用铺铜挖空挖掉。</p>
+<p><img src="/p/ad/%E9%95%BF%E6%9D%A1%E5%BD%A2%E7%9A%84%E9%93%9C%E7%9A%AE%E8%AE%B0%E5%BE%97%E6%8A%8A%E4%BB%96%E5%BC%84%E6%8E%89%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%BF%99%E7%8E%A9%E6%84%8F%E5%B0%B1%E7%9B%B8%E5%BD%93%E4%B8%80%E6%A0%B9%E5%A4%A9%E7%BA%BF.png"
+	width="1203"
+	height="801"
+	srcset="/p/ad/%E9%95%BF%E6%9D%A1%E5%BD%A2%E7%9A%84%E9%93%9C%E7%9A%AE%E8%AE%B0%E5%BE%97%E6%8A%8A%E4%BB%96%E5%BC%84%E6%8E%89%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%BF%99%E7%8E%A9%E6%84%8F%E5%B0%B1%E7%9B%B8%E5%BD%93%E4%B8%80%E6%A0%B9%E5%A4%A9%E7%BA%BF_hu14691500052291897409.png 480w, /p/ad/%E9%95%BF%E6%9D%A1%E5%BD%A2%E7%9A%84%E9%93%9C%E7%9A%AE%E8%AE%B0%E5%BE%97%E6%8A%8A%E4%BB%96%E5%BC%84%E6%8E%89%EF%BC%8C%E5%9B%A0%E4%B8%BA%E8%BF%99%E7%8E%A9%E6%84%8F%E5%B0%B1%E7%9B%B8%E5%BD%93%E4%B8%80%E6%A0%B9%E5%A4%A9%E7%BA%BF_hu1535793869288959012.png 1024w"
+	loading="lazy"
+	
+		alt="细长残铜等效天线，应挖掉"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="150"
+		data-flex-basis="360px"
+	
+></p>
+<h3 id="106-布线几个真正省时间的动作">10.6 布线：几个真正省时间的动作
+</h3><p>  <strong>多路（总线）布线。</strong> <code>布线»交互式总线布线(M)</code>，快捷键 <code>U</code> <code>M</code>，可以一次拉出一组并行线，排线、数据总线特别省事。</p>
+<p><img src="/p/ad/%E5%A4%9A%E8%B7%AF%E5%B8%83%E7%BA%BF.png"
+	width="501"
+	height="687"
+	srcset="/p/ad/%E5%A4%9A%E8%B7%AF%E5%B8%83%E7%BA%BF_hu10519819305491381938.png 480w, /p/ad/%E5%A4%9A%E8%B7%AF%E5%B8%83%E7%BA%BF_hu9946682261603456299.png 1024w"
+	loading="lazy"
+	
+		alt="布线 » 交互式总线布线(M)"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="72"
+		data-flex-basis="175px"
+	
+></p>
+<p><img src="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEUM%E5%8F%AF%E4%BB%A5%E5%A4%9A%E8%B7%AF%E5%B8%83%E7%BA%BF.png"
+	width="1551"
+	height="939"
+	srcset="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEUM%E5%8F%AF%E4%BB%A5%E5%A4%9A%E8%B7%AF%E5%B8%83%E7%BA%BF_hu17881331038010739496.png 480w, /p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEUM%E5%8F%AF%E4%BB%A5%E5%A4%9A%E8%B7%AF%E5%B8%83%E7%BA%BF_hu1605869129705899911.png 1024w"
+	loading="lazy"
+	
+		alt="U M：一次拉多条并行线"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="165"
+		data-flex-basis="396px"
+	
+></p>
+<p>  <strong>走线中按 <code>Space</code> 换方向。</strong> 空格不是&quot;确认&quot;，而是循环切换拐角/路径模式（45°、90°、圆弧等），走线卡住时按一下往往就顺了。</p>
+<p><img src="/p/ad/%E8%B5%B0%E7%BA%BF%E6%97%B6%E6%8C%89%E7%A9%BA%E6%A0%BC%E5%8F%AF%E4%BB%A5%E6%94%B9%E5%8F%98%E7%BD%91%E7%BB%9C%E8%B7%AF%E5%BE%84.png"
+	width="863"
+	height="611"
+	srcset="/p/ad/%E8%B5%B0%E7%BA%BF%E6%97%B6%E6%8C%89%E7%A9%BA%E6%A0%BC%E5%8F%AF%E4%BB%A5%E6%94%B9%E5%8F%98%E7%BD%91%E7%BB%9C%E8%B7%AF%E5%BE%84_hu16575890112029328535.png 480w, /p/ad/%E8%B5%B0%E7%BA%BF%E6%97%B6%E6%8C%89%E7%A9%BA%E6%A0%BC%E5%8F%AF%E4%BB%A5%E6%94%B9%E5%8F%98%E7%BD%91%E7%BB%9C%E8%B7%AF%E5%BE%84_hu5563240941826193603.png 1024w"
+	loading="lazy"
+	
+		alt="走线过程中按空格改变走线路径模式"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="141"
+		data-flex-basis="338px"
+	
+></p>
+<p>  <strong><code>Shift+R</code> 管&quot;能不能斜着走&quot;。</strong> 它循环切换 <code>Orthogonal</code>（只能横平竖直）/ <code>45 Degree</code>（直角+45°）/ <code>Any Angle</code>（任意角）。状态栏会显示当前模式，确认一下再动手。差分对和等长线<strong>不要</strong>随便用任意角，普通信号线优先正交——否则后期改线、算长度都会很难受。</p>
+<p><img src="/p/ad/%E6%AD%A3%E4%BA%A4%E6%A8%A1%E5%BC%8F%EF%BC%9F.png"
+	width="1320"
+	height="741"
+	srcset="/p/ad/%E6%AD%A3%E4%BA%A4%E6%A8%A1%E5%BC%8F%EF%BC%9F_hu18265700607713975707.png 480w, /p/ad/%E6%AD%A3%E4%BA%A4%E6%A8%A1%E5%BC%8F%EF%BC%9F_hu6713261126307698957.png 1024w"
+	loading="lazy"
+	
+		alt="Shift&#43;R 在正交 / 45° / 任意角之间循环，状态栏确认"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="178"
+		data-flex-basis="427px"
+	
+></p>
+<p>  <strong><code>Shift+W</code> 换线宽。</strong> 布线中按 <code>Shift+W</code> 弹出 <code>Choose Width</code> 列表，mil/mm 双单位对照，勾 <code>Apply To All Layers</code> 可对整条线所有层生效。</p>
+<p><img src="/p/ad/%E8%B5%B0%E7%BA%BF%E7%9A%84%E6%97%B6%E5%80%99%E6%8C%89%E4%BD%8FShift&#43;W%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%89%E6%8B%A9%E8%B5%B0%E7%BA%BF%E5%AE%BD%E5%BA%A6.png"
+	width="1877"
+	height="1083"
+	srcset="/p/ad/%E8%B5%B0%E7%BA%BF%E7%9A%84%E6%97%B6%E5%80%99%E6%8C%89%E4%BD%8FShift&#43;W%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%89%E6%8B%A9%E8%B5%B0%E7%BA%BF%E5%AE%BD%E5%BA%A6_hu17447712217967906043.png 480w, /p/ad/%E8%B5%B0%E7%BA%BF%E7%9A%84%E6%97%B6%E5%80%99%E6%8C%89%E4%BD%8FShift&#43;W%EF%BC%8C%E5%8F%AF%E4%BB%A5%E9%80%89%E6%8B%A9%E8%B5%B0%E7%BA%BF%E5%AE%BD%E5%BA%A6_hu1135066406579344511.png 1024w"
+	loading="lazy"
+	
+		alt="Shift&#43;W 弹出 Choose Width，布线中随时换线宽"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="173"
+		data-flex-basis="415px"
+	
+></p>
+<p>  <strong>布线顺序。</strong> 模拟信号优先且尽量不打孔（过孔是阻抗突变点），再走其他信号，电源与 GND 最后处理，模拟线走完记得包地。</p>
+<p><img src="/p/ad/%E6%A8%A1%E6%8B%9F%E8%B5%B0%E7%BA%BF%E5%B0%BD%E9%87%8F%E5%88%AB%E6%89%93%E5%AD%94%EF%BC%8C%E8%B5%B0%E5%AE%8C%E8%AE%B0%E5%BE%97%E5%8C%85%E5%9C%B0.png"
+	width="584"
+	height="473"
+	srcset="/p/ad/%E6%A8%A1%E6%8B%9F%E8%B5%B0%E7%BA%BF%E5%B0%BD%E9%87%8F%E5%88%AB%E6%89%93%E5%AD%94%EF%BC%8C%E8%B5%B0%E5%AE%8C%E8%AE%B0%E5%BE%97%E5%8C%85%E5%9C%B0_hu11180573084677532829.png 480w, /p/ad/%E6%A8%A1%E6%8B%9F%E8%B5%B0%E7%BA%BF%E5%B0%BD%E9%87%8F%E5%88%AB%E6%89%93%E5%AD%94%EF%BC%8C%E8%B5%B0%E5%AE%8C%E8%AE%B0%E5%BE%97%E5%8C%85%E5%9C%B0_hu9491827704632013440.png 1024w"
+	loading="lazy"
+	
+		alt="布线顺序：模拟 → 其他信号 → 电源/GND，模拟线走完包地"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="123"
+		data-flex-basis="296px"
+	
+></p>
+<p><a id="ch11"></a></p>
+<h2 id="十一制造文件输出">十一、制造文件输出
+</h2><p>  板子画完，最后一关是把设计&quot;翻译&quot;成板厂和贴片厂能读懂的文件。这一步出错，前面全白干。</p>
+<h3 id="111-输出总流程">11.1 输出总流程
+</h3><div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span><span class="lnt">2
+</span><span class="lnt">3
+</span><span class="lnt">4
+</span><span class="lnt">5
+</span><span class="lnt">6
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Gerber（含板框/铜层/丝印/阻焊/钢网）
+</span></span><span class="line"><span class="cl">  → 钻孔文件 NC Drill
+</span></span><span class="line"><span class="cl">  → 坐标文件 Pick and Place
+</span></span><span class="line"><span class="cl">  → IPC 网表 IPC-D-356A
+</span></span><span class="line"><span class="cl">  → 装配图 PDF
+</span></span><span class="line"><span class="cl">  → 打包进 Project Outputs
+</span></span></code></pre></td></tr></table>
+</div>
+</div><h3 id="112-gerber一层一个文件">11.2 Gerber：一层一个文件
+</h3><p>  入口：<code>文件»制造输出(F)»Gerber Files</code>。这个子菜单其实是&quot;制造输出总店&quot;，<code>NC Drill Files</code>、<code>ODB++</code>、<code>IPC-2581</code>、<code>Test Point Report</code>、<code>Mask Set</code> 全在里面。</p>
+<p><img src="/p/ad/Gerber%E5%88%B6%E9%80%A0%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A41.png"
+	width="875"
+	height="1175"
+	srcset="/p/ad/Gerber%E5%88%B6%E9%80%A0%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A41_hu14216043193258529060.png 480w, /p/ad/Gerber%E5%88%B6%E9%80%A0%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A41_hu1057756696732915146.png 1024w"
+	loading="lazy"
+	
+		alt="文件 » 制造输出 » Gerber Files"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="74"
+		data-flex-basis="178px"
+	
+></p>
+<p>  <code>Gerber Setup</code> 的关键设置：</p>
+<ul>
+<li><code>Units</code> 选 <code>Inches</code>，<code>Decimal</code> 选 <code>0.1 mil</code>（精度）；</li>
+<li>输出命名选 <code>filename.*(gtl, gbl, gto...)</code>，一个文件一层，板厂好识别；</li>
+<li>勾 <code>Include unconnected mid-layer pad</code>、<code>Generate Reports</code>；</li>
+<li><code>Plot Layers</code> 下拉里点 <strong><code>Select Used</code></strong>，AD 会自动勾上实际用到的层。</li>
+</ul>
+<p><img src="/p/ad/Gerber%E5%88%B6%E9%80%A0%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A42.png"
+	width="1580"
+	height="1253"
+	srcset="/p/ad/Gerber%E5%88%B6%E9%80%A0%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A42_hu533769061804892007.png 480w, /p/ad/Gerber%E5%88%B6%E9%80%A0%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A42_hu3875022334835236600.png 1024w"
+	loading="lazy"
+	
+		alt="Gerber Setup：Inches &#43; 0.1mil &#43; filename.* &#43; Plot Layers » Select Used"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="126"
+		data-flex-basis="302px"
+	
+></p>
+<p>  点 <code>Select Used</code> 之后，机械层（GM1/GM2/GM3/GM6/GM13/GM15）会被自动补勾；而 <code>Keep-Out Layer</code>、<code>Top/Bottom Pad Master</code> 属于 <code>Other Layers</code>，<strong>默认不勾也不该勾</strong>。</p>
+<p><img src="/p/ad/Gerber%E5%88%B6%E9%80%A0%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A43.png"
+	width="1554"
+	height="1154"
+	srcset="/p/ad/Gerber%E5%88%B6%E9%80%A0%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A43_hu11471613960590590648.png 480w, /p/ad/Gerber%E5%88%B6%E9%80%A0%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A43_hu13966081283329116195.png 1024w"
+	loading="lazy"
+	
+		alt="Select Used 后自动补勾实际使用的机械层"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="134"
+		data-flex-basis="323px"
+	
+></p>
+<p>  输出完 AD 会自动生成一个 <code>CAMtastic1.Cam</code>，在面板里打开 <code>CAMtastic</code> 就能逐层核对：板框（红）、铜层（蓝）、丝印与阻焊。这一步是&quot;自检&quot;，比等板厂回邮件快得多。</p>
+<p><img src="/p/ad/Gerber%E5%88%B6%E9%80%A0%E8%BE%93%E5%87%BA%E5%90%8E%E5%8F%AF%E4%BB%A5%E6%89%93%E5%BC%80CAMLIST.png"
+	width="2558"
+	height="1526"
+	srcset="/p/ad/Gerber%E5%88%B6%E9%80%A0%E8%BE%93%E5%87%BA%E5%90%8E%E5%8F%AF%E4%BB%A5%E6%89%93%E5%BC%80CAMLIST_hu11357201247419941677.png 480w, /p/ad/Gerber%E5%88%B6%E9%80%A0%E8%BE%93%E5%87%BA%E5%90%8E%E5%8F%AF%E4%BB%A5%E6%89%93%E5%BC%80CAMLIST_hu18193506861077583076.png 1024w"
+	loading="lazy"
+	
+		alt="用 CAMtastic 打开生成的 Gerber 逐层核对"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="167"
+		data-flex-basis="402px"
+	
+></p>
+<h3 id="113-钻孔精度要和-gerber-对齐">11.3 钻孔：精度要和 Gerber 对齐
+</h3><p>  入口：<code>文件»制造输出»NC Drill Files</code>，<strong>必须在 Gerber 之后做</strong>。</p>
+<p><img src="/p/ad/%E9%92%BB%E5%AD%94%E6%96%87%E4%BB%B6%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A41.png"
+	width="890"
+	height="1191"
+	srcset="/p/ad/%E9%92%BB%E5%AD%94%E6%96%87%E4%BB%B6%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A41_hu1709177102708721725.png 480w, /p/ad/%E9%92%BB%E5%AD%94%E6%96%87%E4%BB%B6%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A41_hu7178436570599781872.png 1024w"
+	loading="lazy"
+	
+		alt="文件 » 制造输出 » NC Drill Files"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="74"
+		data-flex-basis="179px"
+	
+></p>
+<p>  <code>NC Drill 设置</code> 里三件事：</p>
+<ul>
+<li>单位 <code>英寸(I)</code>；</li>
+<li>格式 <strong><code>2:4</code></strong>（0.1mil 分辨率，正好与 Gerber 的 <code>0.1 mil</code> 对齐；<code>2:3</code> 只有 1mil 分辨率）；</li>
+<li><code>摒弃尾数零(T)</code>、<code>参考相对原点(V)</code>，勾 <code>优化变更位置命令(O)</code>。</li>
+</ul>
+<p><img src="/p/ad/%E9%92%BB%E5%AD%94%E6%96%87%E4%BB%B6%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A42.png"
+	width="691"
+	height="1103"
+	srcset="/p/ad/%E9%92%BB%E5%AD%94%E6%96%87%E4%BB%B6%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A42_hu4200552544909253778.png 480w, /p/ad/%E9%92%BB%E5%AD%94%E6%96%87%E4%BB%B6%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A42_hu3902545559271578508.png 1024w"
+	loading="lazy"
+	
+		alt="NC Drill 设置：英寸 &#43; 2:4，精度与 Gerber 对齐"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="62"
+		data-flex-basis="150px"
+	
+></p>
+<h3 id="114-坐标文件贴片厂要的那张表">11.4 坐标文件：贴片厂要的那张表
+</h3><p>  入口在&quot;装配输出&quot;里，不在&quot;制造输出&quot;：<code>文件»装配输出(B)»Generates pick and place files</code>。</p>
+<p><img src="/p/ad/%E5%9D%90%E6%A0%87%E6%96%87%E4%BB%B6%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A41.png"
+	width="924"
+	height="999"
+	srcset="/p/ad/%E5%9D%90%E6%A0%87%E6%96%87%E4%BB%B6%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A41_hu11923374341987308519.png 480w, /p/ad/%E5%9D%90%E6%A0%87%E6%96%87%E4%BB%B6%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A41_hu15504248831174953900.png 1024w"
+	loading="lazy"
+	
+		alt="文件 » 装配输出 » Generates pick and place files"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="92"
+		data-flex-basis="221px"
+	
+></p>
+<p>  <code>拾取文件设置</code> 里至少勾这几列：<code>Designator</code>、<code>Comment</code>、<code>Layer</code>、<code>Footprint</code>、<code>Center-X(mil)</code>、<code>Center-Y(mil)</code>、<code>Rotation</code>、<code>Description</code>。单位选 <code>英制(I)</code>，格式按贴片厂要求选 <code>文本(T)</code> 或 <code>CSV(Q)</code>；底层元件是否 <code>Y-翻转底层元件</code>，要跟产线确认。</p>
+<p><img src="/p/ad/%E5%9D%90%E6%A0%87%E6%96%87%E4%BB%B6%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A42.png"
+	width="1399"
+	height="1007"
+	srcset="/p/ad/%E5%9D%90%E6%A0%87%E6%96%87%E4%BB%B6%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A42_hu9624285008828944072.png 480w, /p/ad/%E5%9D%90%E6%A0%87%E6%96%87%E4%BB%B6%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A42_hu4588247073466032778.png 1024w"
+	loading="lazy"
+	
+		alt="拾取文件设置：列勾选、单位、格式"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="138"
+		data-flex-basis="333px"
+	
+></p>
+<h3 id="115-ipc-网表容易找错门的那一个">11.5 IPC 网表：容易找错门的那一个
+</h3><p>  到处找 <code>IPC-2581</code>？那个不是飞针测试用的。<strong>IPC-D-356A 网表的真正入口是 <code>制造输出»Test Point Report</code></strong>。</p>
+<p><img src="/p/ad/IPC%E7%BD%91%E8%A1%A8%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A41.png"
+	width="831"
+	height="1157"
+	srcset="/p/ad/IPC%E7%BD%91%E8%A1%A8%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A41_hu14571004517242108655.png 480w, /p/ad/IPC%E7%BD%91%E8%A1%A8%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A41_hu7331333868740336006.png 1024w"
+	loading="lazy"
+	
+		alt="制造输出 » Test Point Report（不是 IPC-2581）"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="71"
+		data-flex-basis="172px"
+	
+></p>
+<p>  在 <code>Fabrication Testpoint Setup</code> 里把 <code>报告格式</code> 选成 <strong><code>IPC-D-356A(I)</code></strong>，测试点层勾顶层+底层，单位英制，坐标用 <code>参考相对原点</code>——与坐标文件保持一致，否则贴片和测试对不上。</p>
+<p><img src="/p/ad/IPC%E7%BD%91%E8%A1%A8%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A42.png"
+	width="457"
+	height="716"
+	srcset="/p/ad/IPC%E7%BD%91%E8%A1%A8%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A42_hu8891581742847319996.png 480w, /p/ad/IPC%E7%BD%91%E8%A1%A8%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A42_hu6593709976080583831.png 1024w"
+	loading="lazy"
+	
+		alt="Fabrication Testpoint Setup：报告格式选 IPC-D-356A"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="63"
+		data-flex-basis="153px"
+	
+></p>
+<h3 id="116-装配图用智能pdf-出单色线稿">11.6 装配图：用智能PDF 出单色线稿
+</h3><p>  装配图走的是打印路线，不是 Draftsman。入口：<code>文件»智能PDF(M)…</code>。</p>
+<p><img src="/p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A41.png"
+	width="591"
+	height="999"
+	srcset="/p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A41_hu2899773383726141788.png 480w, /p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A41_hu18340325916293402595.png 1024w"
+	loading="lazy"
+	
+		alt="文件 » 智能PDF：装配图的出口"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="59"
+		data-flex-basis="141px"
+	
+></p>
+<p>  <strong>第 1 页：选范围。</strong> 只要 PCB 的装配图就选 <code>当前文档</code>；想连原理图一起出就选 <code>当前项目</code>。</p>
+<p><img src="/p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A42.png"
+	width="1335"
+	height="853"
+	srcset="/p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A42_hu14279760149372365792.png 480w, /p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A42_hu476054134282215508.png 1024w"
+	loading="lazy"
+	
+		alt="智能PDF 第 1 页：选导出目标与文件名"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="156"
+		data-flex-basis="375px"
+	
+></p>
+<p>  <strong>第 2 页：要不要 BOM。</strong> 只出装配图就不勾 <code>导出原材料的BOM表</code>。</p>
+<p><img src="/p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A43.png"
+	width="1335"
+	height="853"
+	srcset="/p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A43_hu10454642663010749192.png 480w, /p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A43_hu12924140509021792861.png 1024w"
+	loading="lazy"
+	
+		alt="第 2 页：只做装配图时不勾 BOM"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="156"
+		data-flex-basis="375px"
+	
+></p>
+<p>  <strong>第 3 页：打印设置（关键）。</strong> 顶层 <code>TopAssembly Drawing</code> 不勾 <code>Mirror</code>；底层 <code>BottomAssembly Drawing</code> <strong>要勾 <code>Mirror</code></strong>；两层都包含 <code>Top/Bottom Overlay</code> + <code>Mechanical 1</code>；Designator 选 <code>Print Physical Designators</code>；区域 <code>Entire Sheet</code>。</p>
+<p><img src="/p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A44.png"
+	width="1335"
+	height="853"
+	srcset="/p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A44_hu16825072813130979169.png 480w, /p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A44_hu5254840332372397147.png 1024w"
+	loading="lazy"
+	
+		alt="第 3 页：顶层不镜像、底层镜像，包含 Overlay 与 Mechanical 1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="156"
+		data-flex-basis="375px"
+	
+></p>
+<p>  <strong>第 4 页：颜色模式。</strong> <code>PCB颜色模式</code> 选 <strong><code>单色</code></strong>，质量 <code>Medium (300 dpi)</code>——线稿才是装配工人要的，彩色反而看不清位号。</p>
+<p><img src="/p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A45.png"
+	width="1335"
+	height="853"
+	srcset="/p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A45_hu12071541155040359533.png 480w, /p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A45_hu3312221275131717378.png 1024w"
+	loading="lazy"
+	
+		alt="第 4 页：PCB颜色模式选单色，300 dpi"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="156"
+		data-flex-basis="375px"
+	
+></p>
+<p>  <strong>第 5 页：保存配置。</strong> 勾 <code>导出后打开PDF文件</code>，同时勾 <code>保存设置到批量输出文件</code>，生成 <code>.OutJob</code>——以后同类板子直接复用这套打印配置。</p>
+<p><img src="/p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A46.png"
+	width="1335"
+	height="853"
+	srcset="/p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A46_hu7773767319219645407.png 480w, /p/ad/%E8%A3%85%E9%85%8D%E5%9B%BE%E8%BE%93%E5%87%BA%E6%AD%A5%E9%AA%A46_hu4434845164152561324.png 1024w"
+	loading="lazy"
+	
+		alt="第 5 页：保存为 OutJob，以后复用"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="156"
+		data-flex-basis="375px"
+	
+></p>
+<p>  出来的效果就是下面这两页：顶层正读，底层镜像，位号清晰。</p>
+<p><img src="/p/ad/%E8%A3%85%E9%85%8D%E5%9B%BETOP%E6%95%88%E6%9E%9C.png"
+	width="2560"
+	height="1528"
+	srcset="/p/ad/%E8%A3%85%E9%85%8D%E5%9B%BETOP%E6%95%88%E6%9E%9C_hu825222821155709456.png 480w, /p/ad/%E8%A3%85%E9%85%8D%E5%9B%BETOP%E6%95%88%E6%9E%9C_hu10173672268437506716.png 1024w"
+	loading="lazy"
+	
+		alt="顶层装配图（单色线稿）"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="167"
+		data-flex-basis="402px"
+	
+></p>
+<p><img src="/p/ad/%E8%A3%85%E9%85%8D%E5%B1%82BOTTOM%E6%95%88%E6%9E%9C.png"
+	width="2560"
+	height="1528"
+	srcset="/p/ad/%E8%A3%85%E9%85%8D%E5%B1%82BOTTOM%E6%95%88%E6%9E%9C_hu905315731365143197.png 480w, /p/ad/%E8%A3%85%E9%85%8D%E5%B1%82BOTTOM%E6%95%88%E6%9E%9C_hu1481561632724146388.png 1024w"
+	loading="lazy"
+	
+		alt="底层装配图（镜像输出）"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="167"
+		data-flex-basis="402px"
+	
+></p>
+<h3 id="117-bom-与打包">11.7 BOM 与打包
+</h3><p>  BOM 用 <code>R</code> <code>I</code>（报告 » Bill of Materials）打开物料清单对话框，可以拖列头分组、<code>Preview</code> 核对，再 <code>Export...</code> 导出 Excel/CSV。</p>
+<p><img src="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AERI%E5%AF%BC%E5%87%BABOM.png"
+	width="2285"
+	height="1299"
+	srcset="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AERI%E5%AF%BC%E5%87%BABOM_hu5444113719507105653.png 480w, /p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AERI%E5%AF%BC%E5%87%BABOM_hu16759518079633053060.png 1024w"
+	loading="lazy"
+	
+		alt="R I 打开物料清单，可分组预览并导出"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="175"
+		data-flex-basis="422px"
+	
+></p>
+<p>  所有输出默认汇总在工程目录下的 <strong><code>Project Outputs for &lt;工程名&gt;</code></strong> 文件夹，同级还有 <code>Project Logs</code>、<code>History</code>、<code>-BOM</code>。打包发给板厂/贴片厂时，取这个目录即可。</p>
+<p><img src="/p/ad/%E8%BE%93%E5%87%BA%E5%90%8E%E4%B8%9C%E8%A5%BF%E9%83%BD%E5%9C%A8%E8%BF%99%E9%87%8C.png"
+	width="1325"
+	height="390"
+	srcset="/p/ad/%E8%BE%93%E5%87%BA%E5%90%8E%E4%B8%9C%E8%A5%BF%E9%83%BD%E5%9C%A8%E8%BF%99%E9%87%8C_hu410888202547019851.png 480w, /p/ad/%E8%BE%93%E5%87%BA%E5%90%8E%E4%B8%9C%E8%A5%BF%E9%83%BD%E5%9C%A8%E8%BF%99%E9%87%8C_hu15400710686324761065.png 1024w"
+	loading="lazy"
+	
+		alt="所有制造输出都在 Project Outputs 文件夹里"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="339"
+		data-flex-basis="815px"
+	
+></p>
+<p><a id="ch12"></a></p>
+<h2 id="十二3d-视图与模型">十二、3D 视图与模型
+</h2><p>  3D 不是花架子。装配干涉、连接器朝向、外壳高度，平面图看不出来，3D 一眼就露馅。</p>
+<h3 id="121-切换与旋转">12.1 切换与旋转
+</h3><p>  最快的是按 <code>3</code> 进 3D、按 <code>2</code> 回 2D。也可以在 <code>Ctrl+D</code> 打开的 <code>View Configuration</code> 里控制：<code>3D</code> 的 <code>On/Off</code>、<code>2 or 3</code> 开关、<code>Projection</code>（<code>Orthographic</code> 正投影 / <code>Perspective</code> 透视）、<code>Show 3D Bodies</code>（<code>Shift+Z</code>）、以及每层的透明度滑杆。</p>
+<p><img src="/p/ad/Ctrl&#43;D%E5%8F%AF%E4%BB%A5%E8%B0%83%E5%87%BA3D%E9%9D%A2%E6%9D%BF%EF%BC%8C%E8%BF%99%E6%A0%B7%E5%8F%AF%E4%BB%A5%E5%88%87%E6%8D%A23D%E8%A7%86%E5%9B%BE.png"
+	width="1767"
+	height="1434"
+	srcset="/p/ad/Ctrl&#43;D%E5%8F%AF%E4%BB%A5%E8%B0%83%E5%87%BA3D%E9%9D%A2%E6%9D%BF%EF%BC%8C%E8%BF%99%E6%A0%B7%E5%8F%AF%E4%BB%A5%E5%88%87%E6%8D%A23D%E8%A7%86%E5%9B%BE_hu10170796331539278150.png 480w, /p/ad/Ctrl&#43;D%E5%8F%AF%E4%BB%A5%E8%B0%83%E5%87%BA3D%E9%9D%A2%E6%9D%BF%EF%BC%8C%E8%BF%99%E6%A0%B7%E5%8F%AF%E4%BB%A5%E5%88%87%E6%8D%A23D%E8%A7%86%E5%9B%BE_hu3623932821068114056.png 1024w"
+	loading="lazy"
+	
+		alt="Ctrl&#43;D 打开 View Configuration：3D 开关、投影方式、层透明"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="123"
+		data-flex-basis="295px"
+	
+></p>
+<p>  <strong>翻转视角必须按住 <code>Shift</code> 再按右键</strong>，会调出轨道旋转球；只按右键是无效的，这是新手最常卡住的一步。</p>
+<p><img src="/p/ad/Shift&#43;%E9%BC%A0%E6%A0%87%E5%8F%B3%E9%94%AE%E6%89%8D%E5%8F%AF%E4%BB%A5%E7%BF%BB%E8%BD%AC3D.png"
+	width="1248"
+	height="905"
+	srcset="/p/ad/Shift&#43;%E9%BC%A0%E6%A0%87%E5%8F%B3%E9%94%AE%E6%89%8D%E5%8F%AF%E4%BB%A5%E7%BF%BB%E8%BD%AC3D_hu7330279739479487797.png 480w, /p/ad/Shift&#43;%E9%BC%A0%E6%A0%87%E5%8F%B3%E9%94%AE%E6%89%8D%E5%8F%AF%E4%BB%A5%E7%BF%BB%E8%BD%AC3D_hu11627058477371305112.png 1024w"
+	loading="lazy"
+	
+		alt="Shift&#43;右键调出旋转球，才能自由翻转 3D 视图"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="137"
+		data-flex-basis="330px"
+	
+></p>
+<p>  想直接看背面，按 <code>V</code> <code>B</code>，一步翻面，比转半天快。</p>
+<p><img src="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEVB%E5%8F%AF%E4%BB%A5%E5%B0%863D%E7%BF%BB%E9%9D%A2.png"
+	width="1296"
+	height="828"
+	srcset="/p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEVB%E5%8F%AF%E4%BB%A5%E5%B0%863D%E7%BF%BB%E9%9D%A2_hu14195619461401835156.png 480w, /p/ad/%E5%BF%AB%E6%8D%B7%E9%94%AEVB%E5%8F%AF%E4%BB%A5%E5%B0%863D%E7%BF%BB%E9%9D%A2_hu14786841750841643435.png 1024w"
+	loading="lazy"
+	
+		alt="V B：把 3D 视图翻到板子另一面"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="156"
+		data-flex-basis="375px"
+	
+></p>
+<h3 id="122-3d-模型从哪来">12.2 3D 模型从哪来
+</h3><p>  四条来源：从别人的板子提取（<code>D</code> <code>P</code> 生成 PCB 库时会带着 3D）、自己用 <code>3D元件体</code> 画挤出体、从网上下 STEP 模型导入、或者直接用现成的超级库。</p>
+<p><img src="/p/ad/%E5%8F%AF%E4%BB%A5%E5%AF%BC%E5%85%A5%E5%88%AB%E4%BA%BA%E7%9A%843D.png"
+	width="828"
+	height="593"
+	srcset="/p/ad/%E5%8F%AF%E4%BB%A5%E5%AF%BC%E5%85%A5%E5%88%AB%E4%BA%BA%E7%9A%843D_hu7927085296345898692.png 480w, /p/ad/%E5%8F%AF%E4%BB%A5%E5%AF%BC%E5%85%A5%E5%88%AB%E4%BA%BA%E7%9A%843D_hu5568209826349240563.png 1024w"
+	loading="lazy"
+	
+		alt="工具栏 3D体 / 3D元件体：导入现成模型"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="139"
+		data-flex-basis="335px"
+	
+></p>
+<p><img src="/p/ad/%E5%8F%AF%E4%BB%A5%E5%9C%A8%E8%BF%99%E4%B8%AA%E7%BD%91%E7%AB%99%E4%B8%8B%E8%BD%BD3D.png"
+	width="602"
+	height="66"
+	srcset="/p/ad/%E5%8F%AF%E4%BB%A5%E5%9C%A8%E8%BF%99%E4%B8%AA%E7%BD%91%E7%AB%99%E4%B8%8B%E8%BD%BD3D_hu14894295532159647166.png 480w, /p/ad/%E5%8F%AF%E4%BB%A5%E5%9C%A8%E8%BF%99%E4%B8%AA%E7%BD%91%E7%AB%99%E4%B8%8B%E8%BD%BD3D_hu636230695122261726.png 1024w"
+	loading="lazy"
+	
+		alt="3D ContentCentral：可下载器件 STEP 模型"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="912"
+		data-flex-basis="2189px"
+	
+></p>
+<p>  从成品板提库时，3D 会跟着封装一起进库，这是最省事的一条路。</p>
+<p><img src="/p/ad/%E5%A6%82%E6%9E%9C%E5%88%AB%E4%BA%BA%E7%9A%84PCB%E5%B7%B2%E7%BB%8F%E6%9C%893D%E4%BA%86%EF%BC%8C%E9%82%A3%E6%88%91%E7%94%9F%E6%88%90%E7%9A%84PCB%E5%BA%93%E4%B9%9F%E4%BC%9A%E8%87%AA%E5%B8%A63D.png"
+	width="2090"
+	height="1275"
+	srcset="/p/ad/%E5%A6%82%E6%9E%9C%E5%88%AB%E4%BA%BA%E7%9A%84PCB%E5%B7%B2%E7%BB%8F%E6%9C%893D%E4%BA%86%EF%BC%8C%E9%82%A3%E6%88%91%E7%94%9F%E6%88%90%E7%9A%84PCB%E5%BA%93%E4%B9%9F%E4%BC%9A%E8%87%AA%E5%B8%A63D_hu16294058251490436146.png 480w, /p/ad/%E5%A6%82%E6%9E%9C%E5%88%AB%E4%BA%BA%E7%9A%84PCB%E5%B7%B2%E7%BB%8F%E6%9C%893D%E4%BA%86%EF%BC%8C%E9%82%A3%E6%88%91%E7%94%9F%E6%88%90%E7%9A%84PCB%E5%BA%93%E4%B9%9F%E4%BC%9A%E8%87%AA%E5%B8%A63D_hu14121528441636578350.png 1024w"
+	loading="lazy"
+	
+		alt="生成 PCB 库时，封装自带的 3D 模型会一并带出"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="163"
+		data-flex-basis="393px"
+	
+></p>
+<h3 id="123-两个必踩的坑">12.3 两个必踩的坑
+</h3><p>  <strong>坑一：导入的 3D 模型颜色发黑/不对。</strong> 属性面板里的 <code>Display»Override Color</code> 如果被勾上，会用统一颜色覆盖模型自带的材质颜色。<strong>取消勾选</strong>即可还原。</p>
+<p><img src="/p/ad/3D.png"
+	width="1461"
+	height="1238"
+	srcset="/p/ad/3D_hu12008280646661746584.png 480w, /p/ad/3D_hu14467084302215527168.png 1024w"
+	loading="lazy"
+	
+		alt="导入别人的 3D 时，取消 Display » Override Color"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="118"
+		data-flex-basis="283px"
+	
+></p>
+<p>  <strong>坑二：3D 模型老是自动吸附，微调不了。</strong> 这是 <code>3D Body Snap Points</code>（3D 模型顶点吸附）打开导致的，远距离就被&quot;吸住&quot;。把它关掉，保留 <code>Pad Centers</code>（对焊盘时还要用）；临时微调时按住 <code>Ctrl</code> 可以关闭全部吸附。</p>
+<p><img src="/p/ad/%E5%97%AF%E5%97%AF.png"
+	width="897"
+	height="486"
+	srcset="/p/ad/%E5%97%AF%E5%97%AF_hu822431419200258325.png 480w, /p/ad/%E5%97%AF%E5%97%AF_hu13094896843579443994.png 1024w"
+	loading="lazy"
+	
+		alt="3D 老是乱吸，关掉 3D Body Snap Points"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="184"
+		data-flex-basis="442px"
+	
+></p>
+<h3 id="124-3d-到底值不值">12.4 3D 到底值不值
+</h3><p>  三个场景特别值：<strong>装配干涉</strong>（连接器、电池座、电解电容会不会撞外壳）、<strong>导出 STEP 给结构做整机装配</strong>、<strong>对照装配图检查&quot;装反、装错面&quot;</strong>。花半天给关键器件补 3D，往往能省掉一次打样返工。</p>
+<p><a id="ch13"></a></p>
+<h2 id="结语一份可以照着走的顺序">结语：一份可以照着走的顺序
+</h2><p>  把这篇日志压缩成一张&quot;检查清单&quot;，下次画板可以直接对：</p>
+<ul>
+<li><input disabled="" type="checkbox"> 建库：优先 <code>生成原理图库</code> / <code>生成PCB库</code> / IPC 向导，别从零画</li>
+<li><input disabled="" type="checkbox"> 封装：<code>封装管理器</code> 全工程过一遍，确认每个元件都有封装</li>
+<li><input disabled="" type="checkbox"> 原理图：套 <code>.SchDot</code> 模板、<code>原理图标注</code> 编号、<code>图纸编号</code> 排页</li>
+<li><input disabled="" type="checkbox"> 编译：工程右键 <code>Validate</code>，把 ERC 清干净（悬空线、端口方向）</li>
+<li><input disabled="" type="checkbox"> 导入 PCB：<code>Import Changes From</code> 反复执行到 <code>No Differences</code></li>
+<li><input disabled="" type="checkbox"> 层叠与板框：<code>D K</code> 定叠层，Mechanical 1 画板框后 <code>D S D</code> 定义</li>
+<li><input disabled="" type="checkbox"> 规则：间距 6 / 铜皮 10 / 板框 20 / 过孔 12-24 / 阻焊 2.5，<strong>检查优先级</strong></li>
+<li><input disabled="" type="checkbox"> 网络类：<code>D C</code> 建类 → 规则约束 → 上色 <code>F5</code> 核对</li>
+<li><input disabled="" type="checkbox"> 布局：<code>T O L</code> 码齐 → 分模块摆放 → ROOM 复用多通道</li>
+<li><input disabled="" type="checkbox"> 布线：模拟优先不打孔 → 其他信号 → 电源地最后铺</li>
+<li><input disabled="" type="checkbox"> 铺铜：修钝角、挖残铜、必要时缝合地过孔</li>
+<li><input disabled="" type="checkbox"> DRC：<code>T D R</code> 批量跑一遍，该豁免的明确豁免</li>
+<li><input disabled="" type="checkbox"> 输出：Gerber → 钻孔 2:4 → 坐标 → IPC-D-356A → 装配图 PDF → 打包</li>
+</ul>
+<p>  最后说一句心里话：这些技巧单独看都很小，但<strong>画板的水平恰恰是这些&quot;小事&quot;堆出来的</strong>。快捷键快一点、规则准一点、导出的文件干净一点，最后交付的那块板子就靠谱一点。愿我们都能少返工，多打样。</p>
+<p><a id="ch14"></a></p>
+<h2 id="参考资料">参考资料
+</h2><p>  以下为撰写时核对过的官方与公开资料，文中相关结论均可在其中找到依据：</p>
+<ol>
+<li><a class="link" href="https://www.altium.com/cn/documentation/altium-designer/shortcut-keys"  target="_blank" rel="noopener"
+    >Altium Designer 快捷方式（总览与加速键体系）</a></li>
+<li><a class="link" href="https://www.altium.com/cn/documentation/altium-designer/shortcut-keys/pcb-editors"  target="_blank" rel="noopener"
+    >PCB 编辑器快捷键</a> · <a class="link" href="https://www.altium.com/cn/documentation/altium-designer/shortcut-keys/schematic-editors"  target="_blank" rel="noopener"
+    >原理图编辑器快捷键</a></li>
+<li><a class="link" href="https://www.altium.com/cn/documentation/altium-designer/sch-pcb"  target="_blank" rel="noopener"
+    >原理图与 PCB 之间的设计变更（Import / Update 方向）</a></li>
+<li><a class="link" href="https://www.altium.com/cn/documentation/altium-designer/pcb/defining-layer-stack"  target="_blank" rel="noopener"
+    >层叠设计与过孔类型（Layer Stack Manager）</a></li>
+<li><a class="link" href="https://www.altium.com/cn/documentation/altium-designer/pcb/defining-scoping-managing-design-rules"  target="_blank" rel="noopener"
+    >定义、作用域与管理设计规则</a></li>
+<li><a class="link" href="https://www.altium.com/cn/documentation/altium-designer/pcb/design-rule-types/plane"  target="_blank" rel="noopener"
+    >Plane 类规则：Polygon / Power Plane Connect Style</a></li>
+<li><a class="link" href="https://www.altium.com/cn/documentation/altium-designer/pcb/signal-layer-polygons"  target="_blank" rel="noopener"
+    >信号层多边形铺铜（Polygon Pour）</a></li>
+<li><a class="link" href="https://www.altium.com/cn/documentation/altium-designer/pcb/via-stitching-via-shielding"  target="_blank" rel="noopener"
+    >过孔缝合与过孔屏蔽（含 λ/20 间距经验）</a></li>
+<li><a class="link" href="https://www.altium.com/cn/documentation/altium-designer/preparing-for-manufacture"  target="_blank" rel="noopener"
+    >为制造做准备（Gerber / 钻孔 / 输出作业）</a></li>
+<li><a class="link" href="https://www.altium.com/cn/documentation/altium-designer/preparing-for-manufacture/output-jobs/bom-report-manager"  target="_blank" rel="noopener"
+    >BOM 报告管理器</a></li>
+</ol>
+<p>  另外两个非官方的辅助站点：查封装尺寸可用 <a class="link" href="https://www.iclib.cn"  target="_blank" rel="noopener"
+    >IC 封装网</a>（须回 datasheet 复核），下载 3D 模型可用 <a class="link" href="https://www.3dcontentcentral.cn"  target="_blank" rel="noopener"
+    >3D ContentCentral</a>。</p>
+<p>  文中截图均来自本人学习「电赛声源智能小车」工程时的软件实拍，个别速查表页引自凡亿教育公开课讲义，仅作学习笔记引用；如有版权问题请联系删除。</p>
+
 </section>
 
 
@@ -399,7 +3721,7 @@
 
 
         <span>
-            最后更新于 2026-11-17
+            最后更新于 2026-11-22
         </span>
     </section></footer>
 
