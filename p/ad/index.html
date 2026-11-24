@@ -520,7 +520,7 @@
         </div>
         
         <div>
-            <span class="article-time--words">📝 22001 字</span>
+            <span class="article-time--words">📝 22271 字</span>
         </div>
         
         <div>
@@ -902,124 +902,162 @@
 <pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Change _UserN TargetID=&#39;&lt;命令ID&gt;&#39; Field0=&#39;Shortcut1|Shortcut2&#39; Value0=&#39;&lt;键&gt;&#39; End
 </span></span></code></pre></td></tr></table>
 </div>
-</div><p>  我把自己机器上这份文件解析了一遍，一共 <strong>19 条记录、落到 11 个命令</strong>。先说结论，日常真正常按的是这六个：</p>
+</div><p>  我把自己机器上这份文件解析了一遍，一共 <strong>19 条记录、落到 11 个命令</strong>。先给一张&quot;<strong>按键 → 作用</strong>&ldquo;的速查表（按使用频率排），赶时间只看这张就够：</p>
 <div class="table-wrapper"><table>
 <thead>
 <tr>
-<th>键</th>
-<th>干什么</th>
-<th>为什么值得单独记</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><code>F2</code></td>
-<td>放置多边形铺铜</td>
-<td>整个布线后期按得最多的一键</td>
-</tr>
-<tr>
-<td><code>Shift+B</code></td>
-<td>重新铺设全部铺铜</td>
-<td>改完走线不用去面板点 Repour</td>
-</tr>
-<tr>
-<td><code>6</code></td>
-<td>线选（选中碰触的线）</td>
-<td>比框选精准，改单根线必用</td>
-</tr>
-<tr>
-<td><code>7</code></td>
-<td>区域框选</td>
-<td>和 <code>6</code> 成对，选&quot;一片&quot;用</td>
-</tr>
-<tr>
-<td><code>Shift+Z</code></td>
-<td>在矩形区域内排列器件</td>
-<td>刚导入 PCB 时一键码齐</td>
-</tr>
-<tr>
-<td><code>Alt+D</code></td>
-<td>快速差分对布线</td>
-<td>差分对不用再走 <code>U</code> 菜单</td>
-</tr>
-</tbody>
-</table></div>
-<p>  完整清单（按使用频率排）：</p>
-<div class="table-wrapper"><table>
-<thead>
-<tr>
-<th>命令 ID</th>
-<th>含义</th>
 <th>键位</th>
+<th>作用</th>
+<th>什么时候按</th>
+<th>适用范围</th>
 <th>槽位</th>
 </tr>
 </thead>
 <tbody>
 <tr>
+<td><strong><code>F2</code></strong></td>
+<td>放置多边形铺铜</td>
+<td>布线后期铺 GND / 电源铜皮</td>
+<td>PCB</td>
+<td>备用键</td>
+</tr>
+<tr>
+<td><strong><code>Shift+B</code></strong></td>
+<td>重新铺设全部铺铜</td>
+<td>改完走线、铜皮没刷新时一键重铺</td>
+<td>PCB</td>
+<td>备用键</td>
+</tr>
+<tr>
+<td><strong><code>6</code></strong></td>
+<td>线选（选中碰触的走线/对象）</td>
+<td>改单根走线、只选相连的一段</td>
+<td>PCB</td>
+<td>备用键</td>
+</tr>
+<tr>
+<td><strong><code>7</code></strong></td>
+<td>区域框选（选中区域内对象）</td>
+<td>整块电路一起选中、批量挪动</td>
+<td>PCB</td>
+<td>备用键</td>
+</tr>
+<tr>
+<td><strong><code>V</code></strong></td>
+<td>放置过孔</td>
+<td>换层、打地过孔、补缝合孔</td>
+<td>PCB</td>
+<td>备用键</td>
+</tr>
+<tr>
+<td><strong><code>Shift+Z</code></strong></td>
+<td>在矩形区域内排列器件</td>
+<td>刚导入 PCB、器件堆成一坨时先码齐</td>
+<td>PCB</td>
+<td>备用键</td>
+</tr>
+<tr>
+<td><strong><code>Shift+W</code></strong></td>
+<td>交换器件</td>
+<td>两个器件位置对调</td>
+<td>PCB</td>
+<td>备用键</td>
+</tr>
+<tr>
+<td><strong><code>W</code></strong></td>
+<td>快速布线</td>
+<td>在 PCB 里开走线，比走 <code>U</code> 菜单快</td>
+<td>PCB</td>
+<td>备用键</td>
+</tr>
+<tr>
+<td><strong><code>Alt+D</code></strong> / <code>F3</code></td>
+<td>快速差分对布线</td>
+<td>USB、以太网这类差分对，一次拉两根</td>
+<td>PCB</td>
+<td>主键 / 备用键</td>
+</tr>
+<tr>
+<td><strong><code>W</code></strong></td>
+<td>放置导线</td>
+<td>原理图连线，起手就按</td>
+<td>原理图</td>
+<td>主键</td>
+</tr>
+<tr>
+<td><strong><code>Q</code></strong></td>
+<td>设计菜单某子项的弹出键</td>
+<td>键盘呼出设计菜单下的某一项</td>
+<td>全局</td>
+<td>Popup</td>
+</tr>
+</tbody>
+</table></div>
+<p>  注意表里 <code>W</code> 出现了两次——<strong>同一个键在不同编辑器里含义不同</strong>：原理图里是&quot;放置导线&rdquo;，PCB 里是&quot;快速布线&quot;，两者互不干扰。真正跨编辑器通用的只有 <code>Q</code>。</p>
+<p>  想把某一个换掉，需要它的命令 ID，对照表如下：</p>
+<div class="table-wrapper"><table>
+<thead>
+<tr>
+<th>键位</th>
+<th>命令 ID</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>F2</code></td>
 <td><code>PLPCB:PlacePolygonPlane</code></td>
 <td>放置多边形铺铜</td>
-<td><code>F2</code></td>
-<td>备用</td>
 </tr>
 <tr>
+<td><code>Shift+B</code></td>
 <td><code>PLPCB:RepourAllPolygonsNoContext</code></td>
 <td>重新铺设全部铺铜</td>
-<td><code>Shift+B</code></td>
-<td>备用</td>
 </tr>
 <tr>
+<td><code>6</code></td>
 <td><code>PLPCB:SelectTouchingLine</code></td>
 <td>线选</td>
-<td><code>6</code></td>
-<td>备用</td>
 </tr>
 <tr>
+<td><code>7</code></td>
 <td><code>PLPCB:SelectInsideArea</code></td>
 <td>区域框选</td>
-<td><code>7</code></td>
-<td>备用</td>
 </tr>
 <tr>
+<td><code>V</code></td>
 <td><code>PLPCB:PlaceVia</code></td>
 <td>放置过孔</td>
-<td><code>V</code></td>
-<td>备用</td>
 </tr>
 <tr>
+<td><code>Shift+Z</code></td>
 <td><code>PLPCB:ArrangeComponentsWithinRectangle</code></td>
 <td>在矩形区域内排列器件</td>
-<td><code>Shift+Z</code></td>
-<td>备用</td>
 </tr>
 <tr>
+<td><code>Shift+W</code></td>
 <td><code>PLPCB:SwapComponents</code></td>
 <td>交换器件</td>
-<td><code>Shift+W</code></td>
-<td>备用</td>
 </tr>
 <tr>
+<td><code>W</code></td>
 <td><code>PLManRoute:AdvancedQuickRouting</code></td>
 <td>快速布线</td>
-<td><code>W</code></td>
-<td>备用</td>
 </tr>
 <tr>
+<td><code>Alt+D</code> / <code>F3</code></td>
 <td><code>PLManRoute:AdvancedQuickDiffPairRoute</code></td>
 <td>快速差分对布线</td>
-<td><code>Alt+D</code> / <code>F3</code></td>
-<td>主 / 备用</td>
 </tr>
 <tr>
+<td><code>W</code></td>
 <td><code>PLSch:PlaceWire</code></td>
 <td>原理图放置导线</td>
-<td><code>W</code></td>
-<td>主</td>
 </tr>
 <tr>
-<td><code>MNDesignMenu_Window1_3</code></td>
-<td>设计菜单某子项的弹出键</td>
 <td><code>Q</code></td>
-<td>Popup</td>
+<td><code>MNDesignMenu_Window1_3</code></td>
+<td>设计菜单子项的弹出键</td>
 </tr>
 </tbody>
 </table></div>
