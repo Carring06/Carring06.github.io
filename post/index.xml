@@ -107,6 +107,11 @@
 &lt;td&gt;&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
+&lt;td&gt;&lt;code&gt;T+C&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;元器件交叉选择&lt;/td&gt;
+&lt;td&gt;原理图到PCB/PCB到原理图&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
 &lt;td&gt;&lt;code&gt;Ctrl+M&lt;/code&gt;&lt;/td&gt;
 &lt;td&gt;测量距离&lt;/td&gt;
 &lt;td&gt;测前先 &lt;code&gt;Ctrl+E&lt;/code&gt; 勾 &lt;code&gt;Pad Centers&lt;/code&gt;&lt;/td&gt;
@@ -601,6 +606,16 @@
 &lt;td&gt;&lt;code&gt;Shift+Z&lt;/code&gt;&lt;/td&gt;
 &lt;td&gt;元件区域放置&lt;/td&gt;
 &lt;td&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Shift+X&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;元器件交叉选择&lt;/td&gt;
+&lt;td&gt;原理图到PCB/PCB到原理图&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;Ctrl+Shift+X&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;元器件交叉选择布局选中&lt;/td&gt;
+&lt;td&gt;原理图到PCB&lt;/td&gt;
 &lt;/tr&gt;
 &lt;tr&gt;
 &lt;td&gt;&lt;code&gt;T&lt;/code&gt; / &lt;code&gt;B&lt;/code&gt;&lt;/td&gt;
