@@ -7,15 +7,7 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>zh-cn</language>
         <copyright>车度空间Carring</copyright>
-        <lastBuildDate>Tue, 24 Nov 2026 16:57:58 +0800</lastBuildDate><atom:link href="https://Carring06.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>高多层_叠层设计</title>
-        <link>https://Carring06.github.io/p/%E9%AB%98%E5%A4%9A%E5%B1%82_%E5%8F%A0%E5%B1%82%E8%AE%BE%E8%AE%A1/</link>
-        <pubDate>Tue, 24 Nov 2026 16:57:58 +0800</pubDate>
-        
-        <guid>https://Carring06.github.io/p/%E9%AB%98%E5%A4%9A%E5%B1%82_%E5%8F%A0%E5%B1%82%E8%AE%BE%E8%AE%A1/</guid>
-        <description></description>
-        </item>
-        <item>
+        <lastBuildDate>Tue, 24 Nov 2026 11:38:36 +0800</lastBuildDate><atom:link href="https://Carring06.github.io/post/index.xml" rel="self" type="application/rss+xml" /><item>
         <title>AD快捷键设置_个人</title>
         <link>https://Carring06.github.io/p/ad_hotkey/</link>
         <pubDate>Tue, 24 Nov 2026 11:38:36 +0800</pubDate>
@@ -2337,6 +2329,120 @@
 &lt;/table&gt;
 &lt;hr&gt;
 </description>
+        </item>
+        <item>
+        <title>高多层_叠层设计</title>
+        <link>https://Carring06.github.io/p/stackup-design/</link>
+        <pubDate>Tue, 24 Nov 2026 11:35:29 +0800</pubDate>
+        
+        <guid>https://Carring06.github.io/p/stackup-design/</guid>
+        <description>&lt;p&gt;  Hello，吴先生，距离上次进行总结已经过了&lt;strong&gt;20天&lt;/strong&gt;了。期间的&lt;strong&gt;AD软件学习&lt;/strong&gt;，以及&lt;strong&gt;AD和EasyEDA快捷键章节&lt;/strong&gt;，我都是使用&lt;strong&gt;DeepSeek Harness&lt;/strong&gt;进行辅助完成的，为什么呢？因为我个人觉得，一些属于“&lt;strong&gt;机械&lt;/strong&gt;”的，而且在总结过程中并不会有&lt;strong&gt;新的感悟&lt;/strong&gt;的文章，确实可以交给AI去帮我们实现。而且不得不承认，AI总结的&lt;strong&gt;文章格式&lt;/strong&gt;以及对&lt;strong&gt;MarkDown语法&lt;/strong&gt;的运用，确实比&lt;strong&gt;目前的我&lt;/strong&gt;好太多了，但写的太完美（虽然也没那么完美），也是一种不完美！😆&lt;br&gt;
+  所以呢，对于我&lt;strong&gt;个人&lt;/strong&gt;来说，如果是自己在学习过程中有&lt;strong&gt;新的收获&lt;/strong&gt;时，那么，只有我自己进行博客文章的&lt;strong&gt;亲笔撰写&lt;/strong&gt;，我才会觉得这篇文章&lt;strong&gt;质量好&lt;/strong&gt;（虽然但是&amp;hellip;）！其实一部分原因也是我本人确实喜欢通过&lt;strong&gt;码字记录自己的心得&lt;/strong&gt;，博客文章的&lt;strong&gt;目的&lt;/strong&gt;，也是因为我自己想做一些&lt;strong&gt;学习分享&lt;/strong&gt;，但又&lt;strong&gt;不想&lt;/strong&gt;再继续通过&lt;strong&gt;手写方式&lt;/strong&gt;记录，所以才创建这个网站来记录的，所以&lt;strong&gt;我不能，也不会&lt;/strong&gt;把这个网站的博客撰写全盘交给AI的😉。&lt;br&gt;
+  那么，回到今天的重点——&lt;mark&gt;高多层_叠层设计&lt;/mark&gt;。&lt;/p&gt;
+&lt;h2 id=&#34;材料层压与工艺&#34;&gt;材料层压与工艺
+&lt;/h2&gt;&lt;p&gt;  讨论到&lt;strong&gt;叠层设计&lt;/strong&gt;，很多人都是会立马开展哪个&lt;strong&gt;内层作GND地平面&lt;/strong&gt;，哪个作&lt;strong&gt;PWR电源层&lt;/strong&gt;，但这里，我先来谈谈PCB板子的&lt;strong&gt;材料层压&lt;/strong&gt;与的相关科普。&lt;br&gt;
+  首先，要介绍&lt;strong&gt;层压&lt;/strong&gt;，那就需要先介绍两个概念，一是&lt;strong&gt;芯板&lt;/strong&gt;（Core）和&lt;strong&gt;半固化片&lt;/strong&gt;（PP）。&lt;br&gt;
+  介于现在的&lt;strong&gt;AI&lt;/strong&gt;实在是方便，这里我就对这两个概念进行简单说明，大家如果实在是&lt;strong&gt;不理解&lt;/strong&gt;，可以自行使用&lt;strong&gt;AI进行查明&lt;/strong&gt;。 &lt;br&gt;
+  所谓的&lt;strong&gt;芯板&lt;/strong&gt;（Core），就是在&lt;strong&gt;硬板基材&lt;/strong&gt;（大多数PCB的芯板基材是&lt;strong&gt;FR4&lt;/strong&gt;）的两面进行过&lt;strong&gt;覆铜&lt;/strong&gt;的一种基础板材【已经&lt;strong&gt;完全固化&lt;/strong&gt;】;所谓的&lt;strong&gt;半固化片&lt;/strong&gt;(PP)，就是一种可以将&lt;strong&gt;芯板和铜箔&lt;/strong&gt;进行粘黏的&lt;strong&gt;胶片&lt;/strong&gt;，他是高温下就会融化的，PP（半固化片）一般也是** FR4 体系的树脂**【&lt;strong&gt;预固化&lt;/strong&gt;，加热加压才会融化再固化】。&lt;br&gt;
+  上段所说的，“大多数PCB的芯板基材是&lt;strong&gt;FR4&lt;/strong&gt;”中的大多数，就是说明还有&lt;strong&gt;其他基材选择&lt;/strong&gt;的，而基材的&lt;strong&gt;选择&lt;/strong&gt;，是和我们的板子&lt;strong&gt;性能特性指标紧密&lt;/strong&gt;相关的。就拿我看过的一个&lt;strong&gt;大佬的视频&lt;/strong&gt;说一下，他说，当板子上的信号属于那种&lt;strong&gt;信号频率大于6Gbps&lt;/strong&gt;的&lt;strong&gt;高速信号&lt;/strong&gt;时，他是&lt;strong&gt;不会&lt;/strong&gt;使用&lt;strong&gt;FR4作为基材&lt;/strong&gt;的，因为&lt;strong&gt;FR4的短板&lt;/strong&gt;就是当&lt;strong&gt;信号频率越高&lt;/strong&gt;时，&lt;strong&gt;介质损耗&lt;/strong&gt;就会&lt;strong&gt;越大&lt;/strong&gt;，那么&lt;strong&gt;信号的质量就会大大被削弱&lt;/strong&gt;，如果我们还坚持使用FR4作基材，那么就会对&lt;strong&gt;信号完整性&lt;/strong&gt;造成严重影响，所以这个时候，就需要选用其他&lt;strong&gt;低损耗基材&lt;/strong&gt;来作为板子基材。&lt;br&gt;
+  科普一下两个概念，如下图：
+&lt;img src=&#34;https://Carring06.github.io/p/stackup-design/image.png&#34;
+	width=&#34;1278&#34;
+	height=&#34;510&#34;
+	srcset=&#34;https://Carring06.github.io/p/stackup-design/image_hu14432205832945021956.png 480w, https://Carring06.github.io/p/stackup-design/image_hu6397555657232560175.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;介质损耗以及导体损耗&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;250&#34;
+		data-flex-basis=&#34;601px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/stackup-design/image-1.png&#34;
+	width=&#34;972&#34;
+	height=&#34;893&#34;
+	srcset=&#34;https://Carring06.github.io/p/stackup-design/image-1_hu8059362370267005855.png 480w, https://Carring06.github.io/p/stackup-design/image-1_hu11213010696718614136.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;6层板组成&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;108&#34;
+		data-flex-basis=&#34;261px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;  上图所示的就是一块六层板的层压结构，&lt;br&gt;
+&lt;strong&gt;独立铜箔  + PP（半固化片） + Core（芯板） + PP（半固化片） + Core（芯板） + PP（半固化片） + 独立铜箔&lt;/strong&gt;&lt;br&gt;
+  两层独立铜箔作为顶层和底层，而两个芯板的各自两个覆铜面作为四个内层，加起来就为六层结构，&lt;br&gt;
+  之所以上面要给大家介绍&lt;strong&gt;层压结构&lt;/strong&gt;，是因为&lt;strong&gt;层压结构&lt;/strong&gt;对于板子&lt;strong&gt;性能&lt;/strong&gt;也是有&lt;strong&gt;很大影响&lt;/strong&gt;的，所以我们在&lt;strong&gt;设计板子&lt;/strong&gt;的时候（这里特指&lt;strong&gt;多层板&lt;/strong&gt;），不仅要&lt;strong&gt;考虑好各个层&lt;/strong&gt;的作用（GND还是PWR还是信号层），也是要考虑要采用哪种&lt;strong&gt;层压方式&lt;/strong&gt;，因为&lt;strong&gt;阻抗的计算&lt;/strong&gt;，也是和叠层&lt;strong&gt;密切相关&lt;/strong&gt;的。 &lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/stackup-design/%E5%B1%82%E5%8E%8B%E7%BB%93%E6%9E%84%E4%B9%9F%E5%92%8C%E7%89%A9%E7%90%86%E5%B1%82%E5%8E%8B%E6%9C%89%E5%85%B3%E5%93%9F.png&#34;
+	width=&#34;2238&#34;
+	height=&#34;1416&#34;
+	srcset=&#34;https://Carring06.github.io/p/stackup-design/%E5%B1%82%E5%8E%8B%E7%BB%93%E6%9E%84%E4%B9%9F%E5%92%8C%E7%89%A9%E7%90%86%E5%B1%82%E5%8E%8B%E6%9C%89%E5%85%B3%E5%93%9F_hu3880953997119970250.png 480w, https://Carring06.github.io/p/stackup-design/%E5%B1%82%E5%8E%8B%E7%BB%93%E6%9E%84%E4%B9%9F%E5%92%8C%E7%89%A9%E7%90%86%E5%B1%82%E5%8E%8B%E6%9C%89%E5%85%B3%E5%93%9F_hu14334105350606770502.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;嘉立创叠层选择&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;158&#34;
+		data-flex-basis=&#34;379px&#34;
+	
+&gt;
+  如上图所示，层与层之间的&lt;strong&gt;间距什么&lt;/strong&gt;的，各个板厂都会有自己的&lt;strong&gt;工艺选项&lt;/strong&gt;，这个也是应该重点关注的。而且还有&lt;strong&gt;假八层&lt;/strong&gt;，如下图所示，这些都是根据需求来设计选择的，等到后面进企业后，也是要对这些要概念的。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/stackup-design/%E5%81%878%E5%B1%82.png&#34;
+	width=&#34;1814&#34;
+	height=&#34;1259&#34;
+	srcset=&#34;https://Carring06.github.io/p/stackup-design/%E5%81%878%E5%B1%82_hu4287058666626958278.png 480w, https://Carring06.github.io/p/stackup-design/%E5%81%878%E5%B1%82_hu3915637675334441720.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;假八层&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;144&#34;
+		data-flex-basis=&#34;345px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h2 id=&#34;阻抗与传输线&#34;&gt;阻抗与传输线
+&lt;/h2&gt;&lt;p&gt;  介绍完层压结构，现在再来介绍一下&lt;strong&gt;阻抗与传输线&lt;/strong&gt;。因为&lt;strong&gt;阻抗&lt;/strong&gt;涉及到的内容比较多，所以，我先介绍一下&lt;strong&gt;传输线&lt;/strong&gt;。&lt;/p&gt;
+&lt;h3 id=&#34;传输线&#34;&gt;传输线
+&lt;/h3&gt;&lt;p&gt;  &lt;strong&gt;传输线&lt;/strong&gt;是由&lt;strong&gt;两条有一定长度的导线&lt;/strong&gt;组成，一条是&lt;strong&gt;信号传播路径&lt;/strong&gt;，另一条是&lt;strong&gt;信号返回路径&lt;/strong&gt;。简单来说，&lt;strong&gt;传输线&lt;/strong&gt;就是能够传输&lt;strong&gt;信号的连接线&lt;/strong&gt;。比如&lt;strong&gt;电源线、视频线、USB连接线、PCB板上的走线等&lt;/strong&gt;等，都可以称之为传输线。PCB 里两种最主流的&lt;strong&gt;平面传输线&lt;/strong&gt;分别为，&lt;strong&gt;微带线&lt;/strong&gt;和&lt;strong&gt;带状线&lt;/strong&gt;。详细解释如下图。 &lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/stackup-design/%E5%BE%AE%E5%B8%A6%E7%BA%BF%E4%B8%8E%E5%B8%A6%E7%8A%B6%E7%BA%BF.png&#34;
+	width=&#34;1431&#34;
+	height=&#34;1109&#34;
+	srcset=&#34;https://Carring06.github.io/p/stackup-design/%E5%BE%AE%E5%B8%A6%E7%BA%BF%E4%B8%8E%E5%B8%A6%E7%8A%B6%E7%BA%BF_hu9212673404899129427.png 480w, https://Carring06.github.io/p/stackup-design/%E5%BE%AE%E5%B8%A6%E7%BA%BF%E4%B8%8E%E5%B8%A6%E7%8A%B6%E7%BA%BF_hu14668907364776454487.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;微带线与带状线&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;129&#34;
+		data-flex-basis=&#34;309px&#34;
+	
+&gt;&lt;br&gt;
+  传输线上传输的信号是&lt;strong&gt;低频信号&lt;/strong&gt;，假设是 &lt;strong&gt;1KHz&lt;/strong&gt;，信号的&lt;strong&gt;波长&lt;/strong&gt;就是 &lt;strong&gt;300 公里&lt;/strong&gt; (假设信号速度为光速)，即使传输线长度有 &lt;strong&gt;1 米&lt;/strong&gt;，相对于信号&lt;strong&gt;波长仍然很短&lt;/strong&gt;，可以当作&lt;strong&gt;普通导线&lt;/strong&gt;，&lt;strong&gt;传输线效应&lt;/strong&gt;可以&lt;strong&gt;忽略&lt;/strong&gt;。
+但是对于&lt;strong&gt;高速信号&lt;/strong&gt;，假设频率 &lt;strong&gt;300MHz&lt;/strong&gt;，波长缩短到 &lt;strong&gt;1 米&lt;/strong&gt;；当&lt;strong&gt;走线长度&lt;/strong&gt;和&lt;strong&gt;波长&lt;/strong&gt;可比（走线长度通常超过 λ/20），线上&lt;strong&gt;不同位置电压电流&lt;/strong&gt;不再相同，出现&lt;strong&gt;波动、反射&lt;/strong&gt;，这时&lt;strong&gt;不能&lt;/strong&gt;忽略传输线效应，属于长线，需要&lt;strong&gt;阻抗匹配&lt;/strong&gt;。 &lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/stackup-design/image-2.png&#34;
+	width=&#34;1332&#34;
+	height=&#34;510&#34;
+	srcset=&#34;https://Carring06.github.io/p/stackup-design/image-2_hu5343471177061328385.png 480w, https://Carring06.github.io/p/stackup-design/image-2_hu9915907281509064132.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;波长&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;261&#34;
+		data-flex-basis=&#34;626px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;h3 id=&#34;阻抗&#34;&gt;阻抗
+&lt;/h3&gt;</description>
         </item>
         <item>
         <title>Altium Designer学习日志</title>

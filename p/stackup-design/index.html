@@ -1,18 +1,18 @@
 <!DOCTYPE html>
 <html lang="zh-cn" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="">
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content="Hello，吴先生，距离上次进行总结已经过了20天了。期间的AD软件学习，以及AD和EasyEDA快捷键章节，我都是使用DeepSeek Ha">
 <title>高多层_叠层设计</title>
 
-<link rel='canonical' href='https://Carring06.github.io/p/%E9%AB%98%E5%A4%9A%E5%B1%82_%E5%8F%A0%E5%B1%82%E8%AE%BE%E8%AE%A1/'>
+<link rel='canonical' href='https://Carring06.github.io/p/stackup-design/'>
 
 <link rel="stylesheet" href="/scss/style.min.922202eb35862f3e303162be1bcbc0eea9db1bb2d77a0a85dbae28420757c6bb.css"><meta property='og:title' content="高多层_叠层设计">
-<meta property='og:description' content="">
-<meta property='og:url' content='https://Carring06.github.io/p/%E9%AB%98%E5%A4%9A%E5%B1%82_%E5%8F%A0%E5%B1%82%E8%AE%BE%E8%AE%A1/'>
+<meta property='og:description' content="Hello，吴先生，距离上次进行总结已经过了20天了。期间的AD软件学习，以及AD和EasyEDA快捷键章节，我都是使用DeepSeek Ha">
+<meta property='og:url' content='https://Carring06.github.io/p/stackup-design/'>
 <meta property='og:site_name' content='车度空间'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-11-24T16:57:58&#43;08:00'/><meta property='article:modified_time' content='2026-11-24T16:57:58&#43;08:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-11-24T11:35:29&#43;08:00'/><meta property='article:modified_time' content='2026-11-25T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="高多层_叠层设计">
-<meta name="twitter:description" content="">
+<meta name="twitter:description" content="Hello，吴先生，距离上次进行总结已经过了20天了。期间的AD软件学习，以及AD和EasyEDA快捷键章节，我都是使用DeepSeek Ha">
     <link rel="shortcut icon" href="/favicon.ico" />
 
   
@@ -300,7 +300,44 @@
     </ol>
 </aside>
 
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">目录</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#材料层压与工艺">材料层压与工艺</a></li>
+    <li><a href="#阻抗与传输线">阻抗与传输线</a>
+      <ol>
+        <li><a href="#传输线">传输线</a></li>
+        <li><a href="#阻抗">阻抗</a></li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
             <main class="main full-width">
     <article class="main-article">
@@ -311,7 +348,7 @@
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/%E9%AB%98%E5%A4%9A%E5%B1%82_%E5%8F%A0%E5%B1%82%E8%AE%BE%E8%AE%A1/">高多层_叠层设计</a>
+            <a href="/p/stackup-design/">高多层_叠层设计</a>
         </h2>
     
         
@@ -338,7 +375,21 @@
         
         
         <div>
-            <span class="article-time--words">📝 0 字</span>
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+            <time class="article-time--modified">
+                最后更新于 2026-11-25
+            </time>
+        </div>
+        
+        <div>
+            <span class="article-time--words">📝 1694 字</span>
         </div>
         
         <div>
@@ -356,7 +407,113 @@
     <section class="article-content">
     
     
-    
+    <p>  Hello，吴先生，距离上次进行总结已经过了<strong>20天</strong>了。期间的<strong>AD软件学习</strong>，以及<strong>AD和EasyEDA快捷键章节</strong>，我都是使用<strong>DeepSeek Harness</strong>进行辅助完成的，为什么呢？因为我个人觉得，一些属于“<strong>机械</strong>”的，而且在总结过程中并不会有<strong>新的感悟</strong>的文章，确实可以交给AI去帮我们实现。而且不得不承认，AI总结的<strong>文章格式</strong>以及对<strong>MarkDown语法</strong>的运用，确实比<strong>目前的我</strong>好太多了，但写的太完美（虽然也没那么完美），也是一种不完美！😆<br>
+  所以呢，对于我<strong>个人</strong>来说，如果是自己在学习过程中有<strong>新的收获</strong>时，那么，只有我自己进行博客文章的<strong>亲笔撰写</strong>，我才会觉得这篇文章<strong>质量好</strong>（虽然但是&hellip;）！其实一部分原因也是我本人确实喜欢通过<strong>码字记录自己的心得</strong>，博客文章的<strong>目的</strong>，也是因为我自己想做一些<strong>学习分享</strong>，但又<strong>不想</strong>再继续通过<strong>手写方式</strong>记录，所以才创建这个网站来记录的，所以<strong>我不能，也不会</strong>把这个网站的博客撰写全盘交给AI的😉。<br>
+  那么，回到今天的重点——<mark>高多层_叠层设计</mark>。</p>
+<h2 id="材料层压与工艺">材料层压与工艺
+</h2><p>  讨论到<strong>叠层设计</strong>，很多人都是会立马开展哪个<strong>内层作GND地平面</strong>，哪个作<strong>PWR电源层</strong>，但这里，我先来谈谈PCB板子的<strong>材料层压</strong>与的相关科普。<br>
+  首先，要介绍<strong>层压</strong>，那就需要先介绍两个概念，一是<strong>芯板</strong>（Core）和<strong>半固化片</strong>（PP）。<br>
+  介于现在的<strong>AI</strong>实在是方便，这里我就对这两个概念进行简单说明，大家如果实在是<strong>不理解</strong>，可以自行使用<strong>AI进行查明</strong>。 <br>
+  所谓的<strong>芯板</strong>（Core），就是在<strong>硬板基材</strong>（大多数PCB的芯板基材是<strong>FR4</strong>）的两面进行过<strong>覆铜</strong>的一种基础板材【已经<strong>完全固化</strong>】;所谓的<strong>半固化片</strong>(PP)，就是一种可以将<strong>芯板和铜箔</strong>进行粘黏的<strong>胶片</strong>，他是高温下就会融化的，PP（半固化片）一般也是** FR4 体系的树脂**【<strong>预固化</strong>，加热加压才会融化再固化】。<br>
+  上段所说的，“大多数PCB的芯板基材是<strong>FR4</strong>”中的大多数，就是说明还有<strong>其他基材选择</strong>的，而基材的<strong>选择</strong>，是和我们的板子<strong>性能特性指标紧密</strong>相关的。就拿我看过的一个<strong>大佬的视频</strong>说一下，他说，当板子上的信号属于那种<strong>信号频率大于6Gbps</strong>的<strong>高速信号</strong>时，他是<strong>不会</strong>使用<strong>FR4作为基材</strong>的，因为<strong>FR4的短板</strong>就是当<strong>信号频率越高</strong>时，<strong>介质损耗</strong>就会<strong>越大</strong>，那么<strong>信号的质量就会大大被削弱</strong>，如果我们还坚持使用FR4作基材，那么就会对<strong>信号完整性</strong>造成严重影响，所以这个时候，就需要选用其他<strong>低损耗基材</strong>来作为板子基材。<br>
+  科普一下两个概念，如下图：
+<img src="/p/stackup-design/image.png"
+	width="1278"
+	height="510"
+	srcset="/p/stackup-design/image_hu14432205832945021956.png 480w, /p/stackup-design/image_hu6397555657232560175.png 1024w"
+	loading="lazy"
+	
+		alt="介质损耗以及导体损耗"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="250"
+		data-flex-basis="601px"
+	
+></p>
+<p><img src="/p/stackup-design/image-1.png"
+	width="972"
+	height="893"
+	srcset="/p/stackup-design/image-1_hu8059362370267005855.png 480w, /p/stackup-design/image-1_hu11213010696718614136.png 1024w"
+	loading="lazy"
+	
+		alt="6层板组成"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="108"
+		data-flex-basis="261px"
+	
+></p>
+<p>  上图所示的就是一块六层板的层压结构，<br>
+<strong>独立铜箔  + PP（半固化片） + Core（芯板） + PP（半固化片） + Core（芯板） + PP（半固化片） + 独立铜箔</strong><br>
+  两层独立铜箔作为顶层和底层，而两个芯板的各自两个覆铜面作为四个内层，加起来就为六层结构，<br>
+  之所以上面要给大家介绍<strong>层压结构</strong>，是因为<strong>层压结构</strong>对于板子<strong>性能</strong>也是有<strong>很大影响</strong>的，所以我们在<strong>设计板子</strong>的时候（这里特指<strong>多层板</strong>），不仅要<strong>考虑好各个层</strong>的作用（GND还是PWR还是信号层），也是要考虑要采用哪种<strong>层压方式</strong>，因为<strong>阻抗的计算</strong>，也是和叠层<strong>密切相关</strong>的。 <br>
+<img src="/p/stackup-design/%E5%B1%82%E5%8E%8B%E7%BB%93%E6%9E%84%E4%B9%9F%E5%92%8C%E7%89%A9%E7%90%86%E5%B1%82%E5%8E%8B%E6%9C%89%E5%85%B3%E5%93%9F.png"
+	width="2238"
+	height="1416"
+	srcset="/p/stackup-design/%E5%B1%82%E5%8E%8B%E7%BB%93%E6%9E%84%E4%B9%9F%E5%92%8C%E7%89%A9%E7%90%86%E5%B1%82%E5%8E%8B%E6%9C%89%E5%85%B3%E5%93%9F_hu3880953997119970250.png 480w, /p/stackup-design/%E5%B1%82%E5%8E%8B%E7%BB%93%E6%9E%84%E4%B9%9F%E5%92%8C%E7%89%A9%E7%90%86%E5%B1%82%E5%8E%8B%E6%9C%89%E5%85%B3%E5%93%9F_hu14334105350606770502.png 1024w"
+	loading="lazy"
+	
+		alt="嘉立创叠层选择"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="158"
+		data-flex-basis="379px"
+	
+>
+  如上图所示，层与层之间的<strong>间距什么</strong>的，各个板厂都会有自己的<strong>工艺选项</strong>，这个也是应该重点关注的。而且还有<strong>假八层</strong>，如下图所示，这些都是根据需求来设计选择的，等到后面进企业后，也是要对这些要概念的。<br>
+<img src="/p/stackup-design/%E5%81%878%E5%B1%82.png"
+	width="1814"
+	height="1259"
+	srcset="/p/stackup-design/%E5%81%878%E5%B1%82_hu4287058666626958278.png 480w, /p/stackup-design/%E5%81%878%E5%B1%82_hu3915637675334441720.png 1024w"
+	loading="lazy"
+	
+		alt="假八层"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="144"
+		data-flex-basis="345px"
+	
+></p>
+<h2 id="阻抗与传输线">阻抗与传输线
+</h2><p>  介绍完层压结构，现在再来介绍一下<strong>阻抗与传输线</strong>。因为<strong>阻抗</strong>涉及到的内容比较多，所以，我先介绍一下<strong>传输线</strong>。</p>
+<h3 id="传输线">传输线
+</h3><p>  <strong>传输线</strong>是由<strong>两条有一定长度的导线</strong>组成，一条是<strong>信号传播路径</strong>，另一条是<strong>信号返回路径</strong>。简单来说，<strong>传输线</strong>就是能够传输<strong>信号的连接线</strong>。比如<strong>电源线、视频线、USB连接线、PCB板上的走线等</strong>等，都可以称之为传输线。PCB 里两种最主流的<strong>平面传输线</strong>分别为，<strong>微带线</strong>和<strong>带状线</strong>。详细解释如下图。 <br>
+<img src="/p/stackup-design/%E5%BE%AE%E5%B8%A6%E7%BA%BF%E4%B8%8E%E5%B8%A6%E7%8A%B6%E7%BA%BF.png"
+	width="1431"
+	height="1109"
+	srcset="/p/stackup-design/%E5%BE%AE%E5%B8%A6%E7%BA%BF%E4%B8%8E%E5%B8%A6%E7%8A%B6%E7%BA%BF_hu9212673404899129427.png 480w, /p/stackup-design/%E5%BE%AE%E5%B8%A6%E7%BA%BF%E4%B8%8E%E5%B8%A6%E7%8A%B6%E7%BA%BF_hu14668907364776454487.png 1024w"
+	loading="lazy"
+	
+		alt="微带线与带状线"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="129"
+		data-flex-basis="309px"
+	
+><br>
+  传输线上传输的信号是<strong>低频信号</strong>，假设是 <strong>1KHz</strong>，信号的<strong>波长</strong>就是 <strong>300 公里</strong> (假设信号速度为光速)，即使传输线长度有 <strong>1 米</strong>，相对于信号<strong>波长仍然很短</strong>，可以当作<strong>普通导线</strong>，<strong>传输线效应</strong>可以<strong>忽略</strong>。
+但是对于<strong>高速信号</strong>，假设频率 <strong>300MHz</strong>，波长缩短到 <strong>1 米</strong>；当<strong>走线长度</strong>和<strong>波长</strong>可比（走线长度通常超过 λ/20），线上<strong>不同位置电压电流</strong>不再相同，出现<strong>波动、反射</strong>，这时<strong>不能</strong>忽略传输线效应，属于长线，需要<strong>阻抗匹配</strong>。 <br>
+<img src="/p/stackup-design/image-2.png"
+	width="1332"
+	height="510"
+	srcset="/p/stackup-design/image-2_hu5343471177061328385.png 480w, /p/stackup-design/image-2_hu9915907281509064132.png 1024w"
+	loading="lazy"
+	
+		alt="波长"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="261"
+		data-flex-basis="626px"
+	
+></p>
+<h3 id="阻抗">阻抗
+</h3>
 </section>
 
 
@@ -375,7 +532,19 @@
 
         <span>Licensed under CC BY-NC-SA 4.0</span>
     </section>
-    </footer>
+    <section class="article-lastmod">
+        <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-clock" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <circle cx="12" cy="12" r="9" />
+  <polyline points="12 7 12 12 15 15" />
+</svg>
+
+
+
+        <span>
+            最后更新于 2026-11-25
+        </span>
+    </section></footer>
 
 
     
