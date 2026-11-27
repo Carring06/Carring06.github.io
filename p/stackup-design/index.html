@@ -337,16 +337,27 @@
             <li><a href="#100-om">100 OM</a></li>
           </ol>
         </li>
-        <li><a href="#叠层设计原则与目标">叠层设计原则与目标</a>
-          <ol>
-            <li><a href="#目标">目标</a></li>
-            <li><a href="#原则与注意事项">原则与注意事项</a></li>
-          </ol>
-        </li>
+      </ol>
+    </li>
+    <li><a href="#叠层设计原则与目标">叠层设计原则与目标</a>
+      <ol>
+        <li><a href="#目标">目标</a></li>
+        <li><a href="#原则与注意事项">原则与注意事项</a></li>
       </ol>
     </li>
     <li><a href="#四层板叠层推荐">四层板叠层推荐</a></li>
     <li><a href="#六层板叠层推荐">六层板叠层推荐</a></li>
+    <li><a href="#八层板叠层推荐">八层板叠层推荐</a></li>
+    <li><a href="#十层板叠层推荐">十层板叠层推荐</a></li>
+    <li><a href="#其他">其他</a>
+      <ol>
+        <li><a href="#高速信号换层">高速信号换层</a></li>
+        <li><a href="#跨分割造成的问题">跨分割造成的问题</a></li>
+        <li><a href="#信号线主参考和次参考">信号线主参考和次参考</a></li>
+        <li><a href="#多个电源轨含义">“多个电源轨”含义</a></li>
+        <li><a href="#盘中孔科普">盘中孔科普</a></li>
+      </ol>
+    </li>
   </ol>
 </nav>
         </div>
@@ -407,7 +418,7 @@
         </div>
         
         <div>
-            <span class="article-time--words">📝 3326 字</span>
+            <span class="article-time--words">📝 3479 字</span>
         </div>
         
         <div>
@@ -723,8 +734,8 @@
 		data-flex-basis="164px"
 	
 ></p>
-<h3 id="叠层设计原则与目标">叠层设计原则与目标
-</h3><p><img src="/p/stackup-design/%E5%90%88%E7%90%86%E5%8F%A0%E5%B1%82%E7%9A%84%E5%A5%BD%E5%A4%84.png"
+<h2 id="叠层设计原则与目标">叠层设计原则与目标
+</h2><p><img src="/p/stackup-design/%E5%90%88%E7%90%86%E5%8F%A0%E5%B1%82%E7%9A%84%E5%A5%BD%E5%A4%84.png"
 	width="1448"
 	height="1185"
 	srcset="/p/stackup-design/%E5%90%88%E7%90%86%E5%8F%A0%E5%B1%82%E7%9A%84%E5%A5%BD%E5%A4%84_hu12176759072809338108.png 480w, /p/stackup-design/%E5%90%88%E7%90%86%E5%8F%A0%E5%B1%82%E7%9A%84%E5%A5%BD%E5%A4%84_hu890874013525559341.png 1024w"
@@ -738,8 +749,8 @@
 		data-flex-basis="293px"
 	
 ></p>
-<h4 id="目标">目标
-</h4><p>  <strong>层叠设计</strong>一般遵循着<strong>三个总目标</strong>： <br>
+<h3 id="目标">目标
+</h3><p>  <strong>层叠设计</strong>一般遵循着<strong>三个总目标</strong>： <br>
   <strong>一是</strong>：<mark><strong>每条信号线都要有最小阻抗的回流路径</strong>；</mark><br>
   <strong>二是</strong>：<mark><strong>相邻的电源层与地平面层要保持最小间距</strong>；</mark><br>
   <strong>三是</strong>：<mark><strong>尽量保证参考层大面积完整，这样会有电磁屏蔽效果</strong>！</mark></p>
@@ -757,8 +768,22 @@
 		data-flex-basis="803px"
 	
 ></p>
-<h4 id="原则与注意事项">原则与注意事项
-</h4><p>  这里直接粘图了哈哈，记得看哟~<br>
+<h3 id="原则与注意事项">原则与注意事项
+</h3><p>  这里直接粘图了哈哈，记得看哟~ <br>
+<img src="/p/stackup-design/%E6%80%BB%E7%BB%93.png"
+	width="2393"
+	height="1116"
+	srcset="/p/stackup-design/%E6%80%BB%E7%BB%93_hu14058326358406262960.png 480w, /p/stackup-design/%E6%80%BB%E7%BB%93_hu18137267681465154709.png 1024w"
+	loading="lazy"
+	
+		alt="要点"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="214"
+		data-flex-basis="514px"
+	
+>
 <img src="/p/stackup-design/%E5%B1%82%E6%95%B0%E8%80%83%E8%99%91%E5%9B%A0%E7%B4%A0.png"
 	width="1832"
 	height="1047"
@@ -937,6 +962,185 @@
 		class="gallery-image" 
 		data-flex-grow="93"
 		data-flex-basis="223px"
+	
+></p>
+<h2 id="八层板叠层推荐">八层板叠层推荐
+</h2><p><img src="/p/stackup-design/8%E5%B1%82%E6%9D%BF%E6%8E%A8%E8%8D%90.png"
+	width="2418"
+	height="1305"
+	srcset="/p/stackup-design/8%E5%B1%82%E6%9D%BF%E6%8E%A8%E8%8D%90_hu17355274603577433480.png 480w, /p/stackup-design/8%E5%B1%82%E6%9D%BF%E6%8E%A8%E8%8D%90_hu7905475493396055837.png 1024w"
+	loading="lazy"
+	
+		alt="八层板"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="185"
+		data-flex-basis="444px"
+	
+><br>
+<img src="/p/stackup-design/%E5%85%AB%E5%B1%82%E5%B1%82%E5%8F%A0.png"
+	width="2048"
+	height="1203"
+	srcset="/p/stackup-design/%E5%85%AB%E5%B1%82%E5%B1%82%E5%8F%A0_hu1242198101867564622.png 480w, /p/stackup-design/%E5%85%AB%E5%B1%82%E5%B1%82%E5%8F%A0_hu7053289466961255646.png 1024w"
+	loading="lazy"
+	
+		alt="可行的八层"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="170"
+		data-flex-basis="408px"
+	
+></p>
+<h2 id="十层板叠层推荐">十层板叠层推荐
+</h2><p><img src="/p/stackup-design/%E5%8D%81%E5%B1%82.png"
+	width="1526"
+	height="177"
+	srcset="/p/stackup-design/%E5%8D%81%E5%B1%82_hu5936521742355878683.png 480w, /p/stackup-design/%E5%8D%81%E5%B1%82_hu5861207224514217224.png 1024w"
+	loading="lazy"
+	
+		alt="十层"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="862"
+		data-flex-basis="2069px"
+	
+></p>
+<h2 id="其他">其他
+</h2><h3 id="高速信号换层">高速信号换层
+</h3><p>  <mark><strong>借助“接地过孔”桥接平面，正向与返回路径之间的环路面积得以受限，场扩散被降至最低！！！</strong></mark><br>
+  <mark><strong>如果要将高速信号换层，那么就得在信号过孔旁放一个接地过孔。</strong></mark>
+<img src="/p/stackup-design/%E5%80%9F%E5%8A%A9%E2%80%9C%E6%8E%A5%E5%9C%B0%E8%BF%87%E5%AD%94%E2%80%9D%E6%A1%A5%E6%8E%A5%E5%B9%B3%E9%9D%A2%EF%BC%8C%E6%AD%A3%E5%90%91%E4%B8%8E%E8%BF%94%E5%9B%9E%E8%B7%AF%E5%BE%84%E4%B9%8B%E9%97%B4%E7%9A%84%E7%8E%AF%E8%B7%AF%E9%9D%A2%E7%A7%AF%E5%BE%97%E4%BB%A5%E5%8F%97%E9%99%90%EF%BC%8C%E5%9C%BA%E6%89%A9%E6%95%A3%E8%A2%AB%E9%99%8D%E8%87%B3%E6%9C%80%E4%BD%8E%EF%BC%81%EF%BC%81%EF%BC%81.png"
+	width="1761"
+	height="1011"
+	srcset="/p/stackup-design/%E5%80%9F%E5%8A%A9%E2%80%9C%E6%8E%A5%E5%9C%B0%E8%BF%87%E5%AD%94%E2%80%9D%E6%A1%A5%E6%8E%A5%E5%B9%B3%E9%9D%A2%EF%BC%8C%E6%AD%A3%E5%90%91%E4%B8%8E%E8%BF%94%E5%9B%9E%E8%B7%AF%E5%BE%84%E4%B9%8B%E9%97%B4%E7%9A%84%E7%8E%AF%E8%B7%AF%E9%9D%A2%E7%A7%AF%E5%BE%97%E4%BB%A5%E5%8F%97%E9%99%90%EF%BC%8C%E5%9C%BA%E6%89%A9%E6%95%A3%E8%A2%AB%E9%99%8D%E8%87%B3%E6%9C%80%E4%BD%8E%EF%BC%81%EF%BC%81%EF%BC%81_hu4414506905804129742.png 480w, /p/stackup-design/%E5%80%9F%E5%8A%A9%E2%80%9C%E6%8E%A5%E5%9C%B0%E8%BF%87%E5%AD%94%E2%80%9D%E6%A1%A5%E6%8E%A5%E5%B9%B3%E9%9D%A2%EF%BC%8C%E6%AD%A3%E5%90%91%E4%B8%8E%E8%BF%94%E5%9B%9E%E8%B7%AF%E5%BE%84%E4%B9%8B%E9%97%B4%E7%9A%84%E7%8E%AF%E8%B7%AF%E9%9D%A2%E7%A7%AF%E5%BE%97%E4%BB%A5%E5%8F%97%E9%99%90%EF%BC%8C%E5%9C%BA%E6%89%A9%E6%95%A3%E8%A2%AB%E9%99%8D%E8%87%B3%E6%9C%80%E4%BD%8E%EF%BC%81%EF%BC%81%EF%BC%81_hu6119904305524750198.png 1024w"
+	loading="lazy"
+	
+		alt="换层建议"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="174"
+		data-flex-basis="418px"
+	
+></p>
+<h3 id="跨分割造成的问题">跨分割造成的问题
+</h3><p>  <mark><strong>跨分割时会造成阻抗变大，信号反射，对外EMI辐射增大</strong></mark>。<br>
+<img src="/p/stackup-design/%E8%B7%A8%E5%88%86%E5%89%B2%E9%80%A0%E6%88%90%E7%9A%84%E9%97%AE%E9%A2%98.png"
+	width="1260"
+	height="842"
+	srcset="/p/stackup-design/%E8%B7%A8%E5%88%86%E5%89%B2%E9%80%A0%E6%88%90%E7%9A%84%E9%97%AE%E9%A2%98_hu3866303597520549473.png 480w, /p/stackup-design/%E8%B7%A8%E5%88%86%E5%89%B2%E9%80%A0%E6%88%90%E7%9A%84%E9%97%AE%E9%A2%98_hu4652846846080242131.png 1024w"
+	loading="lazy"
+	
+		alt="问题"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="149"
+		data-flex-basis="359px"
+	
+></p>
+<h3 id="信号线主参考和次参考">信号线主参考和次参考
+</h3><p><img src="/p/stackup-design/%E4%B8%BB%E8%A6%81%E5%8F%82%E8%80%83%EF%BC%8C%E6%AC%A1%E8%A6%81%E5%8F%82%E8%80%83.png"
+	width="1157"
+	height="671"
+	srcset="/p/stackup-design/%E4%B8%BB%E8%A6%81%E5%8F%82%E8%80%83%EF%BC%8C%E6%AC%A1%E8%A6%81%E5%8F%82%E8%80%83_hu8036607492721471381.png 480w, /p/stackup-design/%E4%B8%BB%E8%A6%81%E5%8F%82%E8%80%83%EF%BC%8C%E6%AC%A1%E8%A6%81%E5%8F%82%E8%80%83_hu4395778655000177897.png 1024w"
+	loading="lazy"
+	
+		alt="主参考次参考"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="172"
+		data-flex-basis="413px"
+	
+></p>
+<h3 id="多个电源轨含义">“多个电源轨”含义
+</h3><p><img src="/p/stackup-design/%E7%94%B5%E6%BA%90%E8%BD%A8%E7%9A%84%E5%90%AB%E4%B9%89.png"
+	width="1281"
+	height="855"
+	srcset="/p/stackup-design/%E7%94%B5%E6%BA%90%E8%BD%A8%E7%9A%84%E5%90%AB%E4%B9%89_hu16997268746715269865.png 480w, /p/stackup-design/%E7%94%B5%E6%BA%90%E8%BD%A8%E7%9A%84%E5%90%AB%E4%B9%89_hu12660799440981251748.png 1024w"
+	loading="lazy"
+	
+		alt="电源轨"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="149"
+		data-flex-basis="359px"
+	
+></p>
+<h3 id="盘中孔科普">盘中孔科普
+</h3><p><img src="/p/stackup-design/%E7%9B%98%E4%B8%AD%E7%A9%BA%E5%90%AB%E4%B9%89.png"
+	width="1281"
+	height="713"
+	srcset="/p/stackup-design/%E7%9B%98%E4%B8%AD%E7%A9%BA%E5%90%AB%E4%B9%89_hu17316293722310313346.png 480w, /p/stackup-design/%E7%9B%98%E4%B8%AD%E7%A9%BA%E5%90%AB%E4%B9%89_hu14096834585062928784.png 1024w"
+	loading="lazy"
+	
+		alt="什么是盘中孔"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="179"
+		data-flex-basis="431px"
+	
+><br>
+<img src="/p/stackup-design/%E7%9B%98%E4%B8%AD%E5%AD%94%E4%BC%98%E7%82%B9.png"
+	width="1449"
+	height="935"
+	srcset="/p/stackup-design/%E7%9B%98%E4%B8%AD%E5%AD%94%E4%BC%98%E7%82%B9_hu3203633103791146928.png 480w, /p/stackup-design/%E7%9B%98%E4%B8%AD%E5%AD%94%E4%BC%98%E7%82%B9_hu11362344840807232535.png 1024w"
+	loading="lazy"
+	
+		alt="盘中孔优点1"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="154"
+		data-flex-basis="371px"
+	
+>
+<img src="/p/stackup-design/%E4%BC%98%E7%82%B92.png"
+	width="1532"
+	height="1008"
+	srcset="/p/stackup-design/%E4%BC%98%E7%82%B92_hu4341635314447468641.png 480w, /p/stackup-design/%E4%BC%98%E7%82%B92_hu10636838684646597304.png 1024w"
+	loading="lazy"
+	
+		alt="盘中孔优点2"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="151"
+		data-flex-basis="364px"
+	
+></p>
+<p><img src="/p/stackup-design/%E4%BC%98%E7%82%B93.png"
+	width="1302"
+	height="666"
+	srcset="/p/stackup-design/%E4%BC%98%E7%82%B93_hu8215765723893851453.png 480w, /p/stackup-design/%E4%BC%98%E7%82%B93_hu5968340782854067504.png 1024w"
+	loading="lazy"
+	
+		alt="盘中孔优点3"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="195"
+		data-flex-basis="469px"
+	
+><br>
+<img src="/p/stackup-design/%E7%BC%BA%E7%82%B9.png"
+	width="1332"
+	height="377"
+	srcset="/p/stackup-design/%E7%BC%BA%E7%82%B9_hu13764319822611256189.png 480w, /p/stackup-design/%E7%BC%BA%E7%82%B9_hu6124506485490616424.png 1024w"
+	loading="lazy"
+	
+		alt="盘中孔缺点"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="353"
+		data-flex-basis="847px"
 	
 ></p>
 
