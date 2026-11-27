@@ -10,7 +10,7 @@
 <meta property='og:description' content="Hello，吴先生，距离上次进行总结已经过了20天了。期间的AD软件学习，以及AD和EasyEDA快捷键章节，我都是使用DeepSeek Ha">
 <meta property='og:url' content='https://Carring06.github.io/p/stackup-design/'>
 <meta property='og:site_name' content='车度空间'>
-<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-11-24T11:35:29&#43;08:00'/><meta property='article:modified_time' content='2026-11-26T00:00:00&#43;00:00'/>
+<meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:published_time' content='2026-11-24T11:35:29&#43;08:00'/><meta property='article:modified_time' content='2026-11-27T00:00:00&#43;00:00'/>
 <meta name="twitter:title" content="高多层_叠层设计">
 <meta name="twitter:description" content="Hello，吴先生，距离上次进行总结已经过了20天了。期间的AD软件学习，以及AD和EasyEDA快捷键章节，我都是使用DeepSeek Ha">
     <link rel="shortcut icon" href="/favicon.ico" />
@@ -402,12 +402,12 @@
 
 
             <time class="article-time--modified">
-                最后更新于 2026-11-26
+                最后更新于 2026-11-27
             </time>
         </div>
         
         <div>
-            <span class="article-time--words">📝 2365 字</span>
+            <span class="article-time--words">📝 3326 字</span>
         </div>
         
         <div>
@@ -427,7 +427,7 @@
     
     <p>  Hello，吴先生，距离上次进行总结已经过了<strong>20天</strong>了。期间的<strong>AD软件学习</strong>，以及<strong>AD和EasyEDA快捷键章节</strong>，我都是使用<strong>DeepSeek Harness</strong>进行辅助完成的，为什么呢？因为我个人觉得，一些属于“<strong>机械</strong>”的，而且在总结过程中并不会有<strong>新的感悟</strong>的文章，确实可以交给AI去帮我们实现。而且不得不承认，AI总结的<strong>文章格式</strong>以及对<strong>MarkDown语法</strong>的运用，确实比<strong>目前的我</strong>好太多了，但写的太完美（虽然也没那么完美），也是一种不完美！😆<br>
   所以呢，对于我<strong>个人</strong>来说，如果是自己在学习过程中有<strong>新的收获</strong>时，那么，只有我自己进行博客文章的<strong>亲笔撰写</strong>，我才会觉得这篇文章<strong>质量好</strong>（虽然但是&hellip;）！其实一部分原因也是我本人确实喜欢通过<strong>码字与自己整理来记录自己的心得</strong>，博客文章的<strong>目的</strong>，也是因为我自己想做一些<strong>学习分享</strong>，但又<strong>不想</strong>再继续通过<strong>手写方式</strong>记录（当然我也会贴图嘿嘿），所以才创建这个网站来整理的，所以<strong>我不能，也不会</strong>把这个网站的博客撰写全盘交给AI的😉。<br>
-  那么，回到今天的重点——<mark>高多层_叠层设计</mark>。</p>
+  那么，回到今天的重点——<mark>高多层_叠层设计</mark>【<strong>偏向高速信号</strong>】。</p>
 <h2 id="材料层压与工艺">材料层压与工艺
 </h2><p>  讨论到<strong>叠层设计</strong>，很多人都是会立马开展哪个<strong>内层作GND地平面</strong>，哪个作<strong>PWR电源层</strong>，但这里，我先来谈谈PCB板子的<strong>材料层压</strong>与的相关科普。<br>
   首先，要介绍<strong>层压</strong>，那就需要先介绍两个概念，一是<strong>芯板</strong>（Core）和<strong>半固化片</strong>（PP）。<br>
@@ -546,7 +546,8 @@
 		data-flex-basis="557px"
 	
 >
-   <strong>阻抗</strong>是<strong>交流下</strong>电压与电流的<strong>比值</strong>，<strong>特征阻抗</strong>是均匀传输线特有的一类阻抗，它不是直流电阻，属于长线传输中的概念。信号在传输线中传输的过程中，在信号到达的一个点，传输线和参考平面之间会形成<strong>电场</strong>，由于<strong>电场的存在</strong>，会产生一个<strong>瞬间的小电流</strong>，这个<strong>瞬态电流</strong>随<strong>信号向前传播</strong>。同时<strong>信号</strong>也存在<strong>一定的电压</strong>，传输线上该点<strong>电压与瞬态电流</strong>的<strong>比值</strong>，就是我们提到的传输线的<strong>特征阻抗</strong>。这里要注意，特征阻抗是对于<strong>高频交流信号</strong>而言的，它只是等效比值，不是真实耗能电阻；对于直流信号，传输线只有一个直流电阻，这个值可能会远小于传输线的特征阻抗。<mark>信号在传输的过程中，如果传输路径上的<strong>特征阻抗发生变化</strong>，信号就会在<strong>阻抗不连续</strong>的结点产生<strong>反射</strong></mark>。这也就引入了<strong>控制阻抗匹配</strong>这一说法。</p>
+   <strong>阻抗</strong>是<strong>交流下</strong>电压与电流的<strong>比值</strong>，<strong>特征阻抗</strong>是均匀传输线特有的一类阻抗，它不是直流电阻，属于长线传输中的概念。信号在传输线中传输的过程中，在信号到达的一个点，传输线和参考平面之间会形成<strong>电场</strong>，由于<strong>电场的存在</strong>，会产生一个<strong>瞬间的小电流</strong>，这个<strong>瞬态电流</strong>随<strong>信号向前传播</strong>。同时<strong>信号</strong>也存在<strong>一定的电压</strong>，传输线上该点<strong>电压与瞬态电流</strong>的<strong>比值</strong>，就是我们提到的传输线的<strong>特征阻抗</strong>。这里要注意，特征阻抗是对于<strong>高频交流信号</strong>而言的，它只是等效比值，不是真实耗能电阻；对于直流信号，传输线只有一个直流电阻，这个值可能会远小于传输线的特征阻抗。<mark>信号在传输的过程中，如果传输路径上的<strong>特征阻抗发生变化</strong>，信号就会在<strong>阻抗不连续</strong>的结点产生<strong>反射</strong></mark>。这也就引入了<strong>控制阻抗匹配</strong>这一说法。<br>
+  这里我给一个<strong>模糊不准确</strong>的概念，大家可以作为参考——<mark>电感抗是因为线路上的寄生电感产生了和信号传输方向相反的微小电流对高速信号进行了阻碍</mark>~</p>
 <h4 id="控制阻抗的目的">控制阻抗的目的
 </h4><p><img src="/p/stackup-design/%E9%98%BB%E6%8A%97%E4%B8%8D%E5%8C%B9%E9%85%8D%E4%BC%9A%E9%80%A0%E5%8F%8D%E5%B0%84.png"
 	width="1685"
@@ -844,8 +845,37 @@
 		data-flex-basis="513px"
 	
 >
-  <br>
-<img src="/p/stackup-design/%E5%85%AD%E5%B1%82%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%842.png"
+  上图<strong>六层板</strong>结构，我们可以看到的是，<strong>顶层/底层</strong>和<strong>GND平面/PWR平面</strong>紧贴在一起，这样<strong>顶层/底层的信号</strong>就会有较为<strong>完整的参考平面</strong>，所以可以在<strong>顶层/底层</strong>布一些<strong>重要的信号线</strong>，而又因为<strong>GND平面的参考效果比PWR好</strong>，所以<strong>顶层</strong>布重要信号线<strong>优于</strong>底层。<strong>不足的是</strong>，该结构的<strong>PWR层和GND层</strong>离得有点<strong>远</strong>，这样会导致PWR层和GND层之间的<strong>寄生电容变小</strong>，<strong>平板电容容值</strong>会变<strong>小</strong>（<strong>具体原因自行查明</strong>），而这个电容的<strong>作用</strong>是：<mark><strong>以快速给高速器件提供瞬态电流，降低电源阻抗（PDN 电源完整性），抑制电源噪声</strong></mark>。当这个平板电容<strong>容值小</strong>时，<strong>降低电源阻抗的效果就会变差</strong>。<br>
+  而且，该结构的两个<strong>内层信号层</strong>挨在一起，这样会<strong>加剧信号</strong>之间的<strong>串扰</strong>，所以如果要在这两层走信号线时，应该采取<strong>正交走线</strong>！<br>
+<img src="/p/stackup-design/%E6%AD%A3%E4%BA%A4%E8%B5%B0%E7%BA%BF%E7%9A%84%E5%90%AB%E4%B9%89.png"
+	width="1452"
+	height="860"
+	srcset="/p/stackup-design/%E6%AD%A3%E4%BA%A4%E8%B5%B0%E7%BA%BF%E7%9A%84%E5%90%AB%E4%B9%89_hu5164021786479522824.png 480w, /p/stackup-design/%E6%AD%A3%E4%BA%A4%E8%B5%B0%E7%BA%BF%E7%9A%84%E5%90%AB%E4%B9%89_hu15823466783417595296.png 1024w"
+	loading="lazy"
+	
+		alt="正交走线含义"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="168"
+		data-flex-basis="405px"
+	
+></p>
+<p><img src="/p/stackup-design/image-11.png"
+	width="1487"
+	height="719"
+	srcset="/p/stackup-design/image-11_hu873376281730951718.png 480w, /p/stackup-design/image-11_hu8027237609622724927.png 1024w"
+	loading="lazy"
+	
+		alt="正交对象"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="206"
+		data-flex-basis="496px"
+	
+></p>
+<p><img src="/p/stackup-design/%E5%85%AD%E5%B1%82%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%842.png"
 	width="1682"
 	height="1037"
 	srcset="/p/stackup-design/%E5%85%AD%E5%B1%82%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%842_hu2466633363179648896.png 480w, /p/stackup-design/%E5%85%AD%E5%B1%82%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%842_hu12603875028769121797.png 1024w"
@@ -859,7 +889,9 @@
 		data-flex-basis="389px"
 	
 >
-  <br>
+  上图的结构，一眼就看出来<strong>信号层</strong>之间<strong>紧贴</strong>在一起，所以必须采取<strong>正交走线</strong>【<mark>针对于存在高速信号的情景，若只有低速信号则好像不会引起太大串扰</mark>】，否则信号之间<strong>场与场的串扰</strong>会<strong>加剧</strong>。<br>
+  上图结构的<strong>PWR和GND层</strong>紧贴在一起，这一点不错！一般如果<strong>电源网络分配</strong>是<strong>重点</strong>的话，就应该让<strong>PWR层和GND</strong>层<strong>紧贴</strong>。<br>
+  可以看到，这个结构的<strong>内层信号层</strong>有<strong>参考平面</strong>，而<strong>外层</strong>两个信号层却<strong>没有</strong>，而且GND<strong>平面</strong>层与PWR<strong>平面</strong>层并未发挥对信号层构成<strong>电磁屏蔽保护</strong>的作用。采用这个结构时，尽量让<strong>高速信号</strong>走<strong>内层</strong>，<strong>低速</strong>走<strong>外层</strong>。
 <img src="/p/stackup-design/%E5%85%AD%E5%B1%82%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%843.png"
 	width="1818"
 	height="1146"
@@ -874,7 +906,9 @@
 		data-flex-basis="380px"
 	
 >
-  <br>
+  而现在所展示的这个结构，对<strong>信号层</strong>就非常<strong>友好</strong>。每个<strong>信号层</strong>都会有一个<strong>参考平面</strong>（而且都有<strong>GND平面</strong>做参考） ，而且<strong>电源平面层</strong>与<strong>地平面层</strong>也挨在一起，<strong>紧密耦合</strong>，<strong>信号层之间</strong>相互<strong>隔离****不容易</strong>发生<strong>串扰</strong>，<strong>内层的信号层</strong>，受到<strong>两层地平面层</strong>和<strong>一层电源平面层</strong>的<strong>屏蔽保护</strong>。<br>
+  <strong>唯一的缺点</strong>是<strong>外层信号没有受到电层屏蔽保护，可用于布线的信号层也少了一层</strong>。<br>
+  <strong>尽管如此</strong>，这个方案对信号线的<strong>保护最好</strong>，在<strong>信号完整性和EMC方面的性能</strong>也是<strong>最好</strong>。
 <img src="/p/stackup-design/%E5%85%AD%E5%B1%82%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%844.png"
 	width="1962"
 	height="1029"
@@ -889,7 +923,22 @@
 		data-flex-basis="457px"
 	
 >
-  </p>
+  上图结构仅是将结构3的<strong>PWR层</strong>与<strong>层5GND层</strong>进行了<strong>互换</strong>，这样使得<strong>内层信号层</strong>得到的<strong>更好的保护</strong>，所以<strong>高速信号****重点</strong>走在<strong>内层信号层</strong>。<br>
+  <strong>缺点</strong>是<strong>底层信号层</strong>状态<strong>更差</strong>了，因为他在<strong>最外层</strong>，缺少了<strong>大面积地平面</strong>的<strong>屏蔽</strong>，而且与之相邻的是<strong>电源平面</strong>，信号<strong>回流路径阻抗</strong>要<strong>差于</strong>直接与<strong>地平面耦合</strong>的情况。<br>
+<img src="/p/stackup-design/image-12.png"
+	width="1581"
+	height="1695"
+	srcset="/p/stackup-design/image-12_hu15029008869151087156.png 480w, /p/stackup-design/image-12_hu9200829607090348156.png 1024w"
+	loading="lazy"
+	
+		alt="屏蔽一说"
+	
+	
+		class="gallery-image" 
+		data-flex-grow="93"
+		data-flex-basis="223px"
+	
+></p>
 
 </section>
 
@@ -919,7 +968,7 @@
 
 
         <span>
-            最后更新于 2026-11-26
+            最后更新于 2026-11-27
         </span>
     </section></footer>
 

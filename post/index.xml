@@ -2338,7 +2338,7 @@
         <guid>https://Carring06.github.io/p/stackup-design/</guid>
         <description>&lt;p&gt;  Hello，吴先生，距离上次进行总结已经过了&lt;strong&gt;20天&lt;/strong&gt;了。期间的&lt;strong&gt;AD软件学习&lt;/strong&gt;，以及&lt;strong&gt;AD和EasyEDA快捷键章节&lt;/strong&gt;，我都是使用&lt;strong&gt;DeepSeek Harness&lt;/strong&gt;进行辅助完成的，为什么呢？因为我个人觉得，一些属于“&lt;strong&gt;机械&lt;/strong&gt;”的，而且在总结过程中并不会有&lt;strong&gt;新的感悟&lt;/strong&gt;的文章，确实可以交给AI去帮我们实现。而且不得不承认，AI总结的&lt;strong&gt;文章格式&lt;/strong&gt;以及对&lt;strong&gt;MarkDown语法&lt;/strong&gt;的运用，确实比&lt;strong&gt;目前的我&lt;/strong&gt;好太多了，但写的太完美（虽然也没那么完美），也是一种不完美！😆&lt;br&gt;
   所以呢，对于我&lt;strong&gt;个人&lt;/strong&gt;来说，如果是自己在学习过程中有&lt;strong&gt;新的收获&lt;/strong&gt;时，那么，只有我自己进行博客文章的&lt;strong&gt;亲笔撰写&lt;/strong&gt;，我才会觉得这篇文章&lt;strong&gt;质量好&lt;/strong&gt;（虽然但是&amp;hellip;）！其实一部分原因也是我本人确实喜欢通过&lt;strong&gt;码字与自己整理来记录自己的心得&lt;/strong&gt;，博客文章的&lt;strong&gt;目的&lt;/strong&gt;，也是因为我自己想做一些&lt;strong&gt;学习分享&lt;/strong&gt;，但又&lt;strong&gt;不想&lt;/strong&gt;再继续通过&lt;strong&gt;手写方式&lt;/strong&gt;记录（当然我也会贴图嘿嘿），所以才创建这个网站来整理的，所以&lt;strong&gt;我不能，也不会&lt;/strong&gt;把这个网站的博客撰写全盘交给AI的😉。&lt;br&gt;
-  那么，回到今天的重点——&lt;mark&gt;高多层_叠层设计&lt;/mark&gt;。&lt;/p&gt;
+  那么，回到今天的重点——&lt;mark&gt;高多层_叠层设计&lt;/mark&gt;【&lt;strong&gt;偏向高速信号&lt;/strong&gt;】。&lt;/p&gt;
 &lt;h2 id=&#34;材料层压与工艺&#34;&gt;材料层压与工艺
 &lt;/h2&gt;&lt;p&gt;  讨论到&lt;strong&gt;叠层设计&lt;/strong&gt;，很多人都是会立马开展哪个&lt;strong&gt;内层作GND地平面&lt;/strong&gt;，哪个作&lt;strong&gt;PWR电源层&lt;/strong&gt;，但这里，我先来谈谈PCB板子的&lt;strong&gt;材料层压&lt;/strong&gt;与的相关科普。&lt;br&gt;
   首先，要介绍&lt;strong&gt;层压&lt;/strong&gt;，那就需要先介绍两个概念，一是&lt;strong&gt;芯板&lt;/strong&gt;（Core）和&lt;strong&gt;半固化片&lt;/strong&gt;（PP）。&lt;br&gt;
@@ -2457,7 +2457,8 @@
 		data-flex-basis=&#34;557px&#34;
 	
 &gt;
-   &lt;strong&gt;阻抗&lt;/strong&gt;是&lt;strong&gt;交流下&lt;/strong&gt;电压与电流的&lt;strong&gt;比值&lt;/strong&gt;，&lt;strong&gt;特征阻抗&lt;/strong&gt;是均匀传输线特有的一类阻抗，它不是直流电阻，属于长线传输中的概念。信号在传输线中传输的过程中，在信号到达的一个点，传输线和参考平面之间会形成&lt;strong&gt;电场&lt;/strong&gt;，由于&lt;strong&gt;电场的存在&lt;/strong&gt;，会产生一个&lt;strong&gt;瞬间的小电流&lt;/strong&gt;，这个&lt;strong&gt;瞬态电流&lt;/strong&gt;随&lt;strong&gt;信号向前传播&lt;/strong&gt;。同时&lt;strong&gt;信号&lt;/strong&gt;也存在&lt;strong&gt;一定的电压&lt;/strong&gt;，传输线上该点&lt;strong&gt;电压与瞬态电流&lt;/strong&gt;的&lt;strong&gt;比值&lt;/strong&gt;，就是我们提到的传输线的&lt;strong&gt;特征阻抗&lt;/strong&gt;。这里要注意，特征阻抗是对于&lt;strong&gt;高频交流信号&lt;/strong&gt;而言的，它只是等效比值，不是真实耗能电阻；对于直流信号，传输线只有一个直流电阻，这个值可能会远小于传输线的特征阻抗。&lt;mark&gt;信号在传输的过程中，如果传输路径上的&lt;strong&gt;特征阻抗发生变化&lt;/strong&gt;，信号就会在&lt;strong&gt;阻抗不连续&lt;/strong&gt;的结点产生&lt;strong&gt;反射&lt;/strong&gt;&lt;/mark&gt;。这也就引入了&lt;strong&gt;控制阻抗匹配&lt;/strong&gt;这一说法。&lt;/p&gt;
+   &lt;strong&gt;阻抗&lt;/strong&gt;是&lt;strong&gt;交流下&lt;/strong&gt;电压与电流的&lt;strong&gt;比值&lt;/strong&gt;，&lt;strong&gt;特征阻抗&lt;/strong&gt;是均匀传输线特有的一类阻抗，它不是直流电阻，属于长线传输中的概念。信号在传输线中传输的过程中，在信号到达的一个点，传输线和参考平面之间会形成&lt;strong&gt;电场&lt;/strong&gt;，由于&lt;strong&gt;电场的存在&lt;/strong&gt;，会产生一个&lt;strong&gt;瞬间的小电流&lt;/strong&gt;，这个&lt;strong&gt;瞬态电流&lt;/strong&gt;随&lt;strong&gt;信号向前传播&lt;/strong&gt;。同时&lt;strong&gt;信号&lt;/strong&gt;也存在&lt;strong&gt;一定的电压&lt;/strong&gt;，传输线上该点&lt;strong&gt;电压与瞬态电流&lt;/strong&gt;的&lt;strong&gt;比值&lt;/strong&gt;，就是我们提到的传输线的&lt;strong&gt;特征阻抗&lt;/strong&gt;。这里要注意，特征阻抗是对于&lt;strong&gt;高频交流信号&lt;/strong&gt;而言的，它只是等效比值，不是真实耗能电阻；对于直流信号，传输线只有一个直流电阻，这个值可能会远小于传输线的特征阻抗。&lt;mark&gt;信号在传输的过程中，如果传输路径上的&lt;strong&gt;特征阻抗发生变化&lt;/strong&gt;，信号就会在&lt;strong&gt;阻抗不连续&lt;/strong&gt;的结点产生&lt;strong&gt;反射&lt;/strong&gt;&lt;/mark&gt;。这也就引入了&lt;strong&gt;控制阻抗匹配&lt;/strong&gt;这一说法。&lt;br&gt;
+  这里我给一个&lt;strong&gt;模糊不准确&lt;/strong&gt;的概念，大家可以作为参考——&lt;mark&gt;电感抗是因为线路上的寄生电感产生了和信号传输方向相反的微小电流对高速信号进行了阻碍&lt;/mark&gt;~&lt;/p&gt;
 &lt;h4 id=&#34;控制阻抗的目的&#34;&gt;控制阻抗的目的
 &lt;/h4&gt;&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/stackup-design/%E9%98%BB%E6%8A%97%E4%B8%8D%E5%8C%B9%E9%85%8D%E4%BC%9A%E9%80%A0%E5%8F%8D%E5%B0%84.png&#34;
 	width=&#34;1685&#34;
@@ -2755,8 +2756,37 @@
 		data-flex-basis=&#34;513px&#34;
 	
 &gt;
-  &lt;br&gt;
-&lt;img src=&#34;https://Carring06.github.io/p/stackup-design/%E5%85%AD%E5%B1%82%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%842.png&#34;
+  上图&lt;strong&gt;六层板&lt;/strong&gt;结构，我们可以看到的是，&lt;strong&gt;顶层/底层&lt;/strong&gt;和&lt;strong&gt;GND平面/PWR平面&lt;/strong&gt;紧贴在一起，这样&lt;strong&gt;顶层/底层的信号&lt;/strong&gt;就会有较为&lt;strong&gt;完整的参考平面&lt;/strong&gt;，所以可以在&lt;strong&gt;顶层/底层&lt;/strong&gt;布一些&lt;strong&gt;重要的信号线&lt;/strong&gt;，而又因为&lt;strong&gt;GND平面的参考效果比PWR好&lt;/strong&gt;，所以&lt;strong&gt;顶层&lt;/strong&gt;布重要信号线&lt;strong&gt;优于&lt;/strong&gt;底层。&lt;strong&gt;不足的是&lt;/strong&gt;，该结构的&lt;strong&gt;PWR层和GND层&lt;/strong&gt;离得有点&lt;strong&gt;远&lt;/strong&gt;，这样会导致PWR层和GND层之间的&lt;strong&gt;寄生电容变小&lt;/strong&gt;，&lt;strong&gt;平板电容容值&lt;/strong&gt;会变&lt;strong&gt;小&lt;/strong&gt;（&lt;strong&gt;具体原因自行查明&lt;/strong&gt;），而这个电容的&lt;strong&gt;作用&lt;/strong&gt;是：&lt;mark&gt;&lt;strong&gt;以快速给高速器件提供瞬态电流，降低电源阻抗（PDN 电源完整性），抑制电源噪声&lt;/strong&gt;&lt;/mark&gt;。当这个平板电容&lt;strong&gt;容值小&lt;/strong&gt;时，&lt;strong&gt;降低电源阻抗的效果就会变差&lt;/strong&gt;。&lt;br&gt;
+  而且，该结构的两个&lt;strong&gt;内层信号层&lt;/strong&gt;挨在一起，这样会&lt;strong&gt;加剧信号&lt;/strong&gt;之间的&lt;strong&gt;串扰&lt;/strong&gt;，所以如果要在这两层走信号线时，应该采取&lt;strong&gt;正交走线&lt;/strong&gt;！&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/stackup-design/%E6%AD%A3%E4%BA%A4%E8%B5%B0%E7%BA%BF%E7%9A%84%E5%90%AB%E4%B9%89.png&#34;
+	width=&#34;1452&#34;
+	height=&#34;860&#34;
+	srcset=&#34;https://Carring06.github.io/p/stackup-design/%E6%AD%A3%E4%BA%A4%E8%B5%B0%E7%BA%BF%E7%9A%84%E5%90%AB%E4%B9%89_hu5164021786479522824.png 480w, https://Carring06.github.io/p/stackup-design/%E6%AD%A3%E4%BA%A4%E8%B5%B0%E7%BA%BF%E7%9A%84%E5%90%AB%E4%B9%89_hu15823466783417595296.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;正交走线含义&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;168&#34;
+		data-flex-basis=&#34;405px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/stackup-design/image-11.png&#34;
+	width=&#34;1487&#34;
+	height=&#34;719&#34;
+	srcset=&#34;https://Carring06.github.io/p/stackup-design/image-11_hu873376281730951718.png 480w, https://Carring06.github.io/p/stackup-design/image-11_hu8027237609622724927.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;正交对象&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;206&#34;
+		data-flex-basis=&#34;496px&#34;
+	
+&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://Carring06.github.io/p/stackup-design/%E5%85%AD%E5%B1%82%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%842.png&#34;
 	width=&#34;1682&#34;
 	height=&#34;1037&#34;
 	srcset=&#34;https://Carring06.github.io/p/stackup-design/%E5%85%AD%E5%B1%82%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%842_hu2466633363179648896.png 480w, https://Carring06.github.io/p/stackup-design/%E5%85%AD%E5%B1%82%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%842_hu12603875028769121797.png 1024w&#34;
@@ -2770,7 +2800,9 @@
 		data-flex-basis=&#34;389px&#34;
 	
 &gt;
-  &lt;br&gt;
+  上图的结构，一眼就看出来&lt;strong&gt;信号层&lt;/strong&gt;之间&lt;strong&gt;紧贴&lt;/strong&gt;在一起，所以必须采取&lt;strong&gt;正交走线&lt;/strong&gt;【&lt;mark&gt;针对于存在高速信号的情景，若只有低速信号则好像不会引起太大串扰&lt;/mark&gt;】，否则信号之间&lt;strong&gt;场与场的串扰&lt;/strong&gt;会&lt;strong&gt;加剧&lt;/strong&gt;。&lt;br&gt;
+  上图结构的&lt;strong&gt;PWR和GND层&lt;/strong&gt;紧贴在一起，这一点不错！一般如果&lt;strong&gt;电源网络分配&lt;/strong&gt;是&lt;strong&gt;重点&lt;/strong&gt;的话，就应该让&lt;strong&gt;PWR层和GND&lt;/strong&gt;层&lt;strong&gt;紧贴&lt;/strong&gt;。&lt;br&gt;
+  可以看到，这个结构的&lt;strong&gt;内层信号层&lt;/strong&gt;有&lt;strong&gt;参考平面&lt;/strong&gt;，而&lt;strong&gt;外层&lt;/strong&gt;两个信号层却&lt;strong&gt;没有&lt;/strong&gt;，而且GND&lt;strong&gt;平面&lt;/strong&gt;层与PWR&lt;strong&gt;平面&lt;/strong&gt;层并未发挥对信号层构成&lt;strong&gt;电磁屏蔽保护&lt;/strong&gt;的作用。采用这个结构时，尽量让&lt;strong&gt;高速信号&lt;/strong&gt;走&lt;strong&gt;内层&lt;/strong&gt;，&lt;strong&gt;低速&lt;/strong&gt;走&lt;strong&gt;外层&lt;/strong&gt;。
 &lt;img src=&#34;https://Carring06.github.io/p/stackup-design/%E5%85%AD%E5%B1%82%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%843.png&#34;
 	width=&#34;1818&#34;
 	height=&#34;1146&#34;
@@ -2785,7 +2817,9 @@
 		data-flex-basis=&#34;380px&#34;
 	
 &gt;
-  &lt;br&gt;
+  而现在所展示的这个结构，对&lt;strong&gt;信号层&lt;/strong&gt;就非常&lt;strong&gt;友好&lt;/strong&gt;。每个&lt;strong&gt;信号层&lt;/strong&gt;都会有一个&lt;strong&gt;参考平面&lt;/strong&gt;（而且都有&lt;strong&gt;GND平面&lt;/strong&gt;做参考） ，而且&lt;strong&gt;电源平面层&lt;/strong&gt;与&lt;strong&gt;地平面层&lt;/strong&gt;也挨在一起，&lt;strong&gt;紧密耦合&lt;/strong&gt;，&lt;strong&gt;信号层之间&lt;/strong&gt;相互&lt;strong&gt;隔离****不容易&lt;/strong&gt;发生&lt;strong&gt;串扰&lt;/strong&gt;，&lt;strong&gt;内层的信号层&lt;/strong&gt;，受到&lt;strong&gt;两层地平面层&lt;/strong&gt;和&lt;strong&gt;一层电源平面层&lt;/strong&gt;的&lt;strong&gt;屏蔽保护&lt;/strong&gt;。&lt;br&gt;
+  &lt;strong&gt;唯一的缺点&lt;/strong&gt;是&lt;strong&gt;外层信号没有受到电层屏蔽保护，可用于布线的信号层也少了一层&lt;/strong&gt;。&lt;br&gt;
+  &lt;strong&gt;尽管如此&lt;/strong&gt;，这个方案对信号线的&lt;strong&gt;保护最好&lt;/strong&gt;，在&lt;strong&gt;信号完整性和EMC方面的性能&lt;/strong&gt;也是&lt;strong&gt;最好&lt;/strong&gt;。
 &lt;img src=&#34;https://Carring06.github.io/p/stackup-design/%E5%85%AD%E5%B1%82%E5%8F%A0%E5%B1%82%E7%BB%93%E6%9E%844.png&#34;
 	width=&#34;1962&#34;
 	height=&#34;1029&#34;
@@ -2800,7 +2834,22 @@
 		data-flex-basis=&#34;457px&#34;
 	
 &gt;
-  &lt;/p&gt;
+  上图结构仅是将结构3的&lt;strong&gt;PWR层&lt;/strong&gt;与&lt;strong&gt;层5GND层&lt;/strong&gt;进行了&lt;strong&gt;互换&lt;/strong&gt;，这样使得&lt;strong&gt;内层信号层&lt;/strong&gt;得到的&lt;strong&gt;更好的保护&lt;/strong&gt;，所以&lt;strong&gt;高速信号****重点&lt;/strong&gt;走在&lt;strong&gt;内层信号层&lt;/strong&gt;。&lt;br&gt;
+  &lt;strong&gt;缺点&lt;/strong&gt;是&lt;strong&gt;底层信号层&lt;/strong&gt;状态&lt;strong&gt;更差&lt;/strong&gt;了，因为他在&lt;strong&gt;最外层&lt;/strong&gt;，缺少了&lt;strong&gt;大面积地平面&lt;/strong&gt;的&lt;strong&gt;屏蔽&lt;/strong&gt;，而且与之相邻的是&lt;strong&gt;电源平面&lt;/strong&gt;，信号&lt;strong&gt;回流路径阻抗&lt;/strong&gt;要&lt;strong&gt;差于&lt;/strong&gt;直接与&lt;strong&gt;地平面耦合&lt;/strong&gt;的情况。&lt;br&gt;
+&lt;img src=&#34;https://Carring06.github.io/p/stackup-design/image-12.png&#34;
+	width=&#34;1581&#34;
+	height=&#34;1695&#34;
+	srcset=&#34;https://Carring06.github.io/p/stackup-design/image-12_hu15029008869151087156.png 480w, https://Carring06.github.io/p/stackup-design/image-12_hu9200829607090348156.png 1024w&#34;
+	loading=&#34;lazy&#34;
+	
+		alt=&#34;屏蔽一说&#34;
+	
+	
+		class=&#34;gallery-image&#34; 
+		data-flex-grow=&#34;93&#34;
+		data-flex-basis=&#34;223px&#34;
+	
+&gt;&lt;/p&gt;
 </description>
         </item>
         <item>
